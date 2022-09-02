@@ -1,0 +1,14 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "author": "Alexander Kunekov<fairyfromalfeya@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "locklift build"
+  },
+  "devDependencies": {
+    "@broxus/contracts": "1.0.4",
+    "locklift": "2.2.1"
+  }
+}
