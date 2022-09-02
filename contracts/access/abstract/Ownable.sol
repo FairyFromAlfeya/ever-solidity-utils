@@ -62,6 +62,9 @@ abstract contract Ownable is IOwnable, Validatable {
         address previous = _owner;
         _owner = _newOwner;
 
-        emit OwnerChanged(_newOwner, previous);
+        emit OwnerChanged(
+            _newOwner,
+            previous
+        );
     }
 }

@@ -6,7 +6,12 @@ library Validation {
         address _b,
         uint16 _error
     ) public {
-        require(_a.value != 0 && _a != _b, _error);
+        require(
+            _a.value != 0 &&
+            _b.value != 0 &&
+            _a != _b,
+            _error
+        );
     }
 
     function notEmpty(

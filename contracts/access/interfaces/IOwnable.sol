@@ -1,7 +1,10 @@
 pragma ton-solidity >= 0.57.1;
 
 interface IOwnable {
-    event OwnerChanged(address current, address previous);
+    event OwnerChanged(
+        address current,
+        address previous
+    );
 
     function getOwner() external view responsible returns (address);
 
