@@ -6,6 +6,19 @@ import "../libraries/Validation.sol";
 /// @notice Modifiers for calls' validation
 /// @dev A contract is abstract - to be sure that it will be inherited by another contract
 abstract contract Validatable {
+    /// @dev Reserve contract's balance with flag 0 and accept to pay fees
+    modifier reserveAndAccept(uint128 _reserve) {
+        tvm.rawReserve(_reserve, 0);
+        tvm.accept();
+        _;
+    }
+
+    /// @dev Reserve contract's balance with flag 0
+    modifier reserve(uint128 _reserve) {
+        tvm.rawReserve(_reserve, 0);
+        _;
+    }
+
     /// @dev Check that address is not nil and doesn't equal contract's address
     modifier validAddress(
         address _a,
