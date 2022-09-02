@@ -32,7 +32,7 @@ abstract contract Ownable is IOwnable, Validatable {
             value: 0,
             flag: MsgFlag.REMAINING_GAS,
             bounce: false
-        } _owner;
+        } _getOwnerInternal();
     }
 
     function setOwner(
@@ -66,5 +66,9 @@ abstract contract Ownable is IOwnable, Validatable {
             _newOwner,
             previous
         );
+    }
+
+    function _getOwnerInternal() internal view returns (address) {
+        return _owner;
     }
 }
