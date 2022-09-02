@@ -1,6 +1,11 @@
 pragma ton-solidity >= 0.57.1;
 
+/// @title Validation Utility
 library Validation {
+    /// @notice Check that addresses are different and not nil
+    /// @param _a First address
+    /// @param _b Second address
+    /// @param _error Error code if validation was failed
     function notEquals(
         address _a,
         address _b,
@@ -14,6 +19,9 @@ library Validation {
         );
     }
 
+    /// @notice Check that TvmCell is not empty
+    /// @param _a TvmCell for check
+    /// @param _error Error code if validation was failed
     function notEmpty(
         TvmCell _a,
         uint16 _error

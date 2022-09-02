@@ -2,7 +2,11 @@ pragma ton-solidity >= 0.57.1;
 
 import "../libraries/Validation.sol";
 
+/// @title Validatable
+/// @notice Modifiers for calls' validation
+/// @dev A contract is abstract - to be sure that it will be inherited by another contract
 abstract contract Validatable {
+    /// @dev Check that address is not nil and doesn't equal contract's address
     modifier validAddress(
         address _a,
         uint16 _error
@@ -15,6 +19,7 @@ abstract contract Validatable {
         _;
     }
 
+    /// @dev Check that TvmCell is not empty
     modifier validTvmCell(
         TvmCell _a,
         uint16 _error
@@ -26,6 +31,7 @@ abstract contract Validatable {
         _;
     }
 
+    /// @dev Check that address is valid if specified or null
     modifier validAddressOrNull(
         optional(address) _a,
         uint16 _error

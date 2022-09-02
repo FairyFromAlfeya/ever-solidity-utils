@@ -1,5 +1,6 @@
 {
   "name": "@fairyfromalfeya/ever-solidity-utils",
+  "description": "Utility solidity contracts for everscale",
   "version": "1.0.2",
   "author": "Alexander Kunekov<fairyfromalfeya@gmail.com>",
   "license": "MIT",
