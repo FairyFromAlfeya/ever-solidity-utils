@@ -1,9 +1,12 @@
 {
-  "name": "utils",
-  "version": "1.0.0",
+  "name": "@fairyfromalfeya/ever-solidity-utils",
+  "version": "1.0.1",
   "author": "Alexander Kunekov<fairyfromalfeya@gmail.com>",
   "license": "MIT",
-  "private": true,
+  "files": [
+    "/build",
+    "/contracts"
+  ],
   "scripts": {
     "build": "locklift build"
   },
