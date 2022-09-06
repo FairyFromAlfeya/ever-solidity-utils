@@ -2,10 +2,10 @@ pragma ton-solidity >= 0.57.1;
 
 import "@broxus/contracts/contracts/libraries/MsgFlag.sol";
 
-import "../interfaces/IActivatable.sol";
+import "../../libraries/UtilityGas.sol";
+import "../../libraries/UtilityErrors.sol";
 
-import "../libraries/AccessGas.sol";
-import "../libraries/AccessErrors.sol";
+import "../interfaces/IActivatable.sol";
 
 import "./Ownable.sol";
 
@@ -18,7 +18,7 @@ abstract contract Activatable is IActivatable, Ownable {
 
     /// @dev Function can be called only if the contract is active
     modifier onlyActive() {
-        require(_isActive, AccessErrors.CONTRACT_IS_NOT_ACTIVE);
+        require(_isActive, UtilityErrors.CONTRACT_IS_NOT_ACTIVE);
         _;
     }
 
@@ -42,12 +42,10 @@ abstract contract Activatable is IActivatable, Ownable {
     )
         external
         override
+        reserve(UtilityGas.INITIAL_BALANCE)
         onlyOwner
-        validAddressOrNull(_remainingGasTo, AccessErrors.INVALID_GAS_RECIPIENT)
+        validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Reserve contract's balance
-        tvm.rawReserve(AccessGas.INITIAL_BALANCE, 0);
-
         // Update
         _setActiveInternal(_newActive);
 

@@ -2,12 +2,11 @@ pragma ton-solidity >= 0.57.1;
 
 import "@broxus/contracts/contracts/libraries/MsgFlag.sol";
 
+import "../../libraries/UtilityGas.sol";
+import "../../libraries/UtilityErrors.sol";
 import "../../validation/abstract/Validatable.sol";
 
 import "../interfaces/IOwnable.sol";
-
-import "../libraries/AccessGas.sol";
-import "../libraries/AccessErrors.sol";
 
 /// @title Ownable
 /// @notice Implements base functions for ownable contract
@@ -21,7 +20,7 @@ abstract contract Ownable is IOwnable, Validatable {
         require(
             _owner.value != 0 &&
             msg.sender == _owner,
-            AccessErrors.CALLER_IS_NOT_OWNER
+            UtilityErrors.CALLER_IS_NOT_OWNER
         );
         _;
     }
@@ -46,13 +45,11 @@ abstract contract Ownable is IOwnable, Validatable {
     )
         external
         override
+        reserve(UtilityGas.INITIAL_BALANCE)
         onlyOwner
-        validAddress(_newOwner, AccessErrors.INVALID_NEW_OWNER)
-        validAddressOrNull(_remainingGasTo, AccessErrors.INVALID_GAS_RECIPIENT)
+        validAddress(_newOwner, UtilityErrors.INVALID_NEW_OWNER)
+        validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Reserve contract's balance
-        tvm.rawReserve(AccessGas.INITIAL_BALANCE, 0);
-
         // Update
         _setOwnerInternal(_newOwner);
 

@@ -1,8 +1,8 @@
 pragma ton-solidity >= 0.57.1;
 
-/// @title Errors of the access contracts
-/// @notice Possible errors when interacting with access contracts
-library AccessErrors {
+/// @title Utility Errors
+/// @notice Possible errors when interacting with utility contracts
+library UtilityErrors {
     /// @dev Caller must be owner of the contract
     uint16 constant CALLER_IS_NOT_OWNER = 200;
 
