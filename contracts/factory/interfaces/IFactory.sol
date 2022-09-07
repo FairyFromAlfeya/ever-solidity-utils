@@ -24,6 +24,11 @@ interface IFactory {
     /// @return bool Instance's code version
     function getInstanceVersion() external view responsible returns (uint32);
 
+    /// @notice Get instance address by deploy params
+    /// @param _params Deploy params
+    /// @return address Expected instance's address
+    function getInstanceAddress(TvmCell _params) external view responsible returns (address);
+
     /// @notice Sets new instance's code
     /// @dev Only the current owner can perform
     /// @param _newCode New instance's code

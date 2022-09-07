@@ -14,4 +14,10 @@ library UtilityErrors {
 
     /// @dev Contract is not active
     uint16 constant CONTRACT_IS_NOT_ACTIVE = 203;
+
+    /// @dev TvmCell with contract's new code is empty
+    uint16 constant INVALID_CODE = 204;
+
+    /// @dev Platform code can not be set twice
+    uint16 constant PLATFORM_CODE_ALREADY_SET = 205;
 }

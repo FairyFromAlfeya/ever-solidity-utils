@@ -55,6 +55,7 @@ abstract contract Factory is IFactory, Ownable {
         override
         reserve(UtilityGas.INITIAL_BALANCE)
         onlyOwner
+        validTvmCell(_newCode, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
         // Update
