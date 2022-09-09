@@ -20,4 +20,7 @@ library UtilityErrors {
 
     /// @dev Platform code can not be set twice
     uint16 constant PLATFORM_CODE_ALREADY_SET = 205;
+
+    /// @dev Specified address is nil or equals contract
+    uint16 constant INVALID_ADDRESS = 206;
 }
