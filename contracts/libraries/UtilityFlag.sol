@@ -1,8 +1,8 @@
 pragma ton-solidity >= 0.57.1;
 
-/// @title Message Flag
+/// @title Utility Flag
 /// @notice Possible flags when sending message from contract
-library MsgFlag {
+library UtilityFlag {
     /// @dev Contract will be charged for message creation
     uint8 constant SENDER_PAYS_FEES     = 1;
 

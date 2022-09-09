@@ -38,7 +38,7 @@ contract UpgradableExample is Upgradable, Ownable {
         // Refund remaining gas
         remainingGasTo.transfer({
             value: 0,
-            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
+            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
             bounce: false
         });
     }
@@ -99,7 +99,7 @@ contract UpgradableExample is Upgradable, Ownable {
         // Refund remaining gas
         remainingGasTo.transfer({
             value: 0,
-            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
+            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
             bounce: false
         });
     }

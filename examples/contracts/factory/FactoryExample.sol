@@ -36,7 +36,7 @@ contract FactoryExample is Factory {
         // Refund remaining gas
         remainingGasTo.transfer({
             value: 0,
-            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
+            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
             bounce: false
         });
     }
@@ -50,7 +50,7 @@ contract FactoryExample is Factory {
     {
         return {
             value: 0,
-            flag: MsgFlag.REMAINING_GAS,
+            flag: UtilityFlag.REMAINING_GAS,
             bounce: false
         } abi.encode(_id);
     }
@@ -64,7 +64,7 @@ contract FactoryExample is Factory {
     {
         return {
             value: 0,
-            flag: MsgFlag.REMAINING_GAS,
+            flag: UtilityFlag.REMAINING_GAS,
             bounce: false
         } address(
             tvm.hash(
@@ -106,7 +106,7 @@ contract FactoryExample is Factory {
         address instance = new FactoryInstance{
             stateInit: data,
             value: 2 ever,
-            flag: MsgFlag.SENDER_PAYS_FEES,
+            flag: UtilityFlag.SENDER_PAYS_FEES,
             bounce: false
         }(_remainingGasTo);
 
@@ -122,7 +122,7 @@ contract FactoryExample is Factory {
         // Refund remaining gas
         remainingGasTo.transfer({
             value: 0,
-            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
+            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
             bounce: false
         });
     }

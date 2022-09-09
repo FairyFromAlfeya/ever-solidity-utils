@@ -8,7 +8,7 @@ import "locklift/src/console.sol";
 
 import "../../../contracts/validation/abstract/Validatable.sol";
 
-import "../../../contracts/libraries/MsgFlag.sol";
+import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
@@ -27,7 +27,7 @@ contract ValidatableExample is Validatable {
         // Refund remaining gas
         remainingGasTo.transfer({
             value: 0,
-            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
+            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
             bounce: false
         });
     }
@@ -40,7 +40,7 @@ contract ValidatableExample is Validatable {
     {
         return {
             value: 0,
-            flag: MsgFlag.REMAINING_GAS,
+            flag: UtilityFlag.REMAINING_GAS,
             bounce: false
         } abi.encode(_id);
     }
@@ -63,7 +63,7 @@ contract ValidatableExample is Validatable {
         // Refund remaining gas
         remainingGasTo.transfer({
             value: 0,
-            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
+            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
             bounce: false
         });
     }
@@ -86,7 +86,7 @@ contract ValidatableExample is Validatable {
         // Refund remaining gas
         remainingGasTo.transfer({
             value: 0,
-            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
+            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
             bounce: false
         });
     }

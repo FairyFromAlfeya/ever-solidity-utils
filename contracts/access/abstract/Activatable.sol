@@ -1,6 +1,6 @@
 pragma ton-solidity >= 0.57.1;
 
-import "../../libraries/MsgFlag.sol";
+import "../../libraries/UtilityFlag.sol";
 import "../../libraries/UtilityGas.sol";
 import "../../libraries/UtilityErrors.sol";
 
@@ -30,7 +30,7 @@ abstract contract Activatable is IActivatable, Ownable {
     {
         return {
             value: 0,
-            flag: MsgFlag.REMAINING_GAS,
+            flag: UtilityFlag.REMAINING_GAS,
             bounce: false
         } _getActiveInternal();
     }
@@ -54,7 +54,7 @@ abstract contract Activatable is IActivatable, Ownable {
         // Refund remaining gas to recipient
         remainingGasTo.transfer({
             value: 0,
-            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
+            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
             bounce: false
         });
     }

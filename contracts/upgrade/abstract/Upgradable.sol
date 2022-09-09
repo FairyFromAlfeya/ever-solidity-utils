@@ -1,6 +1,6 @@
 pragma ton-solidity >= 0.57.1;
 
-import "../../libraries/MsgFlag.sol";
+import "../../libraries/UtilityFlag.sol";
 
 import "../interfaces/IUpgradable.sol";
 
@@ -20,7 +20,7 @@ abstract contract Upgradable is IUpgradable {
     {
         return {
             value: 0,
-            flag: MsgFlag.REMAINING_GAS,
+            flag: UtilityFlag.REMAINING_GAS,
             bounce: false
         } _getVersionInternal();
     }

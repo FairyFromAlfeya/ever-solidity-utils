@@ -6,7 +6,7 @@ pragma AbiHeader pubkey;
 
 import "locklift/src/console.sol";
 
-import "../../../contracts/libraries/MsgFlag.sol";
+import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
@@ -30,7 +30,7 @@ contract FactoryInstance is Validatable {
         // Refund remaining gas
         remainingGasTo.transfer({
             value: 0,
-            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
+            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
             bounce: false
         });
     }
@@ -57,7 +57,7 @@ contract FactoryInstance is Validatable {
         // Refund remaining gas
         remainingGasTo.transfer({
             value: 0,
-            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
+            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
             bounce: false
         });
     }
@@ -79,7 +79,7 @@ contract FactoryInstance is Validatable {
         // Refund remaining gas
         remainingGasTo.transfer({
             value: 0,
-            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
+            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
             bounce: false
         });
     }
