@@ -43,6 +43,7 @@ contract ActivatableExample is Activatable {
 
     function check(optional(address) _remainingGasTo)
         external
+        view
         reserve(UtilityGas.INITIAL_BALANCE)
         onlyActive
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
@@ -51,7 +52,7 @@ contract ActivatableExample is Activatable {
         address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
 
         // Emit event if contract is active
-        console.log("Contract is active");
+        console.log(format("Contract is active: {}", _nonce));
 
         // Refund remaining gas
         remainingGasTo.transfer({

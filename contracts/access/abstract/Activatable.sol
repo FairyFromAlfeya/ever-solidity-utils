@@ -1,7 +1,6 @@
 pragma ton-solidity >= 0.57.1;
 
-import "@broxus/contracts/contracts/libraries/MsgFlag.sol";
-
+import "../../libraries/MsgFlag.sol";
 import "../../libraries/UtilityGas.sol";
 import "../../libraries/UtilityErrors.sol";
 

@@ -6,8 +6,7 @@ pragma AbiHeader pubkey;
 
 import "locklift/src/console.sol";
 
-import "@broxus/contracts/contracts/libraries/MsgFlag.sol";
-
+import "../../../contracts/libraries/MsgFlag.sol";
 import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
@@ -67,6 +66,7 @@ contract FactoryInstance is Validatable {
         optional(address) _remainingGasTo
     )
         external
+        view
         reserve(UtilityGas.INITIAL_BALANCE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {

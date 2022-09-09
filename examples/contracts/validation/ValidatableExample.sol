@@ -6,10 +6,9 @@ pragma AbiHeader pubkey;
 
 import "locklift/src/console.sol";
 
-import "@broxus/contracts/contracts/libraries/MsgFlag.sol";
-
 import "../../../contracts/validation/abstract/Validatable.sol";
 
+import "../../../contracts/libraries/MsgFlag.sol";
 import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
@@ -56,7 +55,7 @@ contract ValidatableExample is Validatable {
         validAddress(_a, UtilityErrors.INVALID_ADDRESS)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        console.log("Address is valid");
+        console.log(format("Address is valid: {}", _nonce));
 
         // Gas recipient from params or default
         address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
@@ -79,7 +78,7 @@ contract ValidatableExample is Validatable {
         validTvmCell(_a, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        console.log("TvmCell is valid");
+        console.log(format("TvmCell is valid: {}", _nonce));
 
         // Gas recipient from params or default
         address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;

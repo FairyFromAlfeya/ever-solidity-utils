@@ -43,6 +43,7 @@ contract OwnableExample is Ownable {
 
     function check(optional(address) _remainingGasTo)
         external
+        view
         reserve(UtilityGas.INITIAL_BALANCE)
         onlyOwner
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
@@ -51,7 +52,7 @@ contract OwnableExample is Ownable {
         address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
 
         // Emit event if caller is owner
-        console.log("Caller is owner");
+        console.log(format("Caller is owner: {}", _nonce));
 
         // Refund remaining gas
         remainingGasTo.transfer({
