@@ -13,7 +13,7 @@
     "prepare": "husky install",
     "build": "locklift build --contracts examples",
     "format": "prettier --write \"test/**/*.ts\"",
-    "lint": "eslint \"{test}/**/*.spec.ts\" --fix",
+    "lint": "eslint \"test/**/*.spec.ts\" --fix",
     "test": "locklift test --disable-build -n local"
   },
   "devDependencies": {
