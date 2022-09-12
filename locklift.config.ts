@@ -6,7 +6,7 @@ declare global {
   const locklift: import('locklift').Locklift<FactorySource>;
 }
 
-const LOCAL_NETWORK_ENDPOINT = 'http://138.68.109.74/graphql';
+const LOCAL_NETWORK_ENDPOINT = 'https://evernode.fairyfromalfeya.com/graphql';
 
 const config: LockliftConfig = {
   compiler: { version: '0.61.2' },
