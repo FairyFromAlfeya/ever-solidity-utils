@@ -1,4 +1,5 @@
 import { LockliftConfig } from 'locklift';
+import { ConnectionProperties } from 'everscale-standalone-client';
 import { FactorySource } from './build/factorySource';
 import { SimpleGiver } from './giver';
 
@@ -14,7 +15,6 @@ const config: LockliftConfig = {
   networks: {
     local: {
       connection: {
-        id: 31337,
         group: 'localnet',
         type: 'graphql',
         data: {
@@ -22,7 +22,7 @@ const config: LockliftConfig = {
           latencyDetectionInterval: 1000,
           local: true,
         },
-      },
+      } as ConnectionProperties,
       giver: {
         giverFactory: (ever, keyPair, address) =>
           new SimpleGiver(ever, keyPair, address),
