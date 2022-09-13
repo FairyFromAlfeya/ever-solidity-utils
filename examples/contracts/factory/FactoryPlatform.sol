@@ -46,9 +46,9 @@ contract FactoryPlatform is Validatable {
         tvm.setcode(_code);
         tvm.setCurrentCode(_code);
 
-        // Call _onUpgrade from instance's code
-        _onUpgrade(data);
+        // Call onCodeUpgrade from instance's code
+        onCodeUpgrade(data);
     }
 
-    function _onUpgrade(TvmCell _data) private {}
+    function onCodeUpgrade(TvmCell _data) private {}
 }

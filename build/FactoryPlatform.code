@@ -127,19 +127,20 @@ BLESS
 POP C3
 .loc ../examples/contracts/factory/FactoryPlatform.sol, 50
 CALLREF {
-	CALL $_onUpgrade_internal_macro$
+	CALL $:onCodeUpgrade$
 }
 .loc ../examples/contracts/factory/FactoryPlatform.sol, 0
 DROP
 
-.globl	_onUpgrade_internal
-.type	_onUpgrade_internal, @function
-CALL $_onUpgrade_internal_macro$
-
-.macro _onUpgrade_internal_macro
-.loc ../examples/contracts/factory/FactoryPlatform.sol, 53
+.internal-alias :onCodeUpgrade, 2
+.internal :onCodeUpgrade
 DROP
 .loc ../examples/contracts/factory/FactoryPlatform.sol, 0
+CALLREF {
+	CALL $c7_to_c4$
+}
+COMMIT
+THROW 0
 
 .macro c4_to_c7
 PUSHROOT

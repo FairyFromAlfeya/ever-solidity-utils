@@ -35,7 +35,7 @@ contract FactoryInstance is Validatable {
         });
     }
 
-    function _onUpgrade(TvmCell _data) private {
+    function onCodeUpgrade(TvmCell _data) private {
         // Clear previous fields
         tvm.resetStorage();
 

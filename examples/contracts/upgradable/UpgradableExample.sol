@@ -68,11 +68,11 @@ contract UpgradableExample is Upgradable, Ownable {
         tvm.setcode(_code);
         tvm.setCurrentCode(_code);
 
-        // Call _onUpgrade from new contract's code
-        _onUpgrade(data);
+        // Call onCodeUpgrade from new contract's code
+        onCodeUpgrade(data);
     }
 
-    function _onUpgrade(TvmCell _data) private {
+    function onCodeUpgrade(TvmCell _data) private {
         // Clear previous fields
         tvm.resetStorage();
 
