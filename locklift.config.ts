@@ -14,6 +14,7 @@ const config: LockliftConfig = {
   networks: {
     local: {
       connection: {
+        id: 31337,
         group: 'localnet',
         type: 'graphql',
         data: {
