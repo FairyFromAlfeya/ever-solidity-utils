@@ -717,41 +717,6 @@ CALLREF {
 }
 THROW 60
 
-.globl	console_with_obj_log
-.type	console_with_obj_log, @function
-CALL $console_with_obj_log_macro$
-
-.macro console_with_obj_log_macro
-.loc ../node_modules/locklift/src/console.sol, 10
-DUP
-PUSHREFSLICE {
-	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
-}
-NEWC
-STSLICE
-STREF
-ENDC
-PUSHINT 0
-SENDRAWMSG
-.loc ../node_modules/locklift/src/console.sol, 0
-
-.globl	console_no_obj_log
-.type	console_no_obj_log, @function
-CALL $console_no_obj_log_macro$
-
-.macro console_no_obj_log_macro
-.loc ../node_modules/locklift/src/console.sol, 10
-PUSHREFSLICE {
-	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
-}
-NEWC
-STSLICE
-STREF
-ENDC
-PUSHINT 0
-SENDRAWMSG
-.loc ../node_modules/locklift/src/console.sol, 0
-
 .globl	Validation_with_obj_notEquals
 .type	Validation_with_obj_notEquals, @function
 CALL $Validation_with_obj_notEquals_macro$
@@ -813,6 +778,41 @@ IF
 THROWANYIFNOT
 .loc ../contracts/validation/libraries/Validation.sol, 0
 DROP2
+
+.globl	console_with_obj_log
+.type	console_with_obj_log, @function
+CALL $console_with_obj_log_macro$
+
+.macro console_with_obj_log_macro
+.loc ../node_modules/locklift/src/console.sol, 10
+DUP
+PUSHREFSLICE {
+	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
+}
+NEWC
+STSLICE
+STREF
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../node_modules/locklift/src/console.sol, 0
+
+.globl	console_no_obj_log
+.type	console_no_obj_log, @function
+CALL $console_no_obj_log_macro$
+
+.macro console_no_obj_log_macro
+.loc ../node_modules/locklift/src/console.sol, 10
+PUSHREFSLICE {
+	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
+}
+NEWC
+STSLICE
+STREF
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .macro public_function_selector
 DUP
