@@ -52,23 +52,13 @@ abstract contract Factory is IFactory, Ownable {
     )
         external
         override
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         onlyOwner
         validTvmCell(_newCode, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
         // Update
         _setInstanceCodeInternal(_newCode);
-
-        // Gas recipient from params or msg.sender by default
-        address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
-
-        // Refund remaining gas to recipient
-        remainingGasTo.transfer({
-            value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
-            bounce: false
-        });
     }
 
     /// @dev Internal call to set new instance code

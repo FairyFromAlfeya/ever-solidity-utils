@@ -6,7 +6,6 @@ pragma AbiHeader pubkey;
 
 import "locklift/src/console.sol";
 
-import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
@@ -19,21 +18,21 @@ contract FactoryInstance is Validatable {
     // Address of the factory
     address private static _factory;
 
+    event IdChanged(
+        uint32 current,
+        uint32 previous
+    );
+
+    event FactoryChanged(
+        address current,
+        address previous
+    );
+
     constructor(optional(address) _remainingGasTo)
         public
-        reserveAndAccept(UtilityGas.INITIAL_BALANCE)
+        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
-    {
-        // Owner from params or default
-        address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
-
-        // Refund remaining gas
-        remainingGasTo.transfer({
-            value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
-            bounce: false
-        });
-    }
+    {}
 
     function onCodeUpgrade(TvmCell _data) private {
         // Clear previous fields
@@ -42,24 +41,15 @@ contract FactoryInstance is Validatable {
         // Unpack data
         (
             uint32 id,
-            address factory,
-            address remainingGasTo
+            address factory
         ) = abi.decode(_data, (
             uint32,
-            address,
             address
         ));
 
         // Set fields
-        _id = id;
-        _factory = factory;
-
-        // Refund remaining gas
-        remainingGasTo.transfer({
-            value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
-            bounce: false
-        });
+        _setIdInternal(id);
+        _setFactoryInternal(factory);
     }
 
     function check(
@@ -67,20 +57,40 @@ contract FactoryInstance is Validatable {
     )
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Gas recipient from params or default
-        address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
-
         // Emit event from child contract
-        console.log(format("Instance with ID: {}", _id));
+        console.log(format("Instance with ID: {}", _getIdInternal()));
+    }
 
-        // Refund remaining gas
-        remainingGasTo.transfer({
-            value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
-            bounce: false
-        });
+    function _getIdInternal() internal view returns (uint32) {
+        return _id;
+    }
+
+    function _setIdInternal(uint32 _newId) internal {
+        uint32 previous = _id;
+        _id = _newId;
+
+        // Emit event about change
+        emit IdChanged(
+            _newId,
+            previous
+        );
+    }
+
+    function _getFactoryInternal() internal view returns (address) {
+        return _factory;
+    }
+
+    function _setFactoryInternal(address _newFactory) internal {
+        address previous = _factory;
+        _factory = _newFactory;
+
+        // Emit event about change
+        emit FactoryChanged(
+            _newFactory,
+            previous
+        );
     }
 }

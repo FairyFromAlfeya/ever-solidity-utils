@@ -21,26 +21,16 @@ contract FactoryPlatform is Validatable {
         optional(address) _remainingGasTo
     )
         public
-        reserveAndAccept(UtilityGas.INITIAL_BALANCE)
+        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         validTvmCell(_code, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        _upgrade(_code, _remainingGasTo);
+        _upgrade(_code);
     }
 
-    function _upgrade(
-        TvmCell _code,
-        optional(address) _remainingGasTo
-    ) private {
-        // Gas recipient from params or default
-        address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
-
+    function _upgrade(TvmCell _code) private {
         // Encode data from contract
-        TvmCell data = abi.encode(
-            _id,
-            _factory,
-            remainingGasTo
-        );
+        TvmCell data = abi.encode(_id, _factory);
 
         // Update contract's code for current and next calls
         tvm.setcode(_code);

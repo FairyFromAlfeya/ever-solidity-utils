@@ -18,19 +18,9 @@ contract ValidatableExample is Validatable {
 
     constructor(optional(address) _remainingGasTo)
         public
-        reserveAndAccept(UtilityGas.INITIAL_BALANCE)
+        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
-    {
-        // Gas recipient from params or default
-        address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
-
-        // Refund remaining gas
-        remainingGasTo.transfer({
-            value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
-            bounce: false
-        });
-    }
+    {}
 
     function getValidTvmCell(uint32 _id)
         external
@@ -51,21 +41,11 @@ contract ValidatableExample is Validatable {
     )
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         validAddress(_a, UtilityErrors.INVALID_ADDRESS)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
         console.log(format("Address is valid: {}", _nonce));
-
-        // Gas recipient from params or default
-        address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
-
-        // Refund remaining gas
-        remainingGasTo.transfer({
-            value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
-            bounce: false
-        });
     }
 
     function isValidTvmCell(
@@ -74,20 +54,10 @@ contract ValidatableExample is Validatable {
     )
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         validTvmCell(_a, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
         console.log(format("TvmCell is valid: {}", _nonce));
-
-        // Gas recipient from params or default
-        address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
-
-        // Refund remaining gas
-        remainingGasTo.transfer({
-            value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
-            bounce: false
-        });
     }
 }

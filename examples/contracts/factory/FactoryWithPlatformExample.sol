@@ -20,7 +20,7 @@ contract FactoryWithPlatformExample is FactoryWithPlatform {
         optional(address) _remainingGasTo
     )
         public
-        reserveAndAccept(UtilityGas.INITIAL_BALANCE)
+        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         validAddressOrNull(_initialOwner, UtilityErrors.INVALID_NEW_OWNER)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
@@ -29,16 +29,6 @@ contract FactoryWithPlatformExample is FactoryWithPlatform {
 
         // Initialize owner
         _setOwnerInternal(initialOwner);
-
-        // Gas recipient from params or default
-        address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
-
-        // Refund remaining gas
-        remainingGasTo.transfer({
-            value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
-            bounce: false
-        });
     }
 
     // Encode child contract's initial params
@@ -87,7 +77,7 @@ contract FactoryWithPlatformExample is FactoryWithPlatform {
     )
         external
         override
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         validTvmCell(_params, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
@@ -118,15 +108,5 @@ contract FactoryWithPlatformExample is FactoryWithPlatform {
             _getInstanceVersionInternal(),
             msg.sender
         );
-
-        // Gas recipient from params or default
-        address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
-
-        // Refund remaining gas
-        remainingGasTo.transfer({
-            value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
-            bounce: false
-        });
     }
 }
