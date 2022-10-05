@@ -78,7 +78,7 @@ contract FactoryWithPlatformExample is FactoryWithPlatform {
         external
         override
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
-        validTvmCell(_params, UtilityErrors.INVALID_CODE)
+        validTvmCell(_params, UtilityErrors.INVALID_DEPLOY_PARAMS)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
         // Build state init for deploy

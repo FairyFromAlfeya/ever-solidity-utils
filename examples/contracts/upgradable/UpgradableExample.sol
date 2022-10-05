@@ -22,7 +22,7 @@ contract UpgradableExample is Upgradable, Ownable {
         optional(address) _remainingGasTo
     )
         public
-        reserveAndAccept(UtilityGas.INITIAL_BALANCE)
+        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         validAddressOrNull(_initialOwner, UtilityErrors.INVALID_NEW_OWNER)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
@@ -31,16 +31,6 @@ contract UpgradableExample is Upgradable, Ownable {
 
         // Initialize owner
         _setOwnerInternal(initialOwner);
-
-        // Gas recipient from params or default
-        address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
-
-        // Refund remaining gas
-        remainingGasTo.transfer({
-            value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
-            bounce: false
-        });
     }
 
     function upgrade(
@@ -49,19 +39,15 @@ contract UpgradableExample is Upgradable, Ownable {
     )
         external
         override
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         validTvmCell(_code, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Gas recipient from params or default
-        address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
-
         // Encode data from contract
         TvmCell data = abi.encode(
             _nonce,
             _getVersionInternal(),
-            _getOwnerInternal(),
-            remainingGasTo
+            _getOwnerInternal()
         );
 
         // Update contract's code for current and next calls
@@ -80,12 +66,10 @@ contract UpgradableExample is Upgradable, Ownable {
         (
             uint32 nonce,
             uint32 version,
-            address owner,
-            address remainingGasTo
+            address owner
         ) = abi.decode(_data, (
             uint32,
             uint32,
-            address,
             address
         ));
 
@@ -95,12 +79,5 @@ contract UpgradableExample is Upgradable, Ownable {
         _setVersionInternal(++version);
 
         console.log(format("New version: {}", version));
-
-        // Refund remaining gas
-        remainingGasTo.transfer({
-            value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
-            bounce: false
-        });
     }
 }

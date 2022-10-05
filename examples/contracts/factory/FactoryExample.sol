@@ -56,19 +56,7 @@ contract FactoryExample is Factory {
             value: 0,
             flag: UtilityFlag.REMAINING_GAS,
             bounce: false
-        } address(
-            tvm.hash(
-                tvm.buildStateInit({
-                    code: _getInstanceCodeInternal(),
-                    contr: FactoryInstance,
-                    pubkey: 0,
-                    varInit: {
-                        _id: abi.decode(_params, uint32),
-                        _factory: address(this)
-                    }
-                })
-            )
-        );
+        } _getInstanceAddressInternal(_params);
     }
 
     function deploy(
@@ -78,7 +66,7 @@ contract FactoryExample is Factory {
         external
         override
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
-        validTvmCell(_params, UtilityErrors.INVALID_CODE)
+        validTvmCell(_params, UtilityErrors.INVALID_DEPLOY_PARAMS)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
         // Build state init for deploy
@@ -104,6 +92,26 @@ contract FactoryExample is Factory {
             instance,
             _getInstanceVersionInternal(),
             msg.sender
+        );
+    }
+
+    function _getInstanceAddressInternal(TvmCell _params)
+        internal
+        view
+        returns (address)
+    {
+        return address(
+            tvm.hash(
+                tvm.buildStateInit({
+                    code: _getInstanceCodeInternal(),
+                    contr: FactoryInstance,
+                    pubkey: 0,
+                    varInit: {
+                        _id: abi.decode(_params, uint32),
+                        _factory: address(this)
+                    }
+                })
+            )
         );
     }
 }
