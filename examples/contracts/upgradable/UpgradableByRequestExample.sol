@@ -19,6 +19,7 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
         FactoryInstance(_remainingGasTo)
     {
         _setUpgraderInternal(_getFactoryInternal());
+        _setVersionInternal(1, 0);
     }
 
     function upgrade(
@@ -37,6 +38,7 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
         TvmCell data = abi.encode(
             _getIdInternal(),
             _version,
+            _getVersionInternal(),
             _getFactoryInternal(),
             _getUpgraderInternal()
         );
@@ -54,10 +56,12 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
         // Unpack data
         (
             uint32 id,
-            uint32 version,
+            uint32 currentVersion,
+            uint32 previousVersion,
             address factory,
             address upgrader
         ) = abi.decode(_data, (
+            uint32,
             uint32,
             uint32,
             address,
@@ -66,7 +70,7 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
 
         // Set fields
         _setIdInternal(id);
-        _setVersionInternal(version);
+        _setVersionInternal(currentVersion, previousVersion);
         _setFactoryInternal(factory);
         _setUpgraderInternal(upgrader);
 

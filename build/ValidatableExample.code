@@ -33,20 +33,53 @@ PUSHCONT {
 }
 IFELSE
 ENDS
+DUP
+GETGLOB 9
+.loc ../contracts/validation/abstract/Validatable.sol, 28
 PUSHINT 1000000000
-.loc ../contracts/validation/abstract/Validatable.sol, 11
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/validation/abstract/Validatable.sol, 12
+.loc ../contracts/validation/abstract/Validatable.sol, 29
 ACCEPT
-.loc ../contracts/validation/abstract/Validatable.sol, 13
-DUP
-PUSHINT 202
-.loc ../contracts/validation/abstract/Validatable.sol, 52
+.loc ../contracts/validation/abstract/Validatable.sol, 32
 OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 53
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+PUSHCONT {
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+.loc ../contracts/validation/abstract/Validatable.sol, 35
+DUP
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+EQINT 0
+OVER
+MYADDR
+SDEQ
+OR
+PUSHCONT {
+	.loc ../contracts/validation/abstract/Validatable.sol, 36
+	OVER
+	NIP
+	.loc ../contracts/validation/abstract/Validatable.sol, 0
+}
+IF
+.loc ../contracts/validation/abstract/Validatable.sol, 39
+ROLL 3
+PUSHINT 202
+.loc ../contracts/validation/abstract/Validatable.sol, 121
+OVER
+ISNULL
+PUSHCONT {
+	.loc ../contracts/validation/abstract/Validatable.sol, 122
 	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
@@ -58,21 +91,9 @@ PUSHCONT {
 	.loc ../contracts/validation/abstract/Validatable.sol, 0
 }
 IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 59
+.loc ../contracts/validation/abstract/Validatable.sol, 128
 DROP2
-.loc ../examples/contracts/validation/ValidatableExample.sol, 25
-DUP
-ISNULL
-PUSHCONT {
-	GETGLOB 9
-}
-PUSHCONT {
-	BLKPUSH 2, 0
-	ISNULL
-	THROWIF 63
-}
-IFELSE
-.loc ../examples/contracts/validation/ValidatableExample.sol, 28
+.loc ../contracts/validation/abstract/Validatable.sol, 42
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -83,9 +104,8 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
-.loc ../examples/contracts/validation/ValidatableExample.sol, 0
-DROP
 .loc ../contracts/validation/abstract/Validatable.sol, 0
+DROP2
 CALLREF {
 	CALL $c7_to_c4$
 }
@@ -95,7 +115,7 @@ THROW 0
 DROP
 GETGLOB 6
 THROWIFNOT 76
-.loc ../examples/contracts/validation/ValidatableExample.sol, 35
+.loc ../examples/contracts/validation/ValidatableExample.sol, 25
 LDU 32
 GETGLOB 4
 ROT
@@ -159,7 +179,7 @@ IFREF {
 THROW 0
 
 .macro getValidTvmCell_internal_macro
-.loc ../examples/contracts/validation/ValidatableExample.sol, 45
+.loc ../examples/contracts/validation/ValidatableExample.sol, 35
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -182,7 +202,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/validation/ValidatableExample.sol, 48
+.loc ../examples/contracts/validation/ValidatableExample.sol, 38
 OVER
 PUSHCONT {
 	LDREF
@@ -225,27 +245,60 @@ IFREF {
 THROW 0
 
 .macro isValidAddress_internal_macro
-.loc ../examples/contracts/validation/ValidatableExample.sol, 48
+.loc ../examples/contracts/validation/ValidatableExample.sol, 38
+DUP
+GETGLOB 9
+.loc ../contracts/validation/abstract/Validatable.sol, 65
 PUSHINT 1000000000
-.loc ../contracts/validation/abstract/Validatable.sol, 18
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/validation/abstract/Validatable.sol, 19
-SWAP
-.loc ../contracts/validation/abstract/Validatable.sol, 27
+.loc ../contracts/validation/abstract/Validatable.sol, 68
+OVER
+ISNULL
+PUSHCONT {
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+PUSHCONT {
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+.loc ../contracts/validation/abstract/Validatable.sol, 71
+DUP
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+EQINT 0
+OVER
+MYADDR
+SDEQ
+OR
+PUSHCONT {
+	.loc ../contracts/validation/abstract/Validatable.sol, 72
+	OVER
+	NIP
+	.loc ../contracts/validation/abstract/Validatable.sol, 0
+}
+IF
+.loc ../contracts/validation/abstract/Validatable.sol, 75
+ROLL 4
+.loc ../contracts/validation/abstract/Validatable.sol, 92
 MYADDR
 PUSHINT 206
 CALLREF {
 	CALL $Validation_no_obj_notEquals_macro$
 }
-.loc ../contracts/validation/abstract/Validatable.sol, 32
-DUP
+.loc ../contracts/validation/abstract/Validatable.sol, 97
+ROLL 3
 PUSHINT 202
-.loc ../contracts/validation/abstract/Validatable.sol, 52
+.loc ../contracts/validation/abstract/Validatable.sol, 121
 OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 53
+	.loc ../contracts/validation/abstract/Validatable.sol, 122
 	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
@@ -257,9 +310,9 @@ PUSHCONT {
 	.loc ../contracts/validation/abstract/Validatable.sol, 0
 }
 IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 59
+.loc ../contracts/validation/abstract/Validatable.sol, 128
 DROP2
-.loc ../examples/contracts/validation/ValidatableExample.sol, 58
+.loc ../examples/contracts/validation/ValidatableExample.sol, 48
 TUPLE 0
 NEWC
 PUSHSLICE x416464726573732069732076616c69643a20
@@ -278,19 +331,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_macro$
 }
-.loc ../examples/contracts/validation/ValidatableExample.sol, 61
-DUP
-ISNULL
-PUSHCONT {
-	GETGLOB 9
-}
-PUSHCONT {
-	BLKPUSH 2, 0
-	ISNULL
-	THROWIF 63
-}
-IFELSE
-.loc ../examples/contracts/validation/ValidatableExample.sol, 64
+.loc ../contracts/validation/abstract/Validatable.sol, 78
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -301,8 +342,9 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
+.loc ../contracts/validation/abstract/Validatable.sol, 0
+DROP2
 .loc ../examples/contracts/validation/ValidatableExample.sol, 0
-DROP
 
 .macro isValidTvmCell
 DROP
@@ -313,7 +355,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/validation/ValidatableExample.sol, 71
+.loc ../examples/contracts/validation/ValidatableExample.sol, 51
 OVER
 PUSHCONT {
 	LDREF
@@ -350,26 +392,59 @@ IFREF {
 THROW 0
 
 .macro isValidTvmCell_internal_macro
-.loc ../examples/contracts/validation/ValidatableExample.sol, 71
+.loc ../examples/contracts/validation/ValidatableExample.sol, 51
+DUP
+GETGLOB 9
+.loc ../contracts/validation/abstract/Validatable.sol, 65
 PUSHINT 1000000000
-.loc ../contracts/validation/abstract/Validatable.sol, 18
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/validation/abstract/Validatable.sol, 19
-SWAP
-.loc ../contracts/validation/abstract/Validatable.sol, 40
+.loc ../contracts/validation/abstract/Validatable.sol, 68
+OVER
+ISNULL
+PUSHCONT {
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+PUSHCONT {
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+.loc ../contracts/validation/abstract/Validatable.sol, 71
+DUP
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+EQINT 0
+OVER
+MYADDR
+SDEQ
+OR
+PUSHCONT {
+	.loc ../contracts/validation/abstract/Validatable.sol, 72
+	OVER
+	NIP
+	.loc ../contracts/validation/abstract/Validatable.sol, 0
+}
+IF
+.loc ../contracts/validation/abstract/Validatable.sol, 75
+ROLL 4
+.loc ../contracts/validation/abstract/Validatable.sol, 107
 PUSHINT 204
 CALLREF {
 	CALL $Validation_no_obj_notEmpty_macro$
 }
-.loc ../contracts/validation/abstract/Validatable.sol, 44
-DUP
+.loc ../contracts/validation/abstract/Validatable.sol, 111
+ROLL 3
 PUSHINT 202
-.loc ../contracts/validation/abstract/Validatable.sol, 52
+.loc ../contracts/validation/abstract/Validatable.sol, 121
 OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 53
+	.loc ../contracts/validation/abstract/Validatable.sol, 122
 	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
@@ -381,9 +456,9 @@ PUSHCONT {
 	.loc ../contracts/validation/abstract/Validatable.sol, 0
 }
 IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 59
+.loc ../contracts/validation/abstract/Validatable.sol, 128
 DROP2
-.loc ../examples/contracts/validation/ValidatableExample.sol, 81
+.loc ../examples/contracts/validation/ValidatableExample.sol, 61
 TUPLE 0
 NEWC
 PUSHSLICE x54766d43656c6c2069732076616c69643a20
@@ -402,19 +477,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_macro$
 }
-.loc ../examples/contracts/validation/ValidatableExample.sol, 84
-DUP
-ISNULL
-PUSHCONT {
-	GETGLOB 9
-}
-PUSHCONT {
-	BLKPUSH 2, 0
-	ISNULL
-	THROWIF 63
-}
-IFELSE
-.loc ../examples/contracts/validation/ValidatableExample.sol, 87
+.loc ../contracts/validation/abstract/Validatable.sol, 78
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -425,8 +488,9 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
+.loc ../contracts/validation/abstract/Validatable.sol, 0
+DROP2
 .loc ../examples/contracts/validation/ValidatableExample.sol, 0
-DROP
 
 .macro c4_to_c7
 PUSHROOT
@@ -552,7 +616,9 @@ CTOS
 SBITS
 NEQINT 1
 SETGLOB 6
-PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
+PUSHREFSLICE {
+	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+}
 SETGLOB 9
 OVER
 CALLREF {

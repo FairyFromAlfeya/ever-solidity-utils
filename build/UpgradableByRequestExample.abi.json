@@ -1,0 +1,110 @@
+{
+	"ABI version": 2,
+	"version": "2.2",
+	"header": ["pubkey", "time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"_remainingGasTo","type":"optional(address)"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "upgrade",
+			"inputs": [
+				{"name":"_version","type":"uint32"},
+				{"name":"_code","type":"cell"},
+				{"name":"_remainingGasTo","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getUpgrader",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"address"}
+			]
+		},
+		{
+			"name": "requestUpgrade",
+			"inputs": [
+				{"name":"_remainingGasTo","type":"optional(address)"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "check",
+			"inputs": [
+				{"name":"_remainingGasTo","type":"optional(address)"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getVersion",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"uint32"}
+			]
+		}
+	],
+	"data": [
+		{"key":1,"name":"_id","type":"uint32"},
+		{"key":2,"name":"_factory","type":"address"}
+	],
+	"events": [
+		{
+			"name": "UpgraderChanged",
+			"inputs": [
+				{"name":"current","type":"address"},
+				{"name":"previous","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "IdChanged",
+			"inputs": [
+				{"name":"current","type":"uint32"},
+				{"name":"previous","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "FactoryChanged",
+			"inputs": [
+				{"name":"current","type":"address"},
+				{"name":"previous","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "VersionChanged",
+			"inputs": [
+				{"name":"current","type":"uint32"},
+				{"name":"previous","type":"uint32"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"_version","type":"uint32"},
+		{"name":"_id","type":"uint32"},
+		{"name":"_factory","type":"address"},
+		{"name":"_upgrader","type":"address"}
+	]
+}

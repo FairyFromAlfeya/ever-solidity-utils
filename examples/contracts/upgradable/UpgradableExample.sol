@@ -76,7 +76,7 @@ contract UpgradableExample is Upgradable, Ownable {
         // Set fields
         _nonce = nonce;
         _setOwnerInternal(owner);
-        _setVersionInternal(++version);
+        _setVersionInternal(++version, version - 1);
 
         console.log(format("New version: {}", version));
     }

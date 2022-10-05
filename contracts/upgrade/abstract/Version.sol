@@ -27,8 +27,11 @@ abstract contract Version is IVersion {
 
     /// @dev Internal call to update contract's version
     /// @param _newVersion New contract's version
-    function _setVersionInternal(uint32 _newVersion) internal {
-        uint32 previous = _version;
+    function _setVersionInternal(
+        uint32 _newVersion,
+        optional(uint32) _oldVersion
+    ) internal {
+        uint32 previous = _oldVersion.hasValue() ? _oldVersion.get() : _version;
         _version = _newVersion;
 
         // Emit event about change
