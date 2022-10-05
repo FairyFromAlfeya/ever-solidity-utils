@@ -23,4 +23,13 @@ library UtilityErrors {
 
     /// @dev Specified address is nil or equals contract
     uint16 constant INVALID_ADDRESS = 206;
+
+    /// @dev Caller must be upgrader of the contract
+    uint16 constant CALLER_IS_NOT_UPGRADER = 207;
+
+    /// @dev Caller must be instance of the factory
+    uint16 constant CALLER_IS_NOT_INSTANCE = 208;
+
+    /// @dev TvmCell with deploy params is empty
+    uint16 constant INVALID_DEPLOY_PARAMS = 209;
 }
