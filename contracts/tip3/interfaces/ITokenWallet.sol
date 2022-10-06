@@ -34,14 +34,14 @@ interface ITokenWallet {
 
     /// @notice Transfer tokens using another TokenWallet address, that wallet must be deployed previously
     /// @dev Only the owner can perform
-    /// @param amount How much tokens to transfer
-    /// @param recipientWallet Recipient TokenWallet address
-    /// @param remainingGasTo Gas recipient
-    /// @param notify Whether or not notify recipient about transfer
-    /// @param payload Payload for onAcceptTokensTransfer-callback
+    /// @param _amount How much tokens to transfer
+    /// @param _recipientWallet Recipient TokenWallet address
+    /// @param _remainingGasTo Gas recipient
+    /// @param _notify Whether or not notify recipient about transfer
+    /// @param _payload Payload for onAcceptTokensTransfer-callback
     function transferToWallet(
         uint128 _amount,
-        address _recipientTokenWallet,
+        address _recipientWallet,
         address _remainingGasTo,
         bool _notify,
         TvmCell _payload
