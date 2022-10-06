@@ -27,4 +27,13 @@ interface ITokenRoot {
     /// @param _owner Owner's address
     /// @return address TokenWallet address
     function walletOf(address _owner) external view responsible returns (address);
+
+    /// @notice Deploy new TokenWallet
+    /// @dev Can be called by anyone
+    /// @param _owner Token wallet owner address
+    /// @param _deployWalletValue Gas value to
+    function deployWallet(
+        address _owner,
+        uint128 _deployWalletValue
+    ) external responsible returns (address);
 }
