@@ -4,7 +4,6 @@ pragma ton-solidity >= 0.57.0;
 /// @notice Interface for acceptTokensTransfer-callback implementation
 interface IAcceptTokensTransferCallback {
     /// @notice Callback from TokenWallet on receive tokens transfer
-    /// @param _tokenWallet TokenWallet for which tokens were received
     /// @param _tokenRoot TokenRoot of received tokens
     /// @param _amount Received tokens amount
     /// @param _sender Sender TokenWallet owner address
