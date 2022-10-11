@@ -1131,12 +1131,30 @@ PUSHINT 0
 SENDRAWMSG
 .loc ../contracts/factory/abstract/Factory.sol, 0
 
+.globl	_setInstanceCodeSilent_internal
+.type	_setInstanceCodeSilent_internal, @function
+CALL $_setInstanceCodeSilent_internal_macro$
+
+.macro _setInstanceCodeSilent_internal_macro
+.loc ../contracts/factory/abstract/Factory.sol, 79
+SETGLOB 11
+.loc ../contracts/factory/abstract/Factory.sol, 0
+
+.globl	_setInstanceVersionSilent_internal
+.type	_setInstanceVersionSilent_internal, @function
+CALL $_setInstanceVersionSilent_internal_macro$
+
+.macro _setInstanceVersionSilent_internal_macro
+.loc ../contracts/factory/abstract/Factory.sol, 83
+SETGLOB 12
+.loc ../contracts/factory/abstract/Factory.sol, 0
+
 .globl	_getInstanceCodeInternal_internal
 .type	_getInstanceCodeInternal_internal, @function
 CALL $_getInstanceCodeInternal_internal_macro$
 
 .macro _getInstanceCodeInternal_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 81
+.loc ../contracts/factory/abstract/Factory.sol, 89
 GETGLOB 11
 .loc ../contracts/factory/abstract/Factory.sol, 0
 
@@ -1145,7 +1163,7 @@ GETGLOB 11
 CALL $_getInstanceVersionInternal_internal_macro$
 
 .macro _getInstanceVersionInternal_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 87
+.loc ../contracts/factory/abstract/Factory.sol, 95
 GETGLOB 12
 .loc ../contracts/factory/abstract/Factory.sol, 0
 
@@ -1423,12 +1441,21 @@ PUSHINT 0
 SENDRAWMSG
 .loc ../contracts/access/abstract/Ownable.sol, 0
 
+.globl	_setOwnerSilent_internal
+.type	_setOwnerSilent_internal, @function
+CALL $_setOwnerSilent_internal_macro$
+
+.macro _setOwnerSilent_internal_macro
+.loc ../contracts/access/abstract/Ownable.sol, 70
+SETGLOB 10
+.loc ../contracts/access/abstract/Ownable.sol, 0
+
 .globl	_getOwnerInternal_internal
 .type	_getOwnerInternal_internal, @function
 CALL $_getOwnerInternal_internal_macro$
 
 .macro _getOwnerInternal_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 72
+.loc ../contracts/access/abstract/Ownable.sol, 76
 GETGLOB 10
 .loc ../contracts/access/abstract/Ownable.sol, 0
 

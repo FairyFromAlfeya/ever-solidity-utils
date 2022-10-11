@@ -66,6 +66,10 @@ abstract contract Ownable is IOwnable, Validatable {
         );
     }
 
+    function _setOwnerSilent(address _newOwner) internal {
+        _owner = _newOwner;
+    }
+
     /// @dev Internal call to get current owner
     /// @return address Current contract's owner
     function _getOwnerInternal() internal view returns (address) {

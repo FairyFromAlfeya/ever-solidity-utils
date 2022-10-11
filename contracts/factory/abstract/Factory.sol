@@ -75,6 +75,14 @@ abstract contract Factory is IFactory, Ownable {
         );
     }
 
+    function _setInstanceCodeSilent(TvmCell _newCode) internal {
+        _instanceCode = _newCode;
+    }
+
+    function _setInstanceVersionSilent(uint32 _version) internal {
+        _instanceVersion = _version;
+    }
+
     /// @dev Internal call to get instance code
     /// @return TvmCell Current instance code
     function _getInstanceCodeInternal() internal view returns (TvmCell) {

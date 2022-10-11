@@ -60,6 +60,10 @@ abstract contract FactoryWithPlatform is IFactoryWithPlatform, Factory {
         emit PlatformCodeSet();
     }
 
+    function _setPlatformCodeSilent(TvmCell _newCode) internal {
+        _platformCode = _newCode;
+    }
+
     /// @dev Internal call to get platform code
     /// @return TvmCell Current platform code
     function _getPlatformCodeInternal() internal view returns (TvmCell) {

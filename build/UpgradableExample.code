@@ -672,12 +672,21 @@ PUSHINT 0
 SENDRAWMSG
 .loc ../contracts/access/abstract/Ownable.sol, 0
 
+.globl	_setOwnerSilent_internal
+.type	_setOwnerSilent_internal, @function
+CALL $_setOwnerSilent_internal_macro$
+
+.macro _setOwnerSilent_internal_macro
+.loc ../contracts/access/abstract/Ownable.sol, 70
+SETGLOB 11
+.loc ../contracts/access/abstract/Ownable.sol, 0
+
 .globl	_getOwnerInternal_internal
 .type	_getOwnerInternal_internal, @function
 CALL $_getOwnerInternal_internal_macro$
 
 .macro _getOwnerInternal_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 72
+.loc ../contracts/access/abstract/Ownable.sol, 76
 GETGLOB 11
 .loc ../contracts/access/abstract/Ownable.sol, 0
 
