@@ -61,7 +61,7 @@ abstract contract UpgradableByRequest is
         address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
 
         IUpgrader(_getUpgraderInternal())
-            .requestUpgrade{
+            .provideUpgrade{
                 value: 0,
                 flag: UtilityFlag.ALL_NOT_RESERVED,
                 bounce: false

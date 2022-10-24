@@ -47,7 +47,7 @@ abstract contract Upgrader is Validatable, IUpgrader {
         virtual
         returns (address);
 
-    function requestUpgrade(
+    function provideUpgrade(
         uint32 _currentVersion,
         TvmCell _params,
         address _remainingGasTo

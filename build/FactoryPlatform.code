@@ -353,36 +353,6 @@ CALLREF {
 }
 THROW 60
 
-.globl	Validation_with_obj_notEmpty
-.type	Validation_with_obj_notEmpty, @function
-CALL $Validation_with_obj_notEmpty_macro$
-
-.macro Validation_with_obj_notEmpty_macro
-.loc ../contracts/validation/libraries/Validation.sol, 29
-PUSHINT 2
-MAX
-OVER
-CTOS
-SEMPTY
-NOT
-THROWANYIFNOT
-.loc ../contracts/validation/libraries/Validation.sol, 0
-
-.globl	Validation_no_obj_notEmpty
-.type	Validation_no_obj_notEmpty, @function
-CALL $Validation_no_obj_notEmpty_macro$
-
-.macro Validation_no_obj_notEmpty_macro
-.loc ../contracts/validation/libraries/Validation.sol, 29
-PUSHINT 2
-MAX
-SWAP
-CTOS
-SEMPTY
-NOT
-THROWANYIFNOT
-.loc ../contracts/validation/libraries/Validation.sol, 0
-
 .globl	Validation_with_obj_notEquals
 .type	Validation_with_obj_notEquals, @function
 CALL $Validation_with_obj_notEquals_macro$
@@ -444,6 +414,36 @@ IF
 THROWANYIFNOT
 .loc ../contracts/validation/libraries/Validation.sol, 0
 DROP2
+
+.globl	Validation_with_obj_notEmpty
+.type	Validation_with_obj_notEmpty, @function
+CALL $Validation_with_obj_notEmpty_macro$
+
+.macro Validation_with_obj_notEmpty_macro
+.loc ../contracts/validation/libraries/Validation.sol, 29
+PUSHINT 2
+MAX
+OVER
+CTOS
+SEMPTY
+NOT
+THROWANYIFNOT
+.loc ../contracts/validation/libraries/Validation.sol, 0
+
+.globl	Validation_no_obj_notEmpty
+.type	Validation_no_obj_notEmpty, @function
+CALL $Validation_no_obj_notEmpty_macro$
+
+.macro Validation_no_obj_notEmpty_macro
+.loc ../contracts/validation/libraries/Validation.sol, 29
+PUSHINT 2
+MAX
+SWAP
+CTOS
+SEMPTY
+NOT
+THROWANYIFNOT
+.loc ../contracts/validation/libraries/Validation.sol, 0
 
 .macro public_function_selector
 DUP

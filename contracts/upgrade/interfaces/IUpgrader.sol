@@ -8,7 +8,7 @@ interface IUpgrader {
     /// @param _currentVersion Version of the contract which request upgrade
     /// @param _params Deploy params
     /// @param _remainingGasTo Gas recipient
-    function requestUpgrade(
+    function provideUpgrade(
         uint32 _currentVersion,
         TvmCell _params,
         address _remainingGasTo

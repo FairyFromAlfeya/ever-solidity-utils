@@ -201,7 +201,7 @@ CALLREF {
 }
 .loc ../examples/contracts/upgradable/UpgraderExample.sol, 0
 
-.macro requestUpgrade
+.macro provideUpgrade
 DROP
 GETGLOB 6
 THROWIFNOT 76
@@ -228,14 +228,14 @@ LDMSGADDR
 ENDS
 .loc ../contracts/upgrade/abstract/Upgrader.sol, 0
 CALLREF {
-	CALL $requestUpgrade_internal_macro$
+	CALL $provideUpgrade_internal_macro$
 }
 IFREF {
 	CALL $upd_only_time_in_c4$
 }
 THROW 0
 
-.macro requestUpgrade_internal_macro
+.macro provideUpgrade_internal_macro
 .loc ../contracts/upgrade/abstract/Upgrader.sol, 50
 PUSHINT 1000000000
 .loc ../contracts/validation/abstract/Validatable.sol, 52
@@ -1766,10 +1766,10 @@ IFJMPREF {
 		CALL $getInstanceVersion$
 	}
 	DUP
-	PUSHINT 675058700
+	PUSHINT 675654273
 	EQUAL
 	IFJMPREF {
-		CALL $requestUpgrade$
+		CALL $provideUpgrade$
 	}
 	DUP
 	PUSHINT 676937280

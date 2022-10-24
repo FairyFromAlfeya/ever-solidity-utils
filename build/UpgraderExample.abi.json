@@ -13,7 +13,7 @@
 			]
 		},
 		{
-			"name": "requestUpgrade",
+			"name": "provideUpgrade",
 			"inputs": [
 				{"name":"_currentVersion","type":"uint32"},
 				{"name":"_params","type":"cell"},
