@@ -1,18 +1,22 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
+import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
 import "../../libraries/UtilityGas.sol";
-import "../../libraries/UtilityErrors.sol";
 
 import "../interfaces/IActivatable.sol";
 
 import "./Ownable.sol";
 
+/// @author Alexander Kunekov
 /// @title Activatable
 /// @notice Implements base functions for activatable contract
 /// @dev A contract is abstract - to be sure that it will be inherited by another contract
-abstract contract Activatable is IActivatable, Ownable {
-    /// @dev Whether or not contract is active
+abstract contract Activatable is
+    IActivatable,
+    Ownable
+{
+    /// @dev Whether or not a contract is active
     bool private _isActive;
 
     /// @dev Function can be called only if the contract is active
@@ -21,10 +25,10 @@ abstract contract Activatable is IActivatable, Ownable {
         _;
     }
 
-    function getActive()
+    function getActiveStatus()
         external
-        override
         view
+        override
         responsible
         returns (bool)
     {
@@ -32,11 +36,11 @@ abstract contract Activatable is IActivatable, Ownable {
             value: 0,
             flag: UtilityFlag.REMAINING_GAS,
             bounce: false
-        } _getActiveInternal();
+        } _isActive;
     }
 
-    function setActive(
-        bool _newActive,
+    function setActiveStatus(
+        bool _newActiveStatus,
         optional(address) _remainingGasTo
     )
         external
@@ -45,26 +49,33 @@ abstract contract Activatable is IActivatable, Ownable {
         onlyOwner
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Update
-        _setActiveInternal(_newActive);
+        _setActiveStatusInternal(_newActiveStatus);
     }
 
     /// @dev Internal call to set new active status
-    /// @param _newActive New active status
-    function _setActiveInternal(bool _newActive) internal {
+    /// @dev Emits ActiveStatusChanged event after update
+    /// @param _newActiveStatus New active status of the contract
+    function _setActiveStatusInternal(bool _newActiveStatus) internal {
         bool previous = _isActive;
-        _isActive = _newActive;
+        _isActive = _newActiveStatus;
 
         // Emit event about change
-        emit ActiveChanged(
-            _newActive,
+        emit ActiveStatusChanged(
+            _newActiveStatus,
             previous
         );
     }
 
-    /// @dev Internal call to get active status
-    /// @return bool Current active status
-    function _getActiveInternal() internal view returns (bool) {
+    /// @dev Use it inside onCodeUpgrade to set active status without ActiveStatusChanged event
+    /// @param _newActiveStatus New active status of the contract
+    function _setActiveStatusSilent(bool _newActiveStatus) internal {
+        _isActive = _newActiveStatus;
+    }
+
+    /// @dev Internal call to get current active status
+    /// @dev Useful for contract upgrading to remember active status
+    /// @return bool Current active status of the contract
+    function _getActiveStatusInternal() internal view returns (bool) {
         return _isActive;
     }
 }

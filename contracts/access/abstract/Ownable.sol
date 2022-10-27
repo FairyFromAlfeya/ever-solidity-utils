@@ -1,20 +1,28 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
+import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
 import "../../libraries/UtilityGas.sol";
-import "../../libraries/UtilityErrors.sol";
+
+import "../../reservation/abstract/Reservable.sol";
+
 import "../../validation/abstract/Validatable.sol";
 
 import "../interfaces/IOwnable.sol";
 
+/// @author Alexander Kunekov
 /// @title Ownable
 /// @notice Implements base functions for ownable contract
 /// @dev A contract is abstract - to be sure that it will be inherited by another contract
-abstract contract Ownable is IOwnable, Validatable {
+abstract contract Ownable is
+    IOwnable,
+    Reservable,
+    Validatable
+{
     /// @dev Current contract's owner
     address private _owner;
 
-    /// @dev Only owner can call function with this modifier
+    /// @dev Only _owner can call function with this modifier
     modifier onlyOwner() {
         require(
             _owner.value != 0 &&
@@ -26,8 +34,8 @@ abstract contract Ownable is IOwnable, Validatable {
 
     function getOwner()
         external
-        override
         view
+        override
         responsible
         returns (address)
     {
@@ -35,7 +43,7 @@ abstract contract Ownable is IOwnable, Validatable {
             value: 0,
             flag: UtilityFlag.REMAINING_GAS,
             bounce: false
-        } _getOwnerInternal();
+        } _owner;
     }
 
     function setOwner(
@@ -49,29 +57,32 @@ abstract contract Ownable is IOwnable, Validatable {
         validAddress(_newOwner, UtilityErrors.INVALID_NEW_OWNER)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Update
         _setOwnerInternal(_newOwner);
     }
 
     /// @dev Internal call to set new owner
-    /// @param _newOwner New contract's owner
+    /// @dev Emits OwnerChanged event after update
+    /// @param _newOwner New owner of the contract
     function _setOwnerInternal(address _newOwner) internal {
         address previous = _owner;
         _owner = _newOwner;
 
-        // Emits event about change
+        // Emit event about change
         emit OwnerChanged(
             _newOwner,
             previous
         );
     }
 
+    /// @dev Use it inside onCodeUpgrade to set owner without OwnerChanged event
+    /// @param _newOwner New owner of the contract
     function _setOwnerSilent(address _newOwner) internal {
         _owner = _newOwner;
     }
 
     /// @dev Internal call to get current owner
-    /// @return address Current contract's owner
+    /// @dev Useful for contract upgrading to remember owner
+    /// @return address Current owner of the contract
     function _getOwnerInternal() internal view returns (address) {
         return _owner;
     }
