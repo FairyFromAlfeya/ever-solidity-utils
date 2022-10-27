@@ -1,24 +1,27 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
+import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
 import "../../libraries/UtilityGas.sol";
-import "../../libraries/UtilityErrors.sol";
 
 import "../interfaces/IFactoryWithPlatform.sol";
 
 import "./Factory.sol";
 
+/// @author Alexander Kunekov
 /// @title Factory with Platform
 /// @notice Implements base functions for factory with platform contract
-/// @dev A contract is abstract - to be sure that it will be inherited by another contract
-abstract contract FactoryWithPlatform is IFactoryWithPlatform, Factory {
+abstract contract FactoryWithPlatform is
+    IFactoryWithPlatform,
+    Factory
+{
     /// @dev Code for the new instance's root
     TvmCell private _platformCode;
 
     function getPlatformCode()
         external
-        override
         view
+        override
         responsible
         returns (TvmCell)
     {
@@ -26,45 +29,53 @@ abstract contract FactoryWithPlatform is IFactoryWithPlatform, Factory {
             value: 0,
             flag: UtilityFlag.REMAINING_GAS,
             bounce: false
-        } _getPlatformCodeInternal();
+        } _platformCode;
     }
 
     function setPlatformCode(
-        TvmCell _newCode,
+        TvmCell _newPlatformCode,
         optional(address) _remainingGasTo
     )
         external
         override
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         onlyOwner
-        validTvmCell(_newCode, UtilityErrors.INVALID_CODE)
+        validTvmCell(_newPlatformCode, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
+        _setPlatformCodeInternal(_newPlatformCode);
+    }
+
+    /// @dev Internal call to set new platform code
+    /// @dev Emits PlatformCodeSet event after update
+    /// @param _newPlatformCode New root for instance
+    function _setPlatformCodeInternal(TvmCell _newPlatformCode) internal {
         // Check that platform's code is not set yet
         require(
             _getPlatformCodeInternal().toSlice().empty(),
             UtilityErrors.PLATFORM_CODE_ALREADY_SET
         );
 
-        // Update
-        _setPlatformCodeInternal(_newCode);
-    }
-
-    /// @dev Internal call to set new platform code
-    /// @param _newCode New platform code
-    function _setPlatformCodeInternal(TvmCell _newCode) internal {
-        // Update code
-        _platformCode = _newCode;
+        _platformCode = _newPlatformCode;
 
         // Emit event about change
         emit PlatformCodeSet();
     }
 
-    function _setPlatformCodeSilent(TvmCell _newCode) internal {
-        _platformCode = _newCode;
+    /// @dev Use it inside onCodeUpgrade to set platform code without PlatformCodeSet event
+    /// @param _newPlatformCode New root for instance
+    function _setPlatformCodeSilent(TvmCell _newPlatformCode) internal {
+        // Check that platform's code is not set yet
+        require(
+            _getPlatformCodeInternal().toSlice().empty(),
+            UtilityErrors.PLATFORM_CODE_ALREADY_SET
+        );
+
+        _platformCode = _newPlatformCode;
     }
 
-    /// @dev Internal call to get platform code
+    /// @dev Internal call to get current platform code
+    /// @dev Use for contract upgrading, _getInstanceAddressInternal() and deploy()
     /// @return TvmCell Current platform code
     function _getPlatformCodeInternal() internal view returns (TvmCell) {
         return _platformCode;

@@ -1,27 +1,40 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
 import "../../access/abstract/Ownable.sol";
 
+import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
 import "../../libraries/UtilityGas.sol";
-import "../../libraries/UtilityErrors.sol";
 
 import "../interfaces/IFactory.sol";
 
+/// @author Alexander Kunekov
 /// @title Factory
 /// @notice Implements base functions for factory contract
-/// @dev A contract is abstract - to be sure that it will be inherited by another contract
-abstract contract Factory is IFactory, Ownable {
+abstract contract Factory is
+    IFactory,
+    Ownable
+{
     /// @dev Code for the new instance
     TvmCell private _instanceCode;
 
-    /// @dev Version of the instance's code
+    /// @dev Version of the _instanceCode
     uint32 private _instanceVersion;
+
+    /// @dev Function can be called only by factory instance
+    /// @param _deployParams Packed params which was used for deploy
+    modifier onlyInstance(TvmCell _deployParams) {
+        require(
+            _getInstanceAddressInternal(_deployParams) == msg.sender,
+            UtilityErrors.CALLER_IS_NOT_INSTANCE
+        );
+        _;
+    }
 
     function getInstanceCode()
         external
-        override
         view
+        override
         responsible
         returns (TvmCell)
     {
@@ -29,13 +42,13 @@ abstract contract Factory is IFactory, Ownable {
             value: 0,
             flag: UtilityFlag.REMAINING_GAS,
             bounce: false
-        } _getInstanceCodeInternal();
+        } _instanceCode;
     }
 
     function getInstanceVersion()
         external
-        override
         view
+        override
         responsible
         returns (uint32)
     {
@@ -43,29 +56,43 @@ abstract contract Factory is IFactory, Ownable {
             value: 0,
             flag: UtilityFlag.REMAINING_GAS,
             bounce: false
-        } _getInstanceVersionInternal();
+        } _instanceVersion;
+    }
+
+    function getInstanceAddress(TvmCell _deployParams)
+        external
+        view
+        override
+        responsible
+        returns (address)
+    {
+        return {
+            value: 0,
+            flag: UtilityFlag.REMAINING_GAS,
+            bounce: false
+        } _getInstanceAddressInternal(_deployParams);
     }
 
     function setInstanceCode(
-        TvmCell _newCode,
+        TvmCell _newInstanceCode,
         optional(address) _remainingGasTo
     )
         external
         override
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         onlyOwner
-        validTvmCell(_newCode, UtilityErrors.INVALID_CODE)
+        validTvmCell(_newInstanceCode, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Update
-        _setInstanceCodeInternal(_newCode);
+        _setInstanceCodeInternal(_newInstanceCode);
     }
 
     /// @dev Internal call to set new instance code
-    /// @param _newCode New instance code
-    function _setInstanceCodeInternal(TvmCell _newCode) internal {
+    /// @dev Emits InstanceVersionChanged event after update
+    /// @param _newInstanceCode New code for instance
+    function _setInstanceCodeInternal(TvmCell _newInstanceCode) internal {
         // Update code and version
-        _instanceCode = _newCode;
+        _instanceCode = _newInstanceCode;
         _instanceVersion += 1;
 
         // Emit event about change
@@ -75,23 +102,39 @@ abstract contract Factory is IFactory, Ownable {
         );
     }
 
-    function _setInstanceCodeSilent(TvmCell _newCode) internal {
-        _instanceCode = _newCode;
+    /// @dev Use it inside onCodeUpgrade to set instance code without InstanceVersionChanged event
+    /// @param _newInstanceCode New code for instance
+    function _setInstanceCodeSilent(TvmCell _newInstanceCode) internal {
+        _instanceCode = _newInstanceCode;
     }
 
-    function _setInstanceVersionSilent(uint32 _version) internal {
-        _instanceVersion = _version;
+    /// @dev Use it inside onCodeUpgrade to set instance version without InstanceVersionChanged event
+    /// @param _newInstanceVersion New version for instance
+    function _setInstanceVersionSilent(uint32 _newInstanceVersion) internal {
+        _instanceVersion = _newInstanceVersion;
     }
 
-    /// @dev Internal call to get instance code
+    /// @dev Internal call to get current instance code
+    /// @dev Use for contract upgrading, _getInstanceAddressInternal() and deploy()
     /// @return TvmCell Current instance code
     function _getInstanceCodeInternal() internal view returns (TvmCell) {
         return _instanceCode;
     }
 
-    /// @dev Internal call to get instance code version
-    /// @return uint32 Current instance code version
+    /// @dev Internal call to get instance version
+    /// @dev Use for contract upgrading and deploy()
+    /// @return uint32 Current instance version
     function _getInstanceVersionInternal() internal view returns (uint32) {
         return _instanceVersion;
     }
+
+    /// @dev Internal call to get instance address by specified deploy params
+    /// @dev Should be implemented by developer
+    /// @param _deployParams Packed params which was used for deploy
+    /// @return address Expected instance's address
+    function _getInstanceAddressInternal(TvmCell _deployParams)
+        internal
+        view
+        virtual
+        returns (address);
 }
