@@ -1,8 +1,10 @@
-import { Address, WalletTypes, Contract } from 'locklift';
-import { expect } from 'chai';
+import { Address, WalletTypes, Contract, lockliftChai } from 'locklift';
+import chai, { expect } from 'chai';
 import { FactorySource } from '../build/factorySource';
 
-describe('Upgradable', async () => {
+chai.use(lockliftChai);
+
+describe('Upgradable', () => {
   let address: Address;
   let example: Contract<FactorySource['UpgradableExample']>;
 
@@ -31,7 +33,7 @@ describe('Upgradable', async () => {
     example = contract;
   });
 
-  describe('check event and version after deploy', async () => {
+  describe('check event and version after deploy', () => {
     it('should return empty VersionChanged event', async () => {
       const events = await example.getPastEvents({
         filter: (event) => event.event === 'VersionChanged',
@@ -47,26 +49,24 @@ describe('Upgradable', async () => {
     });
   });
 
-  describe('upgrade and check data', async () => {
+  describe('upgrade and check data', () => {
     it('should upgrade contract', async () => {
       const Upgradable =
         locklift.factory.getContractArtifacts('UpgradableExample');
 
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .upgrade({ _code: Upgradable.code, _remainingGasTo: null })
+          .upgrade({ _code: Upgradable.code, _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
-    });
 
-    it('should return VersionChanged event after upgrade', async () => {
-      const events = await example.getPastEvents({
-        filter: (event) => event.event === 'VersionChanged',
-      });
-
-      expect(events.events.length).to.be.equal(1);
-      expect(events.events[0].data.previous).to.be.equal('0');
-      return expect(events.events[0].data.current).to.be.equal('1');
+      return expect(traceTree)
+        .to.call('upgrade')
+        .count(1)
+        .withNamedArgs({ _code: Upgradable.code, _remainingGasTo: address })
+        .and.to.emit('VersionChanged')
+        .count(1)
+        .withNamedArgs({ current: '1' });
     });
 
     it('should return version 1', async () => {

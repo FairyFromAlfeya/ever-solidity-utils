@@ -1,8 +1,16 @@
-import { Address, WalletTypes, Contract, zeroAddress } from 'locklift';
-import { expect } from 'chai';
+import {
+  Address,
+  WalletTypes,
+  Contract,
+  zeroAddress,
+  lockliftChai,
+} from 'locklift';
+import chai, { expect } from 'chai';
 import { FactorySource } from '../build/factorySource';
 
-describe('UpgradableByRequest', async () => {
+chai.use(lockliftChai);
+
+describe('UpgradableByRequest', () => {
   let address: Address;
   let upgradableExample: Contract<FactorySource['UpgradableByRequestExample']>;
   let upgraderExample: Contract<FactorySource['UpgraderExample']>;
@@ -64,7 +72,7 @@ describe('UpgradableByRequest', async () => {
     );
   });
 
-  describe('check event and upgrader after deploy', async () => {
+  describe('check event and upgrader after deploy', () => {
     it('should return initial UpgraderChanged event', async () => {
       const events = await upgradableExample.getPastEvents({
         filter: (event) => event.event === 'UpgraderChanged',
@@ -114,20 +122,31 @@ describe('UpgradableByRequest', async () => {
     });
   });
 
-  describe('update instance code and check version and event', async () => {
+  describe('update instance code and check version and event', () => {
     it('should update instance code', async () => {
       const UpgradableByRequestExample = locklift.factory.getContractArtifacts(
         'UpgradableByRequestExample',
       );
 
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         upgraderExample.methods
           .setInstanceCode({
             _newCode: UpgradableByRequestExample.code,
-            _remainingGasTo: null,
+            _remainingGasTo: address,
           })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
+
+      return expect(traceTree)
+        .to.call('setInstanceCode')
+        .count(1)
+        .withNamedArgs({
+          _newCode: UpgradableByRequestExample.code,
+          _remainingGasTo: address,
+        })
+        .to.emit('InstanceVersionChanged')
+        .count(1)
+        .withNamedArgs({ previous: '1', current: '2' });
     });
 
     it('should return code version 2', async () => {
@@ -137,30 +156,35 @@ describe('UpgradableByRequest', async () => {
 
       return expect(version.value0).to.be.equal('2');
     });
-
-    it('should return InstanceVersionChanged event after update', async () => {
-      const events = await upgraderExample.getPastEvents({
-        filter: (event) => event.event === 'InstanceVersionChanged',
-      });
-
-      const data = events.events[0].data as {
-        current: string;
-        previous: string;
-      };
-
-      expect(events.events.length).to.be.equal(2);
-      expect(data.previous).to.be.equal('1');
-      return expect(data.current).to.be.equal('2');
-    });
   });
 
-  describe('request instance upgrade and check version and event', async () => {
+  describe('request instance upgrade and check version and event', () => {
     it('should upgrade instance', async () => {
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         upgradableExample.methods
-          .requestUpgrade({ _remainingGasTo: null })
+          .requestUpgrade({ _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
+
+      return expect(traceTree)
+        .to.call('requestUpgrade')
+        .count(1)
+        .withNamedArgs({ _remainingGasTo: address })
+        .and.to.call('provideUpgrade')
+        .count(1)
+        .withNamedArgs({
+          _currentVersion: '1',
+          _remainingGasTo: address,
+        })
+        .and.to.call('upgrade')
+        .count(1)
+        .withNamedArgs({
+          _version: '2',
+          _remainingGasTo: address,
+        })
+        .and.to.emit('VersionChanged')
+        .count(1)
+        .withNamedArgs({ current: '2', previous: '1' });
     });
 
     it('should return instance version 2', async () => {
@@ -169,21 +193,6 @@ describe('UpgradableByRequest', async () => {
         .call();
 
       return expect(version.value0).to.be.equal('2');
-    });
-
-    it('should return VersionChanged event after update', async () => {
-      const events = await upgradableExample.getPastEvents({
-        filter: (event) => event.event === 'VersionChanged',
-      });
-
-      const data = events.events[0].data as {
-        current: string;
-        previous: string;
-      };
-
-      expect(events.events.length).to.be.equal(2);
-      expect(data.previous).to.be.equal('1');
-      return expect(data.current).to.be.equal('2');
     });
   });
 });

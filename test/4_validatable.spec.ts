@@ -1,8 +1,17 @@
-import { Address, WalletTypes, Contract, zeroAddress } from 'locklift';
-import { expect } from 'chai';
+import {
+  Address,
+  WalletTypes,
+  Contract,
+  zeroAddress,
+  lockliftChai,
+} from 'locklift';
+import chai, { expect } from 'chai';
 import { FactorySource } from '../build/factorySource';
+import { Errors } from './errors';
 
-describe('Validatable', async () => {
+chai.use(lockliftChai);
+
+describe('Validatable', () => {
   let address: Address;
   let example: Contract<FactorySource['ValidatableExample']>;
 
@@ -28,72 +37,82 @@ describe('Validatable', async () => {
     example = contract;
   });
 
-  describe('validate address', async () => {
+  describe('validate address', () => {
     it('should be a valid address', async () => {
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .isValidAddress({ _a: address, _remainingGasTo: null })
+          .isValidAddress({ _a: address, _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
+
+      return expect(traceTree)
+        .to.call('isValidAddress')
+        .count(1)
+        .withNamedArgs({ _a: address, _remainingGasTo: address });
     });
 
     it('should throw INVALID_ADDRESS for self address', async () => {
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .isValidAddress({ _a: example.address, _remainingGasTo: null })
+          .isValidAddress({ _a: example.address, _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
-        { allowedCodes: { compute: [206] } },
+        { allowedCodes: { compute: [Errors.INVALID_ADDRESS] } },
       );
 
-      const txs = await locklift.provider
-        .getTransactions({ address: example.address })
-        .then((txs) => txs.transactions.filter((tx) => tx.exitCode === 206));
-
-      return expect(txs.length).to.be.equal(1);
+      return expect(traceTree)
+        .to.call('isValidAddress')
+        .count(1)
+        .withNamedArgs({ _a: example.address, _remainingGasTo: address })
+        .and.have.error(Errors.INVALID_ADDRESS);
     });
 
     it('should throw INVALID_ADDRESS for nil address', async () => {
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .isValidAddress({ _a: zeroAddress, _remainingGasTo: null })
+          .isValidAddress({ _a: zeroAddress, _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
-        { allowedCodes: { compute: [206] } },
+        { allowedCodes: { compute: [Errors.INVALID_ADDRESS] } },
       );
 
-      const txs = await locklift.provider
-        .getTransactions({ address: example.address })
-        .then((txs) => txs.transactions.filter((tx) => tx.exitCode === 206));
-
-      return expect(txs.length).to.be.equal(2);
+      return expect(traceTree)
+        .to.call('isValidAddress')
+        .count(1)
+        .withNamedArgs({ _a: zeroAddress, _remainingGasTo: address })
+        .and.have.error(Errors.INVALID_ADDRESS);
     });
   });
 
-  describe('validate TvmCell', async () => {
+  describe('validate TvmCell', () => {
     it('should be valid a TvmCell', async () => {
       const cell = await example.methods
         .getValidTvmCell({ _id: 0, answerId: 0 })
         .call();
 
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .isValidTvmCell({ _a: cell.value0, _remainingGasTo: null })
+          .isValidTvmCell({ _a: cell.value0, _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
+
+      return expect(traceTree)
+        .to.call('isValidTvmCell')
+        .count(1)
+        .withNamedArgs({ _a: cell.value0, _remainingGasTo: address });
     });
 
     it('should throw INVALID_CODE for empty TvmCell', async () => {
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .isValidTvmCell({ _a: '', _remainingGasTo: null })
+          .isValidTvmCell({ _a: '', _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
-        { allowedCodes: { compute: [204] } },
+        { allowedCodes: { compute: [Errors.INVALID_CODE] } },
       );
 
-      const txs = await locklift.provider
-        .getTransactions({ address: example.address })
-        .then((txs) => txs.transactions.filter((tx) => tx.exitCode === 204));
-
-      return expect(txs.length).to.be.equal(1);
+      return expect(traceTree)
+        .to.call('isValidTvmCell')
+        .count(1)
+        .withNamedArgs({ _remainingGasTo: address })
+        .and.have.error(Errors.INVALID_CODE);
     });
   });
 });

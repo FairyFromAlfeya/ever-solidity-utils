@@ -1,8 +1,17 @@
-import { Address, WalletTypes, Contract, zeroAddress } from 'locklift';
-import { expect } from 'chai';
+import {
+  Address,
+  WalletTypes,
+  Contract,
+  zeroAddress,
+  lockliftChai,
+} from 'locklift';
+import chai, { expect } from 'chai';
 import { FactorySource } from '../build/factorySource';
+import { Errors } from './errors';
 
-describe('Ownable', async () => {
+chai.use(lockliftChai);
+
+describe('Ownable', () => {
   let firstAccount: Address;
   let secondAccount: Address;
   let example: Contract<FactorySource['OwnableExample']>;
@@ -44,7 +53,7 @@ describe('Ownable', async () => {
     example = contract;
   });
 
-  describe('check event and owner after deploy', async () => {
+  describe('check event and owner after deploy', () => {
     it('should return initial OwnerChanged event', async () => {
       const events = await example.getPastEvents({
         filter: (event) => event.event === 'OwnerChanged',
@@ -68,48 +77,45 @@ describe('Ownable', async () => {
     });
   });
 
-  describe('update owner and check event and new owner', async () => {
+  describe('update owner and check event and new owner', () => {
     it('should throw CALLER_IS_NOT_OWNER for second account', async () => {
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .setOwner({ _newOwner: secondAccount, _remainingGasTo: null })
+          .setOwner({
+            _newOwner: secondAccount,
+            _remainingGasTo: secondAccount,
+          })
           .send({ amount: locklift.utils.toNano(10), from: secondAccount }),
-        { allowedCodes: { compute: [200] } },
+        { allowedCodes: { compute: [Errors.CALLER_IS_NOT_OWNER] } },
       );
 
-      const txs = await locklift.provider
-        .getTransactions({ address: example.address })
-        .then((txs) => txs.transactions.filter((tx) => tx.exitCode === 200));
-
-      return expect(txs.length).to.be.equal(1);
+      return expect(traceTree)
+        .to.call('setOwner')
+        .count(1)
+        .withNamedArgs({
+          _newOwner: secondAccount,
+          _remainingGasTo: secondAccount,
+        })
+        .and.have.error(Errors.CALLER_IS_NOT_OWNER);
     });
 
     it('should set second account as owner', async () => {
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .setOwner({ _newOwner: secondAccount, _remainingGasTo: null })
+          .setOwner({ _newOwner: secondAccount, _remainingGasTo: firstAccount })
           .send({ amount: locklift.utils.toNano(10), from: firstAccount }),
       );
 
-      const owner = await example.methods.getOwner({ answerId: 0 }).call();
-
-      return expect(owner.value0.toString()).to.be.equal(
-        secondAccount.toString(),
-      );
-    });
-
-    it('should return OwnerChanged event after update', async () => {
-      const events = await example.getPastEvents({
-        filter: (event) => event.event === 'OwnerChanged',
-      });
-
-      expect(events.events.length).to.be.equal(2);
-      expect(events.events[0].data.previous.toString()).to.be.equal(
-        firstAccount.toString(),
-      );
-      return expect(events.events[0].data.current.toString()).to.be.equal(
-        secondAccount.toString(),
-      );
+      return expect(traceTree)
+        .to.call('setOwner')
+        .count(1)
+        .withNamedArgs({
+          _newOwner: secondAccount,
+          _remainingGasTo: firstAccount,
+        })
+        .and.to.emit('OwnerChanged')
+        .count(1)
+        .withNamedArgs({ previous: firstAccount, current: secondAccount });
     });
 
     it('should return second account as owner', async () => {
@@ -121,28 +127,33 @@ describe('Ownable', async () => {
     });
   });
 
-  describe('check access modifier', async () => {
+  describe('check access modifier', () => {
     it('should emit event about success from second account', async () => {
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .check({ _remainingGasTo: null })
+          .check({ _remainingGasTo: secondAccount })
           .send({ amount: locklift.utils.toNano(10), from: secondAccount }),
       );
+
+      return expect(traceTree)
+        .to.call('check')
+        .count(1)
+        .withNamedArgs({ _remainingGasTo: secondAccount });
     });
 
     it('should throw CALLER_IS_NOT_OWNER from first account', async () => {
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .check({ _remainingGasTo: null })
+          .check({ _remainingGasTo: firstAccount })
           .send({ amount: locklift.utils.toNano(10), from: firstAccount }),
-        { allowedCodes: { compute: [200] } },
+        { allowedCodes: { compute: [Errors.CALLER_IS_NOT_OWNER] } },
       );
 
-      const txs = await locklift.provider
-        .getTransactions({ address: example.address })
-        .then((txs) => txs.transactions.filter((tx) => tx.exitCode === 200));
-
-      return expect(txs.length).to.be.equal(2);
+      return expect(traceTree)
+        .to.call('check')
+        .count(1)
+        .withNamedArgs({ _remainingGasTo: firstAccount })
+        .and.have.error(Errors.CALLER_IS_NOT_OWNER);
     });
   });
 });

@@ -1,8 +1,11 @@
-import { Address, WalletTypes, Contract } from 'locklift';
-import { expect } from 'chai';
+import { Address, WalletTypes, Contract, lockliftChai } from 'locklift';
+import chai, { expect } from 'chai';
 import { FactorySource } from '../build/factorySource';
+import { Errors } from './errors';
 
-describe('Activatable', async () => {
+chai.use(lockliftChai);
+
+describe('Activatable', () => {
   let address: Address;
   let example: Contract<FactorySource['ActivatableExample']>;
 
@@ -31,7 +34,7 @@ describe('Activatable', async () => {
     example = contract;
   });
 
-  describe('check event and active status after deploy', async () => {
+  describe('check event and active status after deploy', () => {
     it('should return empty ActiveChanged event', async () => {
       const events = await example.getPastEvents({
         filter: (event) => event.event === 'ActiveChanged',
@@ -43,58 +46,57 @@ describe('Activatable', async () => {
     it('should return active status false', async () => {
       const active = await example.methods.getActive({ answerId: 0 }).call();
 
-      return expect(active.value0).to.be.equal(false);
+      return expect(active.value0).to.be.false;
     });
   });
 
-  describe('check access modifier', async () => {
+  describe('check access modifier', () => {
     it('should throw CONTRACT_IS_NOT_ACTIVE for active status false', async () => {
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .check({ _remainingGasTo: null })
+          .check({ _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
-        { allowedCodes: { compute: [203] } },
+        { allowedCodes: { compute: [Errors.CONTRACT_IS_NOT_ACTIVE] } },
       );
 
-      const txs = await locklift.provider
-        .getTransactions({ address: example.address })
-        .then((txs) => txs.transactions.filter((tx) => tx.exitCode === 203));
-
-      return expect(txs.length).to.be.equal(1);
+      return expect(traceTree)
+        .to.call('check')
+        .count(1)
+        .withNamedArgs({ _remainingGasTo: address })
+        .and.have.error(Errors.CONTRACT_IS_NOT_ACTIVE);
     });
   });
 
-  describe('update active status and check event and active status true', async () => {
+  describe('update active status and check event and active status true', () => {
     it('should set active status true', async () => {
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .setActive({ _newActive: true, _remainingGasTo: null })
+          .setActive({ _newActive: true, _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
-      const active = await example.methods.getActive({ answerId: 0 }).call();
-
-      return expect(active.value0).to.be.equal(true);
-    });
-
-    it('should return ActiveChanged event after update', async () => {
-      const events = await example.getPastEvents({
-        filter: (event) => event.event === 'ActiveChanged',
-      });
-
-      expect(events.events.length).to.be.equal(1);
-      expect(events.events[0].data.previous).to.be.equal(false);
-      return expect(events.events[0].data.current).to.be.equal(true);
+      return expect(traceTree)
+        .to.call('setActive')
+        .count(1)
+        .withNamedArgs({ _newActive: true, _remainingGasTo: address })
+        .and.to.emit('ActiveChanged')
+        .count(1)
+        .withNamedArgs({ current: true });
     });
   });
 
-  describe('check access modifier', async () => {
+  describe('check access modifier', () => {
     it('should emit event about success', async () => {
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .check({ _remainingGasTo: null })
+          .check({ _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
+
+      return expect(traceTree)
+        .to.call('check')
+        .count(1)
+        .withNamedArgs({ _remainingGasTo: address });
     });
   });
 });

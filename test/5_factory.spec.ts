@@ -1,8 +1,10 @@
-import { Address, WalletTypes, Contract } from 'locklift';
-import { expect } from 'chai';
+import { Address, WalletTypes, Contract, lockliftChai } from 'locklift';
+import chai, { expect } from 'chai';
 import { FactorySource } from '../build/factorySource';
 
-describe('Factory', async () => {
+chai.use(lockliftChai);
+
+describe('Factory', () => {
   let address: Address;
   let example: Contract<FactorySource['FactoryExample']>;
 
@@ -31,7 +33,7 @@ describe('Factory', async () => {
     example = contract;
   });
 
-  describe('check events and code after deploy', async () => {
+  describe('check events and code after deploy', () => {
     it('should return instance version 0', async () => {
       const version = await example.methods
         .getInstanceVersion({ answerId: 0 })
@@ -65,19 +67,35 @@ describe('Factory', async () => {
     });
   });
 
-  describe('update instance code and check version and event', async () => {
+  describe('update instance code and check version and event', () => {
     it('should update instance code', async () => {
       const FactoryInstance =
         locklift.factory.getContractArtifacts('FactoryInstance');
 
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
           .setInstanceCode({
             _newCode: FactoryInstance.code,
-            _remainingGasTo: null,
+            _remainingGasTo: address,
           })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
+
+      return expect(traceTree)
+        .to.call('setInstanceCode')
+        .count(1)
+        .withNamedArgs({
+          _newCode: FactoryInstance.code,
+          _remainingGasTo: address,
+        })
+        .and.emit('InstanceVersionChanged')
+        .count(1)
+        .withNamedArgs({ current: '1' });
+    });
+
+    it('should return instance code', async () => {
+      const FactoryInstance =
+        locklift.factory.getContractArtifacts('FactoryInstance');
 
       const code = await example.methods
         .getInstanceCode({ answerId: 0 })
@@ -93,34 +111,24 @@ describe('Factory', async () => {
 
       return expect(version.value0).to.be.equal('1');
     });
-
-    it('should return InstanceVersionChanged event after update', async () => {
-      const events = await example.getPastEvents({
-        filter: (event) => event.event === 'InstanceVersionChanged',
-      });
-
-      const data = events.events[0].data as {
-        current: string;
-        previous: string;
-      };
-
-      expect(events.events.length).to.be.equal(1);
-      expect(data.previous).to.be.equal('0');
-      return expect(data.current).to.be.equal('1');
-    });
   });
 
-  describe('deploy new instance and check', async () => {
+  describe('deploy new instance and check', () => {
     it('should deploy instance with id 0', async () => {
       const params = await example.methods
         .getDeployParams({ _id: 0, answerId: 0 })
         .call();
 
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .deploy({ _params: params.value0, _remainingGasTo: null })
+          .deploy({ _params: params.value0, _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
+
+      return expect(traceTree)
+        .to.call('deploy')
+        .count(1)
+        .withNamedArgs({ _params: params.value0, _remainingGasTo: address });
     });
 
     it('should check instance address', async () => {
@@ -137,11 +145,16 @@ describe('Factory', async () => {
         contract.value0,
       );
 
-      await locklift.tracing.trace(
+      const { traceTree } = await locklift.tracing.trace(
         instance.methods
-          .check({ _remainingGasTo: null })
+          .check({ _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
+
+      return expect(traceTree)
+        .to.call('check')
+        .count(1)
+        .withNamedArgs({ _remainingGasTo: address });
     });
 
     it('should return InstanceDeployed event after deploy', async () => {
