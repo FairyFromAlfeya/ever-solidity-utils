@@ -1,5 +1,6 @@
-pragma ton-solidity >= 0.57.0;
+pragma ever-solidity >= 0.63.0;
 
+/// @author Broxus
 /// @title AcceptTokensTransfer-callback Interface
 /// @notice Interface for acceptTokensTransfer-callback implementation
 interface IAcceptTokensTransferCallback {
