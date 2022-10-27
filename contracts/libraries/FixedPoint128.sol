@@ -1,5 +1,6 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
+/// @author Alexander Kunekov
 /// @title FP128 Utility
 /// @dev Range: [0, 2 ** 128 - 1]. Resolution: 1 / 2 ** 128
 library FixedPoint128 {
