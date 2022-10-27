@@ -1,7 +1,8 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
 import "../structures/IObservation.sol";
 
+/// @author Alexander Kunekov
 /// @title OnObservation-callback Interface
 /// @notice Interface for onObservation-callback implementation
 interface IOnObservationCallback is IObservation {

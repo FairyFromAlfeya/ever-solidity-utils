@@ -1,5 +1,6 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
+/// @author Alexander Kunekov
 /// @title Observation Interface
 /// @notice Structure for packed point's info response
 interface IObservation {

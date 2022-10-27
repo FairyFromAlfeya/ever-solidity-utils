@@ -1,7 +1,8 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
 import "../structures/IRate.sol";
 
+/// @author Alexander Kunekov
 /// @title OnRate-callback Interface
 /// @notice Interface for onRate-callback implementation
 interface IOnRateCallback is IRate {

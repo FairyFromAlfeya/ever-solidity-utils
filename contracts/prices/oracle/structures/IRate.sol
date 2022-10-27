@@ -1,5 +1,6 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
+/// @author Alexander Kunekov
 /// @title Rate Interface
 /// @notice Structure for packed rate info response
 interface IRate {

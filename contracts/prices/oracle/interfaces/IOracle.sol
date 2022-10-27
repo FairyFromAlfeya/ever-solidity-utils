@@ -1,9 +1,10 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
-import "../structures/IPoint.sol";
 import "../structures/IObservation.sol";
 import "../structures/IOracleOptions.sol";
+import "../structures/IPoint.sol";
 
+/// @author Alexander Kunekov
 /// @title Oracle Interface
 /// @notice Base interface for oracle
 interface IOracle is

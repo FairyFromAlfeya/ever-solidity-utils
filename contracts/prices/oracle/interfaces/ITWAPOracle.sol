@@ -1,8 +1,9 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
 import "./IOracle.sol";
 import "../structures/IRate.sol";
 
+/// @author Alexander Kunekov
 /// @title TWAP-Oracle Interface
 /// @notice Interface for interaction with pair's TWAP-Oracle
 interface ITWAPOracle is IOracle, IRate {
@@ -25,11 +26,11 @@ interface ITWAPOracle is IOracle, IRate {
 
     /// @notice Calculates TWAP for the given interval
     /// @dev If there is no point with a timestamp equal to _fromTimestamp or _toTimestamp
-    /// will take the point with the nearest timestamp
+    ///      will take the point with the nearest timestamp
     /// @param _fromTimestamp Start of interval for TWAP
     /// @param _toTimestamp End of interval for TWAP
     /// @return (optional(Rate), uint128[]) Packed rate info in the time range between _fromTimestamp and _toTimestamp
-    /// or null if impossible to calculate + current pair's reserves
+    ///         or null if impossible to calculate + current pair's reserves
     function getRate(
         uint32 _fromTimestamp,
         uint32 _toTimestamp
@@ -41,7 +42,7 @@ interface ITWAPOracle is IOracle, IRate {
 
     /// @notice Get a callback with calculated TWAP for the given interval
     /// @dev If there is no point with a timestamp equal to _fromTimestamp or _toTimestamp
-    /// will take the point with the nearest timestamp
+    ///      will take the point with the nearest timestamp
     /// @param _fromTimestamp Start of interval for TWAP
     /// @param _toTimestamp End of interval for TWAP
     /// @param _callbackTo Recipient of the callback
