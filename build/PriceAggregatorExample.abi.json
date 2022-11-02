@@ -1,0 +1,51 @@
+{
+	"ABI version": 2,
+	"version": "2.2",
+	"header": ["pubkey", "time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"_remainingGasTo","type":"optional(address)"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setPriceAndScale",
+			"inputs": [
+				{"name":"_token","type":"address"},
+				{"name":"_price","type":"uint256"},
+				{"name":"_scale","type":"int16"},
+				{"name":"_remainingGasTo","type":"optional(address)"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getPrices",
+			"inputs": [
+				{"name":"_tokens","type":"address[]"},
+				{"name":"_callbackRecipient","type":"address"},
+				{"name":"_proxy","type":"bool"},
+				{"name":"_remainingGasTo","type":"address"},
+				{"name":"_payload","type":"cell"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"data": [
+		{"key":1,"name":"_nonce","type":"uint32"}
+	],
+	"events": [
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"_nonce","type":"uint32"},
+		{"name":"_prices","type":"map(address,uint256)"},
+		{"name":"_scales","type":"map(address,int16)"}
+	]
+}

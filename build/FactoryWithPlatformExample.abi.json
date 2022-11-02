@@ -23,19 +23,9 @@
 			]
 		},
 		{
-			"name": "getInstanceAddress",
-			"inputs": [
-				{"name":"answerId","type":"uint32"},
-				{"name":"_params","type":"cell"}
-			],
-			"outputs": [
-				{"name":"value0","type":"address"}
-			]
-		},
-		{
 			"name": "deploy",
 			"inputs": [
-				{"name":"_params","type":"cell"},
+				{"name":"_deployParams","type":"cell"},
 				{"name":"_remainingGasTo","type":"optional(address)"}
 			],
 			"outputs": [
@@ -53,7 +43,7 @@
 		{
 			"name": "setPlatformCode",
 			"inputs": [
-				{"name":"_newCode","type":"cell"},
+				{"name":"_newPlatformCode","type":"cell"},
 				{"name":"_remainingGasTo","type":"optional(address)"}
 			],
 			"outputs": [
@@ -78,9 +68,19 @@
 			]
 		},
 		{
+			"name": "getInstanceAddress",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"name":"_deployParams","type":"cell"}
+			],
+			"outputs": [
+				{"name":"value0","type":"address"}
+			]
+		},
+		{
 			"name": "setInstanceCode",
 			"inputs": [
-				{"name":"_newCode","type":"cell"},
+				{"name":"_newInstanceCode","type":"cell"},
 				{"name":"_remainingGasTo","type":"optional(address)"}
 			],
 			"outputs": [
@@ -129,6 +129,7 @@
 			"name": "InstanceDeployed",
 			"inputs": [
 				{"name":"instance","type":"address"},
+				{"name":"deployParams","type":"cell"},
 				{"name":"version","type":"uint32"},
 				{"name":"deployer","type":"address"}
 			],

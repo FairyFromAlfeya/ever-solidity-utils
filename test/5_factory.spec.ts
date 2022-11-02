@@ -125,10 +125,10 @@ describe('Factory', () => {
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
-      return expect(traceTree)
-        .to.call('deploy')
-        .count(1)
-        .withNamedArgs({ _deployParams: params.value0, _remainingGasTo: address });
+      return expect(traceTree).to.call('deploy').count(1).withNamedArgs({
+        _deployParams: params.value0,
+        _remainingGasTo: address,
+      });
     });
 
     it('should check instance address', async () => {

@@ -38,7 +38,9 @@ describe('Version', () => {
     });
 
     it('should return initial VersionChanged event', async () => {
-      example.getPastEvents({ filter: (event) => event.event === 'VersionChanged', })
+      example.getPastEvents({
+        filter: (event) => event.event === 'VersionChanged',
+      });
     });
 
     it('should return previous version 0', async () => {

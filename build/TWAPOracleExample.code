@@ -1,0 +1,1520 @@
+.version sol 0.63.0
+
+.macro constructor
+DROP
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7_with_init_storage$
+}
+GETGLOB 6
+THROWIF 51
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+PUSHCONT {
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+IFELSE
+ENDS
+GETGLOB 9
+.loc ../contracts/reservation/abstract/Reservable.sol, 63
+PUSHINT 1000000000
+PUSHINT 0
+RAWRESERVE
+.loc ../contracts/reservation/abstract/Reservable.sol, 64
+ACCEPT
+.loc ../contracts/reservation/abstract/Reservable.sol, 67
+OVER
+ISNULL
+PUSHCONT {
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+PUSHCONT {
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+.loc ../contracts/reservation/abstract/Reservable.sol, 70
+DUP
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+EQINT 0
+OVER
+MYADDR
+SDEQ
+OR
+PUSHCONT {
+	.loc ../contracts/reservation/abstract/Reservable.sol, 71
+	OVER
+	NIP
+	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+}
+IF
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 34
+NOW
+PUSHINT 0
+DUP
+TRIPLE
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 40
+PUSHSLICE xc00000000000000000000000005545a763
+NEWC
+STSLICE
+SWAP
+UNTRIPLE
+REVERSE 4, 0
+STU 32
+STU 256
+STU 256
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../contracts/reservation/abstract/Reservable.sol, 77
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+ADDCONST 2
+UFITS 8
+SENDRAWMSG
+.loc ../contracts/reservation/abstract/Reservable.sol, 0
+DROP2
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro setObservation
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 43
+OVER
+PUSHCONT {
+	LDU 32
+	LDREF
+	ENDS
+	CTOS
+	LDU 256
+	LDU 256
+	ROLLREV 3
+	TRIPLE
+	SWAP
+	LDREF
+	ENDS
+	CTOS
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+PUSHCONT {
+	LDU 32
+	LDU 256
+	LDU 256
+	ROLLREV 3
+	TRIPLE
+	SWAP
+	LDREF
+	ENDS
+	CTOS
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+IFELSE
+ENDS
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+CALLREF {
+	CALL $setObservation_8906bfb1_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro setObservation_8906bfb1_internal_macro
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 43
+DUP
+GETGLOB 9
+.loc ../contracts/reservation/abstract/Reservable.sol, 34
+PUSHINT 1000000000
+PUSHINT 0
+RAWRESERVE
+.loc ../contracts/reservation/abstract/Reservable.sol, 37
+OVER
+ISNULL
+PUSHCONT {
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+PUSHCONT {
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+.loc ../contracts/reservation/abstract/Reservable.sol, 40
+DUP
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+EQINT 0
+OVER
+MYADDR
+SDEQ
+OR
+PUSHCONT {
+	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	OVER
+	NIP
+	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+}
+IF
+.loc ../contracts/reservation/abstract/Reservable.sol, 44
+BLKSWAP 2, 3
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 50
+DROP
+DUP
+GETGLOB 12
+PUSH S2
+FIRST
+XCHG S2
+CALLREF {
+	UNTRIPLE
+	XCHG S2
+	NEWC
+	STU 32
+	STU 256
+	STU 256
+}
+ROTREV
+PUSHINT 32
+DICTUSETB
+SETGLOB 12
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 52
+PUSHSLICE xc00000000000000000000000007409cda5
+NEWC
+STSLICE
+SWAP
+UNTRIPLE
+REVERSE 4, 0
+STU 32
+STU 256
+STU 256
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../contracts/reservation/abstract/Reservable.sol, 47
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+ADDCONST 2
+UFITS 8
+SENDRAWMSG
+.loc ../contracts/reservation/abstract/Reservable.sol, 0
+DROP2
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+
+.macro getObservation
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 55
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+LDU 32
+ENDS
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+CALLREF {
+	CALL $getObservation_1c8b5d4c_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 1
+	STUR 98
+	SWAP
+	NEWC
+	STSLICECONST xc3780e2b
+	XCPU S1, S0
+	ISNULL
+	PUSHCONT {
+		DROP
+		STSLICECONST 0
+	}
+	PUSHCONT {
+		SWAP
+		STSLICECONST 1
+		SWAP
+		UNTRIPLE
+		REVERSE 4, 0
+		STU 32
+		STU 256
+		STU 256
+	}
+	IFELSE
+	STBREFR
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 1
+	STUR 106
+	SWAP
+	NEWC
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	XCPU S1, S0
+	ISNULL
+	PUSHCONT {
+		DROP
+		STSLICECONST 0
+	}
+	PUSHCONT {
+		SWAP
+		STSLICECONST 1
+		SWAP
+		UNTRIPLE
+		REVERSE 4, 0
+		STU 32
+		STU 256
+		STU 256
+	}
+	IFELSE
+	STBREFR
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro getObservation_1c8b5d4c_internal_macro
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 66
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+GETGLOB 12
+PUSHINT 32
+DICTUGET
+NULLSWAPIFNOT
+IFREF {
+	LDU 32
+	LDU 256
+	LDU 256
+	ENDS
+	TRIPLE
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+
+.macro observation
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 69
+LDU 32
+LDREF
+ENDS
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+CALLREF {
+	CALL $observation_01feca92_internal_macro$
+}
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro observation_01feca92_internal_macro
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 69
+PUSHINT 1000000000
+.loc ../contracts/reservation/abstract/Reservable.sol, 13
+PUSHINT 0
+RAWRESERVE
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 78
+SWAP
+GETGLOB 12
+PUSHINT 32
+DICTUGET
+NULLSWAPIFNOT
+IFREF {
+	LDU 32
+	LDU 256
+	LDU 256
+	ENDS
+	TRIPLE
+}
+GETGLOB 9
+FALSE
+NEWC
+STSLICECONST x6_
+STI 1
+STSLICECONST x1_
+STSLICE
+PUSHINT 1
+STUR 111
+ROTREV
+NEWC
+STSLICECONST x2c2b74f0
+XCPU S1, S0
+ISNULL
+PUSHCONT {
+	DROP
+	STSLICECONST 0
+}
+PUSHCONT {
+	SWAP
+	STSLICECONST 1
+	SWAP
+	UNTRIPLE
+	REVERSE 4, 0
+	STU 32
+	STU 256
+	STU 256
+}
+IFELSE
+STREF
+STBREFR
+ENDC
+PUSHPOW2 7
+SENDRAWMSG
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+
+.macro getRate
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 89
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+LDU 32
+LDU 32
+ENDS
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+CALLREF {
+	CALL $getRate_982944c0_internal_macro$
+}
+PUSH S2
+PUSHCONT {
+	PUSH S4
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 1
+	STUR 98
+	XCHG S2
+	NEWC
+	STSLICECONST xa9e284b2
+	XCPU S1, S0
+	ISNULL
+	PUSHCONT {
+		DROP
+		STSLICECONST 0
+	}
+	PUSHCONT {
+		SWAP
+		STSLICECONST 1
+		SWAP
+		UNTUPLE 4
+		REVERSE 5, 0
+		STU 256
+		STU 256
+		STU 32
+		STU 32
+	}
+	IFELSE
+	SWAP
+	UNPAIR
+	XCHG S2
+	STU 32
+	STDICT
+	STBREFR
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 1
+	STUR 106
+	XCHG S2
+	NEWC
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	XCPU S1, S0
+	ISNULL
+	PUSHCONT {
+		DROP
+		STSLICECONST 0
+	}
+	PUSHCONT {
+		SWAP
+		STSLICECONST 1
+		SWAP
+		UNTUPLE 4
+		REVERSE 5, 0
+		STU 256
+		STU 256
+		STU 32
+		STU 32
+	}
+	IFELSE
+	SWAP
+	UNPAIR
+	XCHG S2
+	STU 32
+	STDICT
+	STBREFR
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro getRate_982944c0_internal_macro
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 99
+CALLREF {
+	CALL $_calculateRate_8f8f6aa6_internal_macro$
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 109
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+PUSHINT 0
+NEWDICT
+PAIR
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+
+.macro rate
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 112
+OVER
+PUSHCONT {
+	LDU 32
+	LDU 32
+	LDREF
+	ENDS
+	CTOS
+}
+PUSHCONT {
+	LDU 32
+	LDU 32
+}
+IFELSE
+LDMSGADDR
+LDREF
+ENDS
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+CALLREF {
+	CALL $rate_2ef9a5c9_internal_macro$
+}
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro rate_2ef9a5c9_internal_macro
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 112
+PUSHINT 1000000000
+.loc ../contracts/reservation/abstract/Reservable.sol, 13
+PUSHINT 0
+RAWRESERVE
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 125
+PUSHINT 0
+NEWDICT
+PAIR
+BLKSWAP 2, 3
+CALLREF {
+	CALL $_calculateRate_8f8f6aa6_internal_macro$
+}
+ROLL 3
+FALSE
+NEWC
+STSLICECONST x6_
+STI 1
+STSLICECONST x1_
+STSLICE
+PUSHINT 1
+STUR 111
+ROLLREV 3
+NEWC
+STSLICECONST x49abcbe1
+XCPU S1, S0
+ISNULL
+PUSHCONT {
+	DROP
+	STSLICECONST 0
+}
+PUSHCONT {
+	SWAP
+	STSLICECONST 1
+	SWAP
+	UNTUPLE 4
+	REVERSE 5, 0
+	STU 256
+	STU 256
+	STU 32
+	STU 32
+}
+IFELSE
+SWAP
+UNPAIR
+XCHG S2
+STU 32
+STDICT
+STREF
+STBREFR
+ENDC
+PUSHPOW2 7
+SENDRAWMSG
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+
+.macro getExpectedAmountByTWAP
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 137
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDU 128
+LDMSGADDR
+LDU 32
+LDU 32
+ENDS
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+CALLREF {
+	CALL $getExpectedAmountByTWAP_b6fd68a0_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 2241238079
+	STUR 130
+	STU 128
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 106
+	STZEROES
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STU 128
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro getExpectedAmountByTWAP_b6fd68a0_internal_macro
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 153
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+FALSE
+SETINDEXQ 1
+PUSHINT 64
+SETINDEXQ 4
+SETGLOB 4
+XCHG S2, S3
+CALLREF {
+	CALL $_calculateRate_8f8f6aa6_internal_macro$
+}
+DUP
+ISNULL
+THROWIF 63
+FIRST
+CALLREF {
+	CALL $FixedPoint128_no_obj_calculateExpectedAmountByRate_c3a5c042_macro$
+}
+NIP
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+
+.macro setOracleOptions
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 159
+OVER
+PUSHCONT {
+	LDU 8
+	LDREF
+	ENDS
+	CTOS
+}
+PUSHCONT {
+	LDU 8
+}
+IFELSE
+LDU 128
+LDU 128
+LDU 16
+ROLLREV 4
+TUPLE 4
+SWAP
+LDMSGADDR
+ENDS
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+CALLREF {
+	CALL $setOracleOptions_23f5299b_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro setOracleOptions_23f5299b_internal_macro
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 159
+PUSH2 S0, S0
+.loc ../contracts/reservation/abstract/Reservable.sol, 34
+PUSHINT 1000000000
+PUSHINT 0
+RAWRESERVE
+.loc ../contracts/reservation/abstract/Reservable.sol, 37
+OVER
+ISNULL
+PUSHCONT {
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+PUSHCONT {
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+.loc ../contracts/reservation/abstract/Reservable.sol, 40
+DUP
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+EQINT 0
+OVER
+MYADDR
+SDEQ
+OR
+PUSHCONT {
+	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	OVER
+	NIP
+	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+}
+IF
+.loc ../contracts/reservation/abstract/Reservable.sol, 44
+BLKSWAP 2, 3
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 167
+DROP
+DUP
+SETGLOB 11
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 169
+PUSHSLICE xc00000000000000000000000006765b1a4
+NEWC
+STSLICE
+SWAP
+UNTUPLE 4
+REVERSE 5, 0
+STU 8
+STU 128
+STU 128
+STU 16
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../contracts/reservation/abstract/Reservable.sol, 47
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+ADDCONST 2
+UFITS 8
+SENDRAWMSG
+.loc ../contracts/reservation/abstract/Reservable.sol, 0
+DROP2
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+
+.macro getOracleOptions
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 172
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+ENDS
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+CALLREF {
+	CALL $getOracleOptions_14143028_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 2516522543
+	STUR 130
+	SWAP
+	UNTUPLE 4
+	REVERSE 5, 0
+	STU 8
+	STU 128
+	STU 128
+	STU 16
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 1
+	STUR 106
+	SWAP
+	NEWC
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	SWAP
+	UNTUPLE 4
+	REVERSE 5, 0
+	STU 8
+	STU 128
+	STU 128
+	STU 16
+	STBREFR
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro getOracleOptions_14143028_internal_macro
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 183
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+GETGLOB 11
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+
+.macro removeLastNPoints
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 186
+OVER
+PUSHCONT {
+	LDU 16
+	LDREF
+	ENDS
+	CTOS
+}
+PUSHCONT {
+	LDU 16
+}
+IFELSE
+LDMSGADDR
+ENDS
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+CALLREF {
+	CALL $removeLastNPoints_1bfa458d_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro removeLastNPoints_1bfa458d_internal_macro
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 186
+PUSH2 S0, S0
+.loc ../contracts/reservation/abstract/Reservable.sol, 34
+PUSHINT 1000000000
+PUSHINT 0
+RAWRESERVE
+.loc ../contracts/reservation/abstract/Reservable.sol, 37
+OVER
+ISNULL
+PUSHCONT {
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+PUSHCONT {
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+.loc ../contracts/reservation/abstract/Reservable.sol, 40
+DUP
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+EQINT 0
+OVER
+MYADDR
+SDEQ
+OR
+PUSHCONT {
+	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	OVER
+	NIP
+	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+}
+IF
+.loc ../contracts/reservation/abstract/Reservable.sol, 44
+BLKSWAP 2, 3
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 194
+DROP
+PUSHINT 0
+PUSHCONT {
+	PUSH2 S0, S1
+	LESS
+}
+PUSHCONT {
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 195
+	GETGLOB 12
+	PUSHINT 32
+	DICTUREMMIN
+	NULLSWAPIFNOT
+	IFREF {
+		SWAP
+		LDU 32
+		LDU 256
+		LDU 256
+		ENDS
+		TRIPLE
+		PAIR
+	}
+	DROP
+	SETGLOB 12
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 194
+	INC
+	UFITS 16
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+}
+WHILE
+DROP2
+.loc ../contracts/reservation/abstract/Reservable.sol, 47
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+ADDCONST 2
+UFITS 8
+SENDRAWMSG
+.loc ../contracts/reservation/abstract/Reservable.sol, 0
+DROP2
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+
+.globl	_calculateRate_8f8f6aa6_internal
+.type	_calculateRate_8f8f6aa6_internal, @function
+CALL $_calculateRate_8f8f6aa6_internal_macro$
+
+.macro _calculateRate_8f8f6aa6_internal_macro
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 207
+OVER
+GETGLOB 12
+PUSHINT 32
+DICTUGET
+NULLSWAPIFNOT
+IFREF {
+	LDU 32
+	LDU 256
+	LDU 256
+	ENDS
+	TRIPLE
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 208
+OVER
+GETGLOB 12
+PUSHINT 32
+DICTUGET
+NULLSWAPIFNOT
+IFREF {
+	LDU 32
+	LDU 256
+	LDU 256
+	ENDS
+	TRIPLE
+}
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 209
+NULL
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 211
+PUSH S2
+ISNULL
+NOT
+PUSH S2
+ISNULL
+NOT
+AND
+PUSHCONT {
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 212
+	PUSH2 S3, S4
+	SUB
+	UFITS 32
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 214
+	PUSH2 S3, S3
+	ISNULL
+	THROWIF 63
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 215
+	PUSH2 S3, S3
+	ISNULL
+	THROWIF 63
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 217
+	DUP
+	SECOND
+	PUSH S2
+	SECOND
+	SUB
+	UFITS 256
+	PUSH S3
+	DIV
+	SWAP
+	THIRD
+	ROT
+	THIRD
+	SUB
+	UFITS 256
+	ROT
+	DIV
+	BLKPUSH 2, 6
+	TUPLE 4
+	NIP
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+}
+IF
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 225
+BLKDROP2 4, 1
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
+
+.macro c4_to_c7
+PUSHROOT
+CTOS
+LDU 256 ; pubkey c4
+LDU 64 ; pubkey timestamp c4
+LDU 1 ; ctor flag
+NIP
+LDU 32
+LDU 8
+LDU 128
+LDU 128
+LDU 16
+ROLLREV 4
+TUPLE 4
+SWAP
+LDDICT
+ENDS
+SETGLOB 12
+SETGLOB 11
+SETGLOB 10
+SETGLOB 3
+SETGLOB 2
+
+.macro c4_to_c7_with_init_storage
+PUSHROOT
+CTOS
+SBITS
+GTINT 1
+PUSHCONT {
+	PUSHINT 0
+	PUSHROOT
+	CTOS
+	PLDDICT ; D
+	PUSHINT 1
+	OVER
+	PUSHINT 64
+	DICTUGET
+	ZEROSWAPIFNOT
+	PUSHCONT {
+		PLDU 32
+	}
+	IF
+	PUSHINT 0
+	BLKPUSH 3, 0
+	TUPLE 4
+	NEWDICT
+	SETGLOB 12
+	SETGLOB 11
+	SETGLOB 10
+	PUSHINT 64
+	DICTUGET
+	THROWIFNOT 61
+	PLDU 256
+	SETGLOB 2
+	PUSHINT 0 ; timestamp
+	SETGLOB 3
+}
+IFREFELSE {
+	CALL $c4_to_c7$
+}
+
+.macro c7_to_c4
+GETGLOB 12
+GETGLOB 11
+GETGLOB 10
+GETGLOB 3
+GETGLOB 2
+NEWC
+STU 256
+STU 64
+STONE
+STU 32
+SWAP
+UNTUPLE 4
+REVERSE 5, 0
+STU 8
+STU 128
+STU 128
+STU 16
+STDICT
+ENDC
+POPROOT
+
+.macro upd_only_time_in_c4
+PUSHROOT
+CTOS
+LDU 256
+LDU 64
+NIP
+GETGLOB 3
+ROT
+NEWC
+STU 256
+STU 64
+STSLICE
+ENDC
+POPROOT
+
+.internal-alias :main_internal, 0
+.internal :main_internal
+PUSHROOT
+CTOS
+SBITS
+NEQINT 1
+SETGLOB 6
+PUSH S2
+CTOS
+LDU 4 ; bounced tail
+LDMSGADDR ; bounced src tail
+DROP
+SETGLOB 9
+MODPOW2 1
+GETGLOB 4
+TRUE
+SETINDEXQ 1
+PUSHINT 10000000
+SETINDEXQ 2
+NULL
+SETINDEXQ 3
+PUSHINT 0
+SETINDEXQ 4
+SETGLOB 4
+IFRET
+OVER
+SEMPTY ; isEmpty
+IFJMPREF {
+	GETGLOB 6
+	THROWIFNOT 76
+}
+OVER
+LDUQ 32  ; [funcId] body' ok
+THROWIFNOT 60
+OVER
+IFNOTJMPREF {
+	GETGLOB 6
+	THROWIFNOT 76
+}
+SWAP
+CALLREF {
+	CALL $public_function_selector$
+}
+THROW 60
+
+.internal-alias :main_external, -1
+.internal :main_external
+PUSHROOT
+CTOS
+SBITS
+NEQINT 1
+SETGLOB 6
+PUSHREFSLICE {
+	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+}
+SETGLOB 9
+OVER
+CALLREF {
+	CALL $c4_to_c7_with_init_storage$
+}
+LDU 1 ; haveSign msgSlice
+SWAP
+PUSHCONT {
+	PUSHPOW2 9
+	LDSLICEX ; signatureSlice msgSlice
+	DUP
+	HASHSU ; signatureSlice msgSlice hashMsgSlice
+	SWAP
+	LDU 1 ; signatureSlice hashMsgSlice hasPubkey msgSlice
+	SWAP
+	PUSHCONT {
+		LDU 256 ; signatureSlice hashMsgSlice pubkey msgSlice
+		XCHG S3
+		SWAP
+	}
+	PUSHCONT {
+		XCHG S2
+		GETGLOB 2
+	}
+	IFELSE
+	CHKSIGNU ; msgSlice isSigned
+	THROWIFNOT 40
+}
+PUSHCONT {
+	LDU 1 ; hasPubkey msgSlice
+	SWAP
+	THROWIF 58
+}
+IFELSE
+LDU 64 ; timestamp msgSlice
+SWAP
+CALL $replay_protection_macro$
+LDU 32 ; expireAt msgSlice
+SWAP
+NOW ; msgSlice expireAt now
+GREATER ; msgSlice expireAt>now
+THROWIFNOT 57
+LDU 32 ; funcId body
+SWAP
+CALLREF {
+	CALL $public_function_selector$
+}
+THROW 60
+
+.globl	FixedPoint128_with_obj_calculateExpectedAmountByRate_c3a5c042
+.type	FixedPoint128_with_obj_calculateExpectedAmountByRate_c3a5c042, @function
+CALL $FixedPoint128_with_obj_calculateExpectedAmountByRate_c3a5c042_macro$
+
+.macro FixedPoint128_with_obj_calculateExpectedAmountByRate_c3a5c042_macro
+.loc ../contracts/libraries/FixedPoint128.sol, 46
+PUXC S1, S-1
+PUSHPOW2 128
+MULDIV
+UFITS 128
+.loc ../contracts/libraries/FixedPoint128.sol, 0
+
+.globl	FixedPoint128_no_obj_calculateExpectedAmountByRate_c3a5c042
+.type	FixedPoint128_no_obj_calculateExpectedAmountByRate_c3a5c042, @function
+CALL $FixedPoint128_no_obj_calculateExpectedAmountByRate_c3a5c042_macro$
+
+.macro FixedPoint128_no_obj_calculateExpectedAmountByRate_c3a5c042_macro
+.loc ../contracts/libraries/FixedPoint128.sol, 46
+PUSHPOW2 128
+MULDIV
+UFITS 128
+.loc ../contracts/libraries/FixedPoint128.sol, 0
+
+.macro public_function_selector
+DUP
+PUSHINT 369038895
+LEQ
+IFJMPREF {
+	DUP
+	PUSHINT 93754431
+	EQUAL
+	IFJMPREF {
+		CALL $getExpectedAmountByTWAP$
+	}
+	DUP
+	PUSHINT 185396812
+	EQUAL
+	IFJMPREF {
+		CALL $removeLastNPoints$
+	}
+	DUP
+	PUSHINT 224032974
+	EQUAL
+	IFJMPREF {
+		CALL $setOracleOptions$
+	}
+	DUP
+	PUSHINT 369038895
+	EQUAL
+	IFJMPREF {
+		CALL $getOracleOptions$
+	}
+}
+DUP
+PUSHINT 1131941419
+LEQ
+IFJMPREF {
+	DUP
+	PUSHINT 581097393
+	EQUAL
+	IFJMPREF {
+		CALL $setObservation$
+	}
+	DUP
+	PUSHINT 702710962
+	EQUAL
+	IFJMPREF {
+		CALL $getRate$
+	}
+	DUP
+	PUSHINT 967681624
+	EQUAL
+	IFJMPREF {
+		CALL $observation$
+	}
+	DUP
+	PUSHINT 1131941419
+	EQUAL
+	IFJMPREF {
+		CALL $getObservation$
+	}
+}
+DUP
+PUSHINT 1772174412
+LEQ
+IFJMPREF {
+	DUP
+	PUSHINT 1449707793
+	EQUAL
+	IFJMPREF {
+		CALL $rate$
+	}
+	DUP
+	PUSHINT 1772174412
+	EQUAL
+	IFJMPREF {
+		CALL $constructor$
+	}
+}
+

@@ -1,0 +1,143 @@
+{
+	"ABI version": 2,
+	"version": "2.2",
+	"header": ["pubkey", "time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"_remainingGasTo","type":"optional(address)"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setObservation",
+			"inputs": [
+				{"components":[{"name":"timestamp","type":"uint32"},{"name":"price0To1Cumulative","type":"uint256"},{"name":"price1To0Cumulative","type":"uint256"}],"name":"_observation","type":"tuple"},
+				{"name":"_remainingGasTo","type":"optional(address)"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getObservation",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"name":"_timestamp","type":"uint32"}
+			],
+			"outputs": [
+				{"components":[{"name":"timestamp","type":"uint32"},{"name":"price0To1Cumulative","type":"uint256"},{"name":"price1To0Cumulative","type":"uint256"}],"name":"value0","type":"optional(tuple)"}
+			]
+		},
+		{
+			"name": "observation",
+			"inputs": [
+				{"name":"_timestamp","type":"uint32"},
+				{"name":"_payload","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getRate",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"name":"_fromTimestamp","type":"uint32"},
+				{"name":"_toTimestamp","type":"uint32"}
+			],
+			"outputs": [
+				{"components":[{"name":"price0To1","type":"uint256"},{"name":"price1To0","type":"uint256"},{"name":"fromTimestamp","type":"uint32"},{"name":"toTimestamp","type":"uint32"}],"name":"value0","type":"optional(tuple)"},
+				{"name":"value1","type":"uint128[]"}
+			]
+		},
+		{
+			"name": "rate",
+			"inputs": [
+				{"name":"_fromTimestamp","type":"uint32"},
+				{"name":"_toTimestamp","type":"uint32"},
+				{"name":"_callbackTo","type":"address"},
+				{"name":"_payload","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getExpectedAmountByTWAP",
+			"inputs": [
+				{"name":"answerId","type":"uint32"},
+				{"name":"_amount","type":"uint128"},
+				{"name":"_tokenRoot","type":"address"},
+				{"name":"_fromTimestamp","type":"uint32"},
+				{"name":"_toTimestamp","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"uint128"}
+			]
+		},
+		{
+			"name": "setOracleOptions",
+			"inputs": [
+				{"components":[{"name":"minInterval","type":"uint8"},{"name":"minRateDeltaNumerator","type":"uint128"},{"name":"minRateDeltaDenominator","type":"uint128"},{"name":"cardinality","type":"uint16"}],"name":"_newOptions","type":"tuple"},
+				{"name":"_remainingGasTo","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getOracleOptions",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"components":[{"name":"minInterval","type":"uint8"},{"name":"minRateDeltaNumerator","type":"uint128"},{"name":"minRateDeltaDenominator","type":"uint128"},{"name":"cardinality","type":"uint16"}],"name":"value0","type":"tuple"}
+			]
+		},
+		{
+			"name": "removeLastNPoints",
+			"inputs": [
+				{"name":"_count","type":"uint16"},
+				{"name":"_remainingGasTo","type":"address"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"data": [
+		{"key":1,"name":"_nonce","type":"uint32"}
+	],
+	"events": [
+		{
+			"name": "OracleInitialized",
+			"inputs": [
+				{"components":[{"name":"timestamp","type":"uint32"},{"name":"price0To1Cumulative","type":"uint256"},{"name":"price1To0Cumulative","type":"uint256"}],"name":"value0","type":"tuple"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "OracleUpdated",
+			"inputs": [
+				{"components":[{"name":"timestamp","type":"uint32"},{"name":"price0To1Cumulative","type":"uint256"},{"name":"price1To0Cumulative","type":"uint256"}],"name":"value0","type":"tuple"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "OracleOptionsUpdated",
+			"inputs": [
+				{"components":[{"name":"minInterval","type":"uint8"},{"name":"minRateDeltaNumerator","type":"uint128"},{"name":"minRateDeltaDenominator","type":"uint128"},{"name":"cardinality","type":"uint16"}],"name":"value0","type":"tuple"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"_nonce","type":"uint32"},
+		{"components":[{"name":"minInterval","type":"uint8"},{"name":"minRateDeltaNumerator","type":"uint128"},{"name":"minRateDeltaDenominator","type":"uint128"},{"name":"cardinality","type":"uint16"}],"name":"_options","type":"tuple"},
+		{"components":[{"name":"timestamp","type":"uint32"},{"name":"price0To1Cumulative","type":"uint256"},{"name":"price1To0Cumulative","type":"uint256"}],"name":"_observations","type":"map(uint32,tuple)"}
+	]
+}

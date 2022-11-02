@@ -1,4 +1,4 @@
-.version sol 0.61.2
+.version sol 0.63.0
 
 .macro constructor
 DROP
@@ -37,13 +37,13 @@ IFELSE
 ENDS
 DUP
 GETGLOB 9
-.loc ../contracts/validation/abstract/Validatable.sol, 28
+.loc ../contracts/reservation/abstract/Reservable.sol, 63
 PUSHINT 1000000000
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/validation/abstract/Validatable.sol, 29
+.loc ../contracts/reservation/abstract/Reservable.sol, 64
 ACCEPT
-.loc ../contracts/validation/abstract/Validatable.sol, 32
+.loc ../contracts/reservation/abstract/Reservable.sol, 67
 OVER
 ISNULL
 PUSHCONT {
@@ -57,7 +57,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../contracts/validation/abstract/Validatable.sol, 35
+.loc ../contracts/reservation/abstract/Reservable.sol, 70
 DUP
 PARSEMSGADDR
 INDEX 3
@@ -68,47 +68,47 @@ MYADDR
 SDEQ
 OR
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 36
+	.loc ../contracts/reservation/abstract/Reservable.sol, 71
 	OVER
 	NIP
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
+	.loc ../contracts/reservation/abstract/Reservable.sol, 0
 }
 IF
-.loc ../contracts/validation/abstract/Validatable.sol, 39
+.loc ../contracts/reservation/abstract/Reservable.sol, 74
 PUSH S4
-.loc ../contracts/validation/abstract/Validatable.sol, 107
-PUSHINT 204
+.loc ../contracts/validation/abstract/Validatable.sol, 32
+PUSHINT 1004
 CALLREF {
-	CALL $Validation_no_obj_notEmpty_macro$
+	CALL $Validation_no_obj_notEmpty_f0710f53_macro$
 }
-.loc ../contracts/validation/abstract/Validatable.sol, 111
+.loc ../contracts/validation/abstract/Validatable.sol, 36
 PUSH S3
-PUSHINT 202
-.loc ../contracts/validation/abstract/Validatable.sol, 121
+PUSHINT 1002
+.loc ../contracts/validation/abstract/Validatable.sol, 46
 OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 122
+	.loc ../contracts/validation/abstract/Validatable.sol, 47
 	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
 	MYADDR
 	PUSH S2
 	CALLREF {
-		CALL $Validation_no_obj_notEquals_macro$
+		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 	}
 	.loc ../contracts/validation/abstract/Validatable.sol, 0
 }
 IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 128
+.loc ../contracts/validation/abstract/Validatable.sol, 53
 DROP2
 BLKSWAP 2, 3
-.loc ../examples/contracts/factory/FactoryPlatform.sol, 28
+.loc ../examples/contracts/factory/FactoryPlatform.sol, 29
 DROP
 CALLREF {
-	CALL $_upgrade_internal_macro$
+	CALL $_upgrade_be75dc58_internal_macro$
 }
-.loc ../contracts/validation/abstract/Validatable.sol, 42
+.loc ../contracts/reservation/abstract/Reservable.sol, 77
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -119,29 +119,29 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
-.loc ../contracts/validation/abstract/Validatable.sol, 0
+.loc ../contracts/reservation/abstract/Reservable.sol, 0
 DROP2
 CALLREF {
 	CALL $c7_to_c4$
 }
 THROW 0
 
-.globl	_upgrade_internal
-.type	_upgrade_internal, @function
-CALL $_upgrade_internal_macro$
+.globl	_upgrade_be75dc58_internal
+.type	_upgrade_be75dc58_internal, @function
+CALL $_upgrade_be75dc58_internal_macro$
 
-.macro _upgrade_internal_macro
-.loc ../examples/contracts/factory/FactoryPlatform.sol, 33
+.macro _upgrade_be75dc58_internal_macro
+.loc ../examples/contracts/factory/FactoryPlatform.sol, 34
 GETGLOB 11
 GETGLOB 10
 NEWC
 STU 32
 STSLICE
 ENDC
-.loc ../examples/contracts/factory/FactoryPlatform.sol, 36
+.loc ../examples/contracts/factory/FactoryPlatform.sol, 37
 OVER
 SETCODE
-.loc ../examples/contracts/factory/FactoryPlatform.sol, 37
+.loc ../examples/contracts/factory/FactoryPlatform.sol, 38
 SWAP
 CTOS
 DUP
@@ -156,7 +156,7 @@ PLDREF
 CTOS
 BLESS
 POP C3
-.loc ../examples/contracts/factory/FactoryPlatform.sol, 40
+.loc ../examples/contracts/factory/FactoryPlatform.sol, 41
 CALLREF {
 	CALL $:onCodeUpgrade$
 }
@@ -353,12 +353,12 @@ CALLREF {
 }
 THROW 60
 
-.globl	Validation_with_obj_notEquals
-.type	Validation_with_obj_notEquals, @function
-CALL $Validation_with_obj_notEquals_macro$
+.globl	Validation_with_obj_notEquals_44a2ba31
+.type	Validation_with_obj_notEquals_44a2ba31, @function
+CALL $Validation_with_obj_notEquals_44a2ba31_macro$
 
-.macro Validation_with_obj_notEquals_macro
-.loc ../contracts/validation/libraries/Validation.sol, 14
+.macro Validation_with_obj_notEquals_44a2ba31_macro
+.loc ../contracts/validation/libraries/Validation.sol, 15
 PUSHINT 2
 MAX
 PUSH S2
@@ -384,12 +384,12 @@ THROWANYIFNOT
 .loc ../contracts/validation/libraries/Validation.sol, 0
 DROP
 
-.globl	Validation_no_obj_notEquals
-.type	Validation_no_obj_notEquals, @function
-CALL $Validation_no_obj_notEquals_macro$
+.globl	Validation_no_obj_notEquals_44a2ba31
+.type	Validation_no_obj_notEquals_44a2ba31, @function
+CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 
-.macro Validation_no_obj_notEquals_macro
-.loc ../contracts/validation/libraries/Validation.sol, 14
+.macro Validation_no_obj_notEquals_44a2ba31_macro
+.loc ../contracts/validation/libraries/Validation.sol, 15
 PUSHINT 2
 MAX
 PUSH S2
@@ -415,12 +415,12 @@ THROWANYIFNOT
 .loc ../contracts/validation/libraries/Validation.sol, 0
 DROP2
 
-.globl	Validation_with_obj_notEmpty
-.type	Validation_with_obj_notEmpty, @function
-CALL $Validation_with_obj_notEmpty_macro$
+.globl	Validation_with_obj_notEmpty_f0710f53
+.type	Validation_with_obj_notEmpty_f0710f53, @function
+CALL $Validation_with_obj_notEmpty_f0710f53_macro$
 
-.macro Validation_with_obj_notEmpty_macro
-.loc ../contracts/validation/libraries/Validation.sol, 29
+.macro Validation_with_obj_notEmpty_f0710f53_macro
+.loc ../contracts/validation/libraries/Validation.sol, 30
 PUSHINT 2
 MAX
 OVER
@@ -430,12 +430,12 @@ NOT
 THROWANYIFNOT
 .loc ../contracts/validation/libraries/Validation.sol, 0
 
-.globl	Validation_no_obj_notEmpty
-.type	Validation_no_obj_notEmpty, @function
-CALL $Validation_no_obj_notEmpty_macro$
+.globl	Validation_no_obj_notEmpty_f0710f53
+.type	Validation_no_obj_notEmpty_f0710f53, @function
+CALL $Validation_no_obj_notEmpty_f0710f53_macro$
 
-.macro Validation_no_obj_notEmpty_macro
-.loc ../contracts/validation/libraries/Validation.sol, 29
+.macro Validation_no_obj_notEmpty_f0710f53_macro
+.loc ../contracts/validation/libraries/Validation.sol, 30
 PUSHINT 2
 MAX
 SWAP

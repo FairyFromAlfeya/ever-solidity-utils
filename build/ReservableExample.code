@@ -1,0 +1,525 @@
+.version sol 0.63.0
+
+.macro constructor
+DROP
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7_with_init_storage$
+}
+GETGLOB 6
+THROWIF 51
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+PUSHCONT {
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+IFELSE
+ENDS
+GETGLOB 9
+.loc ../contracts/reservation/abstract/Reservable.sol, 63
+PUSHINT 1000000000
+PUSHINT 0
+RAWRESERVE
+.loc ../contracts/reservation/abstract/Reservable.sol, 64
+ACCEPT
+.loc ../contracts/reservation/abstract/Reservable.sol, 67
+OVER
+ISNULL
+PUSHCONT {
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+PUSHCONT {
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+.loc ../contracts/reservation/abstract/Reservable.sol, 70
+DUP
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+EQINT 0
+OVER
+MYADDR
+SDEQ
+OR
+PUSHCONT {
+	.loc ../contracts/reservation/abstract/Reservable.sol, 71
+	OVER
+	NIP
+	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+}
+IF
+.loc ../contracts/reservation/abstract/Reservable.sol, 77
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+ADDCONST 2
+UFITS 8
+SENDRAWMSG
+.loc ../contracts/reservation/abstract/Reservable.sol, 0
+DROP2
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro reserveAndRefundGas
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/reservation/ReservableExample.sol, 23
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+PUSHCONT {
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+IFELSE
+ENDS
+.loc ../examples/contracts/reservation/ReservableExample.sol, 0
+CALLREF {
+	CALL $reserveAndRefundGas_00009581_internal_macro$
+}
+IFREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro reserveAndRefundGas_00009581_internal_macro
+.loc ../examples/contracts/reservation/ReservableExample.sol, 23
+GETGLOB 9
+.loc ../contracts/reservation/abstract/Reservable.sol, 34
+PUSHINT 1000000000
+PUSHINT 0
+RAWRESERVE
+.loc ../contracts/reservation/abstract/Reservable.sol, 37
+OVER
+ISNULL
+PUSHCONT {
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+PUSHCONT {
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+.loc ../contracts/reservation/abstract/Reservable.sol, 40
+DUP
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+EQINT 0
+OVER
+MYADDR
+SDEQ
+OR
+PUSHCONT {
+	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	OVER
+	NIP
+	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+}
+IF
+.loc ../examples/contracts/reservation/ReservableExample.sol, 28
+TUPLE 0
+NEWC
+PUSHSLICE x4d657373616765206761733a20
+CALLREF {
+	CALL $storeStringInBuilders_macro$
+}
+DEPTH
+ADDCONST -2
+PICK
+PUSHINT 0
+BLKPUSH 2, 0
+CALLREF {
+	CALL $convertIntToDecStr_macro$
+}
+CALLREF {
+	CALL $assembleList_macro$
+}
+CALLREF {
+	CALL $console_no_obj_log_41304fac_macro$
+}
+.loc ../contracts/reservation/abstract/Reservable.sol, 47
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+ADDCONST 2
+UFITS 8
+SENDRAWMSG
+.loc ../contracts/reservation/abstract/Reservable.sol, 0
+DROP2
+.loc ../examples/contracts/reservation/ReservableExample.sol, 0
+
+.macro reserveGas
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/reservation/ReservableExample.sol, 31
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+PUSHCONT {
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+IFELSE
+ENDS
+.loc ../examples/contracts/reservation/ReservableExample.sol, 0
+CALLREF {
+	CALL $reserveGas_e6e02305_internal_macro$
+}
+IFREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro reserveGas_e6e02305_internal_macro
+.loc ../examples/contracts/reservation/ReservableExample.sol, 31
+PUSHINT 1000000000
+.loc ../contracts/reservation/abstract/Reservable.sol, 13
+PUSHINT 0
+RAWRESERVE
+.loc ../examples/contracts/reservation/ReservableExample.sol, 36
+TUPLE 0
+NEWC
+PUSHSLICE x4d657373616765206761733a20
+CALLREF {
+	CALL $storeStringInBuilders_macro$
+}
+DEPTH
+ADDCONST -2
+PICK
+PUSHINT 0
+BLKPUSH 2, 0
+CALLREF {
+	CALL $convertIntToDecStr_macro$
+}
+CALLREF {
+	CALL $assembleList_macro$
+}
+CALLREF {
+	CALL $console_no_obj_log_41304fac_macro$
+}
+.loc ../examples/contracts/reservation/ReservableExample.sol, 38
+DUP
+ISNULL
+PUSHCONT {
+	GETGLOB 9
+}
+PUSHCONT {
+	BLKPUSH 2, 0
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+.loc ../examples/contracts/reservation/ReservableExample.sol, 40
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+ADDCONST 2
+UFITS 8
+SENDRAWMSG
+.loc ../examples/contracts/reservation/ReservableExample.sol, 0
+DROP
+
+.macro c4_to_c7
+PUSHROOT
+CTOS
+LDU 256 ; pubkey c4
+LDU 64 ; pubkey timestamp c4
+LDU 1 ; ctor flag
+NIP
+LDU 32
+ENDS
+SETGLOB 10
+SETGLOB 3
+SETGLOB 2
+
+.macro c4_to_c7_with_init_storage
+PUSHROOT
+CTOS
+SBITS
+GTINT 1
+PUSHCONT {
+	PUSHINT 0
+	PUSHROOT
+	CTOS
+	PLDDICT ; D
+	PUSHINT 1
+	OVER
+	PUSHINT 64
+	DICTUGET
+	ZEROSWAPIFNOT
+	PUSHCONT {
+		PLDU 32
+	}
+	IF
+	SETGLOB 10
+	PUSHINT 64
+	DICTUGET
+	THROWIFNOT 61
+	PLDU 256
+	SETGLOB 2
+	PUSHINT 0 ; timestamp
+	SETGLOB 3
+}
+IFREFELSE {
+	CALL $c4_to_c7$
+}
+
+.macro c7_to_c4
+GETGLOB 10
+GETGLOB 3
+GETGLOB 2
+NEWC
+STU 256
+STU 64
+STONE
+STU 32
+ENDC
+POPROOT
+
+.macro upd_only_time_in_c4
+PUSHROOT
+CTOS
+LDU 256
+LDU 64
+NIP
+GETGLOB 3
+ROT
+NEWC
+STU 256
+STU 64
+STSLICE
+ENDC
+POPROOT
+
+.internal-alias :main_internal, 0
+.internal :main_internal
+PUSHROOT
+CTOS
+SBITS
+NEQINT 1
+SETGLOB 6
+PUSH S2
+CTOS
+LDU 4 ; bounced tail
+LDMSGADDR ; bounced src tail
+DROP
+SETGLOB 9
+MODPOW2 1
+IFRET
+OVER
+SEMPTY ; isEmpty
+IFJMPREF {
+	GETGLOB 6
+	THROWIFNOT 76
+}
+OVER
+LDUQ 32  ; [funcId] body' ok
+THROWIFNOT 60
+OVER
+IFNOTJMPREF {
+	GETGLOB 6
+	THROWIFNOT 76
+}
+SWAP
+CALLREF {
+	CALL $public_function_selector$
+}
+THROW 60
+
+.internal-alias :main_external, -1
+.internal :main_external
+PUSHROOT
+CTOS
+SBITS
+NEQINT 1
+SETGLOB 6
+PUSHREFSLICE {
+	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+}
+SETGLOB 9
+OVER
+CALLREF {
+	CALL $c4_to_c7_with_init_storage$
+}
+LDU 1 ; haveSign msgSlice
+SWAP
+PUSHCONT {
+	PUSHPOW2 9
+	LDSLICEX ; signatureSlice msgSlice
+	DUP
+	HASHSU ; signatureSlice msgSlice hashMsgSlice
+	SWAP
+	LDU 1 ; signatureSlice hashMsgSlice hasPubkey msgSlice
+	SWAP
+	PUSHCONT {
+		LDU 256 ; signatureSlice hashMsgSlice pubkey msgSlice
+		XCHG S3
+		SWAP
+	}
+	PUSHCONT {
+		XCHG S2
+		GETGLOB 2
+	}
+	IFELSE
+	CHKSIGNU ; msgSlice isSigned
+	THROWIFNOT 40
+}
+PUSHCONT {
+	LDU 1 ; hasPubkey msgSlice
+	SWAP
+	THROWIF 58
+}
+IFELSE
+LDU 64 ; timestamp msgSlice
+SWAP
+CALL $replay_protection_macro$
+LDU 32 ; expireAt msgSlice
+SWAP
+NOW ; msgSlice expireAt now
+GREATER ; msgSlice expireAt>now
+THROWIFNOT 57
+LDU 32 ; funcId body
+SWAP
+CALLREF {
+	CALL $public_function_selector$
+}
+THROW 60
+
+.globl	console_with_obj_log_41304fac
+.type	console_with_obj_log_41304fac, @function
+CALL $console_with_obj_log_41304fac_macro$
+
+.macro console_with_obj_log_41304fac_macro
+.loc ../../locklift/src/console.sol, 10
+DUP
+PUSHREFSLICE {
+	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
+}
+NEWC
+STSLICE
+STREF
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../../locklift/src/console.sol, 0
+
+.globl	console_no_obj_log_41304fac
+.type	console_no_obj_log_41304fac, @function
+CALL $console_no_obj_log_41304fac_macro$
+
+.macro console_no_obj_log_41304fac_macro
+.loc ../../locklift/src/console.sol, 10
+PUSHREFSLICE {
+	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
+}
+NEWC
+STSLICE
+STREF
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../../locklift/src/console.sol, 0
+
+.macro public_function_selector
+DUP
+PUSHINT 203864051
+EQUAL
+IFJMPREF {
+	CALL $reserveGas$
+}
+DUP
+PUSHINT 1565262587
+EQUAL
+IFJMPREF {
+	CALL $reserveAndRefundGas$
+}
+DUP
+PUSHINT 1772174412
+EQUAL
+IFJMPREF {
+	CALL $constructor$
+}
+

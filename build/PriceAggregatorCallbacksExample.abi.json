@@ -1,0 +1,51 @@
+{
+	"ABI version": 2,
+	"version": "2.2",
+	"header": ["pubkey", "time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"_remainingGasTo","type":"optional(address)"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onSuccessPriceCallback",
+			"inputs": [
+				{"name":"_prices","type":"map(address,uint256)"},
+				{"name":"_scales","type":"map(address,int16)"},
+				{"name":"_timestamp","type":"uint64"},
+				{"name":"_sender","type":"address"},
+				{"name":"_payload","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onCanceledPriceCallback",
+			"inputs": [
+				{"name":"_prices","type":"map(address,uint256)"},
+				{"name":"_scales","type":"map(address,int16)"},
+				{"name":"_failed","type":"address[]"},
+				{"name":"_timestamp","type":"uint64"},
+				{"name":"_sender","type":"address"},
+				{"name":"_payload","type":"cell"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"data": [
+		{"key":1,"name":"_nonce","type":"uint32"}
+	],
+	"events": [
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"_nonce","type":"uint32"}
+	]
+}

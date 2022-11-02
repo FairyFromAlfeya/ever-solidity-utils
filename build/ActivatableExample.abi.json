@@ -21,7 +21,7 @@
 			]
 		},
 		{
-			"name": "getActive",
+			"name": "getActiveStatus",
 			"inputs": [
 				{"name":"answerId","type":"uint32"}
 			],
@@ -30,9 +30,9 @@
 			]
 		},
 		{
-			"name": "setActive",
+			"name": "setActiveStatus",
 			"inputs": [
-				{"name":"_newActive","type":"bool"},
+				{"name":"_newActiveStatus","type":"bool"},
 				{"name":"_remainingGasTo","type":"optional(address)"}
 			],
 			"outputs": [
@@ -71,7 +71,7 @@
 			]
 		},
 		{
-			"name": "ActiveChanged",
+			"name": "ActiveStatusChanged",
 			"inputs": [
 				{"name":"current","type":"bool"},
 				{"name":"previous","type":"bool"}

@@ -47,6 +47,15 @@
 			"outputs": [
 				{"name":"value0","type":"uint32"}
 			]
+		},
+		{
+			"name": "getPreviousVersion",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"uint32"}
+			]
 		}
 	],
 	"data": [
@@ -76,7 +85,8 @@
 		{"name":"_pubkey","type":"uint256"},
 		{"name":"_timestamp","type":"uint64"},
 		{"name":"_constructorFlag","type":"bool"},
-		{"name":"_version","type":"uint32"},
+		{"name":"_currentVersion","type":"uint32"},
+		{"name":"_previousVersion","type":"uint32"},
 		{"name":"_owner","type":"address"},
 		{"name":"_nonce","type":"uint32"}
 	]
