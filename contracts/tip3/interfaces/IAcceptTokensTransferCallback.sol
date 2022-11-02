@@ -1,6 +1,6 @@
 pragma ever-solidity >= 0.63.0;
 
-/// @author Broxus
+/// @author Broxus Team
 /// @title AcceptTokensTransfer-callback Interface
 /// @notice Interface for acceptTokensTransfer-callback implementation
 interface IAcceptTokensTransferCallback {

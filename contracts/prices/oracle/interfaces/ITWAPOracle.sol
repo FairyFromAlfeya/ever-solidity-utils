@@ -1,12 +1,13 @@
 pragma ever-solidity >= 0.63.0;
 
-import "./IOracle.sol";
 import "../structures/IRate.sol";
+
+import "./IOracle.sol";
 
 /// @author Alexander Kunekov
 /// @title TWAP-Oracle Interface
 /// @notice Interface for interaction with pair's TWAP-Oracle
-interface ITWAPOracle is IOracle, IRate {
+interface ITWAPOracle is IRate, IOracle {
     /// @notice Get observation by timestamp
     /// @param _timestamp UNIX timestamp in seconds of the observation
     /// @return optional(Observation) Observation by timestamp or null if it doesn't exist

@@ -52,7 +52,7 @@ abstract contract FactoryWithPlatform is
     function _setPlatformCodeInternal(TvmCell _newPlatformCode) internal {
         // Check that platform's code is not set yet
         require(
-            _getPlatformCodeInternal().toSlice().empty(),
+            _platformCode.toSlice().empty(),
             UtilityErrors.PLATFORM_CODE_ALREADY_SET
         );
 
@@ -67,7 +67,7 @@ abstract contract FactoryWithPlatform is
     function _setPlatformCodeSilent(TvmCell _newPlatformCode) internal {
         // Check that platform's code is not set yet
         require(
-            _getPlatformCodeInternal().toSlice().empty(),
+            _platformCode.toSlice().empty(),
             UtilityErrors.PLATFORM_CODE_ALREADY_SET
         );
 

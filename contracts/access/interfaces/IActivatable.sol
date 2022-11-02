@@ -5,7 +5,7 @@ pragma ever-solidity >= 0.63.0;
 /// @notice Interface for interaction with activatable contract
 interface IActivatable {
     /// @notice Emits when the contract's active status is changed
-    /// @dev Should be emitted only inside _setActiveInternal()
+    /// @dev Should be emitted only inside _setActiveStatusInternal()
     event ActiveStatusChanged(
         bool current,
         bool previous

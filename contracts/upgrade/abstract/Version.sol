@@ -44,25 +44,30 @@ abstract contract Version is IVersion {
     }
 
     /// @dev Internal call to update contract's version
+    /// @dev Emits VersionChanged event after update
     /// @param _newVersion New contract's version
-    function _setVersionInternal(uint32 _newVersion) internal {
-        uint32 previous = _previousVersion;
+    function _setCurrentVersionInternal(uint32 _newVersion) internal {
+        _previousVersion = _currentVersion;
         _currentVersion = _newVersion;
 
         // Emit event about change
         emit VersionChanged(
             _newVersion,
-            previous
+            _previousVersion
         );
     }
 
+    /// @dev Use it inside onCodeUpgrade to set previous version without VersionChanged event
+    /// @dev Should be called before _setVersionInternal()
+    /// @param _newPreviousVersion New previous version
     function _setPreviousVersionInternal(uint32 _newPreviousVersion) internal {
         _previousVersion = _newPreviousVersion;
     }
 
     /// @dev Internal call to get contract's current version
+    /// @dev Useful for contract upgrading to remember previous version
     /// @return uint32 Current contract's version
-    function _getVersionInternal() internal view returns (uint32) {
+    function _getCurrentVersionInternal() internal view returns (uint32) {
         return _currentVersion;
     }
 

@@ -1,6 +1,6 @@
 pragma ever-solidity >= 0.63.0;
 
-/// @author Broxus
+/// @author Broxus Team
 /// @title Token Wallet Interface
 /// @notice Interface for interaction with TokenWallet contract
 interface ITokenWallet {

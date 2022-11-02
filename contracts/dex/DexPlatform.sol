@@ -11,7 +11,7 @@ contract DexPlatform {
     /// @dev Type of the instance (account or pair). See DexPlatformTypes
     uint8 static type_id;
 
-    /// @dev Specific params which depend on the contract's type
+    /// @dev Specific params which depends on the contract's type
     /// @dev For account: cell(address). Where an address is owner of the account
     /// @dev For pool: cell(leftAddress, rightAddress). Where leftAddress < rightAddress
     ///      and addresses are the pool's token roots

@@ -7,6 +7,7 @@ interface IFactory {
     /// @notice Emits when factory deployed a new contract
     /// @dev Should be emitted only inside deploy()
     /// @param instance Address of the deployed instance
+    /// @param deployParams Params which was used for deploy
     /// @param version Version of the deployed instance
     /// @param deployer Deployer of the instance
     event InstanceDeployed(

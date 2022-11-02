@@ -7,7 +7,7 @@ library UtilityFlag {
     /// @dev Contract will be charged for message creation
     uint8 constant SENDER_PAYS_FEES = 1;
 
-    /// @dev Send message even after errors in contract
+    /// @dev Ignore message sending in action phase if it's impossible
     uint8 constant IGNORE_ERRORS = 2;
 
     /// @dev Destroy contract if its balance after sending will be zero

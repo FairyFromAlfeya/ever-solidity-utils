@@ -8,9 +8,9 @@ import "../structures/IPoint.sol";
 /// @title Oracle Interface
 /// @notice Base interface for oracle
 interface IOracle is
-    IPoint,
     IObservation,
-    IOracleOptions
+    IOracleOptions,
+    IPoint
 {
     /// @dev Emits when the oracle was initialized
     event OracleInitialized(Observation);

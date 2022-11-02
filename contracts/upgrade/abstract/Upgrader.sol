@@ -8,8 +8,8 @@ import "../../reservation/abstract/Reservable.sol";
 
 import "../../validation/abstract/Validatable.sol";
 
-import "../interfaces/IUpgrader.sol";
 import "../interfaces/IUpgradableByRequest.sol";
+import "../interfaces/IUpgrader.sol";
 
 /// @author Alexander Kunekov
 /// @title Upgrader
@@ -21,7 +21,7 @@ abstract contract Upgrader is
     Validatable
 {
     function provideUpgrade(
-        uint32 _currentVersion,
+        uint32 _instanceVersion,
         TvmCell _deployParams,
         address _remainingGasTo
     )
@@ -33,14 +33,14 @@ abstract contract Upgrader is
         validAddress(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
         require(
-            _getInstanceAddressForUpgradeInternal(_deployParams) == msg.sender,
+            _getInstanceAddressInternal(_deployParams) == msg.sender,
             UtilityErrors.CALLER_IS_NOT_INSTANCE
         );
 
         (uint32 version, TvmCell code) = _getParamsForUpgradeInternal();
 
         // Upgrade to last version if contract's version is different
-        if (_currentVersion != version) {
+        if (_instanceVersion != version) {
             IUpgradableByRequest(msg.sender)
                 .upgrade{
                     value: 0,
@@ -64,12 +64,15 @@ abstract contract Upgrader is
     /// @dev Should be implemented by developer
     /// @param _deployParams Packed params which was used for deploy
     /// @return address Expected instance's address
-    function _getInstanceAddressForUpgradeInternal(TvmCell _deployParams)
+    function _getInstanceAddressInternal(TvmCell _deployParams)
         internal
         view
         virtual
         returns (address);
 
+    /// @dev Internal call to get last code and version for instance
+    /// @dev Should be implemented by developer
+    /// @return (uint32, TvmCell) Last version and code
     function _getParamsForUpgradeInternal()
         internal
         view

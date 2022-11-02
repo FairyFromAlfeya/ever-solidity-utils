@@ -60,19 +60,20 @@ abstract contract UpgradableByRequest is
         // Gas recipient from params or default
         address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
 
-        IUpgrader(_getUpgraderInternal())
+        IUpgrader(_upgrader)
             .provideUpgrade{
                 value: 0,
                 flag: UtilityFlag.ALL_NOT_RESERVED,
                 bounce: false
             }(
-                _getVersionInternal(),
+                _getCurrentVersionInternal(),
                 _getDeployParamsInternal(),
                 remainingGasTo
             );
     }
 
     /// @dev Internal call to set new upgrader
+    /// @dev Emits UpgraderChanged event after update
     /// @param _newUpgrader New upgrader
     function _setUpgraderInternal(address _newUpgrader) internal {
         address previous = _upgrader;
@@ -84,17 +85,25 @@ abstract contract UpgradableByRequest is
         );
     }
 
+    /// @dev Use it inside onCodeUpgrade to set upgrader without UpgraderChanged event
+    /// @param _newUpgrader New upgrader
     function _setUpgraderSilent(address _newUpgrader) internal {
         _upgrader = _newUpgrader;
     }
 
     /// @dev Internal call to get contract's upgrader
+    /// @dev Useful for contract upgrading to remember upgrader
     /// @return address Current contract's upgrader
     function _getUpgraderInternal() internal view returns (address) {
         return _upgrader;
     }
 
     /// @dev Get params which was used for contract's deploy
+    /// @dev Should be implemented by developer
     /// @return TvmCell Encoded deploy params
-    function _getDeployParamsInternal() internal view virtual returns (TvmCell);
+    function _getDeployParamsInternal()
+        internal
+        view
+        virtual
+        returns (TvmCell);
 }

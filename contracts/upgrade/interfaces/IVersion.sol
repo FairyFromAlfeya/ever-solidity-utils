@@ -5,6 +5,7 @@ pragma ever-solidity >= 0.63.0;
 /// @notice Interface for versioned contract implementation
 interface IVersion {
     /// @dev Emits when the contract was successfully upgraded
+    /// @dev Should be emitted only inside onCodeUpgrade()
     event VersionChanged(
         uint32 current,
         uint32 previous
