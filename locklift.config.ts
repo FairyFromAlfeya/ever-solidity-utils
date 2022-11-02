@@ -9,8 +9,8 @@ declare global {
 const LOCAL_NETWORK_ENDPOINT = 'http://localhost/graphql';
 
 const config: LockliftConfig = {
-  compiler: { version: '0.61.2' },
-  linker: { version: '0.15.48' },
+  compiler: { version: '0.63.0' },
+  linker: { version: '0.18.4' },
   networks: {
     local: {
       connection: {
