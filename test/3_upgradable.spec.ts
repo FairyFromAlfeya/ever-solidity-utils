@@ -66,7 +66,7 @@ describe('Upgradable', () => {
         .withNamedArgs({ _code: Upgradable.code, _remainingGasTo: address })
         .and.to.emit('VersionChanged')
         .count(1)
-        .withNamedArgs({ current: '1' });
+        .withNamedArgs({ current: '1', previous: '0' });
     });
 
     it('should return version 1', async () => {

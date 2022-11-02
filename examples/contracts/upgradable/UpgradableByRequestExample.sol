@@ -1,4 +1,4 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
 pragma AbiHeader time;
 pragma AbiHeader expire;
@@ -19,7 +19,7 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
         FactoryInstance(_remainingGasTo)
     {
         _setUpgraderInternal(_getFactoryInternal());
-        _setVersionInternal(1, 0);
+        _setVersionInternal(1);
     }
 
     function upgrade(
@@ -70,7 +70,8 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
 
         // Set fields
         _setIdInternal(id);
-        _setVersionInternal(currentVersion, previousVersion);
+        _setPreviousVersionInternal(previousVersion);
+        _setVersionInternal(currentVersion);
         _setFactoryInternal(factory);
         _setUpgraderInternal(upgrader);
 

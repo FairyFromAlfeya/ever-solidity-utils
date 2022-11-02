@@ -46,7 +46,7 @@ describe('UpgradableByRequest', () => {
     await locklift.tracing.trace(
       upgraderExample.methods
         .setInstanceCode({
-          _newCode: UpgradableByRequestExample.code,
+          _newInstanceCode: UpgradableByRequestExample.code,
           _remainingGasTo: null,
         })
         .send({ amount: locklift.utils.toNano(10), from: address }),
@@ -58,12 +58,12 @@ describe('UpgradableByRequest', () => {
 
     await locklift.tracing.trace(
       upgraderExample.methods
-        .deploy({ _params: params.value0, _remainingGasTo: null })
+        .deploy({ _deployParams: params.value0, _remainingGasTo: null })
         .send({ amount: locklift.utils.toNano(10), from: address }),
     );
 
     const upgradableExampleAddress = await upgraderExample.methods
-      .getInstanceAddress({ _params: params.value0, answerId: 0 })
+      .getInstanceAddress({ _deployParams: params.value0, answerId: 0 })
       .call();
 
     upgradableExample = locklift.factory.getDeployedContract(
@@ -131,7 +131,7 @@ describe('UpgradableByRequest', () => {
       const { traceTree } = await locklift.tracing.trace(
         upgraderExample.methods
           .setInstanceCode({
-            _newCode: UpgradableByRequestExample.code,
+            _newInstanceCode: UpgradableByRequestExample.code,
             _remainingGasTo: address,
           })
           .send({ amount: locklift.utils.toNano(10), from: address }),
@@ -141,7 +141,7 @@ describe('UpgradableByRequest', () => {
         .to.call('setInstanceCode')
         .count(1)
         .withNamedArgs({
-          _newCode: UpgradableByRequestExample.code,
+          _newInstanceCode: UpgradableByRequestExample.code,
           _remainingGasTo: address,
         })
         .to.emit('InstanceVersionChanged')

@@ -75,7 +75,7 @@ describe('Factory', () => {
       const { traceTree } = await locklift.tracing.trace(
         example.methods
           .setInstanceCode({
-            _newCode: FactoryInstance.code,
+            _newInstanceCode: FactoryInstance.code,
             _remainingGasTo: address,
           })
           .send({ amount: locklift.utils.toNano(10), from: address }),
@@ -85,7 +85,7 @@ describe('Factory', () => {
         .to.call('setInstanceCode')
         .count(1)
         .withNamedArgs({
-          _newCode: FactoryInstance.code,
+          _newInstanceCode: FactoryInstance.code,
           _remainingGasTo: address,
         })
         .and.emit('InstanceVersionChanged')
@@ -121,14 +121,14 @@ describe('Factory', () => {
 
       const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .deploy({ _params: params.value0, _remainingGasTo: address })
+          .deploy({ _deployParams: params.value0, _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
       return expect(traceTree)
         .to.call('deploy')
         .count(1)
-        .withNamedArgs({ _params: params.value0, _remainingGasTo: address });
+        .withNamedArgs({ _deployParams: params.value0, _remainingGasTo: address });
     });
 
     it('should check instance address', async () => {
@@ -137,7 +137,7 @@ describe('Factory', () => {
         .call();
 
       const contract = await example.methods
-        .getInstanceAddress({ _params: params.value0, answerId: 0 })
+        .getInstanceAddress({ _deployParams: params.value0, answerId: 0 })
         .call();
 
       const instance = locklift.factory.getDeployedContract(
@@ -163,7 +163,7 @@ describe('Factory', () => {
         .call();
 
       const contract = await example.methods
-        .getInstanceAddress({ _params: params.value0, answerId: 0 })
+        .getInstanceAddress({ _deployParams: params.value0, answerId: 0 })
         .call();
 
       const events = await example.getPastEvents({

@@ -11,6 +11,7 @@ interface IFactory {
     /// @param deployer Deployer of the instance
     event InstanceDeployed(
         address instance,
+        TvmCell deployParams,
         uint32 version,
         address deployer
     );

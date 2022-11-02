@@ -37,14 +37,16 @@ describe('Activatable', () => {
   describe('check event and active status after deploy', () => {
     it('should return empty ActiveChanged event', async () => {
       const events = await example.getPastEvents({
-        filter: (event) => event.event === 'ActiveChanged',
+        filter: (event) => event.event === 'ActiveStatusChanged',
       });
 
       return expect(events.events.length).to.be.equal(0);
     });
 
     it('should return active status false', async () => {
-      const active = await example.methods.getActive({ answerId: 0 }).call();
+      const active = await example.methods
+        .getActiveStatus({ answerId: 0 })
+        .call();
 
       return expect(active.value0).to.be.false;
     });
@@ -71,15 +73,15 @@ describe('Activatable', () => {
     it('should set active status true', async () => {
       const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .setActive({ _newActive: true, _remainingGasTo: address })
+          .setActiveStatus({ _newActiveStatus: true, _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
       return expect(traceTree)
-        .to.call('setActive')
+        .to.call('setActiveStatus')
         .count(1)
-        .withNamedArgs({ _newActive: true, _remainingGasTo: address })
-        .and.to.emit('ActiveChanged')
+        .withNamedArgs({ _newActiveStatus: true, _remainingGasTo: address })
+        .and.to.emit('ActiveStatusChanged')
         .count(1)
         .withNamedArgs({ current: true });
     });

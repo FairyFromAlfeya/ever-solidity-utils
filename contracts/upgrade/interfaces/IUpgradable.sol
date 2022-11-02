@@ -1,5 +1,6 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
+/// @author Alexander Kunekov
 /// @title Upgradable Interface
 /// @notice Interface for contract upgrade implementation
 interface IUpgradable {

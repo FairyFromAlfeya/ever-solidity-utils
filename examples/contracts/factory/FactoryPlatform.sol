@@ -1,4 +1,4 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
 pragma AbiHeader time;
 pragma AbiHeader expire;
@@ -8,8 +8,9 @@ import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
 import "../../../contracts/validation/abstract/Validatable.sol";
+import "../../../contracts/reservation/abstract/Reservable.sol";
 
-contract FactoryPlatform is Validatable {
+contract FactoryPlatform is Reservable, Validatable {
     // ID for contract redeploy with another address
     uint32 private static _id;
 

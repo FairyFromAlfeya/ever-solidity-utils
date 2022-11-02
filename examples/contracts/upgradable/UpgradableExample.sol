@@ -1,4 +1,4 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
 pragma AbiHeader time;
 pragma AbiHeader expire;
@@ -76,7 +76,8 @@ contract UpgradableExample is Upgradable, Ownable {
         // Set fields
         _nonce = nonce;
         _setOwnerInternal(owner);
-        _setVersionInternal(++version, version - 1);
+        _setPreviousVersionInternal(version);
+        _setVersionInternal(++version);
 
         console.log(format("New version: {}", version));
     }

@@ -92,7 +92,7 @@ describe('FactoryWithPlatform', () => {
       const { traceTree } = await locklift.tracing.trace(
         example.methods
           .setPlatformCode({
-            _newCode: FactoryPlatform.code,
+            _newPlatformCode: FactoryPlatform.code,
             _remainingGasTo: address,
           })
           .send({ amount: locklift.utils.toNano(10), from: address }),
@@ -102,7 +102,7 @@ describe('FactoryWithPlatform', () => {
         .to.call('setPlatformCode')
         .count(1)
         .withNamedArgs({
-          _newCode: FactoryPlatform.code,
+          _newPlatformCode: FactoryPlatform.code,
           _remainingGasTo: address,
         })
         .and.to.emit('PlatformCodeSet')
@@ -127,7 +127,7 @@ describe('FactoryWithPlatform', () => {
       const { traceTree } = await locklift.tracing.trace(
         example.methods
           .setPlatformCode({
-            _newCode: FactoryPlatform.code,
+            _newPlatformCode: FactoryPlatform.code,
             _remainingGasTo: address,
           })
           .send({ amount: locklift.utils.toNano(10), from: address }),
@@ -138,7 +138,7 @@ describe('FactoryWithPlatform', () => {
         .to.call('setPlatformCode')
         .count(1)
         .withNamedArgs({
-          _newCode: FactoryPlatform.code,
+          _newPlatformCode: FactoryPlatform.code,
           _remainingGasTo: address,
         })
         .and.have.error(Errors.PLATFORM_CODE_ALREADY_SET);
@@ -153,7 +153,7 @@ describe('FactoryWithPlatform', () => {
       const { traceTree } = await locklift.tracing.trace(
         example.methods
           .setInstanceCode({
-            _newCode: FactoryInstance.code,
+            _newInstanceCode: FactoryInstance.code,
             _remainingGasTo: address,
           })
           .send({ amount: locklift.utils.toNano(10), from: address }),
@@ -163,7 +163,7 @@ describe('FactoryWithPlatform', () => {
         .to.call('setInstanceCode')
         .count(1)
         .withNamedArgs({
-          _newCode: FactoryInstance.code,
+          _newInstanceCode: FactoryInstance.code,
           _remainingGasTo: address,
         })
         .and.to.emit('InstanceVersionChanged')
@@ -199,14 +199,14 @@ describe('FactoryWithPlatform', () => {
 
       const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .deploy({ _params: params.value0, _remainingGasTo: address })
+          .deploy({ _deployParams: params.value0, _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
-      return expect(traceTree)
-        .to.call('deploy')
-        .count(1)
-        .withNamedArgs({ _params: params.value0, _remainingGasTo: address });
+      return expect(traceTree).to.call('deploy').count(1).withNamedArgs({
+        _deployParams: params.value0,
+        _remainingGasTo: address,
+      });
     });
 
     it('should check instance address', async () => {
@@ -215,7 +215,7 @@ describe('FactoryWithPlatform', () => {
         .call();
 
       const contract = await example.methods
-        .getInstanceAddress({ _params: params.value0, answerId: 0 })
+        .getInstanceAddress({ _deployParams: params.value0, answerId: 0 })
         .call();
 
       const instance = locklift.factory.getDeployedContract(
@@ -241,7 +241,7 @@ describe('FactoryWithPlatform', () => {
         .call();
 
       const contract = await example.methods
-        .getInstanceAddress({ _params: params.value0, answerId: 0 })
+        .getInstanceAddress({ _deployParams: params.value0, answerId: 0 })
         .call();
 
       const events = await example.getPastEvents({

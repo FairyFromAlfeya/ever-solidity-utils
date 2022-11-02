@@ -1,4 +1,4 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
 pragma AbiHeader time;
 pragma AbiHeader expire;
@@ -45,28 +45,14 @@ contract FactoryExample is Factory {
         } abi.encode(_id);
     }
 
-    function getInstanceAddress(TvmCell _params)
-        external
-        view
-        override
-        responsible
-        returns (address)
-    {
-        return {
-            value: 0,
-            flag: UtilityFlag.REMAINING_GAS,
-            bounce: false
-        } _getInstanceAddressInternal(_params);
-    }
-
     function deploy(
-        TvmCell _params,
+        TvmCell _deployParams,
         optional(address) _remainingGasTo
     )
         external
         override
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
-        validTvmCell(_params, UtilityErrors.INVALID_DEPLOY_PARAMS)
+        validTvmCell(_deployParams, UtilityErrors.INVALID_DEPLOY_PARAMS)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
         // Build state init for deploy
@@ -75,7 +61,7 @@ contract FactoryExample is Factory {
             contr: FactoryInstance,
             pubkey: 0,
             varInit: {
-                _id: abi.decode(_params, uint32),
+                _id: abi.decode(_deployParams, uint32),
                 _factory: address(this)
             }
         });
@@ -90,6 +76,7 @@ contract FactoryExample is Factory {
 
         emit InstanceDeployed(
             instance,
+            _deployParams,
             _getInstanceVersionInternal(),
             msg.sender
         );
@@ -98,6 +85,7 @@ contract FactoryExample is Factory {
     function _getInstanceAddressInternal(TvmCell _params)
         internal
         view
+        override
         returns (address)
     {
         return address(

@@ -1,8 +1,10 @@
-pragma ton-solidity >= 0.57.1;
+pragma ever-solidity >= 0.63.0;
 
 import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
 import "../../libraries/UtilityGas.sol";
+
+import "../../reservation/abstract/Reservable.sol";
 
 import "../../validation/abstract/Validatable.sol";
 
@@ -11,13 +13,15 @@ import "../interfaces/IUpgrader.sol";
 
 import "./Version.sol";
 
+/// @author Alexander Kunekov
 /// @title Upgradable by Request
 /// @notice Implements base functions for upgradable by request contract
 /// @dev A contract is abstract - to be sure that it will be inherited by another contract
 abstract contract UpgradableByRequest is
-    Version,
+    IUpgradableByRequest,
+    Reservable,
     Validatable,
-    IUpgradableByRequest
+    Version
 {
     /// @dev Current contract's upgrader
     address private _upgrader;
@@ -32,10 +36,6 @@ abstract contract UpgradableByRequest is
         _;
     }
 
-    /// @dev Get params which was used for contract's deploy
-    /// @return TvmCell Encoded deploy params
-    function _getDeployParamsInternal() internal view virtual returns (TvmCell);
-
     function getUpgrader()
         external
         view
@@ -47,7 +47,7 @@ abstract contract UpgradableByRequest is
             value: 0,
             flag: UtilityFlag.REMAINING_GAS,
             bounce: false
-        } _getUpgraderInternal();
+        } _upgrader;
     }
 
     function requestUpgrade(optional(address) _remainingGasTo)
@@ -84,9 +84,17 @@ abstract contract UpgradableByRequest is
         );
     }
 
+    function _setUpgraderSilent(address _newUpgrader) internal {
+        _upgrader = _newUpgrader;
+    }
+
     /// @dev Internal call to get contract's upgrader
     /// @return address Current contract's upgrader
     function _getUpgraderInternal() internal view returns (address) {
         return _upgrader;
     }
+
+    /// @dev Get params which was used for contract's deploy
+    /// @return TvmCell Encoded deploy params
+    function _getDeployParamsInternal() internal view virtual returns (TvmCell);
 }
