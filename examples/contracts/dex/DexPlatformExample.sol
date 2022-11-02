@@ -28,7 +28,7 @@ contract DexPlatformExample is Reservable, Validatable {
         address _right
     )
         external
-        view
+        pure
         responsible
         returns (address)
     {

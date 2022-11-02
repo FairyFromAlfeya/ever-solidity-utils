@@ -6,7 +6,6 @@ pragma AbiHeader pubkey;
 
 import "locklift/src/console.sol";
 
-import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
@@ -31,7 +30,7 @@ contract TWAPOracleCallbacksExample is
 
     function onRateCallback(
         optional(Rate) _rate,
-        uint128[] _reserves,
+        uint128[],
         TvmCell _payload
     )
         external

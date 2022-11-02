@@ -4,14 +4,16 @@ pragma AbiHeader time;
 pragma AbiHeader expire;
 pragma AbiHeader pubkey;
 
-import "../../../contracts/factory/abstract/FactoryWithPlatform.sol";
+import "../../../contracts/factory/abstract/Factory.sol";
 
 import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
-import "./FactoryPlatform.sol";
+import "../../../contracts/upgrade/abstract/Upgrader.sol";
 
-contract FactoryWithPlatformExample is FactoryWithPlatform {
+import "../factory/FactoryInstance.sol";
+
+contract UpgraderExample is Factory, Upgrader {
     uint32 private static _nonce;
 
     constructor(
@@ -51,8 +53,8 @@ contract FactoryWithPlatformExample is FactoryWithPlatform {
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
         TvmCell data = tvm.buildStateInit({
-            code: _getPlatformCodeInternal(),
-            contr: FactoryPlatform,
+            code: _getInstanceCodeInternal(),
+            contr: FactoryInstance,
             pubkey: 0,
             varInit: {
                 _id: abi.decode(_deployParams, uint32),
@@ -60,15 +62,12 @@ contract FactoryWithPlatformExample is FactoryWithPlatform {
             }
         });
 
-        address instance = new FactoryPlatform{
+        address instance = new FactoryInstance{
             stateInit: data,
             value: 2 ever,
             flag: UtilityFlag.SENDER_PAYS_FEES,
             bounce: false
-        }(
-            _getInstanceCodeInternal(),
-            _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender
-        );
+        }(_remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender);
 
         emit InstanceDeployed(
             instance,
@@ -81,14 +80,14 @@ contract FactoryWithPlatformExample is FactoryWithPlatform {
     function _getInstanceAddressInternal(TvmCell _deployParams)
         internal
         view
-        override
+        override (Factory, Upgrader)
         returns (address)
     {
         return address(
             tvm.hash(
                 tvm.buildStateInit({
-                    code: _getPlatformCodeInternal(),
-                    contr: FactoryPlatform,
+                    code: _getInstanceCodeInternal(),
+                    contr: FactoryInstance,
                     pubkey: 0,
                     varInit: {
                         _id: abi.decode(_deployParams, uint32),
@@ -96,6 +95,18 @@ contract FactoryWithPlatformExample is FactoryWithPlatform {
                     }
                 })
             )
+        );
+    }
+
+    function _getParamsForUpgradeInternal()
+        internal
+        view
+        override
+        returns (uint32, TvmCell)
+    {
+        return (
+            _getInstanceVersionInternal(),
+            _getInstanceCodeInternal()
         );
     }
 }

@@ -13,9 +13,8 @@ import "../../../contracts/tip3/interfaces/ITokenWallet.sol";
 import "../../../contracts/tip3/interfaces/ITokenRoot.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
-import "../../../contracts/validation/abstract/Validatable.sol";
 
-contract TokenWalletExample is Reservable, Validatable {
+contract TokenWalletExample is Reservable {
     uint32 private static _nonce;
     ITokenWallet private static _wallet;
 
@@ -39,6 +38,7 @@ contract TokenWalletExample is Reservable, Validatable {
 
     function onOwnRoot(address _root)
         external
+        pure
         reserve(UtilityGas.INITIAL_BALANCE)
     {
         ITokenRoot(_root)
@@ -66,6 +66,7 @@ contract TokenWalletExample is Reservable, Validatable {
             .root{
                 value: 0,
                 flag: UtilityFlag.ALL_NOT_RESERVED,
+                bounce: false,
                 callback: TokenWalletExample.onRoot
             }();
     }
@@ -152,6 +153,7 @@ contract TokenWalletExample is Reservable, Validatable {
 
     function onRoot(address _root)
         external
+        view
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Root: {}", _root));
@@ -159,6 +161,7 @@ contract TokenWalletExample is Reservable, Validatable {
 
     function onBalance(uint128 _balance)
         external
+        view
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Balance: {}", _balance));
@@ -166,6 +169,7 @@ contract TokenWalletExample is Reservable, Validatable {
 
     function onOwner(address _owner)
         external
+        view
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Owner: {}", _owner));

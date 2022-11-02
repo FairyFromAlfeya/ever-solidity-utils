@@ -12,9 +12,8 @@ import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/tip3/interfaces/ITokenRoot.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
-import "../../../contracts/validation/abstract/Validatable.sol";
 
-contract TokenRootExample is Reservable, Validatable {
+contract TokenRootExample is Reservable {
     uint32 private static _nonce;
     ITokenRoot private static _root;
 
@@ -36,6 +35,7 @@ contract TokenRootExample is Reservable, Validatable {
             .name{
                 value: 0,
                 flag: UtilityFlag.ALL_NOT_RESERVED,
+                bounce: false,
                 callback: TokenRootExample.onName
             }();
     }
@@ -129,6 +129,7 @@ contract TokenRootExample is Reservable, Validatable {
 
     function onName(string _name)
         external
+        view
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Name: {}", _name));
@@ -136,6 +137,7 @@ contract TokenRootExample is Reservable, Validatable {
 
     function onSymbol(string _symbol)
         external
+        view
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Symbol: {}", _symbol));
@@ -143,6 +145,7 @@ contract TokenRootExample is Reservable, Validatable {
 
     function onDecimals(uint8 _decimals)
         external
+        view
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Decimals: {}", _decimals));
@@ -150,6 +153,7 @@ contract TokenRootExample is Reservable, Validatable {
 
     function onTotalSupply(uint128 _totalSupply)
         external
+        view
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Total supply: {}", _totalSupply));
@@ -157,6 +161,7 @@ contract TokenRootExample is Reservable, Validatable {
 
     function onRootOwner(address _rootOwner)
         external
+        view
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Owner: {}", _rootOwner));
@@ -164,6 +169,7 @@ contract TokenRootExample is Reservable, Validatable {
 
     function onWalletOf(address _wallet)
         external
+        view
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Wallet: {}", _wallet));
@@ -171,6 +177,7 @@ contract TokenRootExample is Reservable, Validatable {
 
     function onDeployWallet(address _wallet)
         external
+        view
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Deployed wallet: {}", _wallet));

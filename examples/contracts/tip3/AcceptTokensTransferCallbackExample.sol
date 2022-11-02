@@ -7,12 +7,16 @@ pragma AbiHeader pubkey;
 import "locklift/src/console.sol";
 
 import "../../../contracts/libraries/UtilityGas.sol";
-import "../../../contracts/tip3/interfaces/IAcceptTokensTransferCallback.sol";
-import "../../../contracts/tip3/interfaces/ITokenWallet.sol";
-import "../../../contracts/tip3/interfaces/ITokenRoot.sol";
+
 import "../../../contracts/reservation/abstract/Reservable.sol";
 
-contract AcceptTokensTransferCallbackExample is IAcceptTokensTransferCallback, Reservable {
+import "../../../contracts/tip3/interfaces/IAcceptTokensTransferCallback.sol";
+import "../../../contracts/tip3/interfaces/ITokenRoot.sol";
+
+contract AcceptTokensTransferCallbackExample is
+    IAcceptTokensTransferCallback,
+    Reservable
+{
     uint32 private static _nonce;
 
     address private _wallet;
@@ -34,7 +38,7 @@ contract AcceptTokensTransferCallbackExample is IAcceptTokensTransferCallback, R
 
         ITokenRoot(_root)
             .walletOf{
-                value: 1 ever,
+                value: 0.5 ever,
                 flag: UtilityFlag.SENDER_PAYS_FEES,
                 bounce: false,
                 callback: AcceptTokensTransferCallbackExample.onWalletOf
@@ -54,7 +58,7 @@ contract AcceptTokensTransferCallbackExample is IAcceptTokensTransferCallback, R
         address _sender,
         address _senderWallet,
         address _remainingGasTo,
-        TvmCell _payload
+        TvmCell
     )
         external
         override

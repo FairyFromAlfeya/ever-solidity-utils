@@ -16,10 +16,10 @@ import "../factory/FactoryInstance.sol";
 contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
     constructor(optional(address) _remainingGasTo)
         public
-        FactoryInstance(_remainingGasTo)
+        FactoryInstance(_remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender)
     {
-        _setUpgraderInternal(_getFactoryInternal());
-        _setVersionInternal(1);
+        _setUpgraderInternal(_factory);
+        _setCurrentVersionInternal(1);
     }
 
     function upgrade(
@@ -32,14 +32,12 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         onlyUpgrader
         validTvmCell(_code, UtilityErrors.INVALID_CODE)
-        validAddress(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Encode data from contract
         TvmCell data = abi.encode(
-            _getIdInternal(),
+            _id,
             _version,
-            _getVersionInternal(),
-            _getFactoryInternal(),
+            _getCurrentVersionInternal(),
+            _factory,
             _getUpgraderInternal()
         );
 
@@ -50,10 +48,8 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
     }
 
     function _onUpgrade(TvmCell _data) private {
-        // Clear previous fields
         tvm.resetStorage();
 
-        // Unpack data
         (
             uint32 id,
             uint32 currentVersion,
@@ -68,14 +64,14 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
             address
         ));
 
-        // Set fields
-        _setIdInternal(id);
-        _setPreviousVersionInternal(previousVersion);
-        _setVersionInternal(currentVersion);
-        _setFactoryInternal(factory);
-        _setUpgraderInternal(upgrader);
+        _id = id;
+        _factory = factory;
 
-        console.log(format("New version: {}", _getVersionInternal()));
+        _setPreviousVersionInternal(previousVersion);
+        _setCurrentVersionInternal(currentVersion);
+        _setUpgraderSilent(upgrader);
+
+        console.log(format("New version: {}", _getCurrentVersionInternal()));
     }
 
     function _getDeployParamsInternal()
@@ -84,6 +80,6 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
         override
         returns (TvmCell)
     {
-        return abi.encode(_getIdInternal());
+        return abi.encode(_id);
     }
 }

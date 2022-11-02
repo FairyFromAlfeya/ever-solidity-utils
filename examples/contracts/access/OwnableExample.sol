@@ -12,7 +12,6 @@ import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
 contract OwnableExample is Ownable {
-    // Random number for contract redeploy with another address
     uint32 private static _nonce;
 
     constructor(
@@ -24,10 +23,8 @@ contract OwnableExample is Ownable {
         validAddressOrNull(_initialOwner, UtilityErrors.INVALID_NEW_OWNER)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Owner from params or default
         address initialOwner = _initialOwner.hasValue() ? _initialOwner.get() : msg.sender;
 
-        // Initialize owner
         _setOwnerInternal(initialOwner);
     }
 
@@ -36,9 +33,7 @@ contract OwnableExample is Ownable {
         view
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         onlyOwner
-        validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Emit event if caller is owner
         console.log(format("Caller is owner: {}", _nonce));
     }
 }

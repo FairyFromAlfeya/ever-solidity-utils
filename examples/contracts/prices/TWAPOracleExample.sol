@@ -4,9 +4,6 @@ pragma AbiHeader time;
 pragma AbiHeader expire;
 pragma AbiHeader pubkey;
 
-import "../../../contracts/factory/abstract/Factory.sol";
-
-import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 import "../../../contracts/libraries/FixedPoint128.sol";
@@ -19,8 +16,7 @@ import "../../../contracts/prices/oracle/interfaces/IOnRateCallback.sol";
 
 contract PriceAggregatorExample is
     ITWAPOracle,
-    Reservable,
-    Validatable
+    Reservable
 {
     uint32 private static _nonce;
 
@@ -136,7 +132,7 @@ contract PriceAggregatorExample is
 
     function getExpectedAmountByTWAP(
         uint128 _amount,
-        address _tokenRoot,
+        address,
         uint32 _fromTimestamp,
         uint32 _toTimestamp
     )

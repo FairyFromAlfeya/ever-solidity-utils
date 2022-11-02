@@ -12,7 +12,6 @@ import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
 contract ActivatableExample is Activatable {
-    // Random number for contract redeploy with another address
     uint32 private static _nonce;
 
     constructor(
@@ -24,10 +23,8 @@ contract ActivatableExample is Activatable {
         validAddressOrNull(_initialOwner, UtilityErrors.INVALID_NEW_OWNER)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Owner from params or default
         address initialOwner = _initialOwner.hasValue() ? _initialOwner.get() : msg.sender;
 
-        // Initialize owner
         _setOwnerInternal(initialOwner);
     }
 
@@ -36,9 +33,7 @@ contract ActivatableExample is Activatable {
         view
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         onlyActive
-        validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Emit event if contract is active
         console.log(format("Contract is active: {}", _nonce));
     }
 }

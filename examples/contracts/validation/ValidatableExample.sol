@@ -6,15 +6,15 @@ pragma AbiHeader pubkey;
 
 import "locklift/src/console.sol";
 
+import "../../../contracts/reservation/abstract/Reservable.sol";
+
 import "../../../contracts/validation/abstract/Validatable.sol";
 
 import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
-import "../../../contracts/reservation/abstract/Reservable.sol";
 
 contract ValidatableExample is Reservable, Validatable {
-    // Random number for contract redeploy with another address
     uint32 private static _nonce;
 
     constructor(optional(address) _remainingGasTo)

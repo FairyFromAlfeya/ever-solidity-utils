@@ -12,7 +12,6 @@ import "../../../contracts/libraries/UtilityGas.sol";
 import "./FactoryInstance.sol";
 
 contract FactoryExample is Factory {
-    // Random number for contract redeploy with another address
     uint32 private static _nonce;
 
     constructor(
@@ -22,16 +21,12 @@ contract FactoryExample is Factory {
         public
         reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
         validAddressOrNull(_initialOwner, UtilityErrors.INVALID_NEW_OWNER)
-        validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Owner from params or default
         address initialOwner = _initialOwner.hasValue() ? _initialOwner.get() : msg.sender;
 
-        // Initialize owner
         _setOwnerInternal(initialOwner);
     }
 
-    // Encode child contract's initial params
     function getDeployParams(uint32 _id)
         external
         pure
@@ -55,7 +50,6 @@ contract FactoryExample is Factory {
         validTvmCell(_deployParams, UtilityErrors.INVALID_DEPLOY_PARAMS)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        // Build state init for deploy
         TvmCell data = tvm.buildStateInit({
             code: _getInstanceCodeInternal(),
             contr: FactoryInstance,
@@ -66,13 +60,12 @@ contract FactoryExample is Factory {
             }
         });
 
-        // Deploy new instance
         address instance = new FactoryInstance{
             stateInit: data,
             value: 2 ever,
             flag: UtilityFlag.SENDER_PAYS_FEES,
             bounce: false
-        }(_remainingGasTo);
+        }(_remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender);
 
         emit InstanceDeployed(
             instance,

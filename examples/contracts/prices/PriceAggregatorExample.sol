@@ -4,9 +4,6 @@ pragma AbiHeader time;
 pragma AbiHeader expire;
 pragma AbiHeader pubkey;
 
-import "../../../contracts/factory/abstract/Factory.sol";
-
-import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
@@ -18,8 +15,7 @@ import "../../../contracts/prices/aggregator/interfaces/IOnSuccessPriceCallback.
 
 contract PriceAggregatorExample is
     IPriceAggregatorInstance,
-    Reservable,
-    Validatable
+    Reservable
 {
     uint32 private static _nonce;
 
@@ -47,13 +43,13 @@ contract PriceAggregatorExample is
     function getPrices(
         address[] _tokens,
         address _callbackRecipient,
-        bool _proxy,
-        address _remainingGasTo,
+        bool,
+        address,
         TvmCell _payload
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, _remainingGasTo)
+        reserve(UtilityGas.INITIAL_BALANCE)
     {
         mapping(address => uint) prices;
         mapping(address => int16) scales;

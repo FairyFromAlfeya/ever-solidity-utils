@@ -6,8 +6,6 @@ pragma AbiHeader pubkey;
 
 import "locklift/src/console.sol";
 
-import "../../../contracts/libraries/UtilityErrors.sol";
-import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
@@ -32,7 +30,7 @@ contract PriceAggregatorCallbacksExample is
         mapping(address => int16) _scales,
         uint64 _timestamp,
         address _sender,
-        TvmCell _payload
+        TvmCell
     )
         external
         override
@@ -52,7 +50,7 @@ contract PriceAggregatorCallbacksExample is
         address[] _failed,
         uint64 _timestamp,
         address _sender,
-        TvmCell _payload
+        TvmCell
     )
         external
         override

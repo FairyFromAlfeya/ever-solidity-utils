@@ -12,7 +12,6 @@ import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/reservation/abstract/Reservable.sol";
 
 contract ReservableExample is Reservable {
-    // Random number for contract redeploy with another address
     uint32 private static _nonce;
 
     constructor(optional(address) _remainingGasTo)
@@ -22,7 +21,7 @@ contract ReservableExample is Reservable {
 
     function reserveAndRefundGas(optional(address) _remainingGasTo)
         external
-        view
+        pure
         reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
     {
         console.log(format("Message gas: {}", msg.value));
@@ -30,7 +29,7 @@ contract ReservableExample is Reservable {
 
     function reserveGas(optional(address) _remainingGasTo)
         external
-        view
+        pure
         reserve(UtilityGas.INITIAL_BALANCE)
     {
         console.log(format("Message gas: {}", msg.value));
