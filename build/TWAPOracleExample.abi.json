@@ -67,7 +67,7 @@
 			"inputs": [
 				{"name":"answerId","type":"uint32"},
 				{"name":"_amount","type":"uint128"},
-				{"name":"_tokenRoot","type":"address"},
+				{"name":"value1","type":"address"},
 				{"name":"_fromTimestamp","type":"uint32"},
 				{"name":"_toTimestamp","type":"uint32"}
 			],

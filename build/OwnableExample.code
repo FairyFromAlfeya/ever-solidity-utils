@@ -134,7 +134,7 @@ IFNOT
 .loc ../contracts/validation/abstract/Validatable.sol, 53
 DROP2
 BLKSWAP 2, 3
-.loc ../examples/contracts/access/OwnableExample.sol, 28
+.loc ../examples/contracts/access/OwnableExample.sol, 26
 DROP
 DUP
 ISNULL
@@ -147,7 +147,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../examples/contracts/access/OwnableExample.sol, 31
+.loc ../examples/contracts/access/OwnableExample.sol, 28
 CALLREF {
 	CALL $_setOwnerInternal_457a3840_internal_macro$
 }
@@ -180,7 +180,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/access/OwnableExample.sol, 34
+.loc ../examples/contracts/access/OwnableExample.sol, 31
 OVER
 PUSHCONT {
 	LDREF
@@ -215,8 +215,7 @@ IFREF {
 THROW 0
 
 .macro check_9ad81c73_internal_macro
-.loc ../examples/contracts/access/OwnableExample.sol, 34
-DUP
+.loc ../examples/contracts/access/OwnableExample.sol, 31
 GETGLOB 9
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
 PUSHINT 1000000000
@@ -264,28 +263,7 @@ GETGLOB 10
 SDEQ
 AND
 THROWIFNOT 1000
-.loc ../contracts/access/abstract/Ownable.sol, 32
-ROLL 3
-PUSHINT 1002
-.loc ../contracts/validation/abstract/Validatable.sol, 46
-OVER
-ISNULL
-PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
-	PUSH2 S1, S1
-	ISNULL
-	THROWIF 63
-	MYADDR
-	PUSH S2
-	CALLREF {
-		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
-	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
-}
-IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
-DROP2
-.loc ../examples/contracts/access/OwnableExample.sol, 42
+.loc ../examples/contracts/access/OwnableExample.sol, 37
 TUPLE 0
 NEWC
 PUSHSLICE x43616c6c6572206973206f776e65723a20
@@ -792,41 +770,6 @@ CALLREF {
 }
 THROW 60
 
-.globl	console_with_obj_log_41304fac
-.type	console_with_obj_log_41304fac, @function
-CALL $console_with_obj_log_41304fac_macro$
-
-.macro console_with_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
-DUP
-PUSHREFSLICE {
-	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
-}
-NEWC
-STSLICE
-STREF
-ENDC
-PUSHINT 0
-SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
-
-.globl	console_no_obj_log_41304fac
-.type	console_no_obj_log_41304fac, @function
-CALL $console_no_obj_log_41304fac_macro$
-
-.macro console_no_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
-PUSHREFSLICE {
-	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
-}
-NEWC
-STSLICE
-STREF
-ENDC
-PUSHINT 0
-SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
-
 .globl	Validation_with_obj_notEquals_44a2ba31
 .type	Validation_with_obj_notEquals_44a2ba31, @function
 CALL $Validation_with_obj_notEquals_44a2ba31_macro$
@@ -888,6 +831,41 @@ IF
 THROWANYIFNOT
 .loc ../contracts/validation/libraries/Validation.sol, 0
 DROP2
+
+.globl	console_with_obj_log_41304fac
+.type	console_with_obj_log_41304fac, @function
+CALL $console_with_obj_log_41304fac_macro$
+
+.macro console_with_obj_log_41304fac_macro
+.loc ../node_modules/locklift/src/console.sol, 10
+DUP
+PUSHREFSLICE {
+	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
+}
+NEWC
+STSLICE
+STREF
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../node_modules/locklift/src/console.sol, 0
+
+.globl	console_no_obj_log_41304fac
+.type	console_no_obj_log_41304fac, @function
+CALL $console_no_obj_log_41304fac_macro$
+
+.macro console_no_obj_log_41304fac_macro
+.loc ../node_modules/locklift/src/console.sol, 10
+PUSHREFSLICE {
+	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
+}
+NEWC
+STSLICE
+STREF
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .macro public_function_selector
 DUP

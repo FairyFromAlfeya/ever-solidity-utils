@@ -6,7 +6,7 @@
 		{
 			"name": "constructor",
 			"inputs": [
-				{"name":"_remainingGasTo","type":"optional(address)"}
+				{"name":"_remainingGasTo","type":"address"}
 			],
 			"outputs": [
 			]
@@ -25,24 +25,6 @@
 		{"key":2,"name":"_factory","type":"address"}
 	],
 	"events": [
-		{
-			"name": "IdChanged",
-			"inputs": [
-				{"name":"current","type":"uint32"},
-				{"name":"previous","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "FactoryChanged",
-			"inputs": [
-				{"name":"current","type":"address"},
-				{"name":"previous","type":"address"}
-			],
-			"outputs": [
-			]
-		}
 	],
 	"fields": [
 		{"name":"_pubkey","type":"uint256"},

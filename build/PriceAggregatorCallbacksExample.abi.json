@@ -18,7 +18,7 @@
 				{"name":"_scales","type":"map(address,int16)"},
 				{"name":"_timestamp","type":"uint64"},
 				{"name":"_sender","type":"address"},
-				{"name":"_payload","type":"cell"}
+				{"name":"value4","type":"cell"}
 			],
 			"outputs": [
 			]
@@ -31,7 +31,7 @@
 				{"name":"_failed","type":"address[]"},
 				{"name":"_timestamp","type":"uint64"},
 				{"name":"_sender","type":"address"},
-				{"name":"_payload","type":"cell"}
+				{"name":"value5","type":"cell"}
 			],
 			"outputs": [
 			]

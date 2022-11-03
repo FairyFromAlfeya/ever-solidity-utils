@@ -98,7 +98,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 32
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 31
 OVER
 PUSHCONT {
 	LDREF
@@ -150,7 +150,7 @@ CALLREF {
 THROW 0
 
 .macro onRateCallback_1ef6f290_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 32
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 31
 DUP
 CTOS
 LDMSGADDR
@@ -196,12 +196,12 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 BLKSWAP 3, 3
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 45
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 44
 DROP2
 DUP
 ISNULL
 THROWIF 63
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 47
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 46
 TUPLE 0
 NEWC
 PUSHSLICE x507269636520302f313a20
@@ -221,7 +221,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 48
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 47
 TUPLE 0
 NEWC
 PUSHSLICE x507269636520312f303a20
@@ -241,7 +241,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 49
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 48
 TUPLE 0
 NEWC
 PUSHSLICE x46726f6d2074696d657374616d703a20
@@ -261,7 +261,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 50
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 49
 TUPLE 0
 NEWC
 PUSHSLICE x546f2074696d657374616d703a20
@@ -305,7 +305,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 53
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 52
 OVER
 PUSHCONT {
 	LDREF
@@ -350,7 +350,7 @@ CALLREF {
 THROW 0
 
 .macro onObservationCallback_ca6b7c1b_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 53
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 52
 DUP
 CTOS
 LDMSGADDR
@@ -396,12 +396,12 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 BLKSWAP 2, 3
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 65
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 64
 DROP
 DUP
 ISNULL
 THROWIF 63
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 67
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 66
 TUPLE 0
 NEWC
 PUSHSLICE x43756d756c617469766520302f313a20
@@ -421,7 +421,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 68
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 67
 TUPLE 0
 NEWC
 PUSHSLICE x43756d756c617469766520312f303a20
@@ -441,7 +441,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 69
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 68
 TUPLE 0
 NEWC
 PUSHSLICE x54696d657374616d703a20
@@ -485,7 +485,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 72
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 71
 OVER
 PUSHCONT {
 	LDU 32
@@ -524,12 +524,12 @@ IFREF {
 THROW 0
 
 .macro rate_94857ebb_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 72
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 71
 PUSHINT 1000000000
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 81
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 80
 DUP
 ISNULL
 PUSHCONT {
@@ -541,7 +541,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 83
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 82
 NEWC
 STSLICE
 ENDC
@@ -580,7 +580,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 96
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 95
 OVER
 PUSHCONT {
 	LDU 32
@@ -617,12 +617,12 @@ IFREF {
 THROW 0
 
 .macro observation_dc8021ca_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 96
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 95
 PUSHINT 1000000000
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 104
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 103
 DUP
 ISNULL
 PUSHCONT {
@@ -634,7 +634,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 106
+.loc ../examples/contracts/prices/TWAPOracleCallbacksExample.sol, 105
 NEWC
 STSLICE
 ENDC
@@ -842,7 +842,7 @@ THROW 60
 CALL $console_with_obj_log_41304fac_macro$
 
 .macro console_with_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 DUP
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
@@ -853,14 +853,14 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .globl	console_no_obj_log_41304fac
 .type	console_no_obj_log_41304fac, @function
 CALL $console_no_obj_log_41304fac_macro$
 
 .macro console_no_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
 }
@@ -870,7 +870,7 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .macro public_function_selector
 DUP

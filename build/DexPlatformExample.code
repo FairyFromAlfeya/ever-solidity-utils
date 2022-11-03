@@ -93,11 +93,6 @@ THROW 0
 DROP
 GETGLOB 6
 THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
 .loc ../examples/contracts/dex/DexPlatformExample.sol, 24
 LDU 32
 GETGLOB 4

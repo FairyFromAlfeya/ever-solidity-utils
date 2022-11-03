@@ -82,7 +82,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 74
 BLKSWAP 2, 3
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 33
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 37
 DUP
 ISNULL
 PUSHCONT {
@@ -95,7 +95,7 @@ PUSHCONT {
 }
 IFELSE
 SETGLOB 12
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 35
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 39
 DROP
 FALSE
 NEWC
@@ -103,7 +103,7 @@ STSLICECONST x6_
 STI 1
 STSLICECONST x1_
 STSLICE
-PUSHINT 2949852426645541256083542794369173188247553
+PUSHINT 2868722788230934574387753789225109188247553
 STUR 143
 MYADDR
 PUSHSLICE x2c1605451e989b39
@@ -141,7 +141,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 44
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 48
 OVER
 PUSHCONT {
 	LDREF
@@ -161,7 +161,7 @@ CALLREF {
 THROW 0
 
 .macro onWalletOf_681a98a5_internal_macro
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 44
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 48
 GETGLOB 12
 DUP
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
@@ -201,7 +201,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 ROLL 3
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 48
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 52
 SETGLOB 11
 .loc ../contracts/reservation/abstract/Reservable.sol, 47
 NEWC
@@ -227,7 +227,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 51
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 55
 OVER
 PUSHCONT {
 	LDREF
@@ -261,7 +261,7 @@ CALLREF {
 THROW 0
 
 .macro onAcceptTokensTransfer_e63f2284_internal_macro
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 51
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 55
 PUSH2 S1, S1
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
 PUSHINT 1000000000
@@ -298,7 +298,7 @@ PUSHCONT {
 	.loc ../contracts/reservation/abstract/Reservable.sol, 0
 }
 IF
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 22
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 26
 GETGLOB 11
 PARSEMSGADDR
 INDEX 3
@@ -309,9 +309,9 @@ GETGLOB 11
 SDEQ
 AND
 THROWIFNOT 1234
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 23
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 27
 BLKSWAP 6, 3
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 64
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 68
 DROP2
 TUPLE 0
 NEWC
@@ -329,7 +329,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 65
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 69
 TUPLE 0
 NEWC
 PUSHSLICE x416d6f756e743a20
@@ -348,7 +348,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 66
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 70
 TUPLE 0
 NEWC
 PUSHSLICE x53656e6465723a20
@@ -365,7 +365,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 67
+.loc ../examples/contracts/tip3/AcceptTokensTransferCallbackExample.sol, 71
 TUPLE 0
 NEWC
 PUSHSLICE x53656e6465722077616c6c65743a20
@@ -587,7 +587,7 @@ THROW 60
 CALL $console_with_obj_log_41304fac_macro$
 
 .macro console_with_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 DUP
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
@@ -598,14 +598,14 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .globl	console_no_obj_log_41304fac
 .type	console_no_obj_log_41304fac, @function
 CALL $console_no_obj_log_41304fac_macro$
 
 .macro console_no_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
 }
@@ -615,7 +615,7 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .macro public_function_selector
 DUP

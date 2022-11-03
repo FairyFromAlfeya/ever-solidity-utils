@@ -71,12 +71,12 @@ PUSHCONT {
 	.loc ../contracts/reservation/abstract/Reservable.sol, 0
 }
 IF
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 34
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 30
 NOW
 PUSHINT 0
 DUP
 TRIPLE
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 40
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 36
 PUSHSLICE xc00000000000000000000000005545a763
 NEWC
 STSLICE
@@ -116,7 +116,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 43
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 39
 OVER
 PUSHCONT {
 	LDU 32
@@ -169,7 +169,7 @@ CALLREF {
 THROW 0
 
 .macro setObservation_8906bfb1_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 43
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 39
 DUP
 GETGLOB 9
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
@@ -209,7 +209,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 BLKSWAP 2, 3
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 50
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 46
 DROP
 DUP
 GETGLOB 12
@@ -228,7 +228,7 @@ ROTREV
 PUSHINT 32
 DICTUSETB
 SETGLOB 12
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 52
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 48
 PUSHSLICE xc00000000000000000000000007409cda5
 NEWC
 STSLICE
@@ -265,7 +265,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 55
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 51
 LDU 32
 GETGLOB 4
 ROT
@@ -368,7 +368,7 @@ IFREF {
 THROW 0
 
 .macro getObservation_1c8b5d4c_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 66
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 62
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -399,7 +399,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 69
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 65
 LDU 32
 LDREF
 ENDS
@@ -413,12 +413,12 @@ IFREF {
 THROW 0
 
 .macro observation_01feca92_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 69
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 65
 PUSHINT 1000000000
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 78
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 74
 SWAP
 GETGLOB 12
 PUSHINT 32
@@ -476,7 +476,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 89
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 85
 LDU 32
 GETGLOB 4
 ROT
@@ -592,11 +592,11 @@ IFREF {
 THROW 0
 
 .macro getRate_982944c0_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 99
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 95
 CALLREF {
 	CALL $_calculateRate_8f8f6aa6_internal_macro$
 }
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 109
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 105
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -619,7 +619,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 112
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 108
 OVER
 PUSHCONT {
 	LDU 32
@@ -646,12 +646,12 @@ IFREF {
 THROW 0
 
 .macro rate_2ef9a5c9_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 112
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 108
 PUSHINT 1000000000
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 125
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 121
 PUSHINT 0
 NEWDICT
 PAIR
@@ -710,7 +710,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 137
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 133
 LDU 32
 GETGLOB 4
 ROT
@@ -784,7 +784,7 @@ IFREF {
 THROW 0
 
 .macro getExpectedAmountByTWAP_b6fd68a0_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 153
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 149
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -816,7 +816,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 159
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 155
 OVER
 PUSHCONT {
 	LDU 8
@@ -846,7 +846,7 @@ CALLREF {
 THROW 0
 
 .macro setOracleOptions_23f5299b_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 159
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 155
 PUSH2 S0, S0
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
 PUSHINT 1000000000
@@ -885,11 +885,11 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 BLKSWAP 2, 3
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 167
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 163
 DROP
 DUP
 SETGLOB 11
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 169
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 165
 PUSHSLICE xc00000000000000000000000006765b1a4
 NEWC
 STSLICE
@@ -927,7 +927,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 172
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 168
 LDU 32
 GETGLOB 4
 ROT
@@ -1005,7 +1005,7 @@ IFREF {
 THROW 0
 
 .macro getOracleOptions_14143028_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 183
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 179
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -1026,7 +1026,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 186
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 182
 OVER
 PUSHCONT {
 	LDU 16
@@ -1050,7 +1050,7 @@ CALLREF {
 THROW 0
 
 .macro removeLastNPoints_1bfa458d_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 186
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 182
 PUSH2 S0, S0
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
 PUSHINT 1000000000
@@ -1089,7 +1089,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 BLKSWAP 2, 3
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 194
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 190
 DROP
 PUSHINT 0
 PUSHCONT {
@@ -1097,7 +1097,7 @@ PUSHCONT {
 	LESS
 }
 PUSHCONT {
-	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 195
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 191
 	GETGLOB 12
 	PUSHINT 32
 	DICTUREMMIN
@@ -1113,7 +1113,7 @@ PUSHCONT {
 	}
 	DROP
 	SETGLOB 12
-	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 194
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 190
 	INC
 	UFITS 16
 	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
@@ -1140,7 +1140,7 @@ DROP2
 CALL $_calculateRate_8f8f6aa6_internal_macro$
 
 .macro _calculateRate_8f8f6aa6_internal_macro
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 207
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 203
 OVER
 GETGLOB 12
 PUSHINT 32
@@ -1153,7 +1153,7 @@ IFREF {
 	ENDS
 	TRIPLE
 }
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 208
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 204
 OVER
 GETGLOB 12
 PUSHINT 32
@@ -1166,9 +1166,9 @@ IFREF {
 	ENDS
 	TRIPLE
 }
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 209
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 205
 NULL
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 211
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 207
 PUSH S2
 ISNULL
 NOT
@@ -1177,19 +1177,19 @@ ISNULL
 NOT
 AND
 PUSHCONT {
-	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 212
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 208
 	PUSH2 S3, S4
 	SUB
 	UFITS 32
-	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 214
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 210
 	PUSH2 S3, S3
 	ISNULL
 	THROWIF 63
-	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 215
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 211
 	PUSH2 S3, S3
 	ISNULL
 	THROWIF 63
-	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 217
+	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 213
 	DUP
 	SECOND
 	PUSH S2
@@ -1212,7 +1212,7 @@ PUSHCONT {
 	.loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
 }
 IF
-.loc ../examples/contracts/prices/TWAPOracleExample.sol, 225
+.loc ../examples/contracts/prices/TWAPOracleExample.sol, 221
 BLKDROP2 4, 1
 .loc ../examples/contracts/prices/TWAPOracleExample.sol, 0
 

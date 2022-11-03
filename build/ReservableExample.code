@@ -93,12 +93,7 @@ THROW 0
 DROP
 GETGLOB 6
 THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../examples/contracts/reservation/ReservableExample.sol, 23
+.loc ../examples/contracts/reservation/ReservableExample.sol, 22
 OVER
 PUSHCONT {
 	LDREF
@@ -133,7 +128,7 @@ IFREF {
 THROW 0
 
 .macro reserveAndRefundGas_00009581_internal_macro
-.loc ../examples/contracts/reservation/ReservableExample.sol, 23
+.loc ../examples/contracts/reservation/ReservableExample.sol, 22
 GETGLOB 9
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
 PUSHINT 1000000000
@@ -170,7 +165,7 @@ PUSHCONT {
 	.loc ../contracts/reservation/abstract/Reservable.sol, 0
 }
 IF
-.loc ../examples/contracts/reservation/ReservableExample.sol, 28
+.loc ../examples/contracts/reservation/ReservableExample.sol, 27
 TUPLE 0
 NEWC
 PUSHSLICE x4d657373616765206761733a20
@@ -210,12 +205,7 @@ DROP2
 DROP
 GETGLOB 6
 THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../examples/contracts/reservation/ReservableExample.sol, 31
+.loc ../examples/contracts/reservation/ReservableExample.sol, 30
 OVER
 PUSHCONT {
 	LDREF
@@ -250,12 +240,12 @@ IFREF {
 THROW 0
 
 .macro reserveGas_e6e02305_internal_macro
-.loc ../examples/contracts/reservation/ReservableExample.sol, 31
+.loc ../examples/contracts/reservation/ReservableExample.sol, 30
 PUSHINT 1000000000
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/reservation/ReservableExample.sol, 36
+.loc ../examples/contracts/reservation/ReservableExample.sol, 35
 TUPLE 0
 NEWC
 PUSHSLICE x4d657373616765206761733a20
@@ -276,7 +266,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/reservation/ReservableExample.sol, 38
+.loc ../examples/contracts/reservation/ReservableExample.sol, 37
 DUP
 ISNULL
 PUSHCONT {
@@ -288,7 +278,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../examples/contracts/reservation/ReservableExample.sol, 40
+.loc ../examples/contracts/reservation/ReservableExample.sol, 39
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -473,7 +463,7 @@ THROW 60
 CALL $console_with_obj_log_41304fac_macro$
 
 .macro console_with_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 DUP
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
@@ -484,14 +474,14 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .globl	console_no_obj_log_41304fac
 .type	console_no_obj_log_41304fac, @function
 CALL $console_no_obj_log_41304fac_macro$
 
 .macro console_no_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
 }
@@ -501,7 +491,7 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .macro public_function_selector
 DUP

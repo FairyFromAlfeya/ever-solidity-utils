@@ -28,7 +28,7 @@
 				{"name":"_sender","type":"address"},
 				{"name":"_senderWallet","type":"address"},
 				{"name":"_remainingGasTo","type":"address"},
-				{"name":"_payload","type":"cell"}
+				{"name":"value5","type":"cell"}
 			],
 			"outputs": [
 			]

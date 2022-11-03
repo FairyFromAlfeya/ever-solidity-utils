@@ -13,16 +13,6 @@
 			]
 		},
 		{
-			"name": "provideUpgrade",
-			"inputs": [
-				{"name":"_currentVersion","type":"uint32"},
-				{"name":"_deployParams","type":"cell"},
-				{"name":"_remainingGasTo","type":"address"}
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "getDeployParams",
 			"inputs": [
 				{"name":"answerId","type":"uint32"},
@@ -37,6 +27,16 @@
 			"inputs": [
 				{"name":"_deployParams","type":"cell"},
 				{"name":"_remainingGasTo","type":"optional(address)"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "provideUpgrade",
+			"inputs": [
+				{"name":"_instanceVersion","type":"uint32"},
+				{"name":"_deployParams","type":"cell"},
+				{"name":"_remainingGasTo","type":"address"}
 			],
 			"outputs": [
 			]

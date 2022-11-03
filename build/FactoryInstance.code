@@ -14,180 +14,11 @@ PUSHCONT {
 	LDREF
 	ENDS
 	CTOS
-	LDI 1
-	SWAP
-	NULLROTRIFNOT
-	PUSHCONT {
-		LDMSGADDR
-	}
-	IF
-}
-PUSHCONT {
-	LDI 1
-	SWAP
-	NULLROTRIFNOT
-	PUSHCONT {
-		LDMSGADDR
-	}
-	IF
-}
-IFELSE
-ENDS
-DUP
-GETGLOB 9
-.loc ../contracts/reservation/abstract/Reservable.sol, 63
-PUSHINT 1000000000
-PUSHINT 0
-RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 64
-ACCEPT
-.loc ../contracts/reservation/abstract/Reservable.sol, 67
-OVER
-ISNULL
-PUSHCONT {
-	PUSHREFSLICE {
-		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
-	}
-}
-PUSHCONT {
-	PUSH2 S1, S1
-	ISNULL
-	THROWIF 63
-}
-IFELSE
-.loc ../contracts/reservation/abstract/Reservable.sol, 70
-DUP
-PARSEMSGADDR
-INDEX 3
-PLDU 256
-EQINT 0
-OVER
-MYADDR
-SDEQ
-OR
-PUSHCONT {
-	.loc ../contracts/reservation/abstract/Reservable.sol, 71
-	OVER
-	NIP
-	.loc ../contracts/reservation/abstract/Reservable.sol, 0
 }
 IF
-.loc ../contracts/reservation/abstract/Reservable.sol, 74
-ROLL 3
-PUSHINT 1002
-.loc ../contracts/validation/abstract/Validatable.sol, 46
-OVER
-ISNULL
-PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
-	PUSH2 S1, S1
-	ISNULL
-	THROWIF 63
-	MYADDR
-	PUSH S2
-	CALLREF {
-		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
-	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
-}
-IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
-DROP2
-.loc ../contracts/reservation/abstract/Reservable.sol, 77
-NEWC
-STSLICECONST x42_
-STSLICE
-PUSHINT 111
-STZEROES
-ENDC
-PUSHPOW2 7
-ADDCONST 2
-UFITS 8
-SENDRAWMSG
-.loc ../contracts/reservation/abstract/Reservable.sol, 0
-DROP2
-CALLREF {
-	CALL $c7_to_c4$
-}
-THROW 0
-
-.internal-alias :onCodeUpgrade, 2
-.internal :onCodeUpgrade
-.loc ../examples/contracts/factory/FactoryInstance.sol, 40
-PUSHINT 0
-SETGLOB 10
-PUSHREFSLICE {
-	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
-}
-SETGLOB 11
-.loc ../examples/contracts/factory/FactoryInstance.sol, 43
-CTOS
-LDU 32
 LDMSGADDR
 ENDS
-.loc ../examples/contracts/factory/FactoryInstance.sol, 52
-SWAP
-CALLREF {
-	CALL $_setIdInternal_2483cb49_internal_macro$
-}
-.loc ../examples/contracts/factory/FactoryInstance.sol, 53
-CALLREF {
-	CALL $_setFactoryInternal_938dfa60_internal_macro$
-}
-.loc ../examples/contracts/factory/FactoryInstance.sol, 0
-CALLREF {
-	CALL $c7_to_c4$
-}
-COMMIT
-THROW 0
-
-.macro check
-DROP
-GETGLOB 6
-THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../examples/contracts/factory/FactoryInstance.sol, 56
-OVER
-PUSHCONT {
-	LDREF
-	ENDS
-	CTOS
-	LDI 1
-	SWAP
-	NULLROTRIFNOT
-	PUSHCONT {
-		LDMSGADDR
-	}
-	IF
-}
-PUSHCONT {
-	LDI 1
-	SWAP
-	NULLROTRIFNOT
-	PUSHCONT {
-		LDMSGADDR
-	}
-	IF
-}
-IFELSE
-ENDS
-.loc ../examples/contracts/factory/FactoryInstance.sol, 0
-CALLREF {
-	CALL $check_9ad81c73_internal_macro$
-}
-IFREF {
-	CALL $upd_only_time_in_c4$
-}
-THROW 0
-
-.macro check_9ad81c73_internal_macro
-.loc ../examples/contracts/factory/FactoryInstance.sol, 56
-DUP
-GETGLOB 9
+PUSH2 S0, S0
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
 PUSHINT 1000000000
 PUSHINT 0
@@ -224,36 +55,140 @@ PUSHCONT {
 }
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
-ROLL 3
-PUSHINT 1002
-.loc ../contracts/validation/abstract/Validatable.sol, 46
+BLKDROP2 1, 3
+.loc ../contracts/reservation/abstract/Reservable.sol, 47
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+ADDCONST 2
+UFITS 8
+SENDRAWMSG
+.loc ../contracts/reservation/abstract/Reservable.sol, 0
+DROP2
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.internal-alias :onCodeUpgrade, 2
+.internal :onCodeUpgrade
+.loc ../examples/contracts/factory/FactoryInstance.sol, 23
+PUSHINT 0
+SETGLOB 10
+PUSHREFSLICE {
+	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+}
+SETGLOB 11
+.loc ../examples/contracts/factory/FactoryInstance.sol, 25
+CTOS
+LDU 32
+LDMSGADDR
+ENDS
+.loc ../examples/contracts/factory/FactoryInstance.sol, 33
+SWAP
+SETGLOB 10
+.loc ../examples/contracts/factory/FactoryInstance.sol, 34
+SETGLOB 11
+.loc ../examples/contracts/factory/FactoryInstance.sol, 0
+CALLREF {
+	CALL $c7_to_c4$
+}
+COMMIT
+THROW 0
+
+.macro check
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/factory/FactoryInstance.sol, 37
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+PUSHCONT {
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+IFELSE
+ENDS
+.loc ../examples/contracts/factory/FactoryInstance.sol, 0
+CALLREF {
+	CALL $check_9ad81c73_internal_macro$
+}
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro check_9ad81c73_internal_macro
+.loc ../examples/contracts/factory/FactoryInstance.sol, 37
+GETGLOB 9
+.loc ../contracts/reservation/abstract/Reservable.sol, 34
+PUSHINT 1000000000
+PUSHINT 0
+RAWRESERVE
+.loc ../contracts/reservation/abstract/Reservable.sol, 37
 OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+PUSHCONT {
 	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
-	MYADDR
-	PUSH S2
-	CALLREF {
-		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
-	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
 }
-IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
-DROP2
-.loc ../examples/contracts/factory/FactoryInstance.sol, 65
+IFELSE
+.loc ../contracts/reservation/abstract/Reservable.sol, 40
+DUP
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+EQINT 0
+OVER
+MYADDR
+SDEQ
+OR
+PUSHCONT {
+	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	OVER
+	NIP
+	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+}
+IF
+.loc ../examples/contracts/factory/FactoryInstance.sol, 42
 TUPLE 0
 NEWC
 PUSHSLICE x496e7374616e636520776974682049443a20
 CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
-CALLREF {
-	CALL $_getIdInternal_77614344_internal_macro$
-}
+GETGLOB 10
 PUSHINT 0
 BLKPUSH 2, 0
 CALLREF {
@@ -278,75 +213,6 @@ UFITS 8
 SENDRAWMSG
 .loc ../contracts/reservation/abstract/Reservable.sol, 0
 DROP2
-.loc ../examples/contracts/factory/FactoryInstance.sol, 0
-
-.globl	_getIdInternal_77614344_internal
-.type	_getIdInternal_77614344_internal, @function
-CALL $_getIdInternal_77614344_internal_macro$
-
-.macro _getIdInternal_77614344_internal_macro
-.loc ../examples/contracts/factory/FactoryInstance.sol, 69
-GETGLOB 10
-.loc ../examples/contracts/factory/FactoryInstance.sol, 0
-
-.globl	_setIdInternal_2483cb49_internal
-.type	_setIdInternal_2483cb49_internal, @function
-CALL $_setIdInternal_2483cb49_internal_macro$
-
-.macro _setIdInternal_2483cb49_internal_macro
-.loc ../examples/contracts/factory/FactoryInstance.sol, 73
-GETGLOB 10
-.loc ../examples/contracts/factory/FactoryInstance.sol, 74
-OVER
-SETGLOB 10
-.loc ../examples/contracts/factory/FactoryInstance.sol, 77
-SWAP
-PUSHSLICE xc00000000000000000000000001bf9314d
-NEWC
-STSLICE
-STU 32
-STU 32
-ENDC
-PUSHINT 0
-SENDRAWMSG
-.loc ../examples/contracts/factory/FactoryInstance.sol, 0
-
-.globl	_getFactoryInternal_77f73ecf_internal
-.type	_getFactoryInternal_77f73ecf_internal, @function
-CALL $_getFactoryInternal_77f73ecf_internal_macro$
-
-.macro _getFactoryInternal_77f73ecf_internal_macro
-.loc ../examples/contracts/factory/FactoryInstance.sol, 84
-GETGLOB 11
-.loc ../examples/contracts/factory/FactoryInstance.sol, 0
-
-.globl	_setFactoryInternal_938dfa60_internal
-.type	_setFactoryInternal_938dfa60_internal, @function
-CALL $_setFactoryInternal_938dfa60_internal_macro$
-
-.macro _setFactoryInternal_938dfa60_internal_macro
-.loc ../examples/contracts/factory/FactoryInstance.sol, 88
-GETGLOB 11
-.loc ../examples/contracts/factory/FactoryInstance.sol, 89
-OVER
-SETGLOB 11
-.loc ../examples/contracts/factory/FactoryInstance.sol, 92
-SWAP
-PUSHSLICE xc0000000000000000000000001
-NEWC
-STSLICE
-ROTREV
-NEWC
-STSLICECONST x4d21d8f0
-STSLICE
-SWAP
-NEWC
-STSLICE
-STBREFR
-STBREFR
-ENDC
-PUSHINT 0
-SENDRAWMSG
 .loc ../examples/contracts/factory/FactoryInstance.sol, 0
 
 .macro c4_to_c7
@@ -535,7 +401,7 @@ THROW 60
 CALL $console_with_obj_log_41304fac_macro$
 
 .macro console_with_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 DUP
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
@@ -546,14 +412,14 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .globl	console_no_obj_log_41304fac
 .type	console_no_obj_log_41304fac, @function
 CALL $console_no_obj_log_41304fac_macro$
 
 .macro console_no_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
 }
@@ -563,69 +429,7 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
-
-.globl	Validation_with_obj_notEquals_44a2ba31
-.type	Validation_with_obj_notEquals_44a2ba31, @function
-CALL $Validation_with_obj_notEquals_44a2ba31_macro$
-
-.macro Validation_with_obj_notEquals_44a2ba31_macro
-.loc ../contracts/validation/libraries/Validation.sol, 15
-PUSHINT 2
-MAX
-PUSH S2
-PARSEMSGADDR
-INDEX 3
-PLDU 256
-NEQINT 0
-DUP
-PUSHCONT {
-	DROP
-	OVER
-	PARSEMSGADDR
-	INDEX 3
-	PLDU 256
-	NEQINT 0
-	OVER2
-	SDEQ
-	NOT
-	AND
-}
-IF
-THROWANYIFNOT
-.loc ../contracts/validation/libraries/Validation.sol, 0
-DROP
-
-.globl	Validation_no_obj_notEquals_44a2ba31
-.type	Validation_no_obj_notEquals_44a2ba31, @function
-CALL $Validation_no_obj_notEquals_44a2ba31_macro$
-
-.macro Validation_no_obj_notEquals_44a2ba31_macro
-.loc ../contracts/validation/libraries/Validation.sol, 15
-PUSHINT 2
-MAX
-PUSH S2
-PARSEMSGADDR
-INDEX 3
-PLDU 256
-NEQINT 0
-DUP
-PUSHCONT {
-	DROP
-	OVER
-	PARSEMSGADDR
-	INDEX 3
-	PLDU 256
-	NEQINT 0
-	OVER2
-	SDEQ
-	NOT
-	AND
-}
-IF
-THROWANYIFNOT
-.loc ../contracts/validation/libraries/Validation.sol, 0
-DROP2
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .macro public_function_selector
 DUP
@@ -635,7 +439,7 @@ IFJMPREF {
 	CALL $check$
 }
 DUP
-PUSHINT 1772174412
+PUSHINT 1196840156
 EQUAL
 IFJMPREF {
 	CALL $constructor$

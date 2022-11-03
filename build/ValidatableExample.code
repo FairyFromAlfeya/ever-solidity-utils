@@ -673,7 +673,7 @@ THROW 60
 CALL $console_with_obj_log_41304fac_macro$
 
 .macro console_with_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 DUP
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
@@ -684,14 +684,14 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .globl	console_no_obj_log_41304fac
 .type	console_no_obj_log_41304fac, @function
 CALL $console_no_obj_log_41304fac_macro$
 
 .macro console_no_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
 }
@@ -701,7 +701,7 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .globl	Validation_with_obj_notEquals_44a2ba31
 .type	Validation_with_obj_notEquals_44a2ba31, @function

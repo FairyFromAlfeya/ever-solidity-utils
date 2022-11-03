@@ -7,7 +7,7 @@
 			"name": "constructor",
 			"inputs": [
 				{"name":"_code","type":"cell"},
-				{"name":"_remainingGasTo","type":"optional(address)"}
+				{"name":"_remainingGasTo","type":"address"}
 			],
 			"outputs": [
 			]

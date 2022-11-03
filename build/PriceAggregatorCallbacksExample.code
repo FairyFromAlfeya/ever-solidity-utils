@@ -98,7 +98,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 30
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 28
 OVER
 PUSHCONT {
 	LDDICT
@@ -127,7 +127,7 @@ CALLREF {
 THROW 0
 
 .macro onSuccessPriceCallback_55912cd6_internal_macro
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 30
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 28
 PUSH2 S1, S1
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
 PUSHINT 1000000000
@@ -166,7 +166,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 BLKSWAP 5, 3
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 41
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 39
 DROP
 ROLL 3
 DUP
@@ -188,7 +188,7 @@ PUSHCONT {
 	NOT
 }
 PUSHCONT {
-	.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 42
+	.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 40
 	TUPLE 0
 	NEWC
 	PUSHSLICE x50726963652f5363616c653a20
@@ -259,7 +259,7 @@ PUSHCONT {
 }
 WHILE
 BLKDROP 4
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 45
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 43
 TUPLE 0
 NEWC
 PUSHSLICE x54696d657374616d703a20
@@ -278,7 +278,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 46
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 44
 TUPLE 0
 NEWC
 PUSHSLICE x53656e6465723a20
@@ -321,7 +321,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 49
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 47
 OVER
 PUSHCONT {
 	LDDICT
@@ -360,7 +360,7 @@ CALLREF {
 THROW 0
 
 .macro onCanceledPriceCallback_740ea949_internal_macro
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 49
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 47
 PUSH2 S1, S1
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
 PUSHINT 1000000000
@@ -399,7 +399,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 BLKSWAP 6, 3
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 61
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 59
 DROP
 ROLL 4
 DUP
@@ -421,7 +421,7 @@ PUSHCONT {
 	NOT
 }
 PUSHCONT {
-	.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 62
+	.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 60
 	TUPLE 0
 	NEWC
 	PUSHSLICE x50726963652f5363616c653a20
@@ -492,7 +492,7 @@ PUSHCONT {
 }
 WHILE
 BLKDROP 4
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 65
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 63
 ROT
 SECOND
 PUSHINT 0
@@ -509,7 +509,7 @@ PUSHCONT {
 	NOT
 }
 PUSHCONT {
-	.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 66
+	.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 64
 	TUPLE 0
 	NEWC
 	PUSHSLICE x4661696c65643a20
@@ -533,7 +533,7 @@ PUSHCONT {
 }
 WHILE
 BLKDROP 3
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 69
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 67
 TUPLE 0
 NEWC
 PUSHSLICE x54696d657374616d703a20
@@ -552,7 +552,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 70
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 68
 TUPLE 0
 NEWC
 PUSHSLICE x53656e6465723a20
@@ -757,7 +757,7 @@ THROW 60
 CALL $console_with_obj_log_41304fac_macro$
 
 .macro console_with_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 DUP
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
@@ -768,14 +768,14 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .globl	console_no_obj_log_41304fac
 .type	console_no_obj_log_41304fac, @function
 CALL $console_no_obj_log_41304fac_macro$
 
 .macro console_no_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
 }
@@ -785,7 +785,7 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .macro public_function_selector
 DUP

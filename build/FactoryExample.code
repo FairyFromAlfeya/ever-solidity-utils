@@ -113,28 +113,8 @@ PUSHCONT {
 IFNOT
 .loc ../contracts/validation/abstract/Validatable.sol, 53
 DROP2
-PUSH S3
-PUSHINT 1002
-.loc ../contracts/validation/abstract/Validatable.sol, 46
-OVER
-ISNULL
-PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
-	PUSH2 S1, S1
-	ISNULL
-	THROWIF 63
-	MYADDR
-	PUSH S2
-	CALLREF {
-		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
-	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
-}
-IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
-DROP2
 BLKSWAP 2, 3
-.loc ../examples/contracts/factory/FactoryExample.sol, 28
+.loc ../examples/contracts/factory/FactoryExample.sol, 25
 DROP
 DUP
 ISNULL
@@ -147,7 +127,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../examples/contracts/factory/FactoryExample.sol, 31
+.loc ../examples/contracts/factory/FactoryExample.sol, 27
 CALLREF {
 	CALL $_setOwnerInternal_457a3840_internal_macro$
 }
@@ -175,7 +155,7 @@ THROW 0
 DROP
 GETGLOB 6
 THROWIFNOT 76
-.loc ../examples/contracts/factory/FactoryExample.sol, 35
+.loc ../examples/contracts/factory/FactoryExample.sol, 30
 LDU 32
 GETGLOB 4
 ROT
@@ -239,7 +219,7 @@ IFREF {
 THROW 0
 
 .macro getDeployParams_39b100ed_internal_macro
-.loc ../examples/contracts/factory/FactoryExample.sol, 45
+.loc ../examples/contracts/factory/FactoryExample.sol, 40
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -262,7 +242,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/factory/FactoryExample.sol, 48
+.loc ../examples/contracts/factory/FactoryExample.sol, 43
 OVER
 PUSHCONT {
 	LDREF
@@ -299,7 +279,7 @@ CALLREF {
 THROW 0
 
 .macro deploy_7dff91bf_internal_macro
-.loc ../examples/contracts/factory/FactoryExample.sol, 48
+.loc ../examples/contracts/factory/FactoryExample.sol, 43
 DUP
 GETGLOB 9
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
@@ -366,7 +346,7 @@ IFNOT
 .loc ../contracts/validation/abstract/Validatable.sol, 53
 DROP2
 BLKSWAP 2, 3
-.loc ../examples/contracts/factory/FactoryExample.sol, 59
+.loc ../examples/contracts/factory/FactoryExample.sol, 53
 PUSHINT 0
 NEWC
 STU 256
@@ -401,8 +381,19 @@ STOPTREF
 STOPTREF
 STZERO
 ENDC
-.loc ../examples/contracts/factory/FactoryExample.sol, 70
-DUP
+.loc ../examples/contracts/factory/FactoryExample.sol, 63
+OVER
+ISNULL
+PUSHCONT {
+	GETGLOB 9
+}
+PUSHCONT {
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+XCPU S1, S0
 HASHCU
 NEWC
 STSLICECONST x801_
@@ -443,29 +434,19 @@ STREF
 STSLICECONST 1
 SWAP
 NEWC
-STSLICECONST x69a13c4c
-XCPU S1, S0
-ISNULL
-PUSHCONT {
-	DROP
-	STSLICECONST 0
-}
-PUSHCONT {
-	SWAP
-	STSLICECONST 1
-	STSLICE
-}
-IFELSE
+STSLICECONST x475654dc
+STSLICE
 STBREFR
 ENDC
 PUSHINT 1
 SENDRAWMSG
-.loc ../examples/contracts/factory/FactoryExample.sol, 77
+.loc ../examples/contracts/factory/FactoryExample.sol, 70
 GETGLOB 9
 CALLREF {
 	CALL $_getInstanceVersionInternal_35a04637_internal_macro$
 }
-SWAP2
+ROLL 4
+ROLL 3
 PUSHSLICE xc0000000000000000000000001
 NEWC
 STSLICE
@@ -483,6 +464,7 @@ STBREFR
 ENDC
 PUSHINT 0
 SENDRAWMSG
+DROP
 .loc ../contracts/reservation/abstract/Reservable.sol, 47
 NEWC
 STSLICECONST x42_
@@ -503,7 +485,7 @@ DROP2
 CALL $_getInstanceAddressInternal_80feb59a_internal_macro$
 
 .macro _getInstanceAddressInternal_80feb59a_internal_macro
-.loc ../examples/contracts/factory/FactoryExample.sol, 91
+.loc ../examples/contracts/factory/FactoryExample.sol, 84
 PUSHINT 0
 NEWC
 STU 256

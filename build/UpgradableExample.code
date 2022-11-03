@@ -113,28 +113,8 @@ PUSHCONT {
 IFNOT
 .loc ../contracts/validation/abstract/Validatable.sol, 53
 DROP2
-PUSH S3
-PUSHINT 1002
-.loc ../contracts/validation/abstract/Validatable.sol, 46
-OVER
-ISNULL
-PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
-	PUSH2 S1, S1
-	ISNULL
-	THROWIF 63
-	MYADDR
-	PUSH S2
-	CALLREF {
-		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
-	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
-}
-IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
-DROP2
 BLKSWAP 2, 3
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 30
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 28
 DROP
 DUP
 ISNULL
@@ -147,12 +127,16 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 33
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 30
 CALLREF {
 	CALL $_setOwnerInternal_457a3840_internal_macro$
 }
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 0
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 31
 DROP
+PUSHINT 1
+CALLREF {
+	CALL $_setCurrentVersionInternal_8d3821f4_internal_macro$
+}
 .loc ../contracts/reservation/abstract/Reservable.sol, 77
 NEWC
 STSLICECONST x42_
@@ -180,7 +164,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 36
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 34
 OVER
 PUSHCONT {
 	LDREF
@@ -207,7 +191,7 @@ PUSHCONT {
 }
 IFELSE
 ENDS
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 0
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 0
 CALLREF {
 	CALL $upgrade_9bcb2447_internal_macro$
 }
@@ -217,92 +201,63 @@ CALLREF {
 THROW 0
 
 .macro upgrade_9bcb2447_internal_macro
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 36
-DUP
-GETGLOB 9
-.loc ../contracts/reservation/abstract/Reservable.sol, 34
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 34
 PUSHINT 1000000000
+.loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 37
-OVER
-ISNULL
-PUSHCONT {
-	PUSHREFSLICE {
-		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
-	}
-}
-PUSHCONT {
-	PUSH2 S1, S1
-	ISNULL
-	THROWIF 63
-}
-IFELSE
-.loc ../contracts/reservation/abstract/Reservable.sol, 40
-DUP
+.loc ../contracts/access/abstract/Ownable.sol, 27
+GETGLOB 12
 PARSEMSGADDR
 INDEX 3
 PLDU 256
-EQINT 0
-OVER
-MYADDR
+NEQINT 0
+GETGLOB 9
+GETGLOB 12
 SDEQ
-OR
-PUSHCONT {
-	.loc ../contracts/reservation/abstract/Reservable.sol, 41
-	OVER
-	NIP
-	.loc ../contracts/reservation/abstract/Reservable.sol, 0
-}
-IF
-.loc ../contracts/reservation/abstract/Reservable.sol, 44
-PUSH S4
+AND
+THROWIFNOT 1000
+.loc ../contracts/access/abstract/Ownable.sol, 32
+OVER
 .loc ../contracts/validation/abstract/Validatable.sol, 32
 PUSHINT 1004
 CALLREF {
 	CALL $Validation_no_obj_notEmpty_f0710f53_macro$
 }
-.loc ../contracts/validation/abstract/Validatable.sol, 36
-PUSH S3
-PUSHINT 1002
-.loc ../contracts/validation/abstract/Validatable.sol, 46
-OVER
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 44
+DUP
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
-	PUSH2 S1, S1
+	GETGLOB 9
+}
+PUSHCONT {
+	BLKPUSH 2, 0
 	ISNULL
 	THROWIF 63
-	MYADDR
-	PUSH S2
-	CALLREF {
-		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
-	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
 }
-IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
-DROP2
-BLKSWAP 2, 3
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 47
-DROP
+IFELSE
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 46
 CALLREF {
 	CALL $_getOwnerInternal_5441421e_internal_macro$
 }
 CALLREF {
-	CALL $_getVersionInternal_6134af76_internal_macro$
+	CALL $_getCurrentVersionInternal_9e782595_internal_macro$
 }
 GETGLOB 13
 NEWC
 STU 32
 STU 32
 STSLICE
-ENDC
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 54
-OVER
-SETCODE
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 55
 SWAP
+NEWC
+STSLICE
+STBREFR
+ENDC
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 53
+PUSH S2
+SETCODE
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 54
+ROT
 CTOS
 DUP
 PUSHSLICE x8adb35
@@ -316,28 +271,16 @@ PLDREF
 CTOS
 BLESS
 POP C3
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 58
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 56
 CALLREF {
 	CALL $:onCodeUpgrade$
 }
-.loc ../contracts/reservation/abstract/Reservable.sol, 47
-NEWC
-STSLICECONST x42_
-STSLICE
-PUSHINT 111
-STZEROES
-ENDC
-PUSHPOW2 7
-ADDCONST 2
-UFITS 8
-SENDRAWMSG
-.loc ../contracts/reservation/abstract/Reservable.sol, 0
-DROP2
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 0
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 0
+DROP
 
 .internal-alias :onCodeUpgrade, 2
 .internal :onCodeUpgrade
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 63
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 60
 PUSHINT 0
 SETGLOB 10
 PUSHINT 0
@@ -348,41 +291,48 @@ PUSHREFSLICE {
 SETGLOB 12
 PUSHINT 0
 SETGLOB 13
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 66
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 62
 CTOS
 LDU 32
 LDU 32
 LDMSGADDR
+LDREF
 ENDS
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 77
-ROT
+CTOS
+LDMSGADDR
+ENDS
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 74
+ROLL 3
 SETGLOB 13
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 78
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 75
+SWAP
 CALLREF {
-	CALL $_setOwnerInternal_457a3840_internal_macro$
+	CALL $_setOwnerSilent_9f3600cf_internal_macro$
 }
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 79
-DUP
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 76
+OVER
 CALLREF {
 	CALL $_setPreviousVersionInternal_a385330c_internal_macro$
 }
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 80
-DUP
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 77
+SWAP
 INC
 DUP
 UFITS 32
-POP S2
+DROP
 CALLREF {
-	CALL $_setVersionInternal_e9d2e6a1_internal_macro$
+	CALL $_setCurrentVersionInternal_8d3821f4_internal_macro$
 }
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 82
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 79
 TUPLE 0
 NEWC
 PUSHSLICE x4e65772076657273696f6e3a20
 CALLREF {
 	CALL $storeStringInBuilders_macro$
 }
-ROT
+CALLREF {
+	CALL $_getCurrentVersionInternal_9e782595_internal_macro$
+}
 PUSHINT 0
 BLKPUSH 2, 0
 CALLREF {
@@ -394,7 +344,18 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/upgradable/UpgradableExample.sol, 0
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 81
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+ADDCONST 2
+UFITS 8
+SENDRAWMSG
+.loc ../examples/contracts/upgrade/UpgradableExample.sol, 0
 CALLREF {
 	CALL $c7_to_c4$
 }
@@ -858,17 +819,25 @@ SETGLOB 4
 GETGLOB 11
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
-.globl	_setVersionInternal_e9d2e6a1_internal
-.type	_setVersionInternal_e9d2e6a1_internal, @function
-CALL $_setVersionInternal_e9d2e6a1_internal_macro$
+.globl	_setCurrentVersionInternal_8d3821f4_internal
+.type	_setCurrentVersionInternal_8d3821f4_internal, @function
+CALL $_setCurrentVersionInternal_8d3821f4_internal_macro$
 
-.macro _setVersionInternal_e9d2e6a1_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 49
-GETGLOB 11
+.macro _setCurrentVersionInternal_8d3821f4_internal_macro
 .loc ../contracts/upgrade/abstract/Version.sol, 50
-OVER
+GETGLOB 10
+PUSHCONT {
+	.loc ../contracts/upgrade/abstract/Version.sol, 51
+	GETGLOB 10
+	SETGLOB 11
+	.loc ../contracts/upgrade/abstract/Version.sol, 0
+}
+IF
+.loc ../contracts/upgrade/abstract/Version.sol, 54
+DUP
 SETGLOB 10
-.loc ../contracts/upgrade/abstract/Version.sol, 53
+.loc ../contracts/upgrade/abstract/Version.sol, 57
+GETGLOB 11
 SWAP
 PUSHSLICE xc00000000000000000000000000dddc7d4
 NEWC
@@ -885,16 +854,16 @@ SENDRAWMSG
 CALL $_setPreviousVersionInternal_a385330c_internal_macro$
 
 .macro _setPreviousVersionInternal_a385330c_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 60
+.loc ../contracts/upgrade/abstract/Version.sol, 67
 SETGLOB 11
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
-.globl	_getVersionInternal_6134af76_internal
-.type	_getVersionInternal_6134af76_internal, @function
-CALL $_getVersionInternal_6134af76_internal_macro$
+.globl	_getCurrentVersionInternal_9e782595_internal
+.type	_getCurrentVersionInternal_9e782595_internal, @function
+CALL $_getCurrentVersionInternal_9e782595_internal_macro$
 
-.macro _getVersionInternal_6134af76_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 66
+.macro _getCurrentVersionInternal_9e782595_internal_macro
+.loc ../contracts/upgrade/abstract/Version.sol, 74
 GETGLOB 10
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
@@ -903,7 +872,7 @@ GETGLOB 10
 CALL $_getPreviousVersionInternal_19dd96b2_internal_macro$
 
 .macro _getPreviousVersionInternal_19dd96b2_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 72
+.loc ../contracts/upgrade/abstract/Version.sol, 80
 GETGLOB 11
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
@@ -1108,7 +1077,7 @@ THROW 60
 CALL $console_with_obj_log_41304fac_macro$
 
 .macro console_with_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 DUP
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
@@ -1119,14 +1088,14 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .globl	console_no_obj_log_41304fac
 .type	console_no_obj_log_41304fac, @function
 CALL $console_no_obj_log_41304fac_macro$
 
 .macro console_no_obj_log_41304fac_macro
-.loc ../../locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.sol, 10
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
 }
@@ -1136,7 +1105,7 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../../locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.sol, 0
 
 .globl	Validation_with_obj_notEquals_44a2ba31
 .type	Validation_with_obj_notEquals_44a2ba31, @function

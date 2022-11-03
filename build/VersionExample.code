@@ -71,10 +71,10 @@ PUSHCONT {
 	.loc ../contracts/reservation/abstract/Reservable.sol, 0
 }
 IF
-.loc ../examples/contracts/upgradable/VersionExample.sol, 22
+.loc ../examples/contracts/upgrade/VersionExample.sol, 20
 PUSHINT 1
 CALLREF {
-	CALL $_setVersionInternal_e9d2e6a1_internal_macro$
+	CALL $_setCurrentVersionInternal_8d3821f4_internal_macro$
 }
 .loc ../contracts/reservation/abstract/Reservable.sol, 77
 NEWC
@@ -262,17 +262,25 @@ SETGLOB 4
 GETGLOB 11
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
-.globl	_setVersionInternal_e9d2e6a1_internal
-.type	_setVersionInternal_e9d2e6a1_internal, @function
-CALL $_setVersionInternal_e9d2e6a1_internal_macro$
+.globl	_setCurrentVersionInternal_8d3821f4_internal
+.type	_setCurrentVersionInternal_8d3821f4_internal, @function
+CALL $_setCurrentVersionInternal_8d3821f4_internal_macro$
 
-.macro _setVersionInternal_e9d2e6a1_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 49
-GETGLOB 11
+.macro _setCurrentVersionInternal_8d3821f4_internal_macro
 .loc ../contracts/upgrade/abstract/Version.sol, 50
-OVER
+GETGLOB 10
+PUSHCONT {
+	.loc ../contracts/upgrade/abstract/Version.sol, 51
+	GETGLOB 10
+	SETGLOB 11
+	.loc ../contracts/upgrade/abstract/Version.sol, 0
+}
+IF
+.loc ../contracts/upgrade/abstract/Version.sol, 54
+DUP
 SETGLOB 10
-.loc ../contracts/upgrade/abstract/Version.sol, 53
+.loc ../contracts/upgrade/abstract/Version.sol, 57
+GETGLOB 11
 SWAP
 PUSHSLICE xc00000000000000000000000000dddc7d4
 NEWC
@@ -289,16 +297,16 @@ SENDRAWMSG
 CALL $_setPreviousVersionInternal_a385330c_internal_macro$
 
 .macro _setPreviousVersionInternal_a385330c_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 60
+.loc ../contracts/upgrade/abstract/Version.sol, 67
 SETGLOB 11
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
-.globl	_getVersionInternal_6134af76_internal
-.type	_getVersionInternal_6134af76_internal, @function
-CALL $_getVersionInternal_6134af76_internal_macro$
+.globl	_getCurrentVersionInternal_9e782595_internal
+.type	_getCurrentVersionInternal_9e782595_internal, @function
+CALL $_getCurrentVersionInternal_9e782595_internal_macro$
 
-.macro _getVersionInternal_6134af76_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 66
+.macro _getCurrentVersionInternal_9e782595_internal_macro
+.loc ../contracts/upgrade/abstract/Version.sol, 74
 GETGLOB 10
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
@@ -307,7 +315,7 @@ GETGLOB 10
 CALL $_getPreviousVersionInternal_19dd96b2_internal_macro$
 
 .macro _getPreviousVersionInternal_19dd96b2_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 72
+.loc ../contracts/upgrade/abstract/Version.sol, 80
 GETGLOB 11
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
