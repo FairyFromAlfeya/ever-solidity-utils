@@ -7,8 +7,7 @@
   "files": [
     "/build",
     "/contracts",
-    "/examples",
-    "/docs"
+    "/examples"
   ],
   "scripts": {
     "prepare": "husky install",
