@@ -4,6 +4,8 @@ pragma AbiHeader time;
 pragma AbiHeader expire;
 pragma AbiHeader pubkey;
 
+import "locklift/src/console.sol";
+
 import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
@@ -43,14 +45,17 @@ contract PriceAggregatorExample is
     function getPrices(
         address[] _tokens,
         address _callbackRecipient,
-        bool,
-        address,
+        bool _proxy,
+        address _remainingGasTo,
         TvmCell _payload
     )
         external
         override
         reserve(UtilityGas.INITIAL_BALANCE)
     {
+        console.log(format("Proxy: {}", _proxy ? "true" : "false"));
+        console.log(format("Remaining gas to: {}", _remainingGasTo));
+
         mapping(address => uint) prices;
         mapping(address => int16) scales;
         address[] failed;

@@ -47,7 +47,10 @@ abstract contract Version is IVersion {
     /// @dev Emits VersionChanged event after update
     /// @param _newVersion New contract's version
     function _setCurrentVersionInternal(uint32 _newVersion) internal {
-        _previousVersion = _currentVersion;
+        if (_currentVersion != 0) {
+            _previousVersion = _currentVersion;
+        }
+
         _currentVersion = _newVersion;
 
         // Emit event about change

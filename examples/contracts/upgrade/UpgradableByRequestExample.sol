@@ -14,9 +14,9 @@ import "../../../contracts/upgrade/abstract/UpgradableByRequest.sol";
 import "../factory/FactoryInstance.sol";
 
 contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
-    constructor(optional(address) _remainingGasTo)
+    constructor(address _remainingGasTo)
         public
-        FactoryInstance(_remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender)
+        FactoryInstance(_remainingGasTo)
     {
         _setUpgraderInternal(_factory);
         _setCurrentVersionInternal(1);

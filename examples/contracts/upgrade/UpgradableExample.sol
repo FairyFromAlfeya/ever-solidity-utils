@@ -9,6 +9,7 @@ import "locklift/src/console.sol";
 import "../../../contracts/access/abstract/Ownable.sol";
 
 import "../../../contracts/libraries/UtilityErrors.sol";
+import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
 import "../../../contracts/upgrade/abstract/Upgradable.sol";
@@ -36,13 +37,17 @@ contract UpgradableExample is Upgradable, Ownable {
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserve(UtilityGas.INITIAL_BALANCE)
+        onlyOwner
         validTvmCell(_code, UtilityErrors.INVALID_CODE)
     {
+        address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
+
         TvmCell data = abi.encode(
             _nonce,
             _getCurrentVersionInternal(),
-            _getOwnerInternal()
+            _getOwnerInternal(),
+            remainingGasTo
         );
 
         tvm.setcode(_code);
@@ -57,10 +62,12 @@ contract UpgradableExample is Upgradable, Ownable {
         (
             uint32 nonce,
             uint32 previousVersion,
-            address owner
+            address owner,
+            address remainingGasTo
         ) = abi.decode(_data, (
             uint32,
             uint32,
+            address,
             address
         ));
 
@@ -70,5 +77,11 @@ contract UpgradableExample is Upgradable, Ownable {
         _setCurrentVersionInternal(++previousVersion);
 
         console.log(format("New version: {}", _getCurrentVersionInternal()));
+
+        remainingGasTo.transfer({
+            value: 0,
+            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
+            bounce: false
+        });
     }
 }
