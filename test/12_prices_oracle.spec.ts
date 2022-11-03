@@ -134,7 +134,12 @@ describe('PriceOracle', () => {
         .and.to.call('onRateCallback')
         .count(1)
         .withNamedArgs({
-          _rate: OracleObservations[1],
+          _rate: {
+            price0To1: '6168503981945532210312338382359',
+            price1To0: '18771502713822619963335681409632413161332752969',
+            fromTimestamp: OracleObservations[0].timestamp,
+            toTimestamp: OracleObservations[1].timestamp,
+          },
           _payload: TvmCellWithSigner0,
         });
     });

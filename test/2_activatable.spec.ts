@@ -35,6 +35,12 @@ describe('Activatable', () => {
   });
 
   describe('check event and active status after deploy', () => {
+    it('should return balance 1 ever', async () => {
+      const balance = await locklift.provider.getBalance(example.address);
+
+      return expect(balance).to.be.equal(locklift.utils.toNano(1));
+    });
+
     it('should return empty ActiveChanged event', async () => {
       const events = await example.getPastEvents({
         filter: (event) => event.event === 'ActiveStatusChanged',
@@ -52,7 +58,7 @@ describe('Activatable', () => {
     });
   });
 
-  describe('check access modifier', () => {
+  describe('check access modifier with active status false', () => {
     it('should throw CONTRACT_IS_NOT_ACTIVE for active status false', async () => {
       const { traceTree } = await locklift.tracing.trace(
         example.methods
@@ -83,11 +89,19 @@ describe('Activatable', () => {
         .withNamedArgs({ _newActiveStatus: true, _remainingGasTo: address })
         .and.to.emit('ActiveStatusChanged')
         .count(1)
-        .withNamedArgs({ current: true });
+        .withNamedArgs({ current: true, previous: false });
+    });
+
+    it('should return active status true', async () => {
+      const isActive = await example.methods
+        .getActiveStatus({ answerId: 0 })
+        .call();
+
+      return expect(isActive.value0).to.be.true;
     });
   });
 
-  describe('check access modifier', () => {
+  describe('check access modifier with active status true', () => {
     it('should emit event about success', async () => {
       const { traceTree } = await locklift.tracing.trace(
         example.methods
@@ -95,6 +109,7 @@ describe('Activatable', () => {
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
+      // expect(traceTree.getBalanceDiff(example)).to.be.equal('0');
       return expect(traceTree)
         .to.call('check')
         .count(1)

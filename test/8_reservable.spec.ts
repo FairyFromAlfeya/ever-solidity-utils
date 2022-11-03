@@ -58,7 +58,6 @@ describe('Reservable', () => {
         example.methods
           .reserveAndRefundGas({ _remainingGasTo: address })
           .send({ amount: locklift.utils.toNano(1), from: address }),
-        { allowedCodes: { action: [37] } },
       );
 
       expect(traceTree.getBalanceDiff(example)).to.be.equal('0');

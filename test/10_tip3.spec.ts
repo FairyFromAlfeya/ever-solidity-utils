@@ -13,10 +13,13 @@ chai.use(lockliftChai);
 
 describe('TIP3', () => {
   let address: Address;
+
   let root: Contract<FactorySource['TokenRootUpgradeable']>;
   let rootExample: Contract<FactorySource['TokenRootExample']>;
+
   let wallet: Contract<FactorySource['TokenWalletUpgradeable']>;
   let walletExample: Contract<FactorySource['TokenWalletExample']>;
+
   let callbackExample: Contract<
     FactorySource['AcceptTokensTransferCallbackExample']
   >;
@@ -73,18 +76,16 @@ describe('TIP3', () => {
       walletAddress.value0,
     );
 
-    const { contract: exampleContract } = await locklift.factory.deployContract(
-      {
-        contract: 'TokenRootExample',
-        publicKey: signer.publicKey,
-        initParams: {
-          _nonce: locklift.utils.getRandomNonce(),
-          _root: contract.address,
-        },
-        constructorParams: { _remainingGasTo: account.address },
-        value: locklift.utils.toNano(10),
+    const { contract: exampleRoot } = await locklift.factory.deployContract({
+      contract: 'TokenRootExample',
+      publicKey: signer.publicKey,
+      initParams: {
+        _nonce: locklift.utils.getRandomNonce(),
+        _root: contract.address,
       },
-    );
+      constructorParams: { _remainingGasTo: account.address },
+      value: locklift.utils.toNano(10),
+    });
 
     const { contract: exampleWallet } = await locklift.factory.deployContract({
       contract: 'TokenWalletExample',
@@ -112,7 +113,7 @@ describe('TIP3', () => {
 
     root = contract;
     walletExample = exampleWallet;
-    rootExample = exampleContract;
+    rootExample = exampleRoot;
     callbackExample = exampleCallback;
   });
 

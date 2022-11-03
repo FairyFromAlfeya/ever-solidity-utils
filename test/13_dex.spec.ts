@@ -10,7 +10,7 @@ import {
 
 chai.use(lockliftChai);
 
-describe('PriceOracle', () => {
+describe('DEX', () => {
   let address: Address;
   let example: Contract<FactorySource['DexPlatformExample']>;
 
@@ -37,7 +37,7 @@ describe('PriceOracle', () => {
   });
 
   describe('check pair address deriving', () => {
-    it('check pair address deriving for WEVER-DAI', async () => {
+    it('should return WEVER-DAI pair address', async () => {
       const DexPlatform = locklift.factory.getContractArtifacts('DexPlatform');
 
       const pair = await example.methods

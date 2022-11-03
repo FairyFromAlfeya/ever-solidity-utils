@@ -38,9 +38,13 @@ describe('Version', () => {
     });
 
     it('should return initial VersionChanged event', async () => {
-      example.getPastEvents({
+      const events = await example.getPastEvents({
         filter: (event) => event.event === 'VersionChanged',
       });
+
+      expect(events.events.length).to.be.equal(1);
+      expect(events.events[0].data.current).to.be.equal('1');
+      return expect(events.events[0].data.previous).to.be.equal('0');
     });
 
     it('should return previous version 0', async () => {

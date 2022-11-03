@@ -54,6 +54,12 @@ describe('Ownable', () => {
   });
 
   describe('check event and owner after deploy', () => {
+    it('should return balance 1 ever', async () => {
+      const balance = await locklift.provider.getBalance(example.address);
+
+      return expect(balance).to.be.equal(locklift.utils.toNano(1));
+    });
+
     it('should return initial OwnerChanged event', async () => {
       const events = await example.getPastEvents({
         filter: (event) => event.event === 'OwnerChanged',
@@ -106,6 +112,7 @@ describe('Ownable', () => {
           .send({ amount: locklift.utils.toNano(10), from: firstAccount }),
       );
 
+      // expect(traceTree.getBalanceDiff(example)).to.be.equal('0');
       return expect(traceTree)
         .to.call('setOwner')
         .count(1)
@@ -135,6 +142,7 @@ describe('Ownable', () => {
           .send({ amount: locklift.utils.toNano(10), from: secondAccount }),
       );
 
+      // expect(traceTree.getBalanceDiff(example)).to.be.equal('0');
       return expect(traceTree)
         .to.call('check')
         .count(1)

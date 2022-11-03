@@ -34,18 +34,26 @@ describe('Upgradable', () => {
   });
 
   describe('check event and version after deploy', () => {
-    it('should return empty VersionChanged event', async () => {
+    it('should return balance 1 ever', async () => {
+      const balance = await locklift.provider.getBalance(example.address);
+
+      return expect(balance).to.be.equal(locklift.utils.toNano(1));
+    });
+
+    it('should return initial VersionChanged event', async () => {
       const events = await example.getPastEvents({
         filter: (event) => event.event === 'VersionChanged',
       });
 
-      return expect(events.events.length).to.be.equal(0);
+      expect(events.events.length).to.be.equal(1);
+      expect(events.events[0].data.previous).to.be.equal('0');
+      return expect(events.events[0].data.current).to.be.equal('1');
     });
 
-    it('should return version 0', async () => {
+    it('should return version 1', async () => {
       const version = await example.methods.getVersion({ answerId: 0 }).call();
 
-      return expect(version.value0).to.be.equal('0');
+      return expect(version.value0).to.be.equal('1');
     });
   });
 
@@ -60,19 +68,28 @@ describe('Upgradable', () => {
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
+      // expect(traceTree.getBalanceDiff(example)).to.be.equal('0');
       return expect(traceTree)
         .to.call('upgrade')
         .count(1)
         .withNamedArgs({ _code: Upgradable.code, _remainingGasTo: address })
         .and.to.emit('VersionChanged')
         .count(1)
-        .withNamedArgs({ current: '1', previous: '0' });
+        .withNamedArgs({ current: '2', previous: '1' });
     });
 
-    it('should return version 1', async () => {
-      const version = await example.methods.getVersion({ answerId: 0 }).call();
+    it('should return previous version 1', async () => {
+      const version = await example.methods
+        .getPreviousVersion({ answerId: 0 })
+        .call();
 
       return expect(version.value0).to.be.equal('1');
+    });
+
+    it('should return current version 2', async () => {
+      const version = await example.methods.getVersion({ answerId: 0 }).call();
+
+      return expect(version.value0).to.be.equal('2');
     });
 
     it('should return account as owner', async () => {

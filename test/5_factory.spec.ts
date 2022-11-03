@@ -1,6 +1,7 @@
 import { Address, WalletTypes, Contract, lockliftChai } from 'locklift';
 import chai, { expect } from 'chai';
 import { FactorySource } from '../build/factorySource';
+import { EmptyTvmCell } from './contants';
 
 chai.use(lockliftChai);
 
@@ -34,6 +35,12 @@ describe('Factory', () => {
   });
 
   describe('check events and code after deploy', () => {
+    it('should return balance 1 ever', async () => {
+      const balance = await locklift.provider.getBalance(example.address);
+
+      return expect(balance).to.be.equal(locklift.utils.toNano(1));
+    });
+
     it('should return instance version 0', async () => {
       const version = await example.methods
         .getInstanceVersion({ answerId: 0 })
@@ -47,7 +54,7 @@ describe('Factory', () => {
         .getInstanceCode({ answerId: 0 })
         .call();
 
-      return expect(code.value0).to.be.equal('te6ccgEBAQEAAgAAAA==');
+      return expect(code.value0).to.be.equal(EmptyTvmCell);
     });
 
     it('should return empty InstanceDeployed event', async () => {
@@ -81,6 +88,7 @@ describe('Factory', () => {
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
+      // expect(traceTree.getBalanceDiff(example)).to.be.equal('0');
       return expect(traceTree)
         .to.call('setInstanceCode')
         .count(1)
@@ -90,7 +98,7 @@ describe('Factory', () => {
         })
         .and.emit('InstanceVersionChanged')
         .count(1)
-        .withNamedArgs({ current: '1' });
+        .withNamedArgs({ current: '1', previous: '0' });
     });
 
     it('should return instance code', async () => {
@@ -125,6 +133,7 @@ describe('Factory', () => {
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
+      // expect(traceTree.getBalanceDiff(example)).to.be.equal('0');
       return expect(traceTree).to.call('deploy').count(1).withNamedArgs({
         _deployParams: params.value0,
         _remainingGasTo: address,
@@ -136,13 +145,13 @@ describe('Factory', () => {
         .getDeployParams({ _id: 0, answerId: 0 })
         .call();
 
-      const contract = await example.methods
+      const instanceAddress = await example.methods
         .getInstanceAddress({ _deployParams: params.value0, answerId: 0 })
         .call();
 
       const instance = locklift.factory.getDeployedContract(
         'FactoryInstance',
-        contract.value0,
+        instanceAddress.value0,
       );
 
       const { traceTree } = await locklift.tracing.trace(
@@ -151,6 +160,7 @@ describe('Factory', () => {
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
+      // expect(traceTree.getBalanceDiff(instance)).to.be.equal('0');
       return expect(traceTree)
         .to.call('check')
         .count(1)
@@ -172,12 +182,14 @@ describe('Factory', () => {
 
       const data = events.events[0].data as {
         instance: Address;
+        deployParams: string;
         version: string;
         deployer: Address;
       };
 
       expect(events.events.length).to.be.equal(1);
       expect(data.instance.toString()).to.be.equal(contract.value0.toString());
+      expect(data.deployParams).to.be.equal(params.value0);
       expect(data.version).to.be.equal('1');
       return expect(data.deployer.toString()).to.be.equal(address.toString());
     });

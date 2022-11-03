@@ -106,7 +106,6 @@ describe('PriceAggregator', () => {
           _prices: [[address, '1']],
           _scales: [[address, '3']],
           _sender: address,
-          _payload: EmptyTvmCell,
         });
     });
 
@@ -140,7 +139,6 @@ describe('PriceAggregator', () => {
           _scales: [[address, '3']],
           _failed: [zeroAddress],
           _sender: address,
-          _payload: EmptyTvmCell,
         });
     });
   });

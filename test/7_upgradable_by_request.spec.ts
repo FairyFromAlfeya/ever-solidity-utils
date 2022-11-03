@@ -7,6 +7,8 @@ import {
 } from 'locklift';
 import chai, { expect } from 'chai';
 import { FactorySource } from '../build/factorySource';
+import { Errors } from './errors';
+import { EmptyTvmCell } from './contants';
 
 chai.use(lockliftChai);
 
@@ -26,7 +28,7 @@ describe('UpgradableByRequest', () => {
 
     address = account.address;
 
-    const { contract: contract1 } = await locklift.factory.deployContract({
+    const { contract } = await locklift.factory.deployContract({
       contract: 'UpgraderExample',
       publicKey: signer0.publicKey,
       initParams: { _nonce: locklift.utils.getRandomNonce() },
@@ -37,75 +39,96 @@ describe('UpgradableByRequest', () => {
       value: locklift.utils.toNano(10),
     });
 
-    upgraderExample = contract1;
-
-    const UpgradableByRequestExample = locklift.factory.getContractArtifacts(
-      'UpgradableByRequestExample',
-    );
-
-    await locklift.tracing.trace(
-      upgraderExample.methods
-        .setInstanceCode({
-          _newInstanceCode: UpgradableByRequestExample.code,
-          _remainingGasTo: null,
-        })
-        .send({ amount: locklift.utils.toNano(10), from: address }),
-    );
-
-    const params = await upgraderExample.methods
-      .getDeployParams({ _id: 1, answerId: 0 })
-      .call();
-
-    await locklift.tracing.trace(
-      upgraderExample.methods
-        .deploy({ _deployParams: params.value0, _remainingGasTo: null })
-        .send({ amount: locklift.utils.toNano(10), from: address }),
-    );
-
-    const upgradableExampleAddress = await upgraderExample.methods
-      .getInstanceAddress({ _deployParams: params.value0, answerId: 0 })
-      .call();
-
-    upgradableExample = locklift.factory.getDeployedContract(
-      'UpgradableByRequestExample',
-      upgradableExampleAddress.value0,
-    );
+    upgraderExample = contract;
   });
 
-  describe('check event and upgrader after deploy', () => {
-    it('should return initial UpgraderChanged event', async () => {
-      const events = await upgradableExample.getPastEvents({
-        filter: (event) => event.event === 'UpgraderChanged',
-      });
+  describe('check upgrader after deploy', () => {
+    it('should return balance 1 ever', async () => {
+      const balance = await locklift.provider.getBalance(
+        upgraderExample.address,
+      );
 
-      expect(events.events.length).to.be.equal(1);
-      expect(events.events[0].data.previous.toString()).to.be.equal(
-        zeroAddress.toString(),
+      return expect(balance).to.be.equal(locklift.utils.toNano(1));
+    });
+  });
+
+  describe('deploy upgradable by request instance', () => {
+    it('should set instance code', async () => {
+      const UpgradableByRequestExample = locklift.factory.getContractArtifacts(
+        'UpgradableByRequestExample',
       );
-      return expect(events.events[0].data.current.toString()).to.be.equal(
-        upgraderExample.address.toString(),
+
+      const { traceTree } = await locklift.tracing.trace(
+        upgraderExample.methods
+          .setInstanceCode({
+            _newInstanceCode: UpgradableByRequestExample.code,
+            _remainingGasTo: address,
+          })
+          .send({ amount: locklift.utils.toNano(10), from: address }),
       );
+
+      // expect(traceTree.getBalanceDiff(upgraderExample)).to.be.equal('0');
+      return expect(traceTree)
+        .to.call('setInstanceCode')
+        .count(1)
+        .withNamedArgs({
+          _newInstanceCode: UpgradableByRequestExample.code,
+          _remainingGasTo: address,
+        })
+        .and.to.emit('InstanceVersionChanged')
+        .count(1)
+        .withNamedArgs({ current: '1', previous: '0' });
+    });
+
+    it('should deploy new instance', async () => {
+      const params = await upgraderExample.methods
+        .getDeployParams({ _id: 1, answerId: 0 })
+        .call();
+
+      const { traceTree } = await locklift.tracing.trace(
+        upgraderExample.methods
+          .deploy({ _deployParams: params.value0, _remainingGasTo: address })
+          .send({ amount: locklift.utils.toNano(10), from: address }),
+      );
+
+      const upgradableExampleAddress = await upgraderExample.methods
+        .getInstanceAddress({ _deployParams: params.value0, answerId: 0 })
+        .call();
+
+      upgradableExample = locklift.factory.getDeployedContract(
+        'UpgradableByRequestExample',
+        upgradableExampleAddress.value0,
+      );
+
+      // expect(traceTree.getBalanceDiff(upgraderExample)).to.be.equal('0');
+      return expect(traceTree)
+        .to.call('deploy')
+        .count(1)
+        .withNamedArgs({
+          _deployParams: params.value0,
+          _remainingGasTo: address,
+        })
+        .and.to.emit('UpgraderChanged')
+        .count(1)
+        .withNamedArgs({
+          current: upgraderExample.address,
+          previous: zeroAddress,
+        });
+    });
+  });
+
+  describe('check instance after deploy', () => {
+    it('should return balance 1 ever', async () => {
+      const balance = await locklift.provider.getBalance(
+        upgradableExample.address,
+      );
+
+      return expect(balance).to.be.equal(locklift.utils.toNano(1));
     });
 
     it('should return instance version 1', async () => {
       const version = await upgradableExample.methods
         .getVersion({ answerId: 0 })
-        .call();
-
-      return expect(version.value0).to.be.equal('1');
-    });
-
-    it('should return owner', async () => {
-      const owner = await upgraderExample.methods
-        .getOwner({ answerId: 0 })
-        .call();
-
-      return expect(owner.value0.toString()).to.be.equal(address.toString());
-    });
-
-    it('should return code version 1', async () => {
-      const version = await upgraderExample.methods
-        .getInstanceVersion({ answerId: 0 })
         .call();
 
       return expect(version.value0).to.be.equal('1');
@@ -137,6 +160,7 @@ describe('UpgradableByRequest', () => {
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
+      // expect(traceTree.getBalanceDiff(upgraderExample)).to.be.equal('0');
       return expect(traceTree)
         .to.call('setInstanceCode')
         .count(1)
@@ -159,6 +183,52 @@ describe('UpgradableByRequest', () => {
   });
 
   describe('request instance upgrade and check version and event', () => {
+    it('should throw CALLER_IS_NOT_UPGRADER for account', async () => {
+      const { traceTree } = await locklift.tracing.trace(
+        upgradableExample.methods
+          .upgrade({ _version: 2, _code: '', _remainingGasTo: address })
+          .send({ amount: locklift.utils.toNano(10), from: address }),
+        { allowedCodes: { compute: [Errors.CALLER_IS_NOT_UPGRADER] } },
+      );
+
+      return expect(traceTree)
+        .to.call('upgrade')
+        .count(1)
+        .withNamedArgs({
+          _version: '2',
+          _code: EmptyTvmCell,
+          _remainingGasTo: address,
+        })
+        .and.have.error(Errors.CALLER_IS_NOT_UPGRADER);
+    });
+
+    it('should throw CALLER_IS_NOT_INSTANCE', async () => {
+      const params = await upgraderExample.methods
+        .getDeployParams({ _id: 1, answerId: 0 })
+        .call();
+
+      const { traceTree } = await locklift.tracing.trace(
+        upgraderExample.methods
+          .provideUpgrade({
+            _instanceVersion: '0',
+            _deployParams: params.value0,
+            _remainingGasTo: address,
+          })
+          .send({ amount: locklift.utils.toNano(10), from: address }),
+        { allowedCodes: { compute: [Errors.CALLER_IS_NOT_INSTANCE] } },
+      );
+
+      return expect(traceTree)
+        .to.call('provideUpgrade')
+        .count(1)
+        .withNamedArgs({
+          _instanceVersion: '0',
+          _deployParams: params.value0,
+          _remainingGasTo: address,
+        })
+        .and.have.error(Errors.CALLER_IS_NOT_INSTANCE);
+    });
+
     it('should upgrade instance', async () => {
       const { traceTree } = await locklift.tracing.trace(
         upgradableExample.methods
@@ -166,6 +236,7 @@ describe('UpgradableByRequest', () => {
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
+      // expect(traceTree.getBalanceDiff(upgradableExample)).to.be.equal('0');
       return expect(traceTree)
         .to.call('requestUpgrade')
         .count(1)
@@ -173,7 +244,7 @@ describe('UpgradableByRequest', () => {
         .and.to.call('provideUpgrade')
         .count(1)
         .withNamedArgs({
-          _currentVersion: '1',
+          _instanceVersion: '1',
           _remainingGasTo: address,
         })
         .and.to.call('upgrade')
