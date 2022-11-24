@@ -1,11 +1,11 @@
-pragma ever-solidity >= 0.63.0;
+pragma ever-solidity >= 0.61.2;
 
 pragma AbiHeader time;
 pragma AbiHeader expire;
 pragma AbiHeader pubkey;
 
 import "../../../contracts/dex/libraries/DexPlatformTypes.sol";
-import "../../../contracts/dex/DexPlatform.sol";
+import "../../../contracts/dex/DexPlatformMinimized.sol";
 
 import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
@@ -45,7 +45,7 @@ contract DexPlatformExample is Reservable, Validatable {
             tvm.hash(
                 tvm.buildStateInit({
                     code: _platformCode,
-                    contr: DexPlatform,
+                    contr: DexPlatformMinimized,
                     pubkey: 0,
                     varInit: {
                         root: _root,

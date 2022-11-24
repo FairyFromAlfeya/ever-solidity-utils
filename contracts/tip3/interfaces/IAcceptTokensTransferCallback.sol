@@ -1,4 +1,4 @@
-pragma ever-solidity >= 0.63.0;
+pragma ever-solidity >= 0.61.2;
 
 /// @author Broxus Team
 /// @title AcceptTokensTransfer-callback Interface

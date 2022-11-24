@@ -1,10 +1,10 @@
-pragma ever-solidity >= 0.63.0;
+pragma ever-solidity >= 0.61.2;
 
 /// @author Alexander Hramcov
 /// @title DEX Platform
 /// @notice Minimized DEX platform contract for addresses deriving
 /// @dev Use this contract only for tvm.buildStateInit
-contract DexPlatform {
+contract DexPlatformMinimized {
     /// @dev Address of the DEX root
     address static root;
 

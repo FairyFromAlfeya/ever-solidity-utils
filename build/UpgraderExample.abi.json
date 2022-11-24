@@ -73,6 +73,7 @@
 			"name": "setInstanceCode",
 			"inputs": [
 				{"name":"_newInstanceCode","type":"cell"},
+				{"name":"_newInstanceVersion","type":"optional(uint32)"},
 				{"name":"_remainingGasTo","type":"optional(address)"}
 			],
 			"outputs": [

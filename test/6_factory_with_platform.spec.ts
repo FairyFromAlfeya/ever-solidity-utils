@@ -100,6 +100,7 @@ describe('FactoryWithPlatform', () => {
         example.methods
           .setInstanceCode({
             _newInstanceCode: FactoryInstance.code,
+            _newInstanceVersion: null,
             _remainingGasTo: address,
           })
           .send({ amount: locklift.utils.toNano(10), from: address }),

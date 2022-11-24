@@ -1,4 +1,4 @@
-pragma ever-solidity >= 0.63.0;
+pragma ever-solidity >= 0.61.2;
 
 /// @author Alexander Kunekov
 /// @title Factory Interface
@@ -40,9 +40,11 @@ interface IFactory {
     /// @notice Sets new instance's code
     /// @dev Only the current owner can perform. See Ownable contract
     /// @param _newInstanceCode New instance's code
+    /// @param _newInstanceVersion New instance's version
     /// @param _remainingGasTo Gas recipient
     function setInstanceCode(
         TvmCell _newInstanceCode,
+        optional(uint32) _newInstanceVersion,
         optional(address) _remainingGasTo
     ) external;
 

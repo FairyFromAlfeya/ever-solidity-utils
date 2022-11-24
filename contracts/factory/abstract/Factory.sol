@@ -1,4 +1,4 @@
-pragma ever-solidity >= 0.63.0;
+pragma ever-solidity >= 0.61.2;
 
 import "../../access/abstract/Ownable.sol";
 
@@ -75,6 +75,7 @@ abstract contract Factory is
 
     function setInstanceCode(
         TvmCell _newInstanceCode,
+        optional(uint32) _newInstanceVersion,
         optional(address) _remainingGasTo
     )
         external
@@ -84,16 +85,28 @@ abstract contract Factory is
         validTvmCell(_newInstanceCode, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
-        _setInstanceCodeInternal(_newInstanceCode);
+        _setInstanceCodeInternal(
+            _newInstanceCode,
+            _newInstanceVersion
+        );
     }
 
     /// @dev Internal call to set new instance code
     /// @dev Emits InstanceVersionChanged event after update
     /// @param _newInstanceCode New code for instance
-    function _setInstanceCodeInternal(TvmCell _newInstanceCode) internal {
+    /// @param _newInstanceVersion New version for instance which must be set explicit
+    function _setInstanceCodeInternal(
+        TvmCell _newInstanceCode,
+        optional(uint32) _newInstanceVersion
+    ) internal {
         // Update code and version
         _instanceCode = _newInstanceCode;
-        _instanceVersion += 1;
+
+        if (_newInstanceVersion.hasValue()) {
+            _instanceVersion = _newInstanceVersion.get();
+        } else {
+            _instanceVersion += 1;
+        }
 
         // Emit event about change
         emit InstanceVersionChanged(

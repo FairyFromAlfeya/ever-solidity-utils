@@ -62,6 +62,7 @@ describe('UpgradableByRequest', () => {
         upgraderExample.methods
           .setInstanceCode({
             _newInstanceCode: UpgradableByRequestExample.code,
+            _newInstanceVersion: null,
             _remainingGasTo: address,
           })
           .send({ amount: locklift.utils.toNano(10), from: address }),
@@ -155,6 +156,7 @@ describe('UpgradableByRequest', () => {
         upgraderExample.methods
           .setInstanceCode({
             _newInstanceCode: UpgradableByRequestExample.code,
+            _newInstanceVersion: null,
             _remainingGasTo: address,
           })
           .send({ amount: locklift.utils.toNano(10), from: address }),

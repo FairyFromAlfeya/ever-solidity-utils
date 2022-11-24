@@ -1079,6 +1079,13 @@ IFREF {
 OVER
 PUSHCONT {
 	LDREF
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDU 32
+	}
+	IF
 	LDREF
 	ENDS
 	CTOS
@@ -1096,6 +1103,13 @@ PUSHCONT {
 	SWAP
 	NULLROTRIFNOT
 	PUSHCONT {
+		LDU 32
+	}
+	IF
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
 		LDMSGADDR
 	}
 	IF
@@ -1104,14 +1118,14 @@ IFELSE
 ENDS
 .loc ../contracts/factory/abstract/Factory.sol, 0
 CALLREF {
-	CALL $setInstanceCode_8a923c7a_internal_macro$
+	CALL $setInstanceCode_a84762ff_internal_macro$
 }
 CALLREF {
 	CALL $c7_to_c4$
 }
 THROW 0
 
-.macro setInstanceCode_8a923c7a_internal_macro
+.macro setInstanceCode_a84762ff_internal_macro
 .loc ../contracts/factory/abstract/Factory.sol, 76
 DUP
 GETGLOB 9
@@ -1162,7 +1176,7 @@ SDEQ
 AND
 THROWIFNOT 1000
 .loc ../contracts/access/abstract/Ownable.sol, 32
-PUSH S4
+PUSH S5
 .loc ../contracts/validation/abstract/Validatable.sol, 32
 PUSHINT 1004
 CALLREF {
@@ -1189,11 +1203,11 @@ PUSHCONT {
 IFNOT
 .loc ../contracts/validation/abstract/Validatable.sol, 53
 DROP2
-BLKSWAP 2, 3
-.loc ../contracts/factory/abstract/Factory.sol, 87
+BLKSWAP 3, 3
+.loc ../contracts/factory/abstract/Factory.sol, 88
 DROP
 CALLREF {
-	CALL $_setInstanceCodeInternal_9bcacf97_internal_macro$
+	CALL $_setInstanceCodeInternal_6b0b215f_internal_macro$
 }
 .loc ../contracts/reservation/abstract/Reservable.sol, 47
 NEWC
@@ -1210,20 +1224,34 @@ SENDRAWMSG
 DROP2
 .loc ../contracts/factory/abstract/Factory.sol, 0
 
-.globl	_setInstanceCodeInternal_9bcacf97_internal
-.type	_setInstanceCodeInternal_9bcacf97_internal, @function
-CALL $_setInstanceCodeInternal_9bcacf97_internal_macro$
+.globl	_setInstanceCodeInternal_6b0b215f_internal
+.type	_setInstanceCodeInternal_6b0b215f_internal, @function
+CALL $_setInstanceCodeInternal_6b0b215f_internal_macro$
 
-.macro _setInstanceCodeInternal_9bcacf97_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 95
+.macro _setInstanceCodeInternal_6b0b215f_internal_macro
+.loc ../contracts/factory/abstract/Factory.sol, 103
+SWAP
 SETGLOB 11
-.loc ../contracts/factory/abstract/Factory.sol, 96
-GETGLOB 12
-INC
-UFITS 32
+.loc ../contracts/factory/abstract/Factory.sol, 105
 DUP
+ISNULL
+PUSHCONT {
+	.loc ../contracts/factory/abstract/Factory.sol, 108
+	GETGLOB 12
+	INC
+	UFITS 32
+}
+PUSHCONT {
+	.loc ../contracts/factory/abstract/Factory.sol, 106
+	BLKPUSH 2, 0
+	ISNULL
+	THROWIF 63
+}
+IFELSE
 SETGLOB 12
-.loc ../contracts/factory/abstract/Factory.sol, 99
+.loc ../contracts/factory/abstract/Factory.sol, 112
+DROP
+GETGLOB 12
 DEC
 UFITS 32
 GETGLOB 12
@@ -1242,7 +1270,7 @@ SENDRAWMSG
 CALL $_setInstanceCodeSilent_ed313942_internal_macro$
 
 .macro _setInstanceCodeSilent_ed313942_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 108
+.loc ../contracts/factory/abstract/Factory.sol, 121
 SETGLOB 11
 .loc ../contracts/factory/abstract/Factory.sol, 0
 
@@ -1251,7 +1279,7 @@ SETGLOB 11
 CALL $_setInstanceVersionSilent_94681db1_internal_macro$
 
 .macro _setInstanceVersionSilent_94681db1_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 114
+.loc ../contracts/factory/abstract/Factory.sol, 127
 SETGLOB 12
 .loc ../contracts/factory/abstract/Factory.sol, 0
 
@@ -1260,7 +1288,7 @@ SETGLOB 12
 CALL $_getInstanceCodeInternal_ce467bc1_internal_macro$
 
 .macro _getInstanceCodeInternal_ce467bc1_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 121
+.loc ../contracts/factory/abstract/Factory.sol, 134
 GETGLOB 11
 .loc ../contracts/factory/abstract/Factory.sol, 0
 
@@ -1269,7 +1297,7 @@ GETGLOB 11
 CALL $_getInstanceVersionInternal_35a04637_internal_macro$
 
 .macro _getInstanceVersionInternal_35a04637_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 128
+.loc ../contracts/factory/abstract/Factory.sol, 141
 GETGLOB 12
 .loc ../contracts/factory/abstract/Factory.sol, 0
 
@@ -1889,7 +1917,7 @@ IFJMPREF {
 	}
 }
 DUP
-PUSHINT 1151986822
+PUSHINT 1076748578
 LEQ
 IFJMPREF {
 	DUP
@@ -1897,6 +1925,12 @@ IFJMPREF {
 	EQUAL
 	IFJMPREF {
 		CALL $setPlatformCode$
+	}
+	DUP
+	PUSHINT 1050576583
+	EQUAL
+	IFJMPREF {
+		CALL $setInstanceCode$
 	}
 	DUP
 	PUSHINT 1076541865
@@ -1910,22 +1944,16 @@ IFJMPREF {
 	IFJMPREF {
 		CALL $deploy$
 	}
-	DUP
-	PUSHINT 1151986822
-	EQUAL
-	IFJMPREF {
-		CALL $setOwner$
-	}
 }
 DUP
 PUSHINT 1885618517
 LEQ
 IFJMPREF {
 	DUP
-	PUSHINT 1246777343
+	PUSHINT 1151986822
 	EQUAL
 	IFJMPREF {
-		CALL $setInstanceCode$
+		CALL $setOwner$
 	}
 	DUP
 	PUSHINT 1656985116
