@@ -78,14 +78,6 @@ describe('Upgradable', () => {
         .withNamedArgs({ current: '2', previous: '1' });
     });
 
-    it('should return previous version 1', async () => {
-      const version = await example.methods
-        .getPreviousVersion({ answerId: 0 })
-        .call();
-
-      return expect(version.value0).to.be.equal('1');
-    });
-
     it('should return current version 2', async () => {
       const version = await example.methods.getVersion({ answerId: 0 }).call();
 

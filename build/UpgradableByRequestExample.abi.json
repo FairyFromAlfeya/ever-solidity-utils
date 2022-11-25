@@ -48,15 +48,6 @@
 			]
 		},
 		{
-			"name": "getPreviousVersion",
-			"inputs": [
-				{"name":"answerId","type":"uint32"}
-			],
-			"outputs": [
-				{"name":"value0","type":"uint32"}
-			]
-		},
-		{
 			"name": "check",
 			"inputs": [
 				{"name":"_remainingGasTo","type":"optional(address)"}
@@ -96,7 +87,6 @@
 		{"name":"_id","type":"uint32"},
 		{"name":"_factory","type":"address"},
 		{"name":"_currentVersion","type":"uint32"},
-		{"name":"_previousVersion","type":"uint32"},
 		{"name":"_upgrader","type":"address"}
 	]
 }

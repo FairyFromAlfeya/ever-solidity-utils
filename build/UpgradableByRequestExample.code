@@ -76,8 +76,9 @@ CALLREF {
 }
 .loc ../examples/contracts/upgrade/UpgradableByRequestExample.sol, 22
 PUSHINT 1
+PUSHINT 0
 CALLREF {
-	CALL $_setCurrentVersionInternal_8d3821f4_internal_macro$
+	CALL $_setCurrentVersionInternal_60e55deb_internal_macro$
 }
 .loc ../examples/contracts/upgrade/UpgradableByRequestExample.sol, 0
 CALLREF {
@@ -159,13 +160,13 @@ PUSHCONT {
 }
 IF
 .loc ../contracts/upgrade/abstract/UpgradableByRequest.sol, 31
-GETGLOB 14
+GETGLOB 13
 PARSEMSGADDR
 INDEX 3
 PLDU 256
 NEQINT 0
 GETGLOB 9
-GETGLOB 14
+GETGLOB 13
 SDEQ
 AND
 THROWIFNOT 1007
@@ -250,12 +251,10 @@ PUSHREFSLICE {
 SETGLOB 11
 PUSHINT 0
 SETGLOB 12
-PUSHINT 0
-SETGLOB 13
 PUSHREFSLICE {
 	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
 }
-SETGLOB 14
+SETGLOB 13
 .loc ../examples/contracts/upgrade/UpgradableByRequestExample.sol, 53
 CTOS
 LDU 32
@@ -274,20 +273,15 @@ SETGLOB 10
 SWAP
 SETGLOB 11
 .loc ../examples/contracts/upgrade/UpgradableByRequestExample.sol, 70
-SWAP
+ROTREV
 CALLREF {
-	CALL $_setPreviousVersionInternal_a385330c_internal_macro$
+	CALL $_setCurrentVersionInternal_60e55deb_internal_macro$
 }
 .loc ../examples/contracts/upgrade/UpgradableByRequestExample.sol, 71
-SWAP
-CALLREF {
-	CALL $_setCurrentVersionInternal_8d3821f4_internal_macro$
-}
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.sol, 72
 CALLREF {
 	CALL $_setUpgraderSilent_808d69d5_internal_macro$
 }
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.sol, 74
+.loc ../examples/contracts/upgrade/UpgradableByRequestExample.sol, 73
 TUPLE 0
 NEWC
 PUSHSLICE x4e65772076657273696f6e3a20
@@ -315,7 +309,7 @@ CALLREF {
 CALL $_getDeployParamsInternal_95e71007_internal_macro$
 
 .macro _getDeployParamsInternal_95e71007_internal_macro
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.sol, 83
+.loc ../examples/contracts/upgrade/UpgradableByRequestExample.sol, 82
 GETGLOB 10
 NEWC
 STU 32
@@ -410,7 +404,7 @@ SETINDEXQ 4
 FALSE
 SETINDEXQ 1
 SETGLOB 4
-GETGLOB 14
+GETGLOB 13
 .loc ../contracts/upgrade/abstract/UpgradableByRequest.sol, 0
 
 .macro requestUpgrade
@@ -502,7 +496,7 @@ CALLREF {
 CALLREF {
 	CALL $_getCurrentVersionInternal_9e782595_internal_macro$
 }
-GETGLOB 14
+GETGLOB 13
 FALSE
 NEWC
 STSLICECONST x6_
@@ -530,10 +524,10 @@ CALL $_setUpgraderInternal_38cf9445_internal_macro$
 
 .macro _setUpgraderInternal_38cf9445_internal_macro
 .loc ../contracts/upgrade/abstract/UpgradableByRequest.sol, 79
-GETGLOB 14
+GETGLOB 13
 .loc ../contracts/upgrade/abstract/UpgradableByRequest.sol, 80
 OVER
-SETGLOB 14
+SETGLOB 13
 .loc ../contracts/upgrade/abstract/UpgradableByRequest.sol, 82
 SWAP
 PUSHSLICE xc0000000000000000000000001
@@ -559,7 +553,7 @@ CALL $_setUpgraderSilent_808d69d5_internal_macro$
 
 .macro _setUpgraderSilent_808d69d5_internal_macro
 .loc ../contracts/upgrade/abstract/UpgradableByRequest.sol, 91
-SETGLOB 14
+SETGLOB 13
 .loc ../contracts/upgrade/abstract/UpgradableByRequest.sol, 0
 
 .globl	_getUpgraderInternal_da4e2b18_internal
@@ -568,7 +562,7 @@ CALL $_getUpgraderInternal_da4e2b18_internal_macro$
 
 .macro _getUpgraderInternal_da4e2b18_internal_macro
 .loc ../contracts/upgrade/abstract/UpgradableByRequest.sol, 98
-GETGLOB 14
+GETGLOB 13
 .loc ../contracts/upgrade/abstract/UpgradableByRequest.sol, 0
 
 .macro getVersion
@@ -580,7 +574,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/upgrade/abstract/Version.sol, 18
+.loc ../contracts/upgrade/abstract/Version.sol, 15
 LDU 32
 GETGLOB 4
 ROT
@@ -643,7 +637,7 @@ IFREF {
 THROW 0
 
 .macro getVersion_0d8e6e2c_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 29
+.loc ../contracts/upgrade/abstract/Version.sol, 26
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -655,109 +649,15 @@ SETGLOB 4
 GETGLOB 12
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
-.macro getPreviousVersion
-DROP
-GETGLOB 6
-THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../contracts/upgrade/abstract/Version.sol, 32
-LDU 32
-GETGLOB 4
-ROT
-SETINDEXQ 5
-SETGLOB 4
-ENDS
-.loc ../contracts/upgrade/abstract/Version.sol, 0
-CALLREF {
-	CALL $getPreviousVersion_754dc93a_internal_macro$
-}
+.globl	_setCurrentVersionInternal_60e55deb_internal
+.type	_setCurrentVersionInternal_60e55deb_internal, @function
+CALL $_setCurrentVersionInternal_60e55deb_internal_macro$
+
+.macro _setCurrentVersionInternal_60e55deb_internal_macro
+.loc ../contracts/upgrade/abstract/Version.sol, 36
 OVER
-PUSHCONT {
-	PUSH S3
-	CTOS
-	LDU 2
-	LDMSGADDR
-	DROP
-	NIP
-	NEWC
-	STSLICECONST xc
-	STSLICE
-	PUSHINT 3575130416
-	STUR 130
-	STU 32
-	ENDC
-	PUSHINT 0
-}
-PUSHCONT {
-	GETGLOB 4
-	DUP
-	INDEX 3
-	OVER
-	THIRD
-	GETGLOB 9
-	ROLL 3
-	SECOND
-	NEWC
-	STSLICECONST x2_
-	STI 1
-	STSLICECONST x1_
-	STSLICE
-	SWAP
-	STGRAMS
-	STDICT
-	PUSHINT 106
-	STZEROES
-	GETGLOB 4
-	INDEX 5
-	STUR 32
-	STU 32
-	ENDC
-	GETGLOB 4
-	INDEX 4
-}
-IFELSE
-SENDRAWMSG
-IFREF {
-	CALL $upd_only_time_in_c4$
-}
-THROW 0
-
-.macro getPreviousVersion_754dc93a_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 43
-GETGLOB 4
-PUSHINT 0
-SETINDEXQ 2
-PUSHINT 64
-SETINDEXQ 4
-FALSE
-SETINDEXQ 1
-SETGLOB 4
-GETGLOB 13
-.loc ../contracts/upgrade/abstract/Version.sol, 0
-
-.globl	_setCurrentVersionInternal_8d3821f4_internal
-.type	_setCurrentVersionInternal_8d3821f4_internal, @function
-CALL $_setCurrentVersionInternal_8d3821f4_internal_macro$
-
-.macro _setCurrentVersionInternal_8d3821f4_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 50
-GETGLOB 12
-PUSHCONT {
-	.loc ../contracts/upgrade/abstract/Version.sol, 51
-	GETGLOB 12
-	SETGLOB 13
-	.loc ../contracts/upgrade/abstract/Version.sol, 0
-}
-IF
-.loc ../contracts/upgrade/abstract/Version.sol, 54
-DUP
 SETGLOB 12
-.loc ../contracts/upgrade/abstract/Version.sol, 57
-GETGLOB 13
+.loc ../contracts/upgrade/abstract/Version.sol, 39
 SWAP
 PUSHSLICE xc00000000000000000000000000dddc7d4
 NEWC
@@ -769,31 +669,13 @@ PUSHINT 0
 SENDRAWMSG
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
-.globl	_setPreviousVersionInternal_a385330c_internal
-.type	_setPreviousVersionInternal_a385330c_internal, @function
-CALL $_setPreviousVersionInternal_a385330c_internal_macro$
-
-.macro _setPreviousVersionInternal_a385330c_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 67
-SETGLOB 13
-.loc ../contracts/upgrade/abstract/Version.sol, 0
-
 .globl	_getCurrentVersionInternal_9e782595_internal
 .type	_getCurrentVersionInternal_9e782595_internal, @function
 CALL $_getCurrentVersionInternal_9e782595_internal_macro$
 
 .macro _getCurrentVersionInternal_9e782595_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 74
+.loc ../contracts/upgrade/abstract/Version.sol, 49
 GETGLOB 12
-.loc ../contracts/upgrade/abstract/Version.sol, 0
-
-.globl	_getPreviousVersionInternal_19dd96b2_internal
-.type	_getPreviousVersionInternal_19dd96b2_internal, @function
-CALL $_getPreviousVersionInternal_19dd96b2_internal_macro$
-
-.macro _getPreviousVersionInternal_19dd96b2_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 80
-GETGLOB 13
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
 .internal-alias :onCodeUpgrade, 2
@@ -807,12 +689,10 @@ PUSHREFSLICE {
 SETGLOB 11
 PUSHINT 0
 SETGLOB 12
-PUSHINT 0
-SETGLOB 13
 PUSHREFSLICE {
 	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
 }
-SETGLOB 14
+SETGLOB 13
 .loc ../examples/contracts/factory/FactoryInstance.sol, 25
 CTOS
 LDU 32
@@ -955,13 +835,11 @@ NIP
 LDU 32
 LDMSGADDR
 LDU 32
-LDU 32
 LDREF
 ENDS
 CTOS
 LDMSGADDR
 ENDS
-SETGLOB 14
 SETGLOB 13
 SETGLOB 12
 SETGLOB 11
@@ -999,11 +877,9 @@ PUSHCONT {
 	}
 	IFNOT
 	PUSHINT 0
-	DUP
 	PUSHREFSLICE {
 		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
 	}
-	SETGLOB 14
 	SETGLOB 13
 	SETGLOB 12
 	SETGLOB 11
@@ -1021,7 +897,6 @@ IFREFELSE {
 }
 
 .macro c7_to_c4
-GETGLOB 13
 GETGLOB 12
 GETGLOB 11
 GETGLOB 10
@@ -1034,8 +909,7 @@ STONE
 STU 32
 STSLICE
 STU 32
-STU 32
-GETGLOB 14
+GETGLOB 13
 NEWC
 STSLICE
 STBREFR
@@ -1327,12 +1201,6 @@ IFJMPREF {
 	EQUAL
 	IFJMPREF {
 		CALL $constructor$
-	}
-	DUP
-	PUSHINT 1427646768
-	EQUAL
-	IFJMPREF {
-		CALL $getPreviousVersion$
 	}
 	DUP
 	PUSHINT 1965223820

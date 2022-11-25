@@ -19,7 +19,7 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
         FactoryInstance(_remainingGasTo)
     {
         _setUpgraderInternal(_factory);
-        _setCurrentVersionInternal(1);
+        _setCurrentVersionInternal(1, 0);
     }
 
     function upgrade(
@@ -67,8 +67,7 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
         _id = id;
         _factory = factory;
 
-        _setPreviousVersionInternal(previousVersion);
-        _setCurrentVersionInternal(currentVersion);
+        _setCurrentVersionInternal(currentVersion, previousVersion);
         _setUpgraderSilent(upgrader);
 
         console.log(format("New version: {}", _getCurrentVersionInternal()));

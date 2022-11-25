@@ -19,15 +19,6 @@
 			"outputs": [
 				{"name":"value0","type":"uint32"}
 			]
-		},
-		{
-			"name": "getPreviousVersion",
-			"inputs": [
-				{"name":"answerId","type":"uint32"}
-			],
-			"outputs": [
-				{"name":"value0","type":"uint32"}
-			]
 		}
 	],
 	"data": [
@@ -49,7 +40,6 @@
 		{"name":"_timestamp","type":"uint64"},
 		{"name":"_constructorFlag","type":"bool"},
 		{"name":"_currentVersion","type":"uint32"},
-		{"name":"_previousVersion","type":"uint32"},
 		{"name":"_nonce","type":"uint32"}
 	]
 }

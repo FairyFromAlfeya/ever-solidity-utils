@@ -14,8 +14,4 @@ interface IVersion {
     /// @notice Get the current contract's version
     /// @return uint32 Contract's version
     function getVersion() external view responsible returns (uint32);
-
-    /// @notice Get the previous contract's version
-    /// @return uint32 Contract's previous version
-    function getPreviousVersion() external view responsible returns (uint32);
 }

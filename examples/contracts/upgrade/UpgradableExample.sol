@@ -28,7 +28,7 @@ contract UpgradableExample is Upgradable, Ownable {
         address initialOwner = _initialOwner.hasValue() ? _initialOwner.get() : msg.sender;
 
         _setOwnerInternal(initialOwner);
-        _setCurrentVersionInternal(1);
+        _setCurrentVersionInternal(1, 0);
     }
 
     function upgrade(
@@ -73,8 +73,7 @@ contract UpgradableExample is Upgradable, Ownable {
 
         _nonce = nonce;
         _setOwnerSilent(owner);
-        _setPreviousVersionInternal(previousVersion);
-        _setCurrentVersionInternal(++previousVersion);
+        _setCurrentVersionInternal(previousVersion + 1, previousVersion);
 
         console.log(format("New version: {}", _getCurrentVersionInternal()));
 

@@ -17,6 +17,6 @@ contract VersionExample is Version, Reservable {
         public
         reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
     {
-        _setCurrentVersionInternal(1);
+        _setCurrentVersionInternal(1, 0);
     }
 }

@@ -73,8 +73,9 @@ PUSHCONT {
 IF
 .loc ../examples/contracts/upgrade/VersionExample.sol, 20
 PUSHINT 1
+PUSHINT 0
 CALLREF {
-	CALL $_setCurrentVersionInternal_8d3821f4_internal_macro$
+	CALL $_setCurrentVersionInternal_60e55deb_internal_macro$
 }
 .loc ../contracts/reservation/abstract/Reservable.sol, 77
 NEWC
@@ -103,7 +104,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/upgrade/abstract/Version.sol, 18
+.loc ../contracts/upgrade/abstract/Version.sol, 15
 LDU 32
 GETGLOB 4
 ROT
@@ -166,7 +167,7 @@ IFREF {
 THROW 0
 
 .macro getVersion_0d8e6e2c_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 29
+.loc ../contracts/upgrade/abstract/Version.sol, 26
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -178,109 +179,15 @@ SETGLOB 4
 GETGLOB 10
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
-.macro getPreviousVersion
-DROP
-GETGLOB 6
-THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../contracts/upgrade/abstract/Version.sol, 32
-LDU 32
-GETGLOB 4
-ROT
-SETINDEXQ 5
-SETGLOB 4
-ENDS
-.loc ../contracts/upgrade/abstract/Version.sol, 0
-CALLREF {
-	CALL $getPreviousVersion_754dc93a_internal_macro$
-}
+.globl	_setCurrentVersionInternal_60e55deb_internal
+.type	_setCurrentVersionInternal_60e55deb_internal, @function
+CALL $_setCurrentVersionInternal_60e55deb_internal_macro$
+
+.macro _setCurrentVersionInternal_60e55deb_internal_macro
+.loc ../contracts/upgrade/abstract/Version.sol, 36
 OVER
-PUSHCONT {
-	PUSH S3
-	CTOS
-	LDU 2
-	LDMSGADDR
-	DROP
-	NIP
-	NEWC
-	STSLICECONST xc
-	STSLICE
-	PUSHINT 3575130416
-	STUR 130
-	STU 32
-	ENDC
-	PUSHINT 0
-}
-PUSHCONT {
-	GETGLOB 4
-	DUP
-	INDEX 3
-	OVER
-	THIRD
-	GETGLOB 9
-	ROLL 3
-	SECOND
-	NEWC
-	STSLICECONST x2_
-	STI 1
-	STSLICECONST x1_
-	STSLICE
-	SWAP
-	STGRAMS
-	STDICT
-	PUSHINT 106
-	STZEROES
-	GETGLOB 4
-	INDEX 5
-	STUR 32
-	STU 32
-	ENDC
-	GETGLOB 4
-	INDEX 4
-}
-IFELSE
-SENDRAWMSG
-IFREF {
-	CALL $upd_only_time_in_c4$
-}
-THROW 0
-
-.macro getPreviousVersion_754dc93a_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 43
-GETGLOB 4
-PUSHINT 0
-SETINDEXQ 2
-PUSHINT 64
-SETINDEXQ 4
-FALSE
-SETINDEXQ 1
-SETGLOB 4
-GETGLOB 11
-.loc ../contracts/upgrade/abstract/Version.sol, 0
-
-.globl	_setCurrentVersionInternal_8d3821f4_internal
-.type	_setCurrentVersionInternal_8d3821f4_internal, @function
-CALL $_setCurrentVersionInternal_8d3821f4_internal_macro$
-
-.macro _setCurrentVersionInternal_8d3821f4_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 50
-GETGLOB 10
-PUSHCONT {
-	.loc ../contracts/upgrade/abstract/Version.sol, 51
-	GETGLOB 10
-	SETGLOB 11
-	.loc ../contracts/upgrade/abstract/Version.sol, 0
-}
-IF
-.loc ../contracts/upgrade/abstract/Version.sol, 54
-DUP
 SETGLOB 10
-.loc ../contracts/upgrade/abstract/Version.sol, 57
-GETGLOB 11
+.loc ../contracts/upgrade/abstract/Version.sol, 39
 SWAP
 PUSHSLICE xc00000000000000000000000000dddc7d4
 NEWC
@@ -292,31 +199,13 @@ PUSHINT 0
 SENDRAWMSG
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
-.globl	_setPreviousVersionInternal_a385330c_internal
-.type	_setPreviousVersionInternal_a385330c_internal, @function
-CALL $_setPreviousVersionInternal_a385330c_internal_macro$
-
-.macro _setPreviousVersionInternal_a385330c_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 67
-SETGLOB 11
-.loc ../contracts/upgrade/abstract/Version.sol, 0
-
 .globl	_getCurrentVersionInternal_9e782595_internal
 .type	_getCurrentVersionInternal_9e782595_internal, @function
 CALL $_getCurrentVersionInternal_9e782595_internal_macro$
 
 .macro _getCurrentVersionInternal_9e782595_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 74
+.loc ../contracts/upgrade/abstract/Version.sol, 49
 GETGLOB 10
-.loc ../contracts/upgrade/abstract/Version.sol, 0
-
-.globl	_getPreviousVersionInternal_19dd96b2_internal
-.type	_getPreviousVersionInternal_19dd96b2_internal, @function
-CALL $_getPreviousVersionInternal_19dd96b2_internal_macro$
-
-.macro _getPreviousVersionInternal_19dd96b2_internal_macro
-.loc ../contracts/upgrade/abstract/Version.sol, 80
-GETGLOB 11
 .loc ../contracts/upgrade/abstract/Version.sol, 0
 
 .macro c4_to_c7
@@ -328,9 +217,7 @@ LDU 1 ; ctor flag
 NIP
 LDU 32
 LDU 32
-LDU 32
 ENDS
-SETGLOB 12
 SETGLOB 11
 SETGLOB 10
 SETGLOB 3
@@ -347,9 +234,8 @@ PUSHCONT {
 	CTOS
 	PLDDICT ; D
 	PUSHINT 0
-	DUP
 	PUSHINT 1
-	PUSH S3
+	PUSH S2
 	PUSHINT 64
 	DICTUGET
 	ZEROSWAPIFNOT
@@ -357,7 +243,6 @@ PUSHCONT {
 		PLDU 32
 	}
 	IF
-	SETGLOB 12
 	SETGLOB 11
 	SETGLOB 10
 	PUSHINT 64
@@ -373,7 +258,6 @@ IFREFELSE {
 }
 
 .macro c7_to_c4
-GETGLOB 12
 GETGLOB 11
 GETGLOB 10
 GETGLOB 3
@@ -382,7 +266,6 @@ NEWC
 STU 256
 STU 64
 STONE
-STU 32
 STU 32
 STU 32
 ENDC
@@ -513,12 +396,6 @@ PUSHINT 766070063
 EQUAL
 IFJMPREF {
 	CALL $getVersion$
-}
-DUP
-PUSHINT 1427646768
-EQUAL
-IFJMPREF {
-	CALL $getPreviousVersion$
 }
 DUP
 PUSHINT 1772174412
