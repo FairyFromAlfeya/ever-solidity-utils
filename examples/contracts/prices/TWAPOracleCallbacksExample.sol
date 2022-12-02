@@ -31,6 +31,7 @@ contract TWAPOracleCallbacksExample is
     function onRateCallback(
         optional(Rate) _rate,
         uint128[],
+        address _callbackRequester,
         TvmCell _payload
     )
         external
@@ -47,10 +48,12 @@ contract TWAPOracleCallbacksExample is
         console.log(format("Price 1/0: {}", rate.price1To0));
         console.log(format("From timestamp: {}", rate.fromTimestamp));
         console.log(format("To timestamp: {}", rate.toTimestamp));
+        console.log(format("Requester: {}", _callbackRequester));
     }
 
     function onObservationCallback(
         optional(Observation) _observation,
+        address _callbackRequester,
         TvmCell _payload
     )
         external
@@ -66,6 +69,7 @@ contract TWAPOracleCallbacksExample is
         console.log(format("Cumulative 0/1: {}", observation.price0To1Cumulative));
         console.log(format("Cumulative 1/0: {}", observation.price1To0Cumulative));
         console.log(format("Timestamp: {}", observation.timestamp));
+        console.log(format("Requester: {}", _callbackRequester));
     }
 
     function rate(
@@ -109,6 +113,7 @@ contract TWAPOracleCallbacksExample is
                 bounce: false
             }(
                 _timestamp,
+                address(this),
                 abi.encode(remainingGasTo)
             );
     }

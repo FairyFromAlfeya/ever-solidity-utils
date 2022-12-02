@@ -64,6 +64,7 @@ contract PriceAggregatorExample is
 
     function observation(
         uint32 _timestamp,
+        address _callbackTo,
         TvmCell _payload
     )
         external
@@ -71,13 +72,14 @@ contract PriceAggregatorExample is
         override
         reserve(UtilityGas.INITIAL_BALANCE)
     {
-        IOnObservationCallback(msg.sender)
+        IOnObservationCallback(_callbackTo)
             .onObservationCallback{
                 value: 0,
                 flag: UtilityFlag.ALL_NOT_RESERVED,
                 bounce: false
             }(
                 _observations.fetch(_timestamp),
+                msg.sender,
                 _payload
             );
     }
@@ -126,6 +128,7 @@ contract PriceAggregatorExample is
             }(
                 _calculateRate(_fromTimestamp, _toTimestamp),
                 reserves,
+                msg.sender,
                 _payload
             );
     }

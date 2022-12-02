@@ -19,9 +19,11 @@ interface ITWAPOracle is IRate, IOracle {
 
     /// @notice Get a callback with an observation by timestamp
     /// @param _timestamp UNIX timestamp in seconds of the observation
+    /// @param _callbackTo Recipient of the callback
     /// @param _payload Any extra data to return in callback
     function observation(
         uint32 _timestamp,
+        address _callbackTo,
         TvmCell _payload
     ) external view;
 

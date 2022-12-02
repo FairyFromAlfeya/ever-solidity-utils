@@ -34,6 +34,7 @@
 			"name": "observation",
 			"inputs": [
 				{"name":"_timestamp","type":"uint32"},
+				{"name":"_callbackTo","type":"address"},
 				{"name":"_payload","type":"cell"}
 			],
 			"outputs": [

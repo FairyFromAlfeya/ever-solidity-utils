@@ -16,6 +16,7 @@
 			"inputs": [
 				{"components":[{"name":"price0To1","type":"uint256"},{"name":"price1To0","type":"uint256"},{"name":"fromTimestamp","type":"uint32"},{"name":"toTimestamp","type":"uint32"}],"name":"_rate","type":"optional(tuple)"},
 				{"name":"value1","type":"uint128[]"},
+				{"name":"_callbackRequester","type":"address"},
 				{"name":"_payload","type":"cell"}
 			],
 			"outputs": [
@@ -25,6 +26,7 @@
 			"name": "onObservationCallback",
 			"inputs": [
 				{"components":[{"name":"timestamp","type":"uint32"},{"name":"price0To1Cumulative","type":"uint256"},{"name":"price1To0Cumulative","type":"uint256"}],"name":"_observation","type":"optional(tuple)"},
+				{"name":"_callbackRequester","type":"address"},
 				{"name":"_payload","type":"cell"}
 			],
 			"outputs": [
