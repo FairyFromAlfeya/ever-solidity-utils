@@ -45,7 +45,6 @@ contract PriceAggregatorExample is
     function getPrices(
         address[] _tokens,
         address _callbackRecipient,
-        bool _proxy,
         address _remainingGasTo,
         TvmCell _payload
     )
@@ -53,7 +52,6 @@ contract PriceAggregatorExample is
         override
         reserve(UtilityGas.INITIAL_BALANCE)
     {
-        console.log(format("Proxy: {}", _proxy ? "true" : "false"));
         console.log(format("Remaining gas to: {}", _remainingGasTo));
 
         mapping(address => uint) prices;

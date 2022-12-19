@@ -250,7 +250,6 @@ PUSHCONT {
 }
 IFELSE
 LDMSGADDR
-LDI 1
 LDREF
 ENDS
 CTOS
@@ -259,49 +258,20 @@ LDREF
 ENDS
 .loc ../examples/contracts/prices/PriceAggregatorExample.sol, 0
 CALLREF {
-	CALL $getPrices_fe166533_internal_macro$
+	CALL $getPrices_daa39fb2_internal_macro$
 }
 CALLREF {
 	CALL $c7_to_c4$
 }
 THROW 0
 
-.macro getPrices_fe166533_internal_macro
+.macro getPrices_daa39fb2_internal_macro
 .loc ../examples/contracts/prices/PriceAggregatorExample.sol, 45
 PUSHINT 1000000000
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 56
-TUPLE 0
-NEWC
-PUSHSLICE x50726f78793a20
-CALLREF {
-	CALL $storeStringInBuilders_macro$
-}
-ROLL 4
-PUSHCONT {
-	PUSHREF {
-		.blob x74727565
-	}
-}
-PUSHCONT {
-	PUSHREF {
-		.blob x66616c7365
-	}
-}
-IFELSE
-CTOS
-CALLREF {
-	CALL $storeStringInBuilders_macro$
-}
-CALLREF {
-	CALL $assembleList_macro$
-}
-CALLREF {
-	CALL $console_no_obj_log_41304fac_macro$
-}
-.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 57
+.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 55
 TUPLE 0
 NEWC
 PUSHSLICE x52656d61696e696e672067617320746f3a20
@@ -318,14 +288,14 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 59
+.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 57
 NEWDICT
 DUP
-.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 61
+.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 59
 PUSHINT 0
 NEWDICT
 PAIR
-.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 63
+.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 61
 ROLL 5
 SECOND
 PUSHINT 0
@@ -342,7 +312,7 @@ PUSHCONT {
 	NOT
 }
 PUSHCONT {
-	.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 64
+	.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 62
 	DUP
 	GETGLOB 11
 	PUSHINT 267
@@ -350,7 +320,7 @@ PUSHCONT {
 	NULLSWAPIFNOT
 	NIP
 	PUSHCONT {
-		.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 65
+		.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 63
 		DUP
 		GETGLOB 11
 		PUSHINT 267
@@ -368,7 +338,7 @@ PUSHCONT {
 		PUSHINT 267
 		DICTSETB
 		POP S6
-		.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 66
+		.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 64
 		DUP
 		GETGLOB 12
 		PUSHINT 267
@@ -388,7 +358,7 @@ PUSHCONT {
 		POP S5
 	}
 	PUSHCONT {
-		.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 68
+		.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 66
 		PUSH2 S0, S3
 		UNPAIR
 		OVER
@@ -407,11 +377,11 @@ PUSHCONT {
 }
 WHILE
 BLKDROP 3
-.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 72
+.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 70
 DUP
 FIRST
 PUSHCONT {
-	.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 86
+	.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 84
 	PUSH S3
 	GETGLOB 9
 	NOW
@@ -436,7 +406,7 @@ PUSHCONT {
 	STU 32
 }
 PUSHCONT {
-	.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 73
+	.loc ../examples/contracts/prices/PriceAggregatorExample.sol, 71
 	PUSH S3
 	GETGLOB 9
 	NOW
@@ -681,16 +651,16 @@ SENDRAWMSG
 
 .macro public_function_selector
 DUP
-PUSHINT 704735387
-EQUAL
-IFJMPREF {
-	CALL $getPrices$
-}
-DUP
 PUSHINT 888240241
 EQUAL
 IFJMPREF {
 	CALL $setPriceAndScale$
+}
+DUP
+PUSHINT 1420773710
+EQUAL
+IFJMPREF {
+	CALL $getPrices$
 }
 DUP
 PUSHINT 1772174412

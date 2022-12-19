@@ -1084,20 +1084,20 @@ everscale-crypto@^0.1.1:
   resolved "https://registry.yarnpkg.com/everscale-crypto/-/everscale-crypto-0.1.1.tgz#7e354f122b2673036d40cd6aebf44630b0392f34"
   integrity sha512-DoocTqkz1cayTu4UDdP7dUEcDMfCqchNNKhIgsXQAqhlwRExsNQ1Omo2C/JiuQ3rMzr3XxvqrCwLeLTiOrbXYQ==
 
-everscale-inpage-provider@^0.3.41, everscale-inpage-provider@^0.3.43:
-  version "0.3.43"
-  resolved "https://registry.yarnpkg.com/everscale-inpage-provider/-/everscale-inpage-provider-0.3.43.tgz#2f2c533a9b44237893b3f6f747b5b1c61e1523ee"
-  integrity sha512-AFqo6RAurwpnz7UvHu2O/3BK8nHElBQ7vfvUaDOJB8zzcd28pD26TflZbYRWzgoP7RNOM69h3WcmiWtlHl8pVw==
+everscale-inpage-provider@^0.3.45:
+  version "0.3.46"
+  resolved "https://registry.yarnpkg.com/everscale-inpage-provider/-/everscale-inpage-provider-0.3.46.tgz#738f3f849b8ee80f3587b1234cb596c38779bc37"
+  integrity sha512-7+7Jm2lsLxOMc8wrp1EQ4QM+a193mTJoz9ZgYRze+8fbPfGyWK0ozYeLJEc0jNl3jeGeSQy2m5Gw140BoS70xw==
 
-everscale-standalone-client@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/everscale-standalone-client/-/everscale-standalone-client-2.1.1.tgz#ec59edeef197ab3b61c9bc9fee8a6210afc49670"
-  integrity sha512-4OqHWLPZ7lqJ10m9Uu0vMsYa/oEXx+8fw9IRdKRpEmer5a7bzQFc14baCtFVot23pP2k7prGJ6kLeuZCL+CxMg==
+everscale-standalone-client@^2.1.5:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/everscale-standalone-client/-/everscale-standalone-client-2.1.5.tgz#070012e2385a894e334f9682e7bf365837f56166"
+  integrity sha512-dp5pCABzJsW+ZSfBUlSr3f8xRjYBOCxM8t7YaiA7dhMsC1rfmDRVoT5mgnOeyJPLq9k21XgZvLOJAF97PhmnRA==
   dependencies:
     "@broxus/await-semaphore" "^0.1.5"
     bignumber.js "^9.1.0"
     events "^3.3.0"
-    everscale-inpage-provider "^0.3.41"
+    everscale-inpage-provider "^0.3.45"
     fast-safe-stringify "^2.1.1"
     nekoton-wasm "^1.0.5"
     node-fetch "^2.6.7"
@@ -1633,10 +1633,10 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-locklift@2.4.4:
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/locklift/-/locklift-2.4.4.tgz#758beb3416e96ff217b8f04a438ea0f8cf68acbb"
-  integrity sha512-G6mUkgEq/2/RJ5Lr0/WP/E+pSGTYnh8/TyKKt8p1d8xyL3F5zIN/9nSD4IEOXj4biKzZWVyOGtxyW2253S6gHA==
+locklift@2.4.5:
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/locklift/-/locklift-2.4.5.tgz#f8e9e9af8877b8ae3730c2348ecf63567c6d5bcf"
+  integrity sha512-48DkSzK763LHWTdXTAy5y76x/PEQc4AvWpE1k3wUQeTHjrknYOtPSY0lfzb79uq7s7qfs7j5iYLJA4T50QwdNg==
   dependencies:
     "@types/yargs" "^17.0.13"
     axios "^0.27.2"
@@ -1647,8 +1647,8 @@ locklift@2.4.4:
     ejs "^3.1.6"
     env-paths "^2.2.1"
     everscale-crypto "^0.1.1"
-    everscale-inpage-provider "^0.3.43"
-    everscale-standalone-client "^2.1.1"
+    everscale-inpage-provider "^0.3.45"
+    everscale-standalone-client "^2.1.5"
     fs-extra "^10.1.0"
     lodash "^4.17.21"
     mocha "^10.0.0"

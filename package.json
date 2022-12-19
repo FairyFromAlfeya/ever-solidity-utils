@@ -29,7 +29,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
     "husky": "8.0.1",
-    "locklift": "2.4.4",
+    "locklift": "2.4.5",
     "mocha": "10.1.0",
     "prettier": "2.6.2",
     "ts-node": "10.8.1",

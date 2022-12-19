@@ -82,7 +82,6 @@ describe('PriceAggregator', () => {
         aggregatorExample.methods
           .getPrices({
             _tokens: [address],
-            _proxy: false,
             _callbackRecipient: callbacksExample.address,
             _payload: '',
             _remainingGasTo: address,
@@ -95,7 +94,6 @@ describe('PriceAggregator', () => {
         .count(1)
         .withNamedArgs({
           _tokens: [address],
-          _proxy: false,
           _callbackRecipient: callbacksExample.address,
           _payload: EmptyTvmCell,
           _remainingGasTo: address,
@@ -114,7 +112,6 @@ describe('PriceAggregator', () => {
         aggregatorExample.methods
           .getPrices({
             _tokens: [address, zeroAddress],
-            _proxy: false,
             _callbackRecipient: callbacksExample.address,
             _payload: '',
             _remainingGasTo: address,
@@ -127,7 +124,6 @@ describe('PriceAggregator', () => {
         .count(1)
         .withNamedArgs({
           _tokens: [address, zeroAddress],
-          _proxy: false,
           _callbackRecipient: callbacksExample.address,
           _payload: EmptyTvmCell,
           _remainingGasTo: address,
