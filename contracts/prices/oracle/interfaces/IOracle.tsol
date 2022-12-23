@@ -1,0 +1,50 @@
+pragma ever-solidity >= 0.61.2;
+
+import "../structures/IObservation.tsol";
+import "../structures/IOracleOptions.tsol";
+import "../structures/IPoint.tsol";
+
+/// @author Alexander Kunekov
+/// @title Oracle Interface
+/// @notice Base interface for oracle
+interface IOracle is
+    IObservation,
+    IOracleOptions,
+    IPoint
+{
+    /// @dev Emits when the oracle was initialized
+    event OracleInitialized(Observation);
+
+    /// @dev Emits when a new point is created
+    event OracleUpdated(Observation);
+
+    /// @dev Emits when oracle's options were updated
+    event OracleOptionsUpdated(OracleOptions);
+
+    /// @notice Sets new oracle's options
+    /// @dev Only the pair's owner can change
+    /// @param _newOptions New options
+    /// @param _remainingGasTo Recipient of the remaining gas
+    function setOracleOptions(
+        OracleOptions _newOptions,
+        address _remainingGasTo
+    ) external;
+
+    /// @notice Get the current oracle's options
+    /// @return OracleOptions Current options
+    function getOracleOptions()
+        external
+        view
+        responsible
+        returns (OracleOptions);
+
+    /// @notice Removes last n points from a historical array
+    /// @dev Use it if storage fees for pair upgrade are higher than fee limit
+    /// @dev Only the pair's owner can change
+    /// @param _count Count of last points to remove
+    /// @param _remainingGasTo Recipient of the remaining gas
+    function removeLastNPoints(
+        uint16 _count,
+        address _remainingGasTo
+    ) external;
+}

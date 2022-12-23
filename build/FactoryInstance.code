@@ -22,11 +22,11 @@ CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
 PUSH2 S1, S1
-.loc ../contracts/reservation/abstract/Reservable.sol, 34
+.loc ../contracts/reservation/abstract/Reservable.tsol, 34
 ROT
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 37
+.loc ../contracts/reservation/abstract/Reservable.tsol, 37
 OVER
 ISNULL
 PUSHCONT {
@@ -40,7 +40,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../contracts/reservation/abstract/Reservable.sol, 40
+.loc ../contracts/reservation/abstract/Reservable.tsol, 40
 DUP
 PARSEMSGADDR
 INDEX 3
@@ -51,15 +51,15 @@ MYADDR
 SDEQ
 OR
 PUSHCONT {
-	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 41
 	OVER
 	NIP
-	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 }
 IF
-.loc ../contracts/reservation/abstract/Reservable.sol, 44
+.loc ../contracts/reservation/abstract/Reservable.tsol, 44
 BLKDROP2 1, 3
-.loc ../contracts/reservation/abstract/Reservable.sol, 47
+.loc ../contracts/reservation/abstract/Reservable.tsol, 47
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -70,7 +70,7 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
-.loc ../contracts/reservation/abstract/Reservable.sol, 0
+.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 DROP2
 CALLREF {
 	CALL $c7_to_c4$
@@ -82,30 +82,30 @@ THROW 0
 CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 
 .macro _getTargetBalanceInternal_141d6ea7_internal_macro
-.loc ../examples/contracts/factory/FactoryInstance.sol, 25
+.loc ../examples/contracts/factory/FactoryInstance.tsol, 25
 PUSHINT 1000000000
-.loc ../examples/contracts/factory/FactoryInstance.sol, 0
+.loc ../examples/contracts/factory/FactoryInstance.tsol, 0
 
 .internal-alias :onCodeUpgrade, 2
 .internal :onCodeUpgrade
-.loc ../examples/contracts/factory/FactoryInstance.sol, 34
+.loc ../examples/contracts/factory/FactoryInstance.tsol, 34
 PUSHINT 0
 SETGLOB 10
 PUSHREFSLICE {
 	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
 }
 SETGLOB 11
-.loc ../examples/contracts/factory/FactoryInstance.sol, 36
+.loc ../examples/contracts/factory/FactoryInstance.tsol, 36
 CTOS
 LDU 32
 LDMSGADDR
 ENDS
-.loc ../examples/contracts/factory/FactoryInstance.sol, 44
+.loc ../examples/contracts/factory/FactoryInstance.tsol, 44
 SWAP
 SETGLOB 10
-.loc ../examples/contracts/factory/FactoryInstance.sol, 45
+.loc ../examples/contracts/factory/FactoryInstance.tsol, 45
 SETGLOB 11
-.loc ../examples/contracts/factory/FactoryInstance.sol, 0
+.loc ../examples/contracts/factory/FactoryInstance.tsol, 0
 CALLREF {
 	CALL $c7_to_c4$
 }
@@ -121,7 +121,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/factory/FactoryInstance.sol, 48
+.loc ../examples/contracts/factory/FactoryInstance.tsol, 48
 OVER
 PUSHCONT {
 	LDREF
@@ -146,7 +146,7 @@ PUSHCONT {
 }
 IFELSE
 ENDS
-.loc ../examples/contracts/factory/FactoryInstance.sol, 0
+.loc ../examples/contracts/factory/FactoryInstance.tsol, 0
 CALLREF {
 	CALL $check_9ad81c73_internal_macro$
 }
@@ -156,17 +156,17 @@ IFREF {
 THROW 0
 
 .macro check_9ad81c73_internal_macro
-.loc ../examples/contracts/factory/FactoryInstance.sol, 48
+.loc ../examples/contracts/factory/FactoryInstance.tsol, 48
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
 SWAP
 GETGLOB 9
-.loc ../contracts/reservation/abstract/Reservable.sol, 34
+.loc ../contracts/reservation/abstract/Reservable.tsol, 34
 ROT
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 37
+.loc ../contracts/reservation/abstract/Reservable.tsol, 37
 OVER
 ISNULL
 PUSHCONT {
@@ -180,7 +180,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../contracts/reservation/abstract/Reservable.sol, 40
+.loc ../contracts/reservation/abstract/Reservable.tsol, 40
 DUP
 PARSEMSGADDR
 INDEX 3
@@ -191,13 +191,13 @@ MYADDR
 SDEQ
 OR
 PUSHCONT {
-	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 41
 	OVER
 	NIP
-	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 }
 IF
-.loc ../examples/contracts/factory/FactoryInstance.sol, 53
+.loc ../examples/contracts/factory/FactoryInstance.tsol, 53
 TUPLE 0
 NEWC
 PUSHSLICE x496e7374616e636520776974682049443a20
@@ -216,7 +216,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../contracts/reservation/abstract/Reservable.sol, 47
+.loc ../contracts/reservation/abstract/Reservable.tsol, 47
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -227,9 +227,9 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
-.loc ../contracts/reservation/abstract/Reservable.sol, 0
+.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 DROP2
-.loc ../examples/contracts/factory/FactoryInstance.sol, 0
+.loc ../examples/contracts/factory/FactoryInstance.tsol, 0
 
 .macro getTargetBalance
 DROP
@@ -240,14 +240,14 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/reservation/abstract/TargetBalance.sol, 21
+.loc ../contracts/reservation/abstract/TargetBalance.tsol, 21
 LDU 32
 GETGLOB 4
 ROT
 SETINDEXQ 5
 SETGLOB 4
 ENDS
-.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
+.loc ../contracts/reservation/abstract/TargetBalance.tsol, 0
 CALLREF {
 	CALL $getTargetBalance_eb175b7e_internal_macro$
 }
@@ -303,7 +303,7 @@ IFREF {
 THROW 0
 
 .macro getTargetBalance_eb175b7e_internal_macro
-.loc ../contracts/reservation/abstract/TargetBalance.sol, 32
+.loc ../contracts/reservation/abstract/TargetBalance.tsol, 32
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -315,7 +315,7 @@ SETGLOB 4
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
-.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
+.loc ../contracts/reservation/abstract/TargetBalance.tsol, 0
 
 .macro c4_to_c7
 PUSHROOT
@@ -513,7 +513,7 @@ THROW 60
 CALL $console_with_obj_log_41304fac_macro$
 
 .macro console_with_obj_log_41304fac_macro
-.loc ../node_modules/locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.tsol, 10
 DUP
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
@@ -524,14 +524,14 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../node_modules/locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.tsol, 0
 
 .globl	console_no_obj_log_41304fac
 .type	console_no_obj_log_41304fac, @function
 CALL $console_no_obj_log_41304fac_macro$
 
 .macro console_no_obj_log_41304fac_macro
-.loc ../node_modules/locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.tsol, 10
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
 }
@@ -541,7 +541,7 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../node_modules/locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.tsol, 0
 
 .macro public_function_selector
 DUP

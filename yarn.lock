@@ -1633,10 +1633,10 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-locklift@2.4.5:
-  version "2.4.5"
-  resolved "https://registry.yarnpkg.com/locklift/-/locklift-2.4.5.tgz#f8e9e9af8877b8ae3730c2348ecf63567c6d5bcf"
-  integrity sha512-48DkSzK763LHWTdXTAy5y76x/PEQc4AvWpE1k3wUQeTHjrknYOtPSY0lfzb79uq7s7qfs7j5iYLJA4T50QwdNg==
+locklift@2.4.6:
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/locklift/-/locklift-2.4.6.tgz#e3fd856834a5bbb813001bd6e964012c9d442ffa"
+  integrity sha512-1x9PP6JIl2rfB+E+iI7QL0ZhTrm1N3l96KWjoC128zGVbRNWkecXaYHTxPxV1w9mQ8kEMidZq0w2GFS5iUD3WA==
   dependencies:
     "@types/yargs" "^17.0.13"
     axios "^0.27.2"

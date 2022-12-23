@@ -1,0 +1,187 @@
+pragma ever-solidity >= 0.61.2;
+
+pragma AbiHeader time;
+pragma AbiHeader expire;
+pragma AbiHeader pubkey;
+
+import "locklift/src/console.tsol";
+
+import "../../../contracts/libraries/UtilityGas.tsol";
+import "../../../contracts/libraries/UtilityFlag.tsol";
+
+import "../../../contracts/tip3/interfaces/ITokenWallet.tsol";
+import "../../../contracts/tip3/interfaces/ITokenRoot.tsol";
+
+import "../../../contracts/reservation/abstract/Reservable.tsol";
+import "../../../contracts/reservation/abstract/TargetBalance.tsol";
+
+contract TokenWalletExample is Reservable, TargetBalance {
+    uint32 private static _nonce;
+    ITokenWallet private static _wallet;
+
+    ITokenWallet private _ownWallet;
+    address private _remainingGasRecipient;
+
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
+    constructor(optional(address) _remainingGasTo)
+        public
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
+    {
+        _remainingGasRecipient = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
+
+        _wallet
+            .root{
+                value: 0.5 ever,
+                flag: UtilityFlag.SENDER_PAYS_FEES,
+                bounce: false,
+                callback: TokenWalletExample.onOwnRoot
+            }();
+    }
+
+    function onOwnRoot(address _root)
+        external
+        view
+        reserve(_getTargetBalanceInternal())
+    {
+        ITokenRoot(_root)
+            .walletOf{
+                value: 0,
+                flag: UtilityFlag.ALL_NOT_RESERVED,
+                bounce: false,
+                callback: TokenWalletExample.onOwnWalletOf
+            }(address(this));
+    }
+
+    function onOwnWalletOf(address _walletAddress)
+        external
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
+    {
+        _ownWallet = ITokenWallet(_walletAddress);
+    }
+
+    function root()
+        external
+        view
+        reserve(_getTargetBalanceInternal())
+    {
+        _wallet
+            .root{
+                value: 0,
+                flag: UtilityFlag.ALL_NOT_RESERVED,
+                bounce: false,
+                callback: TokenWalletExample.onRoot
+            }();
+    }
+
+    function balance()
+        external
+        view
+        reserve(_getTargetBalanceInternal())
+    {
+        _wallet
+            .balance{
+                value: 0,
+                flag: UtilityFlag.ALL_NOT_RESERVED,
+                bounce: false,
+                callback: TokenWalletExample.onBalance
+            }();
+    }
+
+    function owner()
+        external
+        view
+        reserve(_getTargetBalanceInternal())
+    {
+        _wallet
+            .owner{
+                value: 0,
+                flag: UtilityFlag.ALL_NOT_RESERVED,
+                bounce: false,
+                callback: TokenWalletExample.onOwner
+            }();
+    }
+
+    function transfer(
+        uint128 _amount,
+        address _recipient,
+        uint128 _deployWalletValue,
+        address _remainingGasTo,
+        bool _notify,
+        TvmCell _payload
+    )
+        external
+        view
+        reserve(_getTargetBalanceInternal())
+    {
+        _ownWallet
+            .transfer{
+                value: 0,
+                flag: UtilityFlag.ALL_NOT_RESERVED,
+                bounce: false
+            }(
+                _amount,
+                _recipient,
+                _deployWalletValue,
+                _remainingGasTo,
+                _notify,
+                _payload
+            );
+    }
+
+    function transferToWallet(
+        uint128 _amount,
+        address _recipientWallet,
+        address _remainingGasTo,
+        bool _notify,
+        TvmCell _payload
+    )
+        external
+        view
+        reserve(_getTargetBalanceInternal())
+    {
+        _ownWallet
+            .transferToWallet{
+                value: 0,
+                flag: UtilityFlag.ALL_NOT_RESERVED,
+                bounce: false
+            }(
+                _amount,
+                _recipientWallet,
+                _remainingGasTo,
+                _notify,
+                _payload
+            );
+    }
+
+    function onRoot(address _root)
+        external
+        view
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
+    {
+        console.log(format("Root: {}", _root));
+    }
+
+    function onBalance(uint128 _balance)
+        external
+        view
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
+    {
+        console.log(format("Balance: {}", _balance));
+    }
+
+    function onOwner(address _owner)
+        external
+        view
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
+    {
+        console.log(format("Owner: {}", _owner));
+    }
+}

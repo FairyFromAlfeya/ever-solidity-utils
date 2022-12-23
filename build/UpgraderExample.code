@@ -58,13 +58,13 @@ CALLREF {
 }
 OVER
 GETGLOB 9
-.loc ../contracts/reservation/abstract/Reservable.sol, 63
+.loc ../contracts/reservation/abstract/Reservable.tsol, 63
 ROT
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 64
+.loc ../contracts/reservation/abstract/Reservable.tsol, 64
 ACCEPT
-.loc ../contracts/reservation/abstract/Reservable.sol, 67
+.loc ../contracts/reservation/abstract/Reservable.tsol, 67
 OVER
 ISNULL
 PUSHCONT {
@@ -78,7 +78,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../contracts/reservation/abstract/Reservable.sol, 70
+.loc ../contracts/reservation/abstract/Reservable.tsol, 70
 DUP
 PARSEMSGADDR
 INDEX 3
@@ -89,20 +89,20 @@ MYADDR
 SDEQ
 OR
 PUSHCONT {
-	.loc ../contracts/reservation/abstract/Reservable.sol, 71
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 71
 	OVER
 	NIP
-	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 }
 IF
-.loc ../contracts/reservation/abstract/Reservable.sol, 74
+.loc ../contracts/reservation/abstract/Reservable.tsol, 74
 PUSH S4
 PUSHINT 1001
-.loc ../contracts/validation/abstract/Validatable.sol, 46
+.loc ../contracts/validation/abstract/Validatable.tsol, 46
 OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
+	.loc ../contracts/validation/abstract/Validatable.tsol, 47
 	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
@@ -111,13 +111,13 @@ PUSHCONT {
 	CALLREF {
 		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
+	.loc ../contracts/validation/abstract/Validatable.tsol, 0
 }
 IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
+.loc ../contracts/validation/abstract/Validatable.tsol, 53
 DROP2
 BLKSWAP 2, 3
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 38
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 38
 DROP
 DUP
 ISNULL
@@ -130,13 +130,13 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 40
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 40
 CALLREF {
 	CALL $_setOwnerInternal_457a3840_internal_macro$
 }
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 0
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 0
 DROP
-.loc ../contracts/reservation/abstract/Reservable.sol, 77
+.loc ../contracts/reservation/abstract/Reservable.tsol, 77
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -147,7 +147,7 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
-.loc ../contracts/reservation/abstract/Reservable.sol, 0
+.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 DROP2
 CALLREF {
 	CALL $c7_to_c4$
@@ -159,15 +159,15 @@ THROW 0
 CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 
 .macro _getTargetBalanceInternal_141d6ea7_internal_macro
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 27
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 27
 PUSHINT 1000000000
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 0
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 0
 
 .macro getDeployParams
 DROP
 GETGLOB 6
 THROWIFNOT 76
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 43
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 43
 LDU 32
 GETGLOB 4
 ROT
@@ -175,7 +175,7 @@ SETINDEXQ 5
 SETGLOB 4
 LDU 32
 ENDS
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 0
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 0
 CALLREF {
 	CALL $getDeployParams_39b100ed_internal_macro$
 }
@@ -231,7 +231,7 @@ IFREF {
 THROW 0
 
 .macro getDeployParams_39b100ed_internal_macro
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 53
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 53
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -243,7 +243,7 @@ SETGLOB 4
 NEWC
 STU 32
 ENDC
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 0
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 0
 
 .macro deploy
 DROP
@@ -254,7 +254,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 56
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 56
 OVER
 PUSHCONT {
 	LDREF
@@ -281,7 +281,7 @@ PUSHCONT {
 }
 IFELSE
 ENDS
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 0
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 0
 CALLREF {
 	CALL $deploy_7dff91bf_internal_macro$
 }
@@ -291,17 +291,17 @@ CALLREF {
 THROW 0
 
 .macro deploy_7dff91bf_internal_macro
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 56
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 56
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
 OVER
 GETGLOB 9
-.loc ../contracts/reservation/abstract/Reservable.sol, 34
+.loc ../contracts/reservation/abstract/Reservable.tsol, 34
 ROT
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 37
+.loc ../contracts/reservation/abstract/Reservable.tsol, 37
 OVER
 ISNULL
 PUSHCONT {
@@ -315,7 +315,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../contracts/reservation/abstract/Reservable.sol, 40
+.loc ../contracts/reservation/abstract/Reservable.tsol, 40
 DUP
 PARSEMSGADDR
 INDEX 3
@@ -326,27 +326,27 @@ MYADDR
 SDEQ
 OR
 PUSHCONT {
-	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 41
 	OVER
 	NIP
-	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 }
 IF
-.loc ../contracts/reservation/abstract/Reservable.sol, 44
+.loc ../contracts/reservation/abstract/Reservable.tsol, 44
 PUSH S4
-.loc ../contracts/validation/abstract/Validatable.sol, 32
+.loc ../contracts/validation/abstract/Validatable.tsol, 32
 PUSHINT 1009
 CALLREF {
 	CALL $Validation_no_obj_notEmpty_f0710f53_macro$
 }
-.loc ../contracts/validation/abstract/Validatable.sol, 36
+.loc ../contracts/validation/abstract/Validatable.tsol, 36
 PUSH S3
 PUSHINT 1002
-.loc ../contracts/validation/abstract/Validatable.sol, 46
+.loc ../contracts/validation/abstract/Validatable.tsol, 46
 OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
+	.loc ../contracts/validation/abstract/Validatable.tsol, 47
 	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
@@ -355,13 +355,13 @@ PUSHCONT {
 	CALLREF {
 		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
+	.loc ../contracts/validation/abstract/Validatable.tsol, 0
 }
 IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
+.loc ../contracts/validation/abstract/Validatable.tsol, 53
 DROP2
 BLKSWAP 2, 3
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 66
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 66
 PUSHINT 0
 NEWC
 STU 256
@@ -396,7 +396,7 @@ STOPTREF
 STOPTREF
 STZERO
 ENDC
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 76
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 76
 OVER
 ISNULL
 PUSHCONT {
@@ -455,7 +455,7 @@ STBREFR
 ENDC
 PUSHINT 1
 SENDRAWMSG
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 83
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 83
 GETGLOB 9
 CALLREF {
 	CALL $_getInstanceVersionInternal_35a04637_internal_macro$
@@ -480,7 +480,7 @@ ENDC
 PUSHINT 0
 SENDRAWMSG
 DROP
-.loc ../contracts/reservation/abstract/Reservable.sol, 47
+.loc ../contracts/reservation/abstract/Reservable.tsol, 47
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -491,16 +491,16 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
-.loc ../contracts/reservation/abstract/Reservable.sol, 0
+.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 DROP2
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 0
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 0
 
 .globl	_getInstanceAddressInternal_80feb59a_internal
 .type	_getInstanceAddressInternal_80feb59a_internal, @function
 CALL $_getInstanceAddressInternal_80feb59a_internal_macro$
 
 .macro _getInstanceAddressInternal_80feb59a_internal_macro
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 97
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 97
 PUSHINT 0
 NEWC
 STU 256
@@ -541,21 +541,21 @@ STSLICECONST x801_
 STU 256
 ENDC
 CTOS
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 0
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 0
 
 .globl	_getParamsForUpgradeInternal_92309f6c_internal
 .type	_getParamsForUpgradeInternal_92309f6c_internal, @function
 CALL $_getParamsForUpgradeInternal_92309f6c_internal_macro$
 
 .macro _getParamsForUpgradeInternal_92309f6c_internal_macro
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 118
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 118
 CALLREF {
 	CALL $_getInstanceVersionInternal_35a04637_internal_macro$
 }
 CALLREF {
 	CALL $_getInstanceCodeInternal_ce467bc1_internal_macro$
 }
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 0
+.loc ../examples/contracts/upgrade/UpgraderExample.tsol, 0
 
 .macro getOwner
 DROP
@@ -566,14 +566,14 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/access/abstract/Ownable.sol, 43
+.loc ../contracts/access/abstract/Ownable.tsol, 43
 LDU 32
 GETGLOB 4
 ROT
 SETINDEXQ 5
 SETGLOB 4
 ENDS
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 CALLREF {
 	CALL $getOwner_893d20e8_internal_macro$
 }
@@ -636,7 +636,7 @@ IFREF {
 THROW 0
 
 .macro getOwner_893d20e8_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 54
+.loc ../contracts/access/abstract/Ownable.tsol, 54
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -646,7 +646,7 @@ FALSE
 SETINDEXQ 1
 SETGLOB 4
 GETGLOB 12
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 
 .macro setOwner
 DROP
@@ -657,7 +657,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/access/abstract/Ownable.sol, 57
+.loc ../contracts/access/abstract/Ownable.tsol, 57
 OVER
 PUSHCONT {
 	LDREF
@@ -690,7 +690,7 @@ PUSHCONT {
 }
 IFELSE
 ENDS
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 CALLREF {
 	CALL $setOwner_3dc2eef5_internal_macro$
 }
@@ -700,17 +700,17 @@ CALLREF {
 THROW 0
 
 .macro setOwner_3dc2eef5_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 57
+.loc ../contracts/access/abstract/Ownable.tsol, 57
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
 OVER
 GETGLOB 9
-.loc ../contracts/reservation/abstract/Reservable.sol, 34
+.loc ../contracts/reservation/abstract/Reservable.tsol, 34
 ROT
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 37
+.loc ../contracts/reservation/abstract/Reservable.tsol, 37
 OVER
 ISNULL
 PUSHCONT {
@@ -724,7 +724,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../contracts/reservation/abstract/Reservable.sol, 40
+.loc ../contracts/reservation/abstract/Reservable.tsol, 40
 DUP
 PARSEMSGADDR
 INDEX 3
@@ -735,13 +735,13 @@ MYADDR
 SDEQ
 OR
 PUSHCONT {
-	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 41
 	OVER
 	NIP
-	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 }
 IF
-.loc ../contracts/access/abstract/Ownable.sol, 35
+.loc ../contracts/access/abstract/Ownable.tsol, 35
 GETGLOB 12
 PARSEMSGADDR
 INDEX 3
@@ -752,22 +752,22 @@ GETGLOB 12
 SDEQ
 AND
 THROWIFNOT 1000
-.loc ../contracts/access/abstract/Ownable.sol, 40
+.loc ../contracts/access/abstract/Ownable.tsol, 40
 PUSH S4
-.loc ../contracts/validation/abstract/Validatable.sol, 17
+.loc ../contracts/validation/abstract/Validatable.tsol, 17
 MYADDR
 PUSHINT 1001
 CALLREF {
 	CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 }
-.loc ../contracts/validation/abstract/Validatable.sol, 22
+.loc ../contracts/validation/abstract/Validatable.tsol, 22
 PUSH S3
 PUSHINT 1002
-.loc ../contracts/validation/abstract/Validatable.sol, 46
+.loc ../contracts/validation/abstract/Validatable.tsol, 46
 OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
+	.loc ../contracts/validation/abstract/Validatable.tsol, 47
 	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
@@ -776,18 +776,18 @@ PUSHCONT {
 	CALLREF {
 		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
+	.loc ../contracts/validation/abstract/Validatable.tsol, 0
 }
 IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
+.loc ../contracts/validation/abstract/Validatable.tsol, 53
 DROP2
 BLKSWAP 2, 3
-.loc ../contracts/access/abstract/Ownable.sol, 69
+.loc ../contracts/access/abstract/Ownable.tsol, 69
 DROP
 CALLREF {
 	CALL $_setOwnerInternal_457a3840_internal_macro$
 }
-.loc ../contracts/reservation/abstract/Reservable.sol, 47
+.loc ../contracts/reservation/abstract/Reservable.tsol, 47
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -798,21 +798,21 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
-.loc ../contracts/reservation/abstract/Reservable.sol, 0
+.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 DROP2
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 
 .globl	_setOwnerInternal_457a3840_internal
 .type	_setOwnerInternal_457a3840_internal, @function
 CALL $_setOwnerInternal_457a3840_internal_macro$
 
 .macro _setOwnerInternal_457a3840_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 76
+.loc ../contracts/access/abstract/Ownable.tsol, 76
 GETGLOB 12
-.loc ../contracts/access/abstract/Ownable.sol, 77
+.loc ../contracts/access/abstract/Ownable.tsol, 77
 OVER
 SETGLOB 12
-.loc ../contracts/access/abstract/Ownable.sol, 80
+.loc ../contracts/access/abstract/Ownable.tsol, 80
 SWAP
 PUSHSLICE xc0000000000000000000000001
 NEWC
@@ -829,25 +829,25 @@ STBREFR
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 
 .globl	_setOwnerSilent_9f3600cf_internal
 .type	_setOwnerSilent_9f3600cf_internal, @function
 CALL $_setOwnerSilent_9f3600cf_internal_macro$
 
 .macro _setOwnerSilent_9f3600cf_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 89
+.loc ../contracts/access/abstract/Ownable.tsol, 89
 SETGLOB 12
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 
 .globl	_getOwnerInternal_5441421e_internal
 .type	_getOwnerInternal_5441421e_internal, @function
 CALL $_getOwnerInternal_5441421e_internal_macro$
 
 .macro _getOwnerInternal_5441421e_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 96
+.loc ../contracts/access/abstract/Ownable.tsol, 96
 GETGLOB 12
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 
 .macro provideUpgrade
 DROP
@@ -858,7 +858,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 31
+.loc ../contracts/upgrade/abstract/Upgrader.tsol, 31
 OVER
 PUSHCONT {
 	LDU 32
@@ -874,7 +874,7 @@ PUSHCONT {
 IFELSE
 LDMSGADDR
 ENDS
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 0
+.loc ../contracts/upgrade/abstract/Upgrader.tsol, 0
 CALLREF {
 	CALL $provideUpgrade_24e6a93f_internal_macro$
 }
@@ -884,29 +884,29 @@ IFREF {
 THROW 0
 
 .macro provideUpgrade_24e6a93f_internal_macro
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 31
+.loc ../contracts/upgrade/abstract/Upgrader.tsol, 31
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
-.loc ../contracts/reservation/abstract/Reservable.sol, 13
+.loc ../contracts/reservation/abstract/Reservable.tsol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 14
+.loc ../contracts/reservation/abstract/Reservable.tsol, 14
 OVER
-.loc ../contracts/validation/abstract/Validatable.sol, 32
+.loc ../contracts/validation/abstract/Validatable.tsol, 32
 PUSHINT 1009
 CALLREF {
 	CALL $Validation_no_obj_notEmpty_f0710f53_macro$
 }
-.loc ../contracts/validation/abstract/Validatable.sol, 36
+.loc ../contracts/validation/abstract/Validatable.tsol, 36
 DUP
-.loc ../contracts/validation/abstract/Validatable.sol, 17
+.loc ../contracts/validation/abstract/Validatable.tsol, 17
 MYADDR
 PUSHINT 1002
 CALLREF {
 	CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 }
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 44
+.loc ../contracts/upgrade/abstract/Upgrader.tsol, 44
 SWAP
 CALLREF {
 	CALL $_getInstanceAddressInternal_80feb59a_internal_macro$
@@ -914,16 +914,16 @@ CALLREF {
 GETGLOB 9
 SDEQ
 THROWIFNOT 1008
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 49
+.loc ../contracts/upgrade/abstract/Upgrader.tsol, 49
 CALLREF {
 	CALL $_getParamsForUpgradeInternal_92309f6c_internal_macro$
 }
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 52
+.loc ../contracts/upgrade/abstract/Upgrader.tsol, 52
 ROLL 3
 PUSH S2
 NEQ
 PUSHCONT {
-	.loc ../contracts/upgrade/abstract/Upgrader.sol, 53
+	.loc ../contracts/upgrade/abstract/Upgrader.tsol, 53
 	PUSH3 S2, S0, S1
 	GETGLOB 9
 	FALSE
@@ -945,7 +945,7 @@ PUSHCONT {
 	PUSHPOW2 7
 }
 PUSHCONT {
-	.loc ../contracts/upgrade/abstract/Upgrader.sol, 64
+	.loc ../contracts/upgrade/abstract/Upgrader.tsol, 64
 	PUSH S2
 	NEWC
 	STSLICECONST x42_
@@ -959,7 +959,7 @@ PUSHCONT {
 }
 IFELSE
 SENDRAWMSG
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 0
+.loc ../contracts/upgrade/abstract/Upgrader.tsol, 0
 BLKDROP 3
 
 .macro getInstanceCode
@@ -971,14 +971,14 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/factory/abstract/Factory.sol, 45
+.loc ../contracts/factory/abstract/Factory.tsol, 45
 LDU 32
 GETGLOB 4
 ROT
 SETINDEXQ 5
 SETGLOB 4
 ENDS
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 CALLREF {
 	CALL $getInstanceCode_d0375d13_internal_macro$
 }
@@ -1034,7 +1034,7 @@ IFREF {
 THROW 0
 
 .macro getInstanceCode_d0375d13_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 56
+.loc ../contracts/factory/abstract/Factory.tsol, 56
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -1044,7 +1044,7 @@ FALSE
 SETINDEXQ 1
 SETGLOB 4
 GETGLOB 10
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 
 .macro getInstanceVersion
 DROP
@@ -1055,14 +1055,14 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/factory/abstract/Factory.sol, 59
+.loc ../contracts/factory/abstract/Factory.tsol, 59
 LDU 32
 GETGLOB 4
 ROT
 SETINDEXQ 5
 SETGLOB 4
 ENDS
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 CALLREF {
 	CALL $getInstanceVersion_157dddf4_internal_macro$
 }
@@ -1118,7 +1118,7 @@ IFREF {
 THROW 0
 
 .macro getInstanceVersion_157dddf4_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 70
+.loc ../contracts/factory/abstract/Factory.tsol, 70
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -1128,7 +1128,7 @@ FALSE
 SETINDEXQ 1
 SETGLOB 4
 GETGLOB 11
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 
 .macro getInstanceAddress
 DROP
@@ -1139,7 +1139,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/factory/abstract/Factory.sol, 73
+.loc ../contracts/factory/abstract/Factory.tsol, 73
 LDU 32
 GETGLOB 4
 ROT
@@ -1147,7 +1147,7 @@ SETINDEXQ 5
 SETGLOB 4
 LDREF
 ENDS
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 CALLREF {
 	CALL $getInstanceAddress_4c5dee3b_internal_macro$
 }
@@ -1210,7 +1210,7 @@ IFREF {
 THROW 0
 
 .macro getInstanceAddress_4c5dee3b_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 84
+.loc ../contracts/factory/abstract/Factory.tsol, 84
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -1222,7 +1222,7 @@ SETGLOB 4
 CALLREF {
 	CALL $_getInstanceAddressInternal_80feb59a_internal_macro$
 }
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 
 .macro setInstanceCode
 DROP
@@ -1233,7 +1233,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/factory/abstract/Factory.sol, 87
+.loc ../contracts/factory/abstract/Factory.tsol, 87
 OVER
 PUSHCONT {
 	LDREF
@@ -1274,7 +1274,7 @@ PUSHCONT {
 }
 IFELSE
 ENDS
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 CALLREF {
 	CALL $setInstanceCode_a84762ff_internal_macro$
 }
@@ -1284,17 +1284,17 @@ CALLREF {
 THROW 0
 
 .macro setInstanceCode_a84762ff_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 87
+.loc ../contracts/factory/abstract/Factory.tsol, 87
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
 OVER
 GETGLOB 9
-.loc ../contracts/reservation/abstract/Reservable.sol, 34
+.loc ../contracts/reservation/abstract/Reservable.tsol, 34
 ROT
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 37
+.loc ../contracts/reservation/abstract/Reservable.tsol, 37
 OVER
 ISNULL
 PUSHCONT {
@@ -1308,7 +1308,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../contracts/reservation/abstract/Reservable.sol, 40
+.loc ../contracts/reservation/abstract/Reservable.tsol, 40
 DUP
 PARSEMSGADDR
 INDEX 3
@@ -1319,27 +1319,27 @@ MYADDR
 SDEQ
 OR
 PUSHCONT {
-	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 41
 	OVER
 	NIP
-	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 }
 IF
-.loc ../contracts/reservation/abstract/Reservable.sol, 44
+.loc ../contracts/reservation/abstract/Reservable.tsol, 44
 PUSH S5
-.loc ../contracts/validation/abstract/Validatable.sol, 32
+.loc ../contracts/validation/abstract/Validatable.tsol, 32
 PUSHINT 1004
 CALLREF {
 	CALL $Validation_no_obj_notEmpty_f0710f53_macro$
 }
-.loc ../contracts/validation/abstract/Validatable.sol, 36
+.loc ../contracts/validation/abstract/Validatable.tsol, 36
 PUSH S3
 PUSHINT 1002
-.loc ../contracts/validation/abstract/Validatable.sol, 46
+.loc ../contracts/validation/abstract/Validatable.tsol, 46
 OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
+	.loc ../contracts/validation/abstract/Validatable.tsol, 47
 	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
@@ -1348,18 +1348,18 @@ PUSHCONT {
 	CALLREF {
 		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
+	.loc ../contracts/validation/abstract/Validatable.tsol, 0
 }
 IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
+.loc ../contracts/validation/abstract/Validatable.tsol, 53
 DROP2
 BLKSWAP 3, 3
-.loc ../contracts/factory/abstract/Factory.sol, 99
+.loc ../contracts/factory/abstract/Factory.tsol, 99
 DROP
 CALLREF {
 	CALL $_setInstanceCodeInternal_6b0b215f_internal_macro$
 }
-.loc ../contracts/reservation/abstract/Reservable.sol, 47
+.loc ../contracts/reservation/abstract/Reservable.tsol, 47
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -1370,36 +1370,36 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
-.loc ../contracts/reservation/abstract/Reservable.sol, 0
+.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 DROP2
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 
 .globl	_setInstanceCodeInternal_6b0b215f_internal
 .type	_setInstanceCodeInternal_6b0b215f_internal, @function
 CALL $_setInstanceCodeInternal_6b0b215f_internal_macro$
 
 .macro _setInstanceCodeInternal_6b0b215f_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 114
+.loc ../contracts/factory/abstract/Factory.tsol, 114
 SWAP
 SETGLOB 10
-.loc ../contracts/factory/abstract/Factory.sol, 116
+.loc ../contracts/factory/abstract/Factory.tsol, 116
 DUP
 ISNULL
 PUSHCONT {
-	.loc ../contracts/factory/abstract/Factory.sol, 119
+	.loc ../contracts/factory/abstract/Factory.tsol, 119
 	GETGLOB 11
 	INC
 	UFITS 32
 }
 PUSHCONT {
-	.loc ../contracts/factory/abstract/Factory.sol, 117
+	.loc ../contracts/factory/abstract/Factory.tsol, 117
 	BLKPUSH 2, 0
 	ISNULL
 	THROWIF 63
 }
 IFELSE
 SETGLOB 11
-.loc ../contracts/factory/abstract/Factory.sol, 123
+.loc ../contracts/factory/abstract/Factory.tsol, 123
 DROP
 GETGLOB 11
 DEC
@@ -1413,43 +1413,43 @@ STU 32
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 
 .globl	_setInstanceCodeSilent_ed313942_internal
 .type	_setInstanceCodeSilent_ed313942_internal, @function
 CALL $_setInstanceCodeSilent_ed313942_internal_macro$
 
 .macro _setInstanceCodeSilent_ed313942_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 132
+.loc ../contracts/factory/abstract/Factory.tsol, 132
 SETGLOB 10
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 
 .globl	_setInstanceVersionSilent_94681db1_internal
 .type	_setInstanceVersionSilent_94681db1_internal, @function
 CALL $_setInstanceVersionSilent_94681db1_internal_macro$
 
 .macro _setInstanceVersionSilent_94681db1_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 138
+.loc ../contracts/factory/abstract/Factory.tsol, 138
 SETGLOB 11
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 
 .globl	_getInstanceCodeInternal_ce467bc1_internal
 .type	_getInstanceCodeInternal_ce467bc1_internal, @function
 CALL $_getInstanceCodeInternal_ce467bc1_internal_macro$
 
 .macro _getInstanceCodeInternal_ce467bc1_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 145
+.loc ../contracts/factory/abstract/Factory.tsol, 145
 GETGLOB 10
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 
 .globl	_getInstanceVersionInternal_35a04637_internal
 .type	_getInstanceVersionInternal_35a04637_internal, @function
 CALL $_getInstanceVersionInternal_35a04637_internal_macro$
 
 .macro _getInstanceVersionInternal_35a04637_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 152
+.loc ../contracts/factory/abstract/Factory.tsol, 152
 GETGLOB 11
-.loc ../contracts/factory/abstract/Factory.sol, 0
+.loc ../contracts/factory/abstract/Factory.tsol, 0
 
 .macro getTargetBalance
 DROP
@@ -1460,14 +1460,14 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/reservation/abstract/TargetBalance.sol, 21
+.loc ../contracts/reservation/abstract/TargetBalance.tsol, 21
 LDU 32
 GETGLOB 4
 ROT
 SETINDEXQ 5
 SETGLOB 4
 ENDS
-.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
+.loc ../contracts/reservation/abstract/TargetBalance.tsol, 0
 CALLREF {
 	CALL $getTargetBalance_eb175b7e_internal_macro$
 }
@@ -1523,7 +1523,7 @@ IFREF {
 THROW 0
 
 .macro getTargetBalance_eb175b7e_internal_macro
-.loc ../contracts/reservation/abstract/TargetBalance.sol, 32
+.loc ../contracts/reservation/abstract/TargetBalance.tsol, 32
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -1535,7 +1535,7 @@ SETGLOB 4
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
-.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
+.loc ../contracts/reservation/abstract/TargetBalance.tsol, 0
 
 .macro c4_to_c7
 PUSHROOT
@@ -1739,7 +1739,7 @@ THROW 60
 CALL $Validation_with_obj_notEquals_44a2ba31_macro$
 
 .macro Validation_with_obj_notEquals_44a2ba31_macro
-.loc ../contracts/validation/libraries/Validation.sol, 15
+.loc ../contracts/validation/libraries/Validation.tsol, 15
 PUSHINT 2
 MAX
 PUSH S2
@@ -1762,7 +1762,7 @@ PUSHCONT {
 }
 IF
 THROWANYIFNOT
-.loc ../contracts/validation/libraries/Validation.sol, 0
+.loc ../contracts/validation/libraries/Validation.tsol, 0
 DROP
 
 .globl	Validation_no_obj_notEquals_44a2ba31
@@ -1770,7 +1770,7 @@ DROP
 CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 
 .macro Validation_no_obj_notEquals_44a2ba31_macro
-.loc ../contracts/validation/libraries/Validation.sol, 15
+.loc ../contracts/validation/libraries/Validation.tsol, 15
 PUSHINT 2
 MAX
 PUSH S2
@@ -1793,7 +1793,7 @@ PUSHCONT {
 }
 IF
 THROWANYIFNOT
-.loc ../contracts/validation/libraries/Validation.sol, 0
+.loc ../contracts/validation/libraries/Validation.tsol, 0
 DROP2
 
 .globl	Validation_with_obj_notEmpty_f0710f53
@@ -1801,7 +1801,7 @@ DROP2
 CALL $Validation_with_obj_notEmpty_f0710f53_macro$
 
 .macro Validation_with_obj_notEmpty_f0710f53_macro
-.loc ../contracts/validation/libraries/Validation.sol, 30
+.loc ../contracts/validation/libraries/Validation.tsol, 30
 PUSHINT 2
 MAX
 OVER
@@ -1809,14 +1809,14 @@ CTOS
 SEMPTY
 NOT
 THROWANYIFNOT
-.loc ../contracts/validation/libraries/Validation.sol, 0
+.loc ../contracts/validation/libraries/Validation.tsol, 0
 
 .globl	Validation_no_obj_notEmpty_f0710f53
 .type	Validation_no_obj_notEmpty_f0710f53, @function
 CALL $Validation_no_obj_notEmpty_f0710f53_macro$
 
 .macro Validation_no_obj_notEmpty_f0710f53_macro
-.loc ../contracts/validation/libraries/Validation.sol, 30
+.loc ../contracts/validation/libraries/Validation.tsol, 30
 PUSHINT 2
 MAX
 SWAP
@@ -1824,7 +1824,7 @@ CTOS
 SEMPTY
 NOT
 THROWANYIFNOT
-.loc ../contracts/validation/libraries/Validation.sol, 0
+.loc ../contracts/validation/libraries/Validation.tsol, 0
 
 .macro public_function_selector
 DUP

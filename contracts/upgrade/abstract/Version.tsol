@@ -1,0 +1,51 @@
+pragma ever-solidity >= 0.61.2;
+
+import "../../libraries/UtilityFlag.tsol";
+
+import "../interfaces/IVersion.tsol";
+
+/// @author Alexander Kunekov
+/// @title Version
+/// @notice Implements base functions for versioned contract
+/// @dev A contract is abstract - to be sure that it will be inherited by another contract
+abstract contract Version is IVersion {
+    /// @dev Current contract's version
+    uint32 private _currentVersion;
+
+    function getVersion()
+        external
+        view
+        override
+        responsible
+        returns (uint32)
+    {
+        return {
+            value: 0,
+            flag: UtilityFlag.REMAINING_GAS,
+            bounce: false
+        } _currentVersion;
+    }
+
+    /// @dev Internal call to update contract's version
+    /// @dev Emits VersionChanged event after update
+    /// @param _newVersion New contract's version
+    function _setCurrentVersionInternal(
+        uint32 _newVersion,
+        uint32 _previousVersion
+    ) internal {
+        _currentVersion = _newVersion;
+
+        // Emit event about change
+        emit VersionChanged(
+            _newVersion,
+            _previousVersion
+        );
+    }
+
+    /// @dev Internal call to get contract's current version
+    /// @dev Useful for contract upgrading to remember previous version
+    /// @return uint32 Current contract's version
+    function _getCurrentVersionInternal() internal view returns (uint32) {
+        return _currentVersion;
+    }
+}

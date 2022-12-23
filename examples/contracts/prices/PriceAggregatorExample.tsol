@@ -1,0 +1,110 @@
+pragma ever-solidity >= 0.61.2;
+
+pragma AbiHeader time;
+pragma AbiHeader expire;
+pragma AbiHeader pubkey;
+
+import "locklift/src/console.tsol";
+
+import "../../../contracts/libraries/UtilityFlag.tsol";
+import "../../../contracts/libraries/UtilityGas.tsol";
+
+import "../../../contracts/reservation/abstract/Reservable.tsol";
+import "../../../contracts/reservation/abstract/TargetBalance.tsol";
+
+import "../../../contracts/prices/aggregator/interfaces/IPriceAggregatorInstance.tsol";
+import "../../../contracts/prices/aggregator/interfaces/IOnCanceledPriceCallback.tsol";
+import "../../../contracts/prices/aggregator/interfaces/IOnSuccessPriceCallback.tsol";
+
+contract PriceAggregatorExample is
+    IPriceAggregatorInstance,
+    Reservable,
+    TargetBalance
+{
+    uint32 private static _nonce;
+
+    mapping(address => uint) private _prices;
+    mapping(address => int16) private _scales;
+
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
+    constructor(optional(address) _remainingGasTo)
+        public
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
+    {}
+
+    function setPriceAndScale(
+        address _token,
+        uint _price,
+        int16 _scale,
+        optional(address) _remainingGasTo
+    )
+        external
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
+    {
+        _prices[_token] = _price;
+        _scales[_token] = _scale;
+    }
+
+    function getPrices(
+        address[] _tokens,
+        address _callbackRecipient,
+        address _remainingGasTo,
+        TvmCell _payload
+    )
+        external
+        override
+        reserve(_getTargetBalanceInternal())
+    {
+        console.log(format("Remaining gas to: {}", _remainingGasTo));
+
+        mapping(address => uint) prices;
+        mapping(address => int16) scales;
+        address[] failed;
+
+        for (address token : _tokens) {
+            if (_prices.exists(token)) {
+                prices[token] = _prices[token];
+                scales[token] = _scales[token];
+            } else {
+                failed.push(token);
+            }
+        }
+
+        if (failed.length == 0) {
+            IOnSuccessPriceCallback(_callbackRecipient)
+                .onSuccessPriceCallback{
+                    value: 0,
+                    flag: UtilityFlag.ALL_NOT_RESERVED,
+                    bounce: false
+                }(
+                    prices,
+                    scales,
+                    now,
+                    msg.sender,
+                    _payload
+                );
+        } else {
+            IOnCanceledPriceCallback(_callbackRecipient)
+                .onCanceledPriceCallback{
+                    value: 0,
+                    flag: UtilityFlag.ALL_NOT_RESERVED,
+                    bounce: false
+                }(
+                    prices,
+                    scales,
+                    failed,
+                    now,
+                    msg.sender,
+                    _payload
+                );
+        }
+    }
+}

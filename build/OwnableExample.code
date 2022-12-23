@@ -58,13 +58,13 @@ CALLREF {
 }
 OVER
 GETGLOB 9
-.loc ../contracts/reservation/abstract/Reservable.sol, 63
+.loc ../contracts/reservation/abstract/Reservable.tsol, 63
 ROT
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 64
+.loc ../contracts/reservation/abstract/Reservable.tsol, 64
 ACCEPT
-.loc ../contracts/reservation/abstract/Reservable.sol, 67
+.loc ../contracts/reservation/abstract/Reservable.tsol, 67
 OVER
 ISNULL
 PUSHCONT {
@@ -78,7 +78,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../contracts/reservation/abstract/Reservable.sol, 70
+.loc ../contracts/reservation/abstract/Reservable.tsol, 70
 DUP
 PARSEMSGADDR
 INDEX 3
@@ -89,20 +89,20 @@ MYADDR
 SDEQ
 OR
 PUSHCONT {
-	.loc ../contracts/reservation/abstract/Reservable.sol, 71
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 71
 	OVER
 	NIP
-	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 }
 IF
-.loc ../contracts/reservation/abstract/Reservable.sol, 74
+.loc ../contracts/reservation/abstract/Reservable.tsol, 74
 PUSH S4
 PUSHINT 1001
-.loc ../contracts/validation/abstract/Validatable.sol, 46
+.loc ../contracts/validation/abstract/Validatable.tsol, 46
 OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
+	.loc ../contracts/validation/abstract/Validatable.tsol, 47
 	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
@@ -111,18 +111,18 @@ PUSHCONT {
 	CALLREF {
 		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
+	.loc ../contracts/validation/abstract/Validatable.tsol, 0
 }
 IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
+.loc ../contracts/validation/abstract/Validatable.tsol, 53
 DROP2
 PUSH S3
 PUSHINT 1002
-.loc ../contracts/validation/abstract/Validatable.sol, 46
+.loc ../contracts/validation/abstract/Validatable.tsol, 46
 OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
+	.loc ../contracts/validation/abstract/Validatable.tsol, 47
 	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
@@ -131,13 +131,13 @@ PUSHCONT {
 	CALLREF {
 		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
+	.loc ../contracts/validation/abstract/Validatable.tsol, 0
 }
 IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
+.loc ../contracts/validation/abstract/Validatable.tsol, 53
 DROP2
 BLKSWAP 2, 3
-.loc ../examples/contracts/access/OwnableExample.sol, 35
+.loc ../examples/contracts/access/OwnableExample.tsol, 35
 DROP
 DUP
 ISNULL
@@ -150,13 +150,13 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../examples/contracts/access/OwnableExample.sol, 37
+.loc ../examples/contracts/access/OwnableExample.tsol, 37
 CALLREF {
 	CALL $_setOwnerInternal_457a3840_internal_macro$
 }
-.loc ../examples/contracts/access/OwnableExample.sol, 0
+.loc ../examples/contracts/access/OwnableExample.tsol, 0
 DROP
-.loc ../contracts/reservation/abstract/Reservable.sol, 77
+.loc ../contracts/reservation/abstract/Reservable.tsol, 77
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -167,7 +167,7 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
-.loc ../contracts/reservation/abstract/Reservable.sol, 0
+.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 DROP2
 CALLREF {
 	CALL $c7_to_c4$
@@ -179,9 +179,9 @@ THROW 0
 CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 
 .macro _getTargetBalanceInternal_141d6ea7_internal_macro
-.loc ../examples/contracts/access/OwnableExample.sol, 23
+.loc ../examples/contracts/access/OwnableExample.tsol, 23
 PUSHINT 1000000000
-.loc ../examples/contracts/access/OwnableExample.sol, 0
+.loc ../examples/contracts/access/OwnableExample.tsol, 0
 
 .macro check
 DROP
@@ -192,7 +192,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/access/OwnableExample.sol, 40
+.loc ../examples/contracts/access/OwnableExample.tsol, 40
 OVER
 PUSHCONT {
 	LDREF
@@ -217,7 +217,7 @@ PUSHCONT {
 }
 IFELSE
 ENDS
-.loc ../examples/contracts/access/OwnableExample.sol, 0
+.loc ../examples/contracts/access/OwnableExample.tsol, 0
 CALLREF {
 	CALL $check_9ad81c73_internal_macro$
 }
@@ -227,17 +227,17 @@ IFREF {
 THROW 0
 
 .macro check_9ad81c73_internal_macro
-.loc ../examples/contracts/access/OwnableExample.sol, 40
+.loc ../examples/contracts/access/OwnableExample.tsol, 40
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
 SWAP
 GETGLOB 9
-.loc ../contracts/reservation/abstract/Reservable.sol, 34
+.loc ../contracts/reservation/abstract/Reservable.tsol, 34
 ROT
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 37
+.loc ../contracts/reservation/abstract/Reservable.tsol, 37
 OVER
 ISNULL
 PUSHCONT {
@@ -251,7 +251,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../contracts/reservation/abstract/Reservable.sol, 40
+.loc ../contracts/reservation/abstract/Reservable.tsol, 40
 DUP
 PARSEMSGADDR
 INDEX 3
@@ -262,13 +262,13 @@ MYADDR
 SDEQ
 OR
 PUSHCONT {
-	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 41
 	OVER
 	NIP
-	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 }
 IF
-.loc ../contracts/access/abstract/Ownable.sol, 35
+.loc ../contracts/access/abstract/Ownable.tsol, 35
 GETGLOB 10
 PARSEMSGADDR
 INDEX 3
@@ -279,7 +279,7 @@ GETGLOB 10
 SDEQ
 AND
 THROWIFNOT 1000
-.loc ../examples/contracts/access/OwnableExample.sol, 46
+.loc ../examples/contracts/access/OwnableExample.tsol, 46
 TUPLE 0
 NEWC
 PUSHSLICE x43616c6c6572206973206f776e65723a20
@@ -298,7 +298,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../contracts/reservation/abstract/Reservable.sol, 47
+.loc ../contracts/reservation/abstract/Reservable.tsol, 47
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -309,9 +309,9 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
-.loc ../contracts/reservation/abstract/Reservable.sol, 0
+.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 DROP2
-.loc ../examples/contracts/access/OwnableExample.sol, 0
+.loc ../examples/contracts/access/OwnableExample.tsol, 0
 
 .macro getOwner
 DROP
@@ -322,14 +322,14 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/access/abstract/Ownable.sol, 43
+.loc ../contracts/access/abstract/Ownable.tsol, 43
 LDU 32
 GETGLOB 4
 ROT
 SETINDEXQ 5
 SETGLOB 4
 ENDS
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 CALLREF {
 	CALL $getOwner_893d20e8_internal_macro$
 }
@@ -392,7 +392,7 @@ IFREF {
 THROW 0
 
 .macro getOwner_893d20e8_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 54
+.loc ../contracts/access/abstract/Ownable.tsol, 54
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -402,7 +402,7 @@ FALSE
 SETINDEXQ 1
 SETGLOB 4
 GETGLOB 10
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 
 .macro setOwner
 DROP
@@ -413,7 +413,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/access/abstract/Ownable.sol, 57
+.loc ../contracts/access/abstract/Ownable.tsol, 57
 OVER
 PUSHCONT {
 	LDREF
@@ -446,7 +446,7 @@ PUSHCONT {
 }
 IFELSE
 ENDS
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 CALLREF {
 	CALL $setOwner_3dc2eef5_internal_macro$
 }
@@ -456,17 +456,17 @@ CALLREF {
 THROW 0
 
 .macro setOwner_3dc2eef5_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 57
+.loc ../contracts/access/abstract/Ownable.tsol, 57
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
 OVER
 GETGLOB 9
-.loc ../contracts/reservation/abstract/Reservable.sol, 34
+.loc ../contracts/reservation/abstract/Reservable.tsol, 34
 ROT
 PUSHINT 0
 RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 37
+.loc ../contracts/reservation/abstract/Reservable.tsol, 37
 OVER
 ISNULL
 PUSHCONT {
@@ -480,7 +480,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../contracts/reservation/abstract/Reservable.sol, 40
+.loc ../contracts/reservation/abstract/Reservable.tsol, 40
 DUP
 PARSEMSGADDR
 INDEX 3
@@ -491,13 +491,13 @@ MYADDR
 SDEQ
 OR
 PUSHCONT {
-	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 41
 	OVER
 	NIP
-	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+	.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 }
 IF
-.loc ../contracts/access/abstract/Ownable.sol, 35
+.loc ../contracts/access/abstract/Ownable.tsol, 35
 GETGLOB 10
 PARSEMSGADDR
 INDEX 3
@@ -508,22 +508,22 @@ GETGLOB 10
 SDEQ
 AND
 THROWIFNOT 1000
-.loc ../contracts/access/abstract/Ownable.sol, 40
+.loc ../contracts/access/abstract/Ownable.tsol, 40
 PUSH S4
-.loc ../contracts/validation/abstract/Validatable.sol, 17
+.loc ../contracts/validation/abstract/Validatable.tsol, 17
 MYADDR
 PUSHINT 1001
 CALLREF {
 	CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 }
-.loc ../contracts/validation/abstract/Validatable.sol, 22
+.loc ../contracts/validation/abstract/Validatable.tsol, 22
 PUSH S3
 PUSHINT 1002
-.loc ../contracts/validation/abstract/Validatable.sol, 46
+.loc ../contracts/validation/abstract/Validatable.tsol, 46
 OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
+	.loc ../contracts/validation/abstract/Validatable.tsol, 47
 	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
@@ -532,18 +532,18 @@ PUSHCONT {
 	CALLREF {
 		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
+	.loc ../contracts/validation/abstract/Validatable.tsol, 0
 }
 IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
+.loc ../contracts/validation/abstract/Validatable.tsol, 53
 DROP2
 BLKSWAP 2, 3
-.loc ../contracts/access/abstract/Ownable.sol, 69
+.loc ../contracts/access/abstract/Ownable.tsol, 69
 DROP
 CALLREF {
 	CALL $_setOwnerInternal_457a3840_internal_macro$
 }
-.loc ../contracts/reservation/abstract/Reservable.sol, 47
+.loc ../contracts/reservation/abstract/Reservable.tsol, 47
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -554,21 +554,21 @@ PUSHPOW2 7
 ADDCONST 2
 UFITS 8
 SENDRAWMSG
-.loc ../contracts/reservation/abstract/Reservable.sol, 0
+.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 DROP2
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 
 .globl	_setOwnerInternal_457a3840_internal
 .type	_setOwnerInternal_457a3840_internal, @function
 CALL $_setOwnerInternal_457a3840_internal_macro$
 
 .macro _setOwnerInternal_457a3840_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 76
+.loc ../contracts/access/abstract/Ownable.tsol, 76
 GETGLOB 10
-.loc ../contracts/access/abstract/Ownable.sol, 77
+.loc ../contracts/access/abstract/Ownable.tsol, 77
 OVER
 SETGLOB 10
-.loc ../contracts/access/abstract/Ownable.sol, 80
+.loc ../contracts/access/abstract/Ownable.tsol, 80
 SWAP
 PUSHSLICE xc0000000000000000000000001
 NEWC
@@ -585,25 +585,25 @@ STBREFR
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 
 .globl	_setOwnerSilent_9f3600cf_internal
 .type	_setOwnerSilent_9f3600cf_internal, @function
 CALL $_setOwnerSilent_9f3600cf_internal_macro$
 
 .macro _setOwnerSilent_9f3600cf_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 89
+.loc ../contracts/access/abstract/Ownable.tsol, 89
 SETGLOB 10
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 
 .globl	_getOwnerInternal_5441421e_internal
 .type	_getOwnerInternal_5441421e_internal, @function
 CALL $_getOwnerInternal_5441421e_internal_macro$
 
 .macro _getOwnerInternal_5441421e_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 96
+.loc ../contracts/access/abstract/Ownable.tsol, 96
 GETGLOB 10
-.loc ../contracts/access/abstract/Ownable.sol, 0
+.loc ../contracts/access/abstract/Ownable.tsol, 0
 
 .macro getTargetBalance
 DROP
@@ -614,14 +614,14 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/reservation/abstract/TargetBalance.sol, 21
+.loc ../contracts/reservation/abstract/TargetBalance.tsol, 21
 LDU 32
 GETGLOB 4
 ROT
 SETINDEXQ 5
 SETGLOB 4
 ENDS
-.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
+.loc ../contracts/reservation/abstract/TargetBalance.tsol, 0
 CALLREF {
 	CALL $getTargetBalance_eb175b7e_internal_macro$
 }
@@ -677,7 +677,7 @@ IFREF {
 THROW 0
 
 .macro getTargetBalance_eb175b7e_internal_macro
-.loc ../contracts/reservation/abstract/TargetBalance.sol, 32
+.loc ../contracts/reservation/abstract/TargetBalance.tsol, 32
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -689,7 +689,7 @@ SETGLOB 4
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
-.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
+.loc ../contracts/reservation/abstract/TargetBalance.tsol, 0
 
 .macro c4_to_c7
 PUSHROOT
@@ -880,7 +880,7 @@ THROW 60
 CALL $console_with_obj_log_41304fac_macro$
 
 .macro console_with_obj_log_41304fac_macro
-.loc ../node_modules/locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.tsol, 10
 DUP
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
@@ -891,14 +891,14 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../node_modules/locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.tsol, 0
 
 .globl	console_no_obj_log_41304fac
 .type	console_no_obj_log_41304fac, @function
 CALL $console_no_obj_log_41304fac_macro$
 
 .macro console_no_obj_log_41304fac_macro
-.loc ../node_modules/locklift/src/console.sol, 10
+.loc ../node_modules/locklift/src/console.tsol, 10
 PUSHREFSLICE {
 	.blob xc600fffffffffffffffffffffffffffffffffffffffffffffffffe2468acf13579bc0000000000000000000000000903f4294_
 }
@@ -908,14 +908,14 @@ STREF
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../node_modules/locklift/src/console.sol, 0
+.loc ../node_modules/locklift/src/console.tsol, 0
 
 .globl	Validation_with_obj_notEquals_44a2ba31
 .type	Validation_with_obj_notEquals_44a2ba31, @function
 CALL $Validation_with_obj_notEquals_44a2ba31_macro$
 
 .macro Validation_with_obj_notEquals_44a2ba31_macro
-.loc ../contracts/validation/libraries/Validation.sol, 15
+.loc ../contracts/validation/libraries/Validation.tsol, 15
 PUSHINT 2
 MAX
 PUSH S2
@@ -938,7 +938,7 @@ PUSHCONT {
 }
 IF
 THROWANYIFNOT
-.loc ../contracts/validation/libraries/Validation.sol, 0
+.loc ../contracts/validation/libraries/Validation.tsol, 0
 DROP
 
 .globl	Validation_no_obj_notEquals_44a2ba31
@@ -946,7 +946,7 @@ DROP
 CALL $Validation_no_obj_notEquals_44a2ba31_macro$
 
 .macro Validation_no_obj_notEquals_44a2ba31_macro
-.loc ../contracts/validation/libraries/Validation.sol, 15
+.loc ../contracts/validation/libraries/Validation.tsol, 15
 PUSHINT 2
 MAX
 PUSH S2
@@ -969,7 +969,7 @@ PUSHCONT {
 }
 IF
 THROWANYIFNOT
-.loc ../contracts/validation/libraries/Validation.sol, 0
+.loc ../contracts/validation/libraries/Validation.tsol, 0
 DROP2
 
 .macro public_function_selector
