@@ -4,6 +4,8 @@ pragma AbiHeader time;
 pragma AbiHeader expire;
 pragma AbiHeader pubkey;
 
+import "../../../contracts/access/abstract/Ownable.sol";
+
 import "../../../contracts/factory/abstract/Factory.sol";
 
 import "../../../contracts/libraries/UtilityErrors.sol";
@@ -11,13 +13,13 @@ import "../../../contracts/libraries/UtilityGas.sol";
 
 import "./FactoryInstance.sol";
 
-contract FactoryExample is Factory {
+contract FactoryExample is Factory, Ownable {
     uint32 private static _nonce;
 
     function _getTargetBalanceInternal()
         internal
         view
-        override
+        override (Factory, Ownable)
         returns (uint128)
     {
         return UtilityGas.INITIAL_BALANCE;

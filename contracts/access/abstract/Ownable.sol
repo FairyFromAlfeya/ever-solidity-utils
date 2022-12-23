@@ -59,6 +59,7 @@ abstract contract Ownable is
         optional(address) _remainingGasTo
     )
         external
+        virtual
         override
         reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
         onlyOwner

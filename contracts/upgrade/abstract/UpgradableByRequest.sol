@@ -61,6 +61,7 @@ abstract contract UpgradableByRequest is
     function requestUpgrade(optional(address) _remainingGasTo)
         external
         view
+        virtual
         override
         reserve(_getTargetBalanceInternal())
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)

@@ -1,9 +1,12 @@
 pragma ever-solidity >= 0.61.2;
 
-import "../../access/abstract/Ownable.sol";
-
 import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
+
+import "../../reservation/abstract/Reservable.sol";
+import "../../reservation/abstract/TargetBalance.sol";
+
+import "../../validation/abstract/Validatable.sol";
 
 import "../interfaces/IFactory.sol";
 
@@ -12,7 +15,9 @@ import "../interfaces/IFactory.sol";
 /// @notice Implements base functions for factory contract
 abstract contract Factory is
     IFactory,
-    Ownable
+    Reservable,
+    Validatable,
+    TargetBalance
 {
     /// @dev Code for the new instance
     TvmCell private _instanceCode;
@@ -85,9 +90,9 @@ abstract contract Factory is
         optional(address) _remainingGasTo
     )
         external
+        virtual
         override
         reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
-        onlyOwner
         validTvmCell(_newInstanceCode, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {

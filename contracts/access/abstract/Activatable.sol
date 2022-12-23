@@ -3,9 +3,12 @@ pragma ever-solidity >= 0.61.2;
 import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
 
-import "../interfaces/IActivatable.sol";
+import "../../reservation/abstract/Reservable.sol";
+import "../../reservation/abstract/TargetBalance.sol";
 
-import "./Ownable.sol";
+import "../../validation/abstract/Validatable.sol";
+
+import "../interfaces/IActivatable.sol";
 
 /// @author Alexander Kunekov
 /// @title Activatable
@@ -13,7 +16,9 @@ import "./Ownable.sol";
 /// @dev A contract is abstract - to be sure that it will be inherited by another contract
 abstract contract Activatable is
     IActivatable,
-    Ownable
+    Reservable,
+    Validatable,
+    TargetBalance
 {
     /// @dev Whether or not a contract is active
     bool private _isActive;
@@ -50,9 +55,9 @@ abstract contract Activatable is
         optional(address) _remainingGasTo
     )
         external
+        virtual
         override
         reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
-        onlyOwner
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
         _setActiveStatusInternal(_newActiveStatus);

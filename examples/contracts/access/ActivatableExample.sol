@@ -7,17 +7,18 @@ pragma AbiHeader pubkey;
 import "locklift/src/console.sol";
 
 import "../../../contracts/access/abstract/Activatable.sol";
+import "../../../contracts/access/abstract/Ownable.sol";
 
 import "../../../contracts/libraries/UtilityErrors.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
-contract ActivatableExample is Activatable {
+contract ActivatableExample is Activatable, Ownable {
     uint32 private static _nonce;
 
     function _getTargetBalanceInternal()
         internal
         view
-        override
+        override (Activatable, Ownable)
         returns (uint128)
     {
         return UtilityGas.INITIAL_BALANCE;

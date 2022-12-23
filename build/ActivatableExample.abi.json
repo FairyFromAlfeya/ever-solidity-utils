@@ -21,24 +21,6 @@
 			]
 		},
 		{
-			"name": "getActiveStatus",
-			"inputs": [
-				{"name":"answerId","type":"uint32"}
-			],
-			"outputs": [
-				{"name":"value0","type":"bool"}
-			]
-		},
-		{
-			"name": "setActiveStatus",
-			"inputs": [
-				{"name":"_newActiveStatus","type":"bool"},
-				{"name":"_remainingGasTo","type":"optional(address)"}
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "getOwner",
 			"inputs": [
 				{"name":"answerId","type":"uint32"}
@@ -51,6 +33,24 @@
 			"name": "setOwner",
 			"inputs": [
 				{"name":"_newOwner","type":"address"},
+				{"name":"_remainingGasTo","type":"optional(address)"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getActiveStatus",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"bool"}
+			]
+		},
+		{
+			"name": "setActiveStatus",
+			"inputs": [
+				{"name":"_newActiveStatus","type":"bool"},
 				{"name":"_remainingGasTo","type":"optional(address)"}
 			],
 			"outputs": [
@@ -93,8 +93,8 @@
 		{"name":"_pubkey","type":"uint256"},
 		{"name":"_timestamp","type":"uint64"},
 		{"name":"_constructorFlag","type":"bool"},
-		{"name":"_owner","type":"address"},
 		{"name":"_isActive","type":"bool"},
+		{"name":"_owner","type":"address"},
 		{"name":"_nonce","type":"uint32"}
 	]
 }

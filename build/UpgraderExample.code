@@ -117,7 +117,7 @@ IFNOT
 .loc ../contracts/validation/abstract/Validatable.sol, 53
 DROP2
 BLKSWAP 2, 3
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 36
+.loc ../examples/contracts/upgrade/UpgraderExample.sol, 38
 DROP
 DUP
 ISNULL
@@ -130,7 +130,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 38
+.loc ../examples/contracts/upgrade/UpgraderExample.sol, 40
 CALLREF {
 	CALL $_setOwnerInternal_457a3840_internal_macro$
 }
@@ -159,7 +159,7 @@ THROW 0
 CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 
 .macro _getTargetBalanceInternal_141d6ea7_internal_macro
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 25
+.loc ../examples/contracts/upgrade/UpgraderExample.sol, 27
 PUSHINT 1000000000
 .loc ../examples/contracts/upgrade/UpgraderExample.sol, 0
 
@@ -167,7 +167,7 @@ PUSHINT 1000000000
 DROP
 GETGLOB 6
 THROWIFNOT 76
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 41
+.loc ../examples/contracts/upgrade/UpgraderExample.sol, 43
 LDU 32
 GETGLOB 4
 ROT
@@ -231,7 +231,7 @@ IFREF {
 THROW 0
 
 .macro getDeployParams_39b100ed_internal_macro
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 51
+.loc ../examples/contracts/upgrade/UpgraderExample.sol, 53
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -254,7 +254,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 54
+.loc ../examples/contracts/upgrade/UpgraderExample.sol, 56
 OVER
 PUSHCONT {
 	LDREF
@@ -291,7 +291,7 @@ CALLREF {
 THROW 0
 
 .macro deploy_7dff91bf_internal_macro
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 54
+.loc ../examples/contracts/upgrade/UpgraderExample.sol, 56
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
@@ -361,7 +361,7 @@ IFNOT
 .loc ../contracts/validation/abstract/Validatable.sol, 53
 DROP2
 BLKSWAP 2, 3
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 64
+.loc ../examples/contracts/upgrade/UpgraderExample.sol, 66
 PUSHINT 0
 NEWC
 STU 256
@@ -396,7 +396,7 @@ STOPTREF
 STOPTREF
 STZERO
 ENDC
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 74
+.loc ../examples/contracts/upgrade/UpgraderExample.sol, 76
 OVER
 ISNULL
 PUSHCONT {
@@ -455,7 +455,7 @@ STBREFR
 ENDC
 PUSHINT 1
 SENDRAWMSG
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 81
+.loc ../examples/contracts/upgrade/UpgraderExample.sol, 83
 GETGLOB 9
 CALLREF {
 	CALL $_getInstanceVersionInternal_35a04637_internal_macro$
@@ -500,7 +500,7 @@ DROP2
 CALL $_getInstanceAddressInternal_80feb59a_internal_macro$
 
 .macro _getInstanceAddressInternal_80feb59a_internal_macro
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 95
+.loc ../examples/contracts/upgrade/UpgraderExample.sol, 97
 PUSHINT 0
 NEWC
 STU 256
@@ -548,7 +548,7 @@ CTOS
 CALL $_getParamsForUpgradeInternal_92309f6c_internal_macro$
 
 .macro _getParamsForUpgradeInternal_92309f6c_internal_macro
-.loc ../examples/contracts/upgrade/UpgraderExample.sol, 116
+.loc ../examples/contracts/upgrade/UpgraderExample.sol, 118
 CALLREF {
 	CALL $_getInstanceVersionInternal_35a04637_internal_macro$
 }
@@ -556,619 +556,6 @@ CALLREF {
 	CALL $_getInstanceCodeInternal_ce467bc1_internal_macro$
 }
 .loc ../examples/contracts/upgrade/UpgraderExample.sol, 0
-
-.macro provideUpgrade
-DROP
-GETGLOB 6
-THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 31
-OVER
-PUSHCONT {
-	LDU 32
-	LDREF
-	LDREF
-	ENDS
-	CTOS
-}
-PUSHCONT {
-	LDU 32
-	LDREF
-}
-IFELSE
-LDMSGADDR
-ENDS
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 0
-CALLREF {
-	CALL $provideUpgrade_24e6a93f_internal_macro$
-}
-IFREF {
-	CALL $upd_only_time_in_c4$
-}
-THROW 0
-
-.macro provideUpgrade_24e6a93f_internal_macro
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 31
-CALLREF {
-	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
-}
-.loc ../contracts/reservation/abstract/Reservable.sol, 13
-PUSHINT 0
-RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 14
-OVER
-.loc ../contracts/validation/abstract/Validatable.sol, 32
-PUSHINT 1009
-CALLREF {
-	CALL $Validation_no_obj_notEmpty_f0710f53_macro$
-}
-.loc ../contracts/validation/abstract/Validatable.sol, 36
-DUP
-.loc ../contracts/validation/abstract/Validatable.sol, 17
-MYADDR
-PUSHINT 1002
-CALLREF {
-	CALL $Validation_no_obj_notEquals_44a2ba31_macro$
-}
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 43
-SWAP
-CALLREF {
-	CALL $_getInstanceAddressInternal_80feb59a_internal_macro$
-}
-GETGLOB 9
-SDEQ
-THROWIFNOT 1008
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 48
-CALLREF {
-	CALL $_getParamsForUpgradeInternal_92309f6c_internal_macro$
-}
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 51
-ROLL 3
-PUSH S2
-NEQ
-PUSHCONT {
-	.loc ../contracts/upgrade/abstract/Upgrader.sol, 52
-	PUSH3 S2, S0, S1
-	GETGLOB 9
-	FALSE
-	NEWC
-	STSLICECONST x6_
-	STI 1
-	STSLICECONST x1_
-	STSLICE
-	PUSHINT 1
-	STUR 111
-	ROLLREV 3
-	NEWC
-	STSLICECONST x18d18a10
-	STU 32
-	STREF
-	STSLICE
-	STBREFR
-	ENDC
-	PUSHPOW2 7
-}
-PUSHCONT {
-	.loc ../contracts/upgrade/abstract/Upgrader.sol, 63
-	PUSH S2
-	NEWC
-	STSLICECONST x42_
-	STSLICE
-	PUSHINT 111
-	STZEROES
-	ENDC
-	PUSHPOW2 7
-	ADDCONST 2
-	UFITS 8
-}
-IFELSE
-SENDRAWMSG
-.loc ../contracts/upgrade/abstract/Upgrader.sol, 0
-BLKDROP 3
-
-.macro getInstanceCode
-DROP
-GETGLOB 6
-THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../contracts/factory/abstract/Factory.sol, 40
-LDU 32
-GETGLOB 4
-ROT
-SETINDEXQ 5
-SETGLOB 4
-ENDS
-.loc ../contracts/factory/abstract/Factory.sol, 0
-CALLREF {
-	CALL $getInstanceCode_d0375d13_internal_macro$
-}
-OVER
-PUSHCONT {
-	PUSH S3
-	CTOS
-	LDU 2
-	LDMSGADDR
-	DROP
-	NIP
-	NEWC
-	STSLICECONST xc
-	STSLICE
-	PUSHINT 3224025513
-	STUR 130
-	STREF
-	ENDC
-	PUSHINT 0
-}
-PUSHCONT {
-	GETGLOB 4
-	DUP
-	INDEX 3
-	OVER
-	THIRD
-	GETGLOB 9
-	ROLL 3
-	SECOND
-	NEWC
-	STSLICECONST x2_
-	STI 1
-	STSLICECONST x1_
-	STSLICE
-	SWAP
-	STGRAMS
-	STDICT
-	PUSHINT 106
-	STZEROES
-	GETGLOB 4
-	INDEX 5
-	STUR 32
-	STREF
-	ENDC
-	GETGLOB 4
-	INDEX 4
-}
-IFELSE
-SENDRAWMSG
-IFREF {
-	CALL $upd_only_time_in_c4$
-}
-THROW 0
-
-.macro getInstanceCode_d0375d13_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 51
-GETGLOB 4
-PUSHINT 0
-SETINDEXQ 2
-PUSHINT 64
-SETINDEXQ 4
-FALSE
-SETINDEXQ 1
-SETGLOB 4
-GETGLOB 11
-.loc ../contracts/factory/abstract/Factory.sol, 0
-
-.macro getInstanceVersion
-DROP
-GETGLOB 6
-THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../contracts/factory/abstract/Factory.sol, 54
-LDU 32
-GETGLOB 4
-ROT
-SETINDEXQ 5
-SETGLOB 4
-ENDS
-.loc ../contracts/factory/abstract/Factory.sol, 0
-CALLREF {
-	CALL $getInstanceVersion_157dddf4_internal_macro$
-}
-OVER
-PUSHCONT {
-	PUSH S3
-	CTOS
-	LDU 2
-	LDMSGADDR
-	DROP
-	NIP
-	NEWC
-	STSLICECONST xc
-	STSLICE
-	PUSHINT 2696033225
-	STUR 130
-	STU 32
-	ENDC
-	PUSHINT 0
-}
-PUSHCONT {
-	GETGLOB 4
-	DUP
-	INDEX 3
-	OVER
-	THIRD
-	GETGLOB 9
-	ROLL 3
-	SECOND
-	NEWC
-	STSLICECONST x2_
-	STI 1
-	STSLICECONST x1_
-	STSLICE
-	SWAP
-	STGRAMS
-	STDICT
-	PUSHINT 106
-	STZEROES
-	GETGLOB 4
-	INDEX 5
-	STUR 32
-	STU 32
-	ENDC
-	GETGLOB 4
-	INDEX 4
-}
-IFELSE
-SENDRAWMSG
-IFREF {
-	CALL $upd_only_time_in_c4$
-}
-THROW 0
-
-.macro getInstanceVersion_157dddf4_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 65
-GETGLOB 4
-PUSHINT 0
-SETINDEXQ 2
-PUSHINT 64
-SETINDEXQ 4
-FALSE
-SETINDEXQ 1
-SETGLOB 4
-GETGLOB 12
-.loc ../contracts/factory/abstract/Factory.sol, 0
-
-.macro getInstanceAddress
-DROP
-GETGLOB 6
-THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../contracts/factory/abstract/Factory.sol, 68
-LDU 32
-GETGLOB 4
-ROT
-SETINDEXQ 5
-SETGLOB 4
-LDREF
-ENDS
-.loc ../contracts/factory/abstract/Factory.sol, 0
-CALLREF {
-	CALL $getInstanceAddress_4c5dee3b_internal_macro$
-}
-OVER
-PUSHCONT {
-	PUSH S3
-	CTOS
-	LDU 2
-	LDMSGADDR
-	DROP
-	NIP
-	NEWC
-	STSLICECONST xc
-	STSLICE
-	PUSHINT 1
-	STUR 98
-	SWAP
-	NEWC
-	STSLICECONST xf0644155
-	STSLICE
-	STBREFR
-	ENDC
-	PUSHINT 0
-}
-PUSHCONT {
-	GETGLOB 4
-	DUP
-	INDEX 3
-	OVER
-	THIRD
-	GETGLOB 9
-	ROLL 3
-	SECOND
-	NEWC
-	STSLICECONST x2_
-	STI 1
-	STSLICECONST x1_
-	STSLICE
-	SWAP
-	STGRAMS
-	STDICT
-	PUSHINT 1
-	STUR 106
-	SWAP
-	NEWC
-	GETGLOB 4
-	INDEX 5
-	STUR 32
-	STSLICE
-	STBREFR
-	ENDC
-	GETGLOB 4
-	INDEX 4
-}
-IFELSE
-SENDRAWMSG
-IFREF {
-	CALL $upd_only_time_in_c4$
-}
-THROW 0
-
-.macro getInstanceAddress_4c5dee3b_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 79
-GETGLOB 4
-PUSHINT 0
-SETINDEXQ 2
-PUSHINT 64
-SETINDEXQ 4
-FALSE
-SETINDEXQ 1
-SETGLOB 4
-CALLREF {
-	CALL $_getInstanceAddressInternal_80feb59a_internal_macro$
-}
-.loc ../contracts/factory/abstract/Factory.sol, 0
-
-.macro setInstanceCode
-DROP
-GETGLOB 6
-THROWIFNOT 76
-GETGLOB 2
-ISNULL
-IFREF {
-	CALL $c4_to_c7$
-}
-.loc ../contracts/factory/abstract/Factory.sol, 82
-OVER
-PUSHCONT {
-	LDREF
-	LDI 1
-	SWAP
-	NULLROTRIFNOT
-	PUSHCONT {
-		LDU 32
-	}
-	IF
-	LDREF
-	ENDS
-	CTOS
-	LDI 1
-	SWAP
-	NULLROTRIFNOT
-	PUSHCONT {
-		LDMSGADDR
-	}
-	IF
-}
-PUSHCONT {
-	LDREF
-	LDI 1
-	SWAP
-	NULLROTRIFNOT
-	PUSHCONT {
-		LDU 32
-	}
-	IF
-	LDI 1
-	SWAP
-	NULLROTRIFNOT
-	PUSHCONT {
-		LDMSGADDR
-	}
-	IF
-}
-IFELSE
-ENDS
-.loc ../contracts/factory/abstract/Factory.sol, 0
-CALLREF {
-	CALL $setInstanceCode_a84762ff_internal_macro$
-}
-CALLREF {
-	CALL $c7_to_c4$
-}
-THROW 0
-
-.macro setInstanceCode_a84762ff_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 82
-CALLREF {
-	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
-}
-OVER
-GETGLOB 9
-.loc ../contracts/reservation/abstract/Reservable.sol, 34
-ROT
-PUSHINT 0
-RAWRESERVE
-.loc ../contracts/reservation/abstract/Reservable.sol, 37
-OVER
-ISNULL
-PUSHCONT {
-	PUSHREFSLICE {
-		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
-	}
-}
-PUSHCONT {
-	PUSH2 S1, S1
-	ISNULL
-	THROWIF 63
-}
-IFELSE
-.loc ../contracts/reservation/abstract/Reservable.sol, 40
-DUP
-PARSEMSGADDR
-INDEX 3
-PLDU 256
-EQINT 0
-OVER
-MYADDR
-SDEQ
-OR
-PUSHCONT {
-	.loc ../contracts/reservation/abstract/Reservable.sol, 41
-	OVER
-	NIP
-	.loc ../contracts/reservation/abstract/Reservable.sol, 0
-}
-IF
-.loc ../contracts/access/abstract/Ownable.sol, 35
-GETGLOB 10
-PARSEMSGADDR
-INDEX 3
-PLDU 256
-NEQINT 0
-GETGLOB 9
-GETGLOB 10
-SDEQ
-AND
-THROWIFNOT 1000
-.loc ../contracts/access/abstract/Ownable.sol, 40
-PUSH S5
-.loc ../contracts/validation/abstract/Validatable.sol, 32
-PUSHINT 1004
-CALLREF {
-	CALL $Validation_no_obj_notEmpty_f0710f53_macro$
-}
-.loc ../contracts/validation/abstract/Validatable.sol, 36
-PUSH S3
-PUSHINT 1002
-.loc ../contracts/validation/abstract/Validatable.sol, 46
-OVER
-ISNULL
-PUSHCONT {
-	.loc ../contracts/validation/abstract/Validatable.sol, 47
-	PUSH2 S1, S1
-	ISNULL
-	THROWIF 63
-	MYADDR
-	PUSH S2
-	CALLREF {
-		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
-	}
-	.loc ../contracts/validation/abstract/Validatable.sol, 0
-}
-IFNOT
-.loc ../contracts/validation/abstract/Validatable.sol, 53
-DROP2
-BLKSWAP 3, 3
-.loc ../contracts/factory/abstract/Factory.sol, 94
-DROP
-CALLREF {
-	CALL $_setInstanceCodeInternal_6b0b215f_internal_macro$
-}
-.loc ../contracts/reservation/abstract/Reservable.sol, 47
-NEWC
-STSLICECONST x42_
-STSLICE
-PUSHINT 111
-STZEROES
-ENDC
-PUSHPOW2 7
-ADDCONST 2
-UFITS 8
-SENDRAWMSG
-.loc ../contracts/reservation/abstract/Reservable.sol, 0
-DROP2
-.loc ../contracts/factory/abstract/Factory.sol, 0
-
-.globl	_setInstanceCodeInternal_6b0b215f_internal
-.type	_setInstanceCodeInternal_6b0b215f_internal, @function
-CALL $_setInstanceCodeInternal_6b0b215f_internal_macro$
-
-.macro _setInstanceCodeInternal_6b0b215f_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 109
-SWAP
-SETGLOB 11
-.loc ../contracts/factory/abstract/Factory.sol, 111
-DUP
-ISNULL
-PUSHCONT {
-	.loc ../contracts/factory/abstract/Factory.sol, 114
-	GETGLOB 12
-	INC
-	UFITS 32
-}
-PUSHCONT {
-	.loc ../contracts/factory/abstract/Factory.sol, 112
-	BLKPUSH 2, 0
-	ISNULL
-	THROWIF 63
-}
-IFELSE
-SETGLOB 12
-.loc ../contracts/factory/abstract/Factory.sol, 118
-DROP
-GETGLOB 12
-DEC
-UFITS 32
-GETGLOB 12
-PUSHSLICE xc00000000000000000000000006829acb3
-NEWC
-STSLICE
-STU 32
-STU 32
-ENDC
-PUSHINT 0
-SENDRAWMSG
-.loc ../contracts/factory/abstract/Factory.sol, 0
-
-.globl	_setInstanceCodeSilent_ed313942_internal
-.type	_setInstanceCodeSilent_ed313942_internal, @function
-CALL $_setInstanceCodeSilent_ed313942_internal_macro$
-
-.macro _setInstanceCodeSilent_ed313942_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 127
-SETGLOB 11
-.loc ../contracts/factory/abstract/Factory.sol, 0
-
-.globl	_setInstanceVersionSilent_94681db1_internal
-.type	_setInstanceVersionSilent_94681db1_internal, @function
-CALL $_setInstanceVersionSilent_94681db1_internal_macro$
-
-.macro _setInstanceVersionSilent_94681db1_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 133
-SETGLOB 12
-.loc ../contracts/factory/abstract/Factory.sol, 0
-
-.globl	_getInstanceCodeInternal_ce467bc1_internal
-.type	_getInstanceCodeInternal_ce467bc1_internal, @function
-CALL $_getInstanceCodeInternal_ce467bc1_internal_macro$
-
-.macro _getInstanceCodeInternal_ce467bc1_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 140
-GETGLOB 11
-.loc ../contracts/factory/abstract/Factory.sol, 0
-
-.globl	_getInstanceVersionInternal_35a04637_internal
-.type	_getInstanceVersionInternal_35a04637_internal, @function
-CALL $_getInstanceVersionInternal_35a04637_internal_macro$
-
-.macro _getInstanceVersionInternal_35a04637_internal_macro
-.loc ../contracts/factory/abstract/Factory.sol, 147
-GETGLOB 12
-.loc ../contracts/factory/abstract/Factory.sol, 0
 
 .macro getOwner
 DROP
@@ -1258,7 +645,7 @@ SETINDEXQ 4
 FALSE
 SETINDEXQ 1
 SETGLOB 4
-GETGLOB 10
+GETGLOB 12
 .loc ../contracts/access/abstract/Ownable.sol, 0
 
 .macro setOwner
@@ -1355,13 +742,13 @@ PUSHCONT {
 }
 IF
 .loc ../contracts/access/abstract/Ownable.sol, 35
-GETGLOB 10
+GETGLOB 12
 PARSEMSGADDR
 INDEX 3
 PLDU 256
 NEQINT 0
 GETGLOB 9
-GETGLOB 10
+GETGLOB 12
 SDEQ
 AND
 THROWIFNOT 1000
@@ -1395,7 +782,7 @@ IFNOT
 .loc ../contracts/validation/abstract/Validatable.sol, 53
 DROP2
 BLKSWAP 2, 3
-.loc ../contracts/access/abstract/Ownable.sol, 68
+.loc ../contracts/access/abstract/Ownable.sol, 69
 DROP
 CALLREF {
 	CALL $_setOwnerInternal_457a3840_internal_macro$
@@ -1420,12 +807,12 @@ DROP2
 CALL $_setOwnerInternal_457a3840_internal_macro$
 
 .macro _setOwnerInternal_457a3840_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 75
-GETGLOB 10
 .loc ../contracts/access/abstract/Ownable.sol, 76
+GETGLOB 12
+.loc ../contracts/access/abstract/Ownable.sol, 77
 OVER
-SETGLOB 10
-.loc ../contracts/access/abstract/Ownable.sol, 79
+SETGLOB 12
+.loc ../contracts/access/abstract/Ownable.sol, 80
 SWAP
 PUSHSLICE xc0000000000000000000000001
 NEWC
@@ -1449,8 +836,8 @@ SENDRAWMSG
 CALL $_setOwnerSilent_9f3600cf_internal_macro$
 
 .macro _setOwnerSilent_9f3600cf_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 88
-SETGLOB 10
+.loc ../contracts/access/abstract/Ownable.sol, 89
+SETGLOB 12
 .loc ../contracts/access/abstract/Ownable.sol, 0
 
 .globl	_getOwnerInternal_5441421e_internal
@@ -1458,9 +845,611 @@ SETGLOB 10
 CALL $_getOwnerInternal_5441421e_internal_macro$
 
 .macro _getOwnerInternal_5441421e_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 95
-GETGLOB 10
+.loc ../contracts/access/abstract/Ownable.sol, 96
+GETGLOB 12
 .loc ../contracts/access/abstract/Ownable.sol, 0
+
+.macro provideUpgrade
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/upgrade/abstract/Upgrader.sol, 31
+OVER
+PUSHCONT {
+	LDU 32
+	LDREF
+	LDREF
+	ENDS
+	CTOS
+}
+PUSHCONT {
+	LDU 32
+	LDREF
+}
+IFELSE
+LDMSGADDR
+ENDS
+.loc ../contracts/upgrade/abstract/Upgrader.sol, 0
+CALLREF {
+	CALL $provideUpgrade_24e6a93f_internal_macro$
+}
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro provideUpgrade_24e6a93f_internal_macro
+.loc ../contracts/upgrade/abstract/Upgrader.sol, 31
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+.loc ../contracts/reservation/abstract/Reservable.sol, 13
+PUSHINT 0
+RAWRESERVE
+.loc ../contracts/reservation/abstract/Reservable.sol, 14
+OVER
+.loc ../contracts/validation/abstract/Validatable.sol, 32
+PUSHINT 1009
+CALLREF {
+	CALL $Validation_no_obj_notEmpty_f0710f53_macro$
+}
+.loc ../contracts/validation/abstract/Validatable.sol, 36
+DUP
+.loc ../contracts/validation/abstract/Validatable.sol, 17
+MYADDR
+PUSHINT 1002
+CALLREF {
+	CALL $Validation_no_obj_notEquals_44a2ba31_macro$
+}
+.loc ../contracts/upgrade/abstract/Upgrader.sol, 44
+SWAP
+CALLREF {
+	CALL $_getInstanceAddressInternal_80feb59a_internal_macro$
+}
+GETGLOB 9
+SDEQ
+THROWIFNOT 1008
+.loc ../contracts/upgrade/abstract/Upgrader.sol, 49
+CALLREF {
+	CALL $_getParamsForUpgradeInternal_92309f6c_internal_macro$
+}
+.loc ../contracts/upgrade/abstract/Upgrader.sol, 52
+ROLL 3
+PUSH S2
+NEQ
+PUSHCONT {
+	.loc ../contracts/upgrade/abstract/Upgrader.sol, 53
+	PUSH3 S2, S0, S1
+	GETGLOB 9
+	FALSE
+	NEWC
+	STSLICECONST x6_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	PUSHINT 1
+	STUR 111
+	ROLLREV 3
+	NEWC
+	STSLICECONST x18d18a10
+	STU 32
+	STREF
+	STSLICE
+	STBREFR
+	ENDC
+	PUSHPOW2 7
+}
+PUSHCONT {
+	.loc ../contracts/upgrade/abstract/Upgrader.sol, 64
+	PUSH S2
+	NEWC
+	STSLICECONST x42_
+	STSLICE
+	PUSHINT 111
+	STZEROES
+	ENDC
+	PUSHPOW2 7
+	ADDCONST 2
+	UFITS 8
+}
+IFELSE
+SENDRAWMSG
+.loc ../contracts/upgrade/abstract/Upgrader.sol, 0
+BLKDROP 3
+
+.macro getInstanceCode
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/factory/abstract/Factory.sol, 45
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+ENDS
+.loc ../contracts/factory/abstract/Factory.sol, 0
+CALLREF {
+	CALL $getInstanceCode_d0375d13_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 3224025513
+	STUR 130
+	STREF
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 106
+	STZEROES
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STREF
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro getInstanceCode_d0375d13_internal_macro
+.loc ../contracts/factory/abstract/Factory.sol, 56
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+GETGLOB 10
+.loc ../contracts/factory/abstract/Factory.sol, 0
+
+.macro getInstanceVersion
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/factory/abstract/Factory.sol, 59
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+ENDS
+.loc ../contracts/factory/abstract/Factory.sol, 0
+CALLREF {
+	CALL $getInstanceVersion_157dddf4_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 2696033225
+	STUR 130
+	STU 32
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 106
+	STZEROES
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STU 32
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro getInstanceVersion_157dddf4_internal_macro
+.loc ../contracts/factory/abstract/Factory.sol, 70
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+GETGLOB 11
+.loc ../contracts/factory/abstract/Factory.sol, 0
+
+.macro getInstanceAddress
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/factory/abstract/Factory.sol, 73
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+LDREF
+ENDS
+.loc ../contracts/factory/abstract/Factory.sol, 0
+CALLREF {
+	CALL $getInstanceAddress_4c5dee3b_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 1
+	STUR 98
+	SWAP
+	NEWC
+	STSLICECONST xf0644155
+	STSLICE
+	STBREFR
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 1
+	STUR 106
+	SWAP
+	NEWC
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STSLICE
+	STBREFR
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro getInstanceAddress_4c5dee3b_internal_macro
+.loc ../contracts/factory/abstract/Factory.sol, 84
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+CALLREF {
+	CALL $_getInstanceAddressInternal_80feb59a_internal_macro$
+}
+.loc ../contracts/factory/abstract/Factory.sol, 0
+
+.macro setInstanceCode
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/factory/abstract/Factory.sol, 87
+OVER
+PUSHCONT {
+	LDREF
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDU 32
+	}
+	IF
+	LDREF
+	ENDS
+	CTOS
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+PUSHCONT {
+	LDREF
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDU 32
+	}
+	IF
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDMSGADDR
+	}
+	IF
+}
+IFELSE
+ENDS
+.loc ../contracts/factory/abstract/Factory.sol, 0
+CALLREF {
+	CALL $setInstanceCode_a84762ff_internal_macro$
+}
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro setInstanceCode_a84762ff_internal_macro
+.loc ../contracts/factory/abstract/Factory.sol, 87
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+OVER
+GETGLOB 9
+.loc ../contracts/reservation/abstract/Reservable.sol, 34
+ROT
+PUSHINT 0
+RAWRESERVE
+.loc ../contracts/reservation/abstract/Reservable.sol, 37
+OVER
+ISNULL
+PUSHCONT {
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+PUSHCONT {
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+.loc ../contracts/reservation/abstract/Reservable.sol, 40
+DUP
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+EQINT 0
+OVER
+MYADDR
+SDEQ
+OR
+PUSHCONT {
+	.loc ../contracts/reservation/abstract/Reservable.sol, 41
+	OVER
+	NIP
+	.loc ../contracts/reservation/abstract/Reservable.sol, 0
+}
+IF
+.loc ../contracts/reservation/abstract/Reservable.sol, 44
+PUSH S5
+.loc ../contracts/validation/abstract/Validatable.sol, 32
+PUSHINT 1004
+CALLREF {
+	CALL $Validation_no_obj_notEmpty_f0710f53_macro$
+}
+.loc ../contracts/validation/abstract/Validatable.sol, 36
+PUSH S3
+PUSHINT 1002
+.loc ../contracts/validation/abstract/Validatable.sol, 46
+OVER
+ISNULL
+PUSHCONT {
+	.loc ../contracts/validation/abstract/Validatable.sol, 47
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+	MYADDR
+	PUSH S2
+	CALLREF {
+		CALL $Validation_no_obj_notEquals_44a2ba31_macro$
+	}
+	.loc ../contracts/validation/abstract/Validatable.sol, 0
+}
+IFNOT
+.loc ../contracts/validation/abstract/Validatable.sol, 53
+DROP2
+BLKSWAP 3, 3
+.loc ../contracts/factory/abstract/Factory.sol, 99
+DROP
+CALLREF {
+	CALL $_setInstanceCodeInternal_6b0b215f_internal_macro$
+}
+.loc ../contracts/reservation/abstract/Reservable.sol, 47
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 111
+STZEROES
+ENDC
+PUSHPOW2 7
+ADDCONST 2
+UFITS 8
+SENDRAWMSG
+.loc ../contracts/reservation/abstract/Reservable.sol, 0
+DROP2
+.loc ../contracts/factory/abstract/Factory.sol, 0
+
+.globl	_setInstanceCodeInternal_6b0b215f_internal
+.type	_setInstanceCodeInternal_6b0b215f_internal, @function
+CALL $_setInstanceCodeInternal_6b0b215f_internal_macro$
+
+.macro _setInstanceCodeInternal_6b0b215f_internal_macro
+.loc ../contracts/factory/abstract/Factory.sol, 114
+SWAP
+SETGLOB 10
+.loc ../contracts/factory/abstract/Factory.sol, 116
+DUP
+ISNULL
+PUSHCONT {
+	.loc ../contracts/factory/abstract/Factory.sol, 119
+	GETGLOB 11
+	INC
+	UFITS 32
+}
+PUSHCONT {
+	.loc ../contracts/factory/abstract/Factory.sol, 117
+	BLKPUSH 2, 0
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+SETGLOB 11
+.loc ../contracts/factory/abstract/Factory.sol, 123
+DROP
+GETGLOB 11
+DEC
+UFITS 32
+GETGLOB 11
+PUSHSLICE xc00000000000000000000000006829acb3
+NEWC
+STSLICE
+STU 32
+STU 32
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../contracts/factory/abstract/Factory.sol, 0
+
+.globl	_setInstanceCodeSilent_ed313942_internal
+.type	_setInstanceCodeSilent_ed313942_internal, @function
+CALL $_setInstanceCodeSilent_ed313942_internal_macro$
+
+.macro _setInstanceCodeSilent_ed313942_internal_macro
+.loc ../contracts/factory/abstract/Factory.sol, 132
+SETGLOB 10
+.loc ../contracts/factory/abstract/Factory.sol, 0
+
+.globl	_setInstanceVersionSilent_94681db1_internal
+.type	_setInstanceVersionSilent_94681db1_internal, @function
+CALL $_setInstanceVersionSilent_94681db1_internal_macro$
+
+.macro _setInstanceVersionSilent_94681db1_internal_macro
+.loc ../contracts/factory/abstract/Factory.sol, 138
+SETGLOB 11
+.loc ../contracts/factory/abstract/Factory.sol, 0
+
+.globl	_getInstanceCodeInternal_ce467bc1_internal
+.type	_getInstanceCodeInternal_ce467bc1_internal, @function
+CALL $_getInstanceCodeInternal_ce467bc1_internal_macro$
+
+.macro _getInstanceCodeInternal_ce467bc1_internal_macro
+.loc ../contracts/factory/abstract/Factory.sol, 145
+GETGLOB 10
+.loc ../contracts/factory/abstract/Factory.sol, 0
+
+.globl	_getInstanceVersionInternal_35a04637_internal
+.type	_getInstanceVersionInternal_35a04637_internal, @function
+CALL $_getInstanceVersionInternal_35a04637_internal_macro$
+
+.macro _getInstanceVersionInternal_35a04637_internal_macro
+.loc ../contracts/factory/abstract/Factory.sol, 152
+GETGLOB 11
+.loc ../contracts/factory/abstract/Factory.sol, 0
 
 .macro getTargetBalance
 DROP
@@ -1555,9 +1544,9 @@ LDU 256 ; pubkey c4
 LDU 64 ; pubkey timestamp c4
 LDU 1 ; ctor flag
 NIP
-LDMSGADDR
 LDREF
 LDU 32
+LDMSGADDR
 LDU 32
 ENDS
 SETGLOB 13
@@ -1577,12 +1566,12 @@ PUSHCONT {
 	PUSHROOT
 	CTOS
 	PLDDICT ; D
-	PUSHREFSLICE {
-		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
-	}
 	PUSHREF {
 	}
 	PUSHINT 0
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
 	PUSHINT 1
 	PUSH S4
 	PUSHINT 64
@@ -1619,9 +1608,9 @@ NEWC
 STU 256
 STU 64
 STONE
-STSLICE
 STREF
 STU 32
+STSLICE
 STU 32
 ENDC
 POPROOT

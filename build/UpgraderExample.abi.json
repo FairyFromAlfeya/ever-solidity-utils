@@ -32,6 +32,24 @@
 			]
 		},
 		{
+			"name": "getOwner",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"address"}
+			]
+		},
+		{
+			"name": "setOwner",
+			"inputs": [
+				{"name":"_newOwner","type":"address"},
+				{"name":"_remainingGasTo","type":"optional(address)"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "provideUpgrade",
 			"inputs": [
 				{"name":"_instanceVersion","type":"uint32"},
@@ -74,24 +92,6 @@
 			"inputs": [
 				{"name":"_newInstanceCode","type":"cell"},
 				{"name":"_newInstanceVersion","type":"optional(uint32)"},
-				{"name":"_remainingGasTo","type":"optional(address)"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "getOwner",
-			"inputs": [
-				{"name":"answerId","type":"uint32"}
-			],
-			"outputs": [
-				{"name":"value0","type":"address"}
-			]
-		},
-		{
-			"name": "setOwner",
-			"inputs": [
-				{"name":"_newOwner","type":"address"},
 				{"name":"_remainingGasTo","type":"optional(address)"}
 			],
 			"outputs": [
@@ -145,9 +145,9 @@
 		{"name":"_pubkey","type":"uint256"},
 		{"name":"_timestamp","type":"uint64"},
 		{"name":"_constructorFlag","type":"bool"},
-		{"name":"_owner","type":"address"},
 		{"name":"_instanceCode","type":"cell"},
 		{"name":"_instanceVersion","type":"uint32"},
+		{"name":"_owner","type":"address"},
 		{"name":"_nonce","type":"uint32"}
 	]
 }

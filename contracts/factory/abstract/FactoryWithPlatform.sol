@@ -43,9 +43,9 @@ abstract contract FactoryWithPlatform is
         optional(address) _remainingGasTo
     )
         external
+        virtual
         override
         reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
-        onlyOwner
         validTvmCell(_newPlatformCode, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {

@@ -35,6 +35,7 @@ abstract contract Upgrader is
     )
         external
         view
+        virtual
         override
         reserve(_getTargetBalanceInternal())
         validTvmCell(_deployParams, UtilityErrors.INVALID_DEPLOY_PARAMS)

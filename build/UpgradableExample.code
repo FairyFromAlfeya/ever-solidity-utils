@@ -594,7 +594,7 @@ IFNOT
 .loc ../contracts/validation/abstract/Validatable.sol, 53
 DROP2
 BLKSWAP 2, 3
-.loc ../contracts/access/abstract/Ownable.sol, 68
+.loc ../contracts/access/abstract/Ownable.sol, 69
 DROP
 CALLREF {
 	CALL $_setOwnerInternal_457a3840_internal_macro$
@@ -619,12 +619,12 @@ DROP2
 CALL $_setOwnerInternal_457a3840_internal_macro$
 
 .macro _setOwnerInternal_457a3840_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 75
-GETGLOB 11
 .loc ../contracts/access/abstract/Ownable.sol, 76
+GETGLOB 11
+.loc ../contracts/access/abstract/Ownable.sol, 77
 OVER
 SETGLOB 11
-.loc ../contracts/access/abstract/Ownable.sol, 79
+.loc ../contracts/access/abstract/Ownable.sol, 80
 SWAP
 PUSHSLICE xc0000000000000000000000001
 NEWC
@@ -648,7 +648,7 @@ SENDRAWMSG
 CALL $_setOwnerSilent_9f3600cf_internal_macro$
 
 .macro _setOwnerSilent_9f3600cf_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 88
+.loc ../contracts/access/abstract/Ownable.sol, 89
 SETGLOB 11
 .loc ../contracts/access/abstract/Ownable.sol, 0
 
@@ -657,7 +657,7 @@ SETGLOB 11
 CALL $_getOwnerInternal_5441421e_internal_macro$
 
 .macro _getOwnerInternal_5441421e_internal_macro
-.loc ../contracts/access/abstract/Ownable.sol, 95
+.loc ../contracts/access/abstract/Ownable.sol, 96
 GETGLOB 11
 .loc ../contracts/access/abstract/Ownable.sol, 0
 
