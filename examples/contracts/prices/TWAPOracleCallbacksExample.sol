@@ -10,6 +10,7 @@ import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
+import "../../../contracts/reservation/abstract/TargetBalance.sol";
 
 import "../../../contracts/prices/oracle/interfaces/IOnObservationCallback.sol";
 import "../../../contracts/prices/oracle/interfaces/IOnRateCallback.sol";
@@ -18,14 +19,24 @@ import "../../../contracts/prices/oracle/interfaces/ITWAPOracle.sol";
 contract TWAPOracleCallbacksExample is
     IOnRateCallback,
     IOnObservationCallback,
-    Reservable
+    Reservable,
+    TargetBalance
 {
     uint32 private static _nonce;
     ITWAPOracle private static _oracle;
 
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
     constructor(optional(address) _remainingGasTo)
         public
-        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {}
 
     function onRateCallback(
@@ -37,7 +48,7 @@ contract TWAPOracleCallbacksExample is
         external
         override
         reserveAndRefund(
-            UtilityGas.INITIAL_BALANCE,
+            _getTargetBalanceInternal(),
             abi.decode(_payload, address),
             abi.decode(_payload, address)
         )
@@ -59,7 +70,7 @@ contract TWAPOracleCallbacksExample is
         external
         override
         reserveAndRefund(
-            UtilityGas.INITIAL_BALANCE,
+            _getTargetBalanceInternal(),
             abi.decode(_payload, address),
             abi.decode(_payload, address)
         )
@@ -79,7 +90,7 @@ contract TWAPOracleCallbacksExample is
     )
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
 
@@ -102,7 +113,7 @@ contract TWAPOracleCallbacksExample is
     )
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         address remainingGasTo = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
 

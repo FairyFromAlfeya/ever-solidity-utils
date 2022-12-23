@@ -14,6 +14,15 @@ import "../../../contracts/upgrade/abstract/UpgradableByRequest.sol";
 import "../factory/FactoryInstance.sol";
 
 contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override (FactoryInstance, UpgradableByRequest)
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
     constructor(address _remainingGasTo)
         public
         FactoryInstance(_remainingGasTo)
@@ -29,7 +38,7 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
         onlyUpgrader
         validTvmCell(_code, UtilityErrors.INVALID_CODE)
     {

@@ -9,18 +9,29 @@ import "locklift/src/console.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
+import "../../../contracts/reservation/abstract/TargetBalance.sol";
 
 import "../../../contracts/tip3/interfaces/IAcceptTokensTransferCallback.sol";
 import "../../../contracts/tip3/interfaces/ITokenRoot.sol";
 
 contract AcceptTokensTransferCallbackExample is
     IAcceptTokensTransferCallback,
-    Reservable
+    Reservable,
+    TargetBalance
 {
     uint32 private static _nonce;
 
     address private _wallet;
     address private _remainingGasRecipient;
+
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
 
     modifier onlyWallet() {
         require(_wallet.value != 0 && msg.sender == _wallet, 1234);
@@ -32,7 +43,7 @@ contract AcceptTokensTransferCallbackExample is
         optional(address) _remainingGasTo
     )
         public
-        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {
         _remainingGasRecipient = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
 
@@ -47,7 +58,7 @@ contract AcceptTokensTransferCallbackExample is
 
     function onWalletOf(address _walletAddress)
         external
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
     {
         _wallet = _walletAddress;
     }
@@ -62,7 +73,7 @@ contract AcceptTokensTransferCallbackExample is
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, _remainingGasTo)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, _remainingGasTo)
         onlyWallet
     {
         console.log(format("TokenRoot: {}", _tokenRoot));

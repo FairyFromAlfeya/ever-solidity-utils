@@ -10,27 +10,37 @@ import "../../../contracts/libraries/UtilityGas.sol";
 import "../../../contracts/libraries/UtilityFlag.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
+import "../../../contracts/reservation/abstract/TargetBalance.sol";
 
-contract ReservableExample is Reservable {
+contract ReservableExample is Reservable, TargetBalance {
     uint32 private static _nonce;
+
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
 
     constructor(optional(address) _remainingGasTo)
         public
-        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {}
 
     function reserveAndRefundGas(optional(address) _remainingGasTo)
         external
-        pure
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        view
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {
         console.log(format("Message gas: {}", msg.value));
     }
 
     function reserveGas(optional(address) _remainingGasTo)
         external
-        pure
-        reserve(UtilityGas.INITIAL_BALANCE)
+        view
+        reserve(_getTargetBalanceInternal())
     {
         console.log(format("Message gas: {}", msg.value));
 

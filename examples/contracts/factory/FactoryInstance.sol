@@ -9,14 +9,25 @@ import "locklift/src/console.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
+import "../../../contracts/reservation/abstract/TargetBalance.sol";
 
-contract FactoryInstance is Reservable {
+contract FactoryInstance is Reservable, TargetBalance {
     uint32 internal static _id;
     address internal static _factory;
 
+    function _getTargetBalanceInternal()
+        internal
+        view
+        virtual
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
     constructor(address _remainingGasTo)
         public
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, _remainingGasTo)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, _remainingGasTo)
     {}
 
     function onCodeUpgrade(TvmCell _data) private {
@@ -37,7 +48,7 @@ contract FactoryInstance is Reservable {
     function check(optional(address) _remainingGasTo)
         external
         view
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {
         console.log(format("Instance with ID: {}", _id));
     }

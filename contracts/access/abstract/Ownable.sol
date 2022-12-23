@@ -2,9 +2,9 @@ pragma ever-solidity >= 0.61.2;
 
 import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
-import "../../libraries/UtilityGas.sol";
 
 import "../../reservation/abstract/Reservable.sol";
+import "../../reservation/abstract/TargetBalance.sol";
 
 import "../../validation/abstract/Validatable.sol";
 
@@ -17,10 +17,18 @@ import "../interfaces/IOwnable.sol";
 abstract contract Ownable is
     IOwnable,
     Reservable,
-    Validatable
+    Validatable,
+    TargetBalance
 {
     /// @dev Current contract's owner
     address private _owner;
+
+    function _getTargetBalanceInternal()
+        internal
+        virtual
+        override
+        view
+        returns (uint128);
 
     /// @dev Only _owner can call function with this modifier
     modifier onlyOwner() {
@@ -52,7 +60,7 @@ abstract contract Ownable is
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
         onlyOwner
         validAddress(_newOwner, UtilityErrors.INVALID_NEW_OWNER)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)

@@ -10,6 +10,7 @@ import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
+import "../../../contracts/reservation/abstract/TargetBalance.sol";
 
 import "../../../contracts/prices/aggregator/interfaces/IPriceAggregatorInstance.sol";
 import "../../../contracts/prices/aggregator/interfaces/IOnCanceledPriceCallback.sol";
@@ -17,16 +18,26 @@ import "../../../contracts/prices/aggregator/interfaces/IOnSuccessPriceCallback.
 
 contract PriceAggregatorExample is
     IPriceAggregatorInstance,
-    Reservable
+    Reservable,
+    TargetBalance
 {
     uint32 private static _nonce;
 
     mapping(address => uint) private _prices;
     mapping(address => int16) private _scales;
 
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
     constructor(optional(address) _remainingGasTo)
         public
-        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {}
 
     function setPriceAndScale(
@@ -36,7 +47,7 @@ contract PriceAggregatorExample is
         optional(address) _remainingGasTo
     )
         external
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {
         _prices[_token] = _price;
         _scales[_token] = _scale;
@@ -50,7 +61,7 @@ contract PriceAggregatorExample is
     )
         external
         override
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         console.log(format("Remaining gas to: {}", _remainingGasTo));
 

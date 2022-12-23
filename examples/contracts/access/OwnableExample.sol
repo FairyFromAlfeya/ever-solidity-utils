@@ -14,12 +14,21 @@ import "../../../contracts/libraries/UtilityGas.sol";
 contract OwnableExample is Ownable {
     uint32 private static _nonce;
 
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
     constructor(
         optional(address) _initialOwner,
         optional(address) _remainingGasTo
     )
         public
-        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
         validAddressOrNull(_initialOwner, UtilityErrors.INVALID_NEW_OWNER)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
@@ -31,7 +40,7 @@ contract OwnableExample is Ownable {
     function check(optional(address) _remainingGasTo)
         external
         view
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
         onlyOwner
     {
         console.log(format("Caller is owner: {}", _nonce));

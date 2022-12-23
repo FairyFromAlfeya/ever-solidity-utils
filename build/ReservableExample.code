@@ -33,9 +33,13 @@ PUSHCONT {
 }
 IFELSE
 ENDS
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+SWAP
 GETGLOB 9
 .loc ../contracts/reservation/abstract/Reservable.sol, 63
-PUSHINT 1000000000
+ROT
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/reservation/abstract/Reservable.sol, 64
@@ -89,11 +93,25 @@ CALLREF {
 }
 THROW 0
 
+.globl	_getTargetBalanceInternal_141d6ea7_internal
+.type	_getTargetBalanceInternal_141d6ea7_internal, @function
+CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+
+.macro _getTargetBalanceInternal_141d6ea7_internal_macro
+.loc ../examples/contracts/reservation/ReservableExample.sol, 24
+PUSHINT 1000000000
+.loc ../examples/contracts/reservation/ReservableExample.sol, 0
+
 .macro reserveAndRefundGas
 DROP
 GETGLOB 6
 THROWIFNOT 76
-.loc ../examples/contracts/reservation/ReservableExample.sol, 22
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/reservation/ReservableExample.sol, 32
 OVER
 PUSHCONT {
 	LDREF
@@ -128,10 +146,14 @@ IFREF {
 THROW 0
 
 .macro reserveAndRefundGas_00009581_internal_macro
-.loc ../examples/contracts/reservation/ReservableExample.sol, 22
+.loc ../examples/contracts/reservation/ReservableExample.sol, 32
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+SWAP
 GETGLOB 9
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
-PUSHINT 1000000000
+ROT
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/reservation/abstract/Reservable.sol, 37
@@ -165,7 +187,7 @@ PUSHCONT {
 	.loc ../contracts/reservation/abstract/Reservable.sol, 0
 }
 IF
-.loc ../examples/contracts/reservation/ReservableExample.sol, 27
+.loc ../examples/contracts/reservation/ReservableExample.sol, 37
 TUPLE 0
 NEWC
 PUSHSLICE x4d657373616765206761733a20
@@ -205,7 +227,12 @@ DROP2
 DROP
 GETGLOB 6
 THROWIFNOT 76
-.loc ../examples/contracts/reservation/ReservableExample.sol, 30
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/reservation/ReservableExample.sol, 40
 OVER
 PUSHCONT {
 	LDREF
@@ -240,12 +267,14 @@ IFREF {
 THROW 0
 
 .macro reserveGas_e6e02305_internal_macro
-.loc ../examples/contracts/reservation/ReservableExample.sol, 30
-PUSHINT 1000000000
+.loc ../examples/contracts/reservation/ReservableExample.sol, 40
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/reservation/ReservableExample.sol, 35
+.loc ../examples/contracts/reservation/ReservableExample.sol, 45
 TUPLE 0
 NEWC
 PUSHSLICE x4d657373616765206761733a20
@@ -266,7 +295,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/reservation/ReservableExample.sol, 37
+.loc ../examples/contracts/reservation/ReservableExample.sol, 47
 DUP
 ISNULL
 PUSHCONT {
@@ -278,7 +307,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../examples/contracts/reservation/ReservableExample.sol, 39
+.loc ../examples/contracts/reservation/ReservableExample.sol, 49
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -291,6 +320,92 @@ UFITS 8
 SENDRAWMSG
 .loc ../examples/contracts/reservation/ReservableExample.sol, 0
 DROP
+
+.macro getTargetBalance
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 21
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+ENDS
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
+CALLREF {
+	CALL $getTargetBalance_eb175b7e_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 4252195830
+	STUR 130
+	STU 128
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 106
+	STZEROES
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STU 128
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro getTargetBalance_eb175b7e_internal_macro
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 32
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
 
 .macro c4_to_c7
 PUSHROOT
@@ -378,6 +493,16 @@ LDMSGADDR ; bounced src tail
 DROP
 SETGLOB 9
 MODPOW2 1
+GETGLOB 4
+TRUE
+SETINDEXQ 1
+PUSHINT 10000000
+SETINDEXQ 2
+NULL
+SETINDEXQ 3
+PUSHINT 0
+SETINDEXQ 4
+SETGLOB 4
 IFRET
 OVER
 SEMPTY ; isEmpty
@@ -511,5 +636,11 @@ PUSHINT 1772174412
 EQUAL
 IFJMPREF {
 	CALL $constructor$
+}
+DUP
+PUSHINT 2104712182
+EQUAL
+IFJMPREF {
+	CALL $getTargetBalance$
 }
 

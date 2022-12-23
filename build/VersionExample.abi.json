@@ -12,6 +12,15 @@
 			]
 		},
 		{
+			"name": "getTargetBalance",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"uint128"}
+			]
+		},
+		{
 			"name": "getVersion",
 			"inputs": [
 				{"name":"answerId","type":"uint32"}

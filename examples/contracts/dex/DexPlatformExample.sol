@@ -11,14 +11,29 @@ import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
+import "../../../contracts/reservation/abstract/TargetBalance.sol";
+
 import "../../../contracts/validation/abstract/Validatable.sol";
 
-contract DexPlatformExample is Reservable, Validatable {
+contract DexPlatformExample is
+    Reservable,
+    Validatable,
+    TargetBalance
+{
     uint32 private static _nonce;
+
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
 
     constructor(optional(address) _remainingGasTo)
         public
-        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {}
 
     function getPairAddress(

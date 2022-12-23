@@ -9,6 +9,7 @@ import "../../../contracts/libraries/UtilityGas.sol";
 import "../../../contracts/libraries/FixedPoint128.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
+import "../../../contracts/reservation/abstract/TargetBalance.sol";
 
 import "../../../contracts/prices/oracle/interfaces/ITWAPOracle.sol";
 import "../../../contracts/prices/oracle/interfaces/IOnObservationCallback.sol";
@@ -16,16 +17,26 @@ import "../../../contracts/prices/oracle/interfaces/IOnRateCallback.sol";
 
 contract PriceAggregatorExample is
     ITWAPOracle,
-    Reservable
+    Reservable,
+    TargetBalance
 {
     uint32 private static _nonce;
 
     OracleOptions private _options;
     mapping(uint32 => Observation) private _observations;
 
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
     constructor(optional(address) _remainingGasTo)
         public
-        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {
         Observation observation = Observation({
             timestamp: now,
@@ -41,7 +52,7 @@ contract PriceAggregatorExample is
         optional(address) _remainingGasTo
     )
         external
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {
         _observations[_observation.timestamp] = _observation;
 
@@ -70,7 +81,7 @@ contract PriceAggregatorExample is
         external
         view
         override
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         IOnObservationCallback(_callbackTo)
             .onObservationCallback{
@@ -116,7 +127,7 @@ contract PriceAggregatorExample is
         external
         view
         override
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         uint128[] reserves;
 
@@ -161,7 +172,7 @@ contract PriceAggregatorExample is
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, _remainingGasTo)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, _remainingGasTo)
     {
         _options = _newOptions;
 
@@ -188,7 +199,7 @@ contract PriceAggregatorExample is
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, _remainingGasTo)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, _remainingGasTo)
     {
         for (uint16 i = 0; i < _count; i++) {
             _observations.delMin();

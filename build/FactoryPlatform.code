@@ -22,9 +22,12 @@ PUSHCONT {
 IFELSE
 LDMSGADDR
 ENDS
-PUSH2 S0, S0
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+PUSH2 S1, S1
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
-PUSHINT 1000000000
+ROT
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/reservation/abstract/Reservable.sol, 37
@@ -60,7 +63,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 BLKSWAP 2, 3
-.loc ../examples/contracts/factory/FactoryPlatform.sol, 22
+.loc ../examples/contracts/factory/FactoryPlatform.sol, 32
 DROP
 CALLREF {
 	CALL $_upgrade_be75dc58_internal_macro$
@@ -83,22 +86,31 @@ CALLREF {
 }
 THROW 0
 
+.globl	_getTargetBalanceInternal_141d6ea7_internal
+.type	_getTargetBalanceInternal_141d6ea7_internal, @function
+CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+
+.macro _getTargetBalanceInternal_141d6ea7_internal_macro
+.loc ../examples/contracts/factory/FactoryPlatform.sol, 22
+PUSHINT 1000000000
+.loc ../examples/contracts/factory/FactoryPlatform.sol, 0
+
 .globl	_upgrade_be75dc58_internal
 .type	_upgrade_be75dc58_internal, @function
 CALL $_upgrade_be75dc58_internal_macro$
 
 .macro _upgrade_be75dc58_internal_macro
-.loc ../examples/contracts/factory/FactoryPlatform.sol, 26
+.loc ../examples/contracts/factory/FactoryPlatform.sol, 36
 GETGLOB 11
 GETGLOB 10
 NEWC
 STU 32
 STSLICE
 ENDC
-.loc ../examples/contracts/factory/FactoryPlatform.sol, 28
+.loc ../examples/contracts/factory/FactoryPlatform.sol, 38
 OVER
 SETCODE
-.loc ../examples/contracts/factory/FactoryPlatform.sol, 29
+.loc ../examples/contracts/factory/FactoryPlatform.sol, 39
 SWAP
 CTOS
 DUP
@@ -113,7 +125,7 @@ PLDREF
 CTOS
 BLESS
 POP C3
-.loc ../examples/contracts/factory/FactoryPlatform.sol, 31
+.loc ../examples/contracts/factory/FactoryPlatform.sol, 41
 CALLREF {
 	CALL $:onCodeUpgrade$
 }
@@ -128,6 +140,92 @@ CALLREF {
 }
 COMMIT
 THROW 0
+
+.macro getTargetBalance
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 21
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+ENDS
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
+CALLREF {
+	CALL $getTargetBalance_eb175b7e_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 4252195830
+	STUR 130
+	STU 128
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 106
+	STZEROES
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STU 128
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro getTargetBalance_eb175b7e_internal_macro
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 32
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
 
 .macro c4_to_c7
 PUSHROOT
@@ -225,8 +323,21 @@ NEQINT 1
 SETGLOB 6
 PUSH S2
 CTOS
-PLDU 4
+LDU 4 ; bounced tail
+LDMSGADDR ; bounced src tail
+DROP
+SETGLOB 9
 MODPOW2 1
+GETGLOB 4
+TRUE
+SETINDEXQ 1
+PUSHINT 10000000
+SETINDEXQ 2
+NULL
+SETINDEXQ 3
+PUSHINT 0
+SETINDEXQ 4
+SETGLOB 4
 IFRET
 OVER
 SEMPTY ; isEmpty
@@ -309,5 +420,11 @@ PUSHINT 209702378
 EQUAL
 IFJMPREF {
 	CALL $constructor$
+}
+DUP
+PUSHINT 2104712182
+EQUAL
+IFJMPREF {
+	CALL $getTargetBalance$
 }
 

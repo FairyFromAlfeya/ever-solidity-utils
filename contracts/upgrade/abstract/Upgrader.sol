@@ -2,9 +2,9 @@ pragma ever-solidity >= 0.61.2;
 
 import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
-import "../../libraries/UtilityGas.sol";
 
 import "../../reservation/abstract/Reservable.sol";
+import "../../reservation/abstract/TargetBalance.sol";
 
 import "../../validation/abstract/Validatable.sol";
 
@@ -18,8 +18,16 @@ import "../interfaces/IUpgrader.sol";
 abstract contract Upgrader is
     IUpgrader,
     Reservable,
-    Validatable
+    Validatable,
+    TargetBalance
 {
+    function _getTargetBalanceInternal()
+        internal
+        virtual
+        override
+        view
+        returns (uint128);
+
     function provideUpgrade(
         uint32 _instanceVersion,
         TvmCell _deployParams,
@@ -28,7 +36,7 @@ abstract contract Upgrader is
         external
         view
         override
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
         validTvmCell(_deployParams, UtilityErrors.INVALID_DEPLOY_PARAMS)
         validAddress(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {

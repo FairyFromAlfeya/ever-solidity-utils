@@ -33,10 +33,13 @@ PUSHCONT {
 }
 IFELSE
 ENDS
-DUP
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+OVER
 GETGLOB 9
 .loc ../contracts/reservation/abstract/Reservable.sol, 63
-PUSHINT 1000000000
+ROT
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/reservation/abstract/Reservable.sol, 64
@@ -74,7 +77,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 74
 ROLL 3
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 28
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 38
 DUP
 ISNULL
 PUSHCONT {
@@ -87,7 +90,7 @@ PUSHCONT {
 }
 IFELSE
 SETGLOB 13
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 30
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 40
 DROP
 GETGLOB 11
 FALSE
@@ -119,11 +122,25 @@ CALLREF {
 }
 THROW 0
 
+.globl	_getTargetBalanceInternal_141d6ea7_internal
+.type	_getTargetBalanceInternal_141d6ea7_internal, @function
+CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+
+.macro _getTargetBalanceInternal_141d6ea7_internal_macro
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 31
+PUSHINT 1000000000
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 0
+
 .macro onOwnRoot
 DROP
 GETGLOB 6
 THROWIFNOT 76
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 39
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 49
 OVER
 PUSHCONT {
 	LDREF
@@ -143,12 +160,14 @@ IFREF {
 THROW 0
 
 .macro onOwnRoot_00924531_internal_macro
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 39
-PUSHINT 1000000000
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 49
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 44
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 54
 FALSE
 NEWC
 STSLICECONST x6_
@@ -177,7 +196,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 53
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 63
 OVER
 PUSHCONT {
 	LDREF
@@ -197,11 +216,14 @@ CALLREF {
 THROW 0
 
 .macro onOwnWalletOf_00fe39fd_internal_macro
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 53
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 63
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
 GETGLOB 13
 DUP
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
-PUSHINT 1000000000
+ROT
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/reservation/abstract/Reservable.sol, 37
@@ -237,7 +259,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 ROLL 3
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 57
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 67
 SETGLOB 12
 .loc ../contracts/reservation/abstract/Reservable.sol, 47
 NEWC
@@ -263,7 +285,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 60
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 70
 ENDS
 .loc ../examples/contracts/tip3/TokenWalletExample.sol, 0
 CALLREF {
@@ -275,12 +297,14 @@ IFREF {
 THROW 0
 
 .macro root_ebf0c717_internal_macro
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 60
-PUSHINT 1000000000
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 70
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 65
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 75
 GETGLOB 11
 FALSE
 NEWC
@@ -304,7 +328,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 74
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 84
 ENDS
 .loc ../examples/contracts/tip3/TokenWalletExample.sol, 0
 CALLREF {
@@ -316,12 +340,14 @@ IFREF {
 THROW 0
 
 .macro balance_b69ef8a8_internal_macro
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 74
-PUSHINT 1000000000
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 84
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 79
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 89
 GETGLOB 11
 FALSE
 NEWC
@@ -345,7 +371,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 88
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 98
 ENDS
 .loc ../examples/contracts/tip3/TokenWalletExample.sol, 0
 CALLREF {
@@ -357,12 +383,14 @@ IFREF {
 THROW 0
 
 .macro owner_8da5cb5b_internal_macro
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 88
-PUSHINT 1000000000
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 98
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 93
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 103
 GETGLOB 11
 FALSE
 NEWC
@@ -386,7 +414,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 102
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 112
 OVER
 PUSHCONT {
 	LDREF
@@ -414,12 +442,14 @@ IFREF {
 THROW 0
 
 .macro transfer_dd23fbfc_internal_macro
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 102
-PUSHINT 1000000000
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 112
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 114
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 124
 REVERSE 6, 0
 GETGLOB 12
 FALSE
@@ -457,7 +487,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 129
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 139
 OVER
 PUSHCONT {
 	LDREF
@@ -484,12 +514,14 @@ IFREF {
 THROW 0
 
 .macro transferToWallet_de45c56e_internal_macro
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 129
-PUSHINT 1000000000
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 139
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
 .loc ../contracts/reservation/abstract/Reservable.sol, 13
 PUSHINT 0
 RAWRESERVE
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 140
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 150
 REVERSE 5, 0
 GETGLOB 12
 FALSE
@@ -526,7 +558,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 154
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 164
 OVER
 PUSHCONT {
 	LDREF
@@ -546,11 +578,14 @@ IFREF {
 THROW 0
 
 .macro onRoot_fb17c483_internal_macro
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 154
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 164
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
 GETGLOB 13
 DUP
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
-PUSHINT 1000000000
+ROT
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/reservation/abstract/Reservable.sol, 37
@@ -586,7 +621,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 ROLL 3
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 159
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 169
 TUPLE 0
 NEWC
 PUSHSLICE x526f6f743a20
@@ -627,7 +662,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 162
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 172
 OVER
 PUSHCONT {
 	LDREF
@@ -647,11 +682,14 @@ IFREF {
 THROW 0
 
 .macro onBalance_a09c35fc_internal_macro
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 162
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 172
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
 GETGLOB 13
 DUP
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
-PUSHINT 1000000000
+ROT
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/reservation/abstract/Reservable.sol, 37
@@ -687,7 +725,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 ROLL 3
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 167
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 177
 TUPLE 0
 NEWC
 PUSHSLICE x42616c616e63653a20
@@ -730,7 +768,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 170
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 180
 OVER
 PUSHCONT {
 	LDREF
@@ -750,11 +788,14 @@ IFREF {
 THROW 0
 
 .macro onOwner_b615bcd5_internal_macro
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 170
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 180
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
 GETGLOB 13
 DUP
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
-PUSHINT 1000000000
+ROT
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/reservation/abstract/Reservable.sol, 37
@@ -790,7 +831,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 ROLL 3
-.loc ../examples/contracts/tip3/TokenWalletExample.sol, 175
+.loc ../examples/contracts/tip3/TokenWalletExample.sol, 185
 TUPLE 0
 NEWC
 PUSHSLICE x4f776e65723a20
@@ -821,6 +862,92 @@ SENDRAWMSG
 .loc ../contracts/reservation/abstract/Reservable.sol, 0
 DROP2
 .loc ../examples/contracts/tip3/TokenWalletExample.sol, 0
+
+.macro getTargetBalance
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 21
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+ENDS
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
+CALLREF {
+	CALL $getTargetBalance_eb175b7e_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 4252195830
+	STUR 130
+	STU 128
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 106
+	STZEROES
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STU 128
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro getTargetBalance_eb175b7e_internal_macro
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 32
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
 
 .macro c4_to_c7
 PUSHROOT
@@ -949,6 +1076,16 @@ LDMSGADDR ; bounced src tail
 DROP
 SETGLOB 9
 MODPOW2 1
+GETGLOB 4
+TRUE
+SETINDEXQ 1
+PUSHINT 10000000
+SETINDEXQ 2
+NULL
+SETINDEXQ 3
+PUSHINT 0
+SETINDEXQ 4
+SETGLOB 4
 IFRET
 OVER
 SEMPTY ; isEmpty
@@ -1124,7 +1261,7 @@ IFJMPREF {
 	}
 }
 DUP
-PUSHINT 1944199491
+PUSHINT 2104712182
 LEQ
 IFJMPREF {
 	DUP
@@ -1144,6 +1281,12 @@ IFJMPREF {
 	EQUAL
 	IFJMPREF {
 		CALL $transfer$
+	}
+	DUP
+	PUSHINT 2104712182
+	EQUAL
+	IFJMPREF {
+		CALL $getTargetBalance$
 	}
 }
 

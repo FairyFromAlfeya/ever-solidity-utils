@@ -33,9 +33,13 @@ PUSHCONT {
 }
 IFELSE
 ENDS
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+SWAP
 GETGLOB 9
 .loc ../contracts/reservation/abstract/Reservable.sol, 63
-PUSHINT 1000000000
+ROT
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/reservation/abstract/Reservable.sol, 64
@@ -89,6 +93,15 @@ CALLREF {
 }
 THROW 0
 
+.globl	_getTargetBalanceInternal_141d6ea7_internal
+.type	_getTargetBalanceInternal_141d6ea7_internal, @function
+CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+
+.macro _getTargetBalanceInternal_141d6ea7_internal_macro
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 31
+PUSHINT 1000000000
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 0
+
 .macro onSuccessPriceCallback
 DROP
 GETGLOB 6
@@ -98,7 +111,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 28
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 39
 OVER
 PUSHCONT {
 	LDDICT
@@ -127,10 +140,13 @@ CALLREF {
 THROW 0
 
 .macro onSuccessPriceCallback_55912cd6_internal_macro
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 28
-PUSH2 S1, S1
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 39
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+PUSH2 S2, S2
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
-PUSHINT 1000000000
+ROT
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/reservation/abstract/Reservable.sol, 37
@@ -166,7 +182,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 BLKSWAP 5, 3
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 39
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 50
 DROP
 ROLL 3
 DUP
@@ -188,7 +204,7 @@ PUSHCONT {
 	NOT
 }
 PUSHCONT {
-	.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 40
+	.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 51
 	TUPLE 0
 	NEWC
 	PUSHSLICE x50726963652f5363616c653a20
@@ -259,7 +275,7 @@ PUSHCONT {
 }
 WHILE
 BLKDROP 4
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 43
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 54
 TUPLE 0
 NEWC
 PUSHSLICE x54696d657374616d703a20
@@ -278,7 +294,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 44
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 55
 TUPLE 0
 NEWC
 PUSHSLICE x53656e6465723a20
@@ -321,7 +337,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 47
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 58
 OVER
 PUSHCONT {
 	LDDICT
@@ -360,10 +376,13 @@ CALLREF {
 THROW 0
 
 .macro onCanceledPriceCallback_740ea949_internal_macro
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 47
-PUSH2 S1, S1
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 58
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+PUSH2 S2, S2
 .loc ../contracts/reservation/abstract/Reservable.sol, 34
-PUSHINT 1000000000
+ROT
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/reservation/abstract/Reservable.sol, 37
@@ -399,7 +418,7 @@ PUSHCONT {
 IF
 .loc ../contracts/reservation/abstract/Reservable.sol, 44
 BLKSWAP 6, 3
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 59
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 70
 DROP
 ROLL 4
 DUP
@@ -421,7 +440,7 @@ PUSHCONT {
 	NOT
 }
 PUSHCONT {
-	.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 60
+	.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 71
 	TUPLE 0
 	NEWC
 	PUSHSLICE x50726963652f5363616c653a20
@@ -492,7 +511,7 @@ PUSHCONT {
 }
 WHILE
 BLKDROP 4
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 63
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 74
 ROT
 SECOND
 PUSHINT 0
@@ -509,7 +528,7 @@ PUSHCONT {
 	NOT
 }
 PUSHCONT {
-	.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 64
+	.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 75
 	TUPLE 0
 	NEWC
 	PUSHSLICE x4661696c65643a20
@@ -533,7 +552,7 @@ PUSHCONT {
 }
 WHILE
 BLKDROP 3
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 67
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 78
 TUPLE 0
 NEWC
 PUSHSLICE x54696d657374616d703a20
@@ -552,7 +571,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 68
+.loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 79
 TUPLE 0
 NEWC
 PUSHSLICE x53656e6465723a20
@@ -585,6 +604,92 @@ SENDRAWMSG
 .loc ../contracts/reservation/abstract/Reservable.sol, 0
 DROP2
 .loc ../examples/contracts/prices/PriceAggregatorCallbacksExample.sol, 0
+
+.macro getTargetBalance
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 21
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+ENDS
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
+CALLREF {
+	CALL $getTargetBalance_eb175b7e_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 4252195830
+	STUR 130
+	STU 128
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 106
+	STZEROES
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STU 128
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro getTargetBalance_eb175b7e_internal_macro
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 32
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
 
 .macro c4_to_c7
 PUSHROOT
@@ -672,6 +777,16 @@ LDMSGADDR ; bounced src tail
 DROP
 SETGLOB 9
 MODPOW2 1
+GETGLOB 4
+TRUE
+SETINDEXQ 1
+PUSHINT 10000000
+SETINDEXQ 2
+NULL
+SETINDEXQ 3
+PUSHINT 0
+SETINDEXQ 4
+SETGLOB 4
 IFRET
 OVER
 SEMPTY ; isEmpty
@@ -805,5 +920,11 @@ PUSHINT 1775836061
 EQUAL
 IFJMPREF {
 	CALL $onCanceledPriceCallback$
+}
+DUP
+PUSHINT 2104712182
+EQUAL
+IFJMPREF {
+	CALL $getTargetBalance$
 }
 

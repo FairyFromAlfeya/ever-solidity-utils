@@ -33,9 +33,13 @@ PUSHCONT {
 }
 IFELSE
 ENDS
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+SWAP
 GETGLOB 9
 .loc ../contracts/reservation/abstract/Reservable.sol, 63
-PUSHINT 1000000000
+ROT
 PUSHINT 0
 RAWRESERVE
 .loc ../contracts/reservation/abstract/Reservable.sol, 64
@@ -89,11 +93,20 @@ CALLREF {
 }
 THROW 0
 
+.globl	_getTargetBalanceInternal_141d6ea7_internal
+.type	_getTargetBalanceInternal_141d6ea7_internal, @function
+CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+
+.macro _getTargetBalanceInternal_141d6ea7_internal_macro
+.loc ../examples/contracts/dex/DexPlatformExample.sol, 31
+PUSHINT 1000000000
+.loc ../examples/contracts/dex/DexPlatformExample.sol, 0
+
 .macro getPairAddress
 DROP
 GETGLOB 6
 THROWIFNOT 76
-.loc ../examples/contracts/dex/DexPlatformExample.sol, 24
+.loc ../examples/contracts/dex/DexPlatformExample.sol, 39
 LDU 32
 GETGLOB 4
 ROT
@@ -183,13 +196,13 @@ IFREF {
 THROW 0
 
 .macro getPairAddress_82036237_internal_macro
-.loc ../examples/contracts/dex/DexPlatformExample.sol, 37
+.loc ../examples/contracts/dex/DexPlatformExample.sol, 52
 SWAP
 NEWC
 STSLICE
-.loc ../examples/contracts/dex/DexPlatformExample.sol, 38
+.loc ../examples/contracts/dex/DexPlatformExample.sol, 53
 STSLICE
-.loc ../examples/contracts/dex/DexPlatformExample.sol, 44
+.loc ../examples/contracts/dex/DexPlatformExample.sol, 59
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -239,6 +252,92 @@ STU 256
 ENDC
 CTOS
 .loc ../examples/contracts/dex/DexPlatformExample.sol, 0
+
+.macro getTargetBalance
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 21
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+ENDS
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
+CALLREF {
+	CALL $getTargetBalance_eb175b7e_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 4252195830
+	STUR 130
+	STU 128
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 106
+	STZEROES
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STU 128
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro getTargetBalance_eb175b7e_internal_macro
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 32
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+CALLREF {
+	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
+}
+.loc ../contracts/reservation/abstract/TargetBalance.sol, 0
 
 .macro c4_to_c7
 PUSHROOT
@@ -428,5 +527,11 @@ PUSHINT 1772174412
 EQUAL
 IFJMPREF {
 	CALL $constructor$
+}
+DUP
+PUSHINT 2104712182
+EQUAL
+IFJMPREF {
+	CALL $getTargetBalance$
 }
 

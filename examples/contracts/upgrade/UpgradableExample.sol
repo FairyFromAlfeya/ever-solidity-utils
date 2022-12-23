@@ -17,12 +17,21 @@ import "../../../contracts/upgrade/abstract/Upgradable.sol";
 contract UpgradableExample is Upgradable, Ownable {
     uint32 private static _nonce;
 
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
     constructor(
         optional(address) _initialOwner,
         optional(address) _remainingGasTo
     )
         public
-        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
         validAddressOrNull(_initialOwner, UtilityErrors.INVALID_NEW_OWNER)
     {
         address initialOwner = _initialOwner.hasValue() ? _initialOwner.get() : msg.sender;
@@ -37,7 +46,7 @@ contract UpgradableExample is Upgradable, Ownable {
     )
         external
         override
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
         onlyOwner
         validTvmCell(_code, UtilityErrors.INVALID_CODE)
     {

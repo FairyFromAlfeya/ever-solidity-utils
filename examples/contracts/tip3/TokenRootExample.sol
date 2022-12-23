@@ -12,16 +12,26 @@ import "../../../contracts/libraries/UtilityFlag.sol";
 import "../../../contracts/tip3/interfaces/ITokenRoot.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
+import "../../../contracts/reservation/abstract/TargetBalance.sol";
 
-contract TokenRootExample is Reservable {
+contract TokenRootExample is Reservable, TargetBalance {
     uint32 private static _nonce;
     ITokenRoot private static _root;
 
     address private _remainingGasRecipient;
 
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
     constructor(optional(address) _remainingGasTo)
         public
-        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {
         _remainingGasRecipient = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
     }
@@ -29,7 +39,7 @@ contract TokenRootExample is Reservable {
     function name()
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         _root
             .name{
@@ -43,7 +53,7 @@ contract TokenRootExample is Reservable {
     function symbol()
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         _root
             .symbol{
@@ -57,7 +67,7 @@ contract TokenRootExample is Reservable {
     function decimals()
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         _root
             .decimals{
@@ -71,7 +81,7 @@ contract TokenRootExample is Reservable {
     function totalSupply()
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         _root
             .totalSupply{
@@ -85,7 +95,7 @@ contract TokenRootExample is Reservable {
     function rootOwner()
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         _root
             .rootOwner{
@@ -99,7 +109,7 @@ contract TokenRootExample is Reservable {
     function walletOf(address _owner)
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         _root
             .walletOf{
@@ -116,7 +126,7 @@ contract TokenRootExample is Reservable {
     )
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         _root
             .deployWallet{
@@ -130,7 +140,7 @@ contract TokenRootExample is Reservable {
     function onName(string _name)
         external
         view
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Name: {}", _name));
     }
@@ -138,7 +148,7 @@ contract TokenRootExample is Reservable {
     function onSymbol(string _symbol)
         external
         view
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Symbol: {}", _symbol));
     }
@@ -146,7 +156,7 @@ contract TokenRootExample is Reservable {
     function onDecimals(uint8 _decimals)
         external
         view
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Decimals: {}", _decimals));
     }
@@ -154,7 +164,7 @@ contract TokenRootExample is Reservable {
     function onTotalSupply(uint128 _totalSupply)
         external
         view
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Total supply: {}", _totalSupply));
     }
@@ -162,7 +172,7 @@ contract TokenRootExample is Reservable {
     function onRootOwner(address _rootOwner)
         external
         view
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Owner: {}", _rootOwner));
     }
@@ -170,7 +180,7 @@ contract TokenRootExample is Reservable {
     function onWalletOf(address _wallet)
         external
         view
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Wallet: {}", _wallet));
     }
@@ -178,7 +188,7 @@ contract TokenRootExample is Reservable {
     function onDeployWallet(address _wallet)
         external
         view
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Deployed wallet: {}", _wallet));
     }

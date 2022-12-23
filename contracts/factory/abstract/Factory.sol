@@ -4,7 +4,6 @@ import "../../access/abstract/Ownable.sol";
 
 import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
-import "../../libraries/UtilityGas.sol";
 
 import "../interfaces/IFactory.sol";
 
@@ -20,6 +19,13 @@ abstract contract Factory is
 
     /// @dev Version of the _instanceCode
     uint32 private _instanceVersion;
+
+    function _getTargetBalanceInternal()
+        internal
+        virtual
+        override
+        view
+        returns (uint128);
 
     /// @dev Function can be called only by factory instance
     /// @param _deployParams Packed params which was used for deploy
@@ -80,7 +86,7 @@ abstract contract Factory is
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
         onlyOwner
         validTvmCell(_newInstanceCode, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)

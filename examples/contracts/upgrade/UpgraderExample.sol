@@ -16,12 +16,21 @@ import "../factory/FactoryInstance.sol";
 contract UpgraderExample is Factory, Upgrader {
     uint32 private static _nonce;
 
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override (Factory, Upgrader)
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
     constructor(
         optional(address) _initialOwner,
         optional(address) _remainingGasTo
     )
         public
-        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
         validAddressOrNull(_initialOwner, UtilityErrors.INVALID_NEW_OWNER)
     {
         address initialOwner = _initialOwner.hasValue() ? _initialOwner.get() : msg.sender;
@@ -48,7 +57,7 @@ contract UpgraderExample is Factory, Upgrader {
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
         validTvmCell(_deployParams, UtilityErrors.INVALID_DEPLOY_PARAMS)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {

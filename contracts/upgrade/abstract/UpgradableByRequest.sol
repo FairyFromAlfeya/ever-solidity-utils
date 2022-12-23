@@ -2,9 +2,9 @@ pragma ever-solidity >= 0.61.2;
 
 import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
-import "../../libraries/UtilityGas.sol";
 
 import "../../reservation/abstract/Reservable.sol";
+import "../../reservation/abstract/TargetBalance.sol";
 
 import "../../validation/abstract/Validatable.sol";
 
@@ -21,10 +21,18 @@ abstract contract UpgradableByRequest is
     IUpgradableByRequest,
     Reservable,
     Validatable,
-    Version
+    Version,
+    TargetBalance
 {
     /// @dev Current contract's upgrader
     address private _upgrader;
+
+    function _getTargetBalanceInternal()
+        internal
+        virtual
+        override
+        view
+        returns (uint128);
 
     /// @dev Only upgrader can call function with this modifier
     modifier onlyUpgrader() {
@@ -54,7 +62,7 @@ abstract contract UpgradableByRequest is
         external
         view
         override
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {
         // Gas recipient from params or default

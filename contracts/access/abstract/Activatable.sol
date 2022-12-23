@@ -2,7 +2,6 @@ pragma ever-solidity >= 0.61.2;
 
 import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
-import "../../libraries/UtilityGas.sol";
 
 import "../interfaces/IActivatable.sol";
 
@@ -18,6 +17,13 @@ abstract contract Activatable is
 {
     /// @dev Whether or not a contract is active
     bool private _isActive;
+
+    function _getTargetBalanceInternal()
+        internal
+        virtual
+        override
+        view
+        returns (uint128);
 
     /// @dev Function can be called only if the contract is active
     modifier onlyActive() {
@@ -45,7 +51,7 @@ abstract contract Activatable is
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
         onlyOwner
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
     {

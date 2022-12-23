@@ -9,6 +9,7 @@ import "locklift/src/console.sol";
 import "../../../contracts/libraries/UtilityGas.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
+import "../../../contracts/reservation/abstract/TargetBalance.sol";
 
 import "../../../contracts/prices/aggregator/interfaces/IOnCanceledPriceCallback.sol";
 import "../../../contracts/prices/aggregator/interfaces/IOnSuccessPriceCallback.sol";
@@ -16,13 +17,23 @@ import "../../../contracts/prices/aggregator/interfaces/IOnSuccessPriceCallback.
 contract PriceAggregatorCallbacksExample is
     IOnSuccessPriceCallback,
     IOnCanceledPriceCallback,
-    Reservable
+    Reservable,
+    TargetBalance
 {
     uint32 private static _nonce;
 
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
     constructor(optional(address) _remainingGasTo)
         public
-        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {}
 
     function onSuccessPriceCallback(
@@ -34,7 +45,7 @@ contract PriceAggregatorCallbacksExample is
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _sender, _sender)
+        reserveAndRefund(_getTargetBalanceInternal(), _sender, _sender)
     {
         for ((address token, uint price) : _prices) {
             console.log(format("Price/Scale: {} - {}/{}", token, price, _scales[token]));
@@ -54,7 +65,7 @@ contract PriceAggregatorCallbacksExample is
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _sender, _sender)
+        reserveAndRefund(_getTargetBalanceInternal(), _sender, _sender)
     {
         for ((address token, uint price) : _prices) {
             console.log(format("Price/Scale: {} - {}/{}", token, price, _scales[token]));

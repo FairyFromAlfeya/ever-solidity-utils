@@ -13,17 +13,27 @@ import "../../../contracts/tip3/interfaces/ITokenWallet.sol";
 import "../../../contracts/tip3/interfaces/ITokenRoot.sol";
 
 import "../../../contracts/reservation/abstract/Reservable.sol";
+import "../../../contracts/reservation/abstract/TargetBalance.sol";
 
-contract TokenWalletExample is Reservable {
+contract TokenWalletExample is Reservable, TargetBalance {
     uint32 private static _nonce;
     ITokenWallet private static _wallet;
 
     ITokenWallet private _ownWallet;
     address private _remainingGasRecipient;
 
+    function _getTargetBalanceInternal()
+        internal
+        view
+        override
+        returns (uint128)
+    {
+        return UtilityGas.INITIAL_BALANCE;
+    }
+
     constructor(optional(address) _remainingGasTo)
         public
-        reserveAcceptAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAcceptAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
     {
         _remainingGasRecipient = _remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender;
 
@@ -38,8 +48,8 @@ contract TokenWalletExample is Reservable {
 
     function onOwnRoot(address _root)
         external
-        pure
-        reserve(UtilityGas.INITIAL_BALANCE)
+        view
+        reserve(_getTargetBalanceInternal())
     {
         ITokenRoot(_root)
             .walletOf{
@@ -52,7 +62,7 @@ contract TokenWalletExample is Reservable {
 
     function onOwnWalletOf(address _walletAddress)
         external
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
     {
         _ownWallet = ITokenWallet(_walletAddress);
     }
@@ -60,7 +70,7 @@ contract TokenWalletExample is Reservable {
     function root()
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         _wallet
             .root{
@@ -74,7 +84,7 @@ contract TokenWalletExample is Reservable {
     function balance()
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         _wallet
             .balance{
@@ -88,7 +98,7 @@ contract TokenWalletExample is Reservable {
     function owner()
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         _wallet
             .owner{
@@ -109,7 +119,7 @@ contract TokenWalletExample is Reservable {
     )
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         _ownWallet
             .transfer{
@@ -135,7 +145,7 @@ contract TokenWalletExample is Reservable {
     )
         external
         view
-        reserve(UtilityGas.INITIAL_BALANCE)
+        reserve(_getTargetBalanceInternal())
     {
         _ownWallet
             .transferToWallet{
@@ -154,7 +164,7 @@ contract TokenWalletExample is Reservable {
     function onRoot(address _root)
         external
         view
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Root: {}", _root));
     }
@@ -162,7 +172,7 @@ contract TokenWalletExample is Reservable {
     function onBalance(uint128 _balance)
         external
         view
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Balance: {}", _balance));
     }
@@ -170,7 +180,7 @@ contract TokenWalletExample is Reservable {
     function onOwner(address _owner)
         external
         view
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasRecipient, _remainingGasRecipient)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasRecipient, _remainingGasRecipient)
     {
         console.log(format("Owner: {}", _owner));
     }

@@ -2,7 +2,6 @@ pragma ever-solidity >= 0.61.2;
 
 import "../../libraries/UtilityErrors.sol";
 import "../../libraries/UtilityFlag.sol";
-import "../../libraries/UtilityGas.sol";
 
 import "../interfaces/IFactoryWithPlatform.sol";
 
@@ -17,6 +16,13 @@ abstract contract FactoryWithPlatform is
 {
     /// @dev Code for the new instance's root
     TvmCell private _platformCode;
+
+    function _getTargetBalanceInternal()
+        internal
+        virtual
+        override
+        view
+        returns (uint128);
 
     function getPlatformCode()
         external
@@ -38,7 +44,7 @@ abstract contract FactoryWithPlatform is
     )
         external
         override
-        reserveAndRefund(UtilityGas.INITIAL_BALANCE, _remainingGasTo, msg.sender)
+        reserveAndRefund(_getTargetBalanceInternal(), _remainingGasTo, msg.sender)
         onlyOwner
         validTvmCell(_newPlatformCode, UtilityErrors.INVALID_CODE)
         validAddressOrNull(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
