@@ -1186,6 +1186,36 @@ PUSHINT 0
 SENDRAWMSG
 .loc ../node_modules/locklift/src/console.tsol, 0
 
+.globl	Validation_with_obj_notEmpty_f0710f53
+.type	Validation_with_obj_notEmpty_f0710f53, @function
+CALL $Validation_with_obj_notEmpty_f0710f53_macro$
+
+.macro Validation_with_obj_notEmpty_f0710f53_macro
+.loc ../contracts/validation/libraries/Validation.tsol, 30
+PUSHINT 2
+MAX
+OVER
+CTOS
+SEMPTY
+NOT
+THROWANYIFNOT
+.loc ../contracts/validation/libraries/Validation.tsol, 0
+
+.globl	Validation_no_obj_notEmpty_f0710f53
+.type	Validation_no_obj_notEmpty_f0710f53, @function
+CALL $Validation_no_obj_notEmpty_f0710f53_macro$
+
+.macro Validation_no_obj_notEmpty_f0710f53_macro
+.loc ../contracts/validation/libraries/Validation.tsol, 30
+PUSHINT 2
+MAX
+SWAP
+CTOS
+SEMPTY
+NOT
+THROWANYIFNOT
+.loc ../contracts/validation/libraries/Validation.tsol, 0
+
 .globl	Validation_with_obj_notEquals_44a2ba31
 .type	Validation_with_obj_notEquals_44a2ba31, @function
 CALL $Validation_with_obj_notEquals_44a2ba31_macro$
@@ -1247,36 +1277,6 @@ IF
 THROWANYIFNOT
 .loc ../contracts/validation/libraries/Validation.tsol, 0
 DROP2
-
-.globl	Validation_with_obj_notEmpty_f0710f53
-.type	Validation_with_obj_notEmpty_f0710f53, @function
-CALL $Validation_with_obj_notEmpty_f0710f53_macro$
-
-.macro Validation_with_obj_notEmpty_f0710f53_macro
-.loc ../contracts/validation/libraries/Validation.tsol, 30
-PUSHINT 2
-MAX
-OVER
-CTOS
-SEMPTY
-NOT
-THROWANYIFNOT
-.loc ../contracts/validation/libraries/Validation.tsol, 0
-
-.globl	Validation_no_obj_notEmpty_f0710f53
-.type	Validation_no_obj_notEmpty_f0710f53, @function
-CALL $Validation_no_obj_notEmpty_f0710f53_macro$
-
-.macro Validation_no_obj_notEmpty_f0710f53_macro
-.loc ../contracts/validation/libraries/Validation.tsol, 30
-PUSHINT 2
-MAX
-SWAP
-CTOS
-SEMPTY
-NOT
-THROWANYIFNOT
-.loc ../contracts/validation/libraries/Validation.tsol, 0
 
 .macro public_function_selector
 DUP

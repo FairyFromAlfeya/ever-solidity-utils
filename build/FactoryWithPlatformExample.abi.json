@@ -129,13 +129,6 @@
 			]
 		},
 		{
-			"name": "PlatformCodeSet",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "InstanceDeployed",
 			"inputs": [
 				{"name":"instance","type":"address"},
@@ -151,6 +144,13 @@
 			"inputs": [
 				{"name":"current","type":"uint32"},
 				{"name":"previous","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "PlatformCodeSet",
+			"inputs": [
 			],
 			"outputs": [
 			]
