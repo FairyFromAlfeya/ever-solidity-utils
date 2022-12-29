@@ -42,6 +42,7 @@ contract UpgradableExample is Upgradable, Ownable {
 
     function upgrade(
         TvmCell _code,
+        optional(uint32) _version,
         optional(address) _remainingGasTo
     )
         external
@@ -55,6 +56,7 @@ contract UpgradableExample is Upgradable, Ownable {
         TvmCell data = abi.encode(
             _nonce,
             _getCurrentVersionInternal(),
+            _version,
             _getOwnerInternal(),
             remainingGasTo
         );
@@ -71,18 +73,23 @@ contract UpgradableExample is Upgradable, Ownable {
         (
             uint32 nonce,
             uint32 previousVersion,
+            optional(uint32) currentVersion,
             address owner,
             address remainingGasTo
         ) = abi.decode(_data, (
             uint32,
             uint32,
+            optional(uint32),
             address,
             address
         ));
 
         _nonce = nonce;
         _setOwnerSilent(owner);
-        _setCurrentVersionInternal(previousVersion + 1, previousVersion);
+        _setCurrentVersionInternal(
+            currentVersion.hasValue() ? currentVersion.get() : previousVersion + 1,
+            previousVersion
+        );
 
         console.log(format("New version: {}", _getCurrentVersionInternal()));
 

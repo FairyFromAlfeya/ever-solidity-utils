@@ -181,6 +181,13 @@ IFREF {
 OVER
 PUSHCONT {
 	LDREF
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
+		LDU 32
+	}
+	IF
 	LDREF
 	ENDS
 	CTOS
@@ -198,6 +205,13 @@ PUSHCONT {
 	SWAP
 	NULLROTRIFNOT
 	PUSHCONT {
+		LDU 32
+	}
+	IF
+	LDI 1
+	SWAP
+	NULLROTRIFNOT
+	PUSHCONT {
 		LDMSGADDR
 	}
 	IF
@@ -206,14 +220,14 @@ IFELSE
 ENDS
 .loc ../examples/contracts/upgrade/UpgradableExample.tsol, 0
 CALLREF {
-	CALL $upgrade_9bcb2447_internal_macro$
+	CALL $upgrade_6a6f9623_internal_macro$
 }
 CALLREF {
 	CALL $c7_to_c4$
 }
 THROW 0
 
-.macro upgrade_9bcb2447_internal_macro
+.macro upgrade_6a6f9623_internal_macro
 .loc ../examples/contracts/upgrade/UpgradableExample.tsol, 43
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
@@ -233,13 +247,13 @@ SDEQ
 AND
 THROWIFNOT 1000
 .loc ../contracts/access/abstract/Ownable.tsol, 40
-OVER
+PUSH S2
 .loc ../contracts/validation/abstract/Validatable.tsol, 32
 PUSHINT 1004
 CALLREF {
 	CALL $Validation_no_obj_notEmpty_f0710f53_macro$
 }
-.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 53
+.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 54
 DUP
 ISNULL
 PUSHCONT {
@@ -251,10 +265,11 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 55
+.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 56
 CALLREF {
 	CALL $_getOwnerInternal_5441421e_internal_macro$
 }
+ROLL 3
 CALLREF {
 	CALL $_getCurrentVersionInternal_9e782595_internal_macro$
 }
@@ -262,16 +277,28 @@ GETGLOB 12
 NEWC
 STU 32
 STU 32
+XCPU S1, S0
+ISNULL
+PUSHCONT {
+	DROP
+	STSLICECONST 0
+}
+PUSHCONT {
+	SWAP
+	STSLICECONST 1
+	STU 32
+}
+IFELSE
 STSLICE
 SWAP
 NEWC
 STSLICE
 STBREFR
 ENDC
-.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 62
+.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 64
 PUSH S2
 SETCODE
-.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 63
+.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 65
 ROT
 CTOS
 DUP
@@ -286,7 +313,7 @@ PLDREF
 CTOS
 BLESS
 POP C3
-.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 65
+.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 67
 CALLREF {
 	CALL $:onCodeUpgrade$
 }
@@ -295,7 +322,7 @@ DROP
 
 .internal-alias :onCodeUpgrade, 2
 .internal :onCodeUpgrade
-.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 69
+.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 71
 PUSHINT 0
 SETGLOB 10
 PUSHREFSLICE {
@@ -304,33 +331,50 @@ PUSHREFSLICE {
 SETGLOB 11
 PUSHINT 0
 SETGLOB 12
-.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 71
+.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 73
 CTOS
 LDU 32
 LDU 32
+LDI 1
+SWAP
+NULLROTRIFNOT
+PUSHCONT {
+	LDU 32
+}
+IF
 LDMSGADDR
 LDREF
 ENDS
 CTOS
 LDMSGADDR
 ENDS
-.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 83
-ROLL 3
+ROLL 4
+.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 87
 SETGLOB 12
-.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 84
+.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 88
 SWAP
 CALLREF {
 	CALL $_setOwnerSilent_9f3600cf_internal_macro$
 }
-.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 85
+.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 89
 OVER
-INC
-UFITS 32
-ROT
+ISNULL
+PUSHCONT {
+	PUSH S2
+	INC
+	UFITS 32
+}
+PUSHCONT {
+	PUSH2 S1, S1
+	ISNULL
+	THROWIF 63
+}
+IFELSE
+ROLL 3
 CALLREF {
 	CALL $_setCurrentVersionInternal_60e55deb_internal_macro$
 }
-.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 87
+.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 94
 TUPLE 0
 NEWC
 PUSHSLICE x4e65772076657273696f6e3a20
@@ -351,7 +395,7 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 89
+.loc ../examples/contracts/upgrade/UpgradableExample.tsol, 96
 NEWC
 STSLICECONST x42_
 STSLICE
@@ -363,6 +407,7 @@ ADDCONST 2
 UFITS 8
 SENDRAWMSG
 .loc ../examples/contracts/upgrade/UpgradableExample.tsol, 0
+DROP
 CALLREF {
 	CALL $c7_to_c4$
 }
@@ -1195,7 +1240,7 @@ IFJMPREF {
 		CALL $getVersion$
 	}
 	DUP
-	PUSHINT 1064133139
+	PUSHINT 845877089
 	EQUAL
 	IFJMPREF {
 		CALL $upgrade$

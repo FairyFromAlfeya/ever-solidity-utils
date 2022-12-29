@@ -16,6 +16,7 @@
 			"name": "upgrade",
 			"inputs": [
 				{"name":"_code","type":"cell"},
+				{"name":"_version","type":"optional(uint32)"},
 				{"name":"_remainingGasTo","type":"optional(address)"}
 			],
 			"outputs": [

@@ -8,9 +8,11 @@ interface IUpgradable {
     /// @dev Only the owner can perform. See Ownable
     /// @dev Should be implemented by developer
     /// @param _code Contract's new code
+    /// @param _version Contract's new version
     /// @param _remainingGasTo Gas recipient
     function upgrade(
         TvmCell _code,
+        optional(uint32) _version,
         optional(address) _remainingGasTo
     ) external;
 }

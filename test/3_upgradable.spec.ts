@@ -64,7 +64,11 @@ describe('Upgradable', () => {
 
       const { traceTree } = await locklift.tracing.trace(
         example.methods
-          .upgrade({ _code: Upgradable.code, _remainingGasTo: address })
+          .upgrade({
+            _code: Upgradable.code,
+            _version: null,
+            _remainingGasTo: address,
+          })
           .send({ amount: locklift.utils.toNano(10), from: address }),
       );
 
