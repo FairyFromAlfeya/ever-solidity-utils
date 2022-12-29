@@ -112,6 +112,7 @@ abstract contract Factory is
     ) internal {
         // Update code and version
         _instanceCode = _newInstanceCode;
+        uint32 previousVersion = _instanceVersion;
 
         if (_newInstanceVersion.hasValue()) {
             _instanceVersion = _newInstanceVersion.get();
@@ -122,7 +123,7 @@ abstract contract Factory is
         // Emit event about change
         emit InstanceVersionChanged(
             _instanceVersion,
-            _instanceVersion - 1
+            previousVersion
         );
     }
 

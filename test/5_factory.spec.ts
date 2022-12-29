@@ -120,6 +120,33 @@ describe('Factory', () => {
 
       return expect(version.value0).to.be.equal('1');
     });
+
+    it('should update instance code with specific version', async () => {
+      const FactoryInstance =
+        locklift.factory.getContractArtifacts('FactoryInstance');
+
+      const { traceTree } = await locklift.tracing.trace(
+        example.methods
+          .setInstanceCode({
+            _newInstanceCode: FactoryInstance.code,
+            _newInstanceVersion: '3',
+            _remainingGasTo: address,
+          })
+          .send({ amount: locklift.utils.toNano(10), from: address }),
+      );
+
+      return expect(traceTree)
+        .to.call('setInstanceCode')
+        .count(1)
+        .withNamedArgs({
+          _newInstanceCode: FactoryInstance.code,
+          _newInstanceVersion: '3',
+          _remainingGasTo: address,
+        })
+        .and.to.emit('InstanceVersionChanged')
+        .count(1)
+        .withNamedArgs({ current: '3', previous: '1' });
+    });
   });
 
   describe('deploy new instance and check', () => {
@@ -191,7 +218,7 @@ describe('Factory', () => {
       expect(events.events.length).to.be.equal(1);
       expect(data.instance.toString()).to.be.equal(contract.value0.toString());
       expect(data.deployParams).to.be.equal(params.value0);
-      expect(data.version).to.be.equal('1');
+      expect(data.version).to.be.equal('3');
       return expect(data.deployer.toString()).to.be.equal(address.toString());
     });
   });

@@ -1523,29 +1523,27 @@ CALL $_setInstanceCodeInternal_6b0b215f_internal_macro$
 .loc ../contracts/factory/abstract/Factory.tsol, 114
 SWAP
 SETGLOB 10
-.loc ../contracts/factory/abstract/Factory.tsol, 116
-DUP
+.loc ../contracts/factory/abstract/Factory.tsol, 115
+GETGLOB 11
+.loc ../contracts/factory/abstract/Factory.tsol, 117
+OVER
 ISNULL
 PUSHCONT {
-	.loc ../contracts/factory/abstract/Factory.tsol, 119
+	.loc ../contracts/factory/abstract/Factory.tsol, 120
 	GETGLOB 11
 	INC
 	UFITS 32
 }
 PUSHCONT {
-	.loc ../contracts/factory/abstract/Factory.tsol, 117
-	BLKPUSH 2, 0
+	.loc ../contracts/factory/abstract/Factory.tsol, 118
+	PUSH2 S1, S1
 	ISNULL
 	THROWIF 63
 }
 IFELSE
+DUP
 SETGLOB 11
-.loc ../contracts/factory/abstract/Factory.tsol, 123
-DROP
-GETGLOB 11
-DEC
-UFITS 32
-GETGLOB 11
+.loc ../contracts/factory/abstract/Factory.tsol, 124
 PUSHSLICE xc00000000000000000000000006829acb3
 NEWC
 STSLICE
@@ -1554,6 +1552,7 @@ STU 32
 ENDC
 PUSHINT 0
 SENDRAWMSG
+DROP
 .loc ../contracts/factory/abstract/Factory.tsol, 0
 
 .globl	_setInstanceCodeSilent_ed313942_internal
@@ -1561,7 +1560,7 @@ SENDRAWMSG
 CALL $_setInstanceCodeSilent_ed313942_internal_macro$
 
 .macro _setInstanceCodeSilent_ed313942_internal_macro
-.loc ../contracts/factory/abstract/Factory.tsol, 132
+.loc ../contracts/factory/abstract/Factory.tsol, 133
 SETGLOB 10
 .loc ../contracts/factory/abstract/Factory.tsol, 0
 
@@ -1570,7 +1569,7 @@ SETGLOB 10
 CALL $_setInstanceVersionSilent_94681db1_internal_macro$
 
 .macro _setInstanceVersionSilent_94681db1_internal_macro
-.loc ../contracts/factory/abstract/Factory.tsol, 138
+.loc ../contracts/factory/abstract/Factory.tsol, 139
 SETGLOB 11
 .loc ../contracts/factory/abstract/Factory.tsol, 0
 
@@ -1579,7 +1578,7 @@ SETGLOB 11
 CALL $_getInstanceCodeInternal_ce467bc1_internal_macro$
 
 .macro _getInstanceCodeInternal_ce467bc1_internal_macro
-.loc ../contracts/factory/abstract/Factory.tsol, 145
+.loc ../contracts/factory/abstract/Factory.tsol, 146
 GETGLOB 10
 .loc ../contracts/factory/abstract/Factory.tsol, 0
 
@@ -1588,7 +1587,7 @@ GETGLOB 10
 CALL $_getInstanceVersionInternal_35a04637_internal_macro$
 
 .macro _getInstanceVersionInternal_35a04637_internal_macro
-.loc ../contracts/factory/abstract/Factory.tsol, 152
+.loc ../contracts/factory/abstract/Factory.tsol, 153
 GETGLOB 11
 .loc ../contracts/factory/abstract/Factory.tsol, 0
 
