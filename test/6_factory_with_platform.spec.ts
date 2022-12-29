@@ -3,6 +3,9 @@ import chai, { expect } from 'chai';
 import { FactorySource } from '../build/factorySource';
 import { Errors } from './errors';
 import { EmptyTvmCell } from './contants';
+import { BigNumber } from 'bignumber.js';
+
+BigNumber.config({ EXPONENTIAL_AT: 1e9 });
 
 chai.use(lockliftChai);
 
@@ -116,7 +119,16 @@ describe('FactoryWithPlatform', () => {
         })
         .and.emit('InstanceVersionChanged')
         .count(1)
-        .withNamedArgs({ current: '1', previous: '0' });
+        .withNamedArgs({
+          current: '1',
+          previous: '0',
+          currentCodeHash: new BigNumber(
+            FactoryInstance.codeHash,
+            16,
+          ).toString(),
+          previousCodeHash:
+            '68134197439415885698044414435951397869210496020759160419881882418413283430343',
+        });
     });
 
     it('should return instance code', async () => {
@@ -162,7 +174,10 @@ describe('FactoryWithPlatform', () => {
           _remainingGasTo: address,
         })
         .and.emit('PlatformCodeSet')
-        .count(1);
+        .count(1)
+        .withNamedArgs({
+          codeHash: new BigNumber(FactoryPlatform.codeHash, 16).toString(),
+        });
     });
 
     it('should return platform code', async () => {
@@ -247,6 +262,9 @@ describe('FactoryWithPlatform', () => {
     });
 
     it('should return InstanceDeployed event after deploy', async () => {
+      const FactoryInstance =
+        locklift.factory.getContractArtifacts('FactoryInstance');
+
       const params = await example.methods
         .getDeployParams({ _id: 0, answerId: 0 })
         .call();
@@ -263,6 +281,7 @@ describe('FactoryWithPlatform', () => {
         instance: Address;
         deployParams: string;
         version: string;
+        codeHash: string;
         deployer: Address;
       };
 
@@ -270,6 +289,9 @@ describe('FactoryWithPlatform', () => {
       expect(data.instance.toString()).to.be.equal(contract.value0.toString());
       expect(data.deployParams).to.be.equal(params.value0);
       expect(data.version).to.be.equal('1');
+      expect(data.codeHash).to.be.equal(
+        new BigNumber(FactoryInstance.codeHash, 16).toString(),
+      );
       return expect(data.deployer.toString()).to.be.equal(address.toString());
     });
   });

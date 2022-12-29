@@ -463,19 +463,24 @@ SENDRAWMSG
 .loc ../examples/contracts/factory/FactoryWithPlatformExample.tsol, 87
 GETGLOB 9
 CALLREF {
+	CALL $_getInstanceCodeInternal_ce467bc1_internal_macro$
+}
+HASHCU
+CALLREF {
 	CALL $_getInstanceVersionInternal_35a04637_internal_macro$
 }
+ROLL 5
 ROLL 4
-ROLL 3
 PUSHSLICE xc0000000000000000000000001
 NEWC
 STSLICE
-ROLLREV 4
+ROLLREV 5
 NEWC
-STSLICECONST x2bf91865
+STSLICECONST x2fd9b9de
 STSLICE
 STREF
 STU 32
+STU 256
 SWAP
 NEWC
 STSLICE
@@ -505,7 +510,7 @@ DROP2
 CALL $_getInstanceAddressInternal_80feb59a_internal_macro$
 
 .macro _getInstanceAddressInternal_80feb59a_internal_macro
-.loc ../examples/contracts/factory/FactoryWithPlatformExample.tsol, 101
+.loc ../examples/contracts/factory/FactoryWithPlatformExample.tsol, 102
 PUSHINT 0
 NEWC
 STU 256
@@ -1071,11 +1076,15 @@ CTOS
 SEMPTY
 THROWIFNOT 1005
 .loc ../contracts/factory/abstract/FactoryWithPlatform.tsol, 65
+DUP
 SETGLOB 12
 .loc ../contracts/factory/abstract/FactoryWithPlatform.tsol, 68
-PUSHREF {
-	.blob xc000000000000000000000000039fa86d3
-}
+HASHCU
+PUSHSLICE xc00000000000000000000000002c5121e0
+NEWC
+STSLICE
+STU 256
+ENDC
 PUSHINT 0
 SENDRAWMSG
 .loc ../contracts/factory/abstract/FactoryWithPlatform.tsol, 0
@@ -1520,35 +1529,43 @@ DROP2
 CALL $_setInstanceCodeInternal_6b0b215f_internal_macro$
 
 .macro _setInstanceCodeInternal_6b0b215f_internal_macro
-.loc ../contracts/factory/abstract/Factory.tsol, 114
-SWAP
-SETGLOB 10
-.loc ../contracts/factory/abstract/Factory.tsol, 115
+.loc ../contracts/factory/abstract/Factory.tsol, 113
 GETGLOB 11
+.loc ../contracts/factory/abstract/Factory.tsol, 114
+GETGLOB 10
 .loc ../contracts/factory/abstract/Factory.tsol, 117
-OVER
+ROLL 3
+SETGLOB 10
+.loc ../contracts/factory/abstract/Factory.tsol, 119
+PUSH S2
 ISNULL
 PUSHCONT {
-	.loc ../contracts/factory/abstract/Factory.tsol, 120
+	.loc ../contracts/factory/abstract/Factory.tsol, 122
 	GETGLOB 11
 	INC
 	UFITS 32
 }
 PUSHCONT {
-	.loc ../contracts/factory/abstract/Factory.tsol, 118
-	PUSH2 S1, S1
+	.loc ../contracts/factory/abstract/Factory.tsol, 120
+	PUSH2 S2, S2
 	ISNULL
 	THROWIF 63
 }
 IFELSE
-DUP
 SETGLOB 11
-.loc ../contracts/factory/abstract/Factory.tsol, 124
-PUSHSLICE xc00000000000000000000000006829acb3
+.loc ../contracts/factory/abstract/Factory.tsol, 126
+HASHCU
+GETGLOB 10
+HASHCU
+ROT
+GETGLOB 11
+PUSHSLICE xc00000000000000000000000006261d841
 NEWC
 STSLICE
 STU 32
 STU 32
+STU 256
+STU 256
 ENDC
 PUSHINT 0
 SENDRAWMSG
@@ -1560,7 +1577,7 @@ DROP
 CALL $_setInstanceCodeSilent_ed313942_internal_macro$
 
 .macro _setInstanceCodeSilent_ed313942_internal_macro
-.loc ../contracts/factory/abstract/Factory.tsol, 133
+.loc ../contracts/factory/abstract/Factory.tsol, 137
 SETGLOB 10
 .loc ../contracts/factory/abstract/Factory.tsol, 0
 
@@ -1569,7 +1586,7 @@ SETGLOB 10
 CALL $_setInstanceVersionSilent_94681db1_internal_macro$
 
 .macro _setInstanceVersionSilent_94681db1_internal_macro
-.loc ../contracts/factory/abstract/Factory.tsol, 139
+.loc ../contracts/factory/abstract/Factory.tsol, 143
 SETGLOB 11
 .loc ../contracts/factory/abstract/Factory.tsol, 0
 
@@ -1578,7 +1595,7 @@ SETGLOB 11
 CALL $_getInstanceCodeInternal_ce467bc1_internal_macro$
 
 .macro _getInstanceCodeInternal_ce467bc1_internal_macro
-.loc ../contracts/factory/abstract/Factory.tsol, 146
+.loc ../contracts/factory/abstract/Factory.tsol, 150
 GETGLOB 10
 .loc ../contracts/factory/abstract/Factory.tsol, 0
 
@@ -1587,7 +1604,7 @@ GETGLOB 10
 CALL $_getInstanceVersionInternal_35a04637_internal_macro$
 
 .macro _getInstanceVersionInternal_35a04637_internal_macro
-.loc ../contracts/factory/abstract/Factory.tsol, 153
+.loc ../contracts/factory/abstract/Factory.tsol, 157
 GETGLOB 11
 .loc ../contracts/factory/abstract/Factory.tsol, 0
 

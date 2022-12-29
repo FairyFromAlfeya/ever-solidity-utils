@@ -82,6 +82,7 @@ contract FactoryExample is Factory, Ownable {
             instance,
             _deployParams,
             _getInstanceVersionInternal(),
+            tvm.hash(_getInstanceCodeInternal()),
             msg.sender
         );
     }

@@ -9,6 +9,9 @@ import chai, { expect } from 'chai';
 import { FactorySource } from '../build/factorySource';
 import { Errors } from './errors';
 import { EmptyTvmCell } from './contants';
+import { BigNumber } from 'bignumber.js';
+
+BigNumber.config({ EXPONENTIAL_AT: 1e9 });
 
 chai.use(lockliftChai);
 
@@ -78,7 +81,16 @@ describe('UpgradableByRequest', () => {
         })
         .and.to.emit('InstanceVersionChanged')
         .count(1)
-        .withNamedArgs({ current: '1', previous: '0' });
+        .withNamedArgs({
+          current: '1',
+          previous: '0',
+          currentCodeHash: new BigNumber(
+            UpgradableByRequestExample.codeHash,
+            16,
+          ).toString(),
+          previousCodeHash:
+            '68134197439415885698044414435951397869210496020759160419881882418413283430343',
+        });
     });
 
     it('should deploy new instance', async () => {
@@ -172,7 +184,18 @@ describe('UpgradableByRequest', () => {
         })
         .to.emit('InstanceVersionChanged')
         .count(1)
-        .withNamedArgs({ previous: '1', current: '2' });
+        .withNamedArgs({
+          previous: '1',
+          current: '2',
+          currentCodeHash: new BigNumber(
+            UpgradableByRequestExample.codeHash,
+            16,
+          ).toString(),
+          previousCodeHash: new BigNumber(
+            UpgradableByRequestExample.codeHash,
+            16,
+          ).toString(),
+        });
     });
 
     it('should return code version 2', async () => {

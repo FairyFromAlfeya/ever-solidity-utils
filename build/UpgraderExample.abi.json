@@ -126,6 +126,7 @@
 				{"name":"instance","type":"address"},
 				{"name":"deployParams","type":"cell"},
 				{"name":"version","type":"uint32"},
+				{"name":"codeHash","type":"uint256"},
 				{"name":"deployer","type":"address"}
 			],
 			"outputs": [
@@ -135,7 +136,9 @@
 			"name": "InstanceVersionChanged",
 			"inputs": [
 				{"name":"current","type":"uint32"},
-				{"name":"previous","type":"uint32"}
+				{"name":"previous","type":"uint32"},
+				{"name":"currentCodeHash","type":"uint256"},
+				{"name":"previousCodeHash","type":"uint256"}
 			],
 			"outputs": [
 			]

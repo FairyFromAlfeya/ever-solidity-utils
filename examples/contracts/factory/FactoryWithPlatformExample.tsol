@@ -88,6 +88,7 @@ contract FactoryWithPlatformExample is
             instance,
             _deployParams,
             _getInstanceVersionInternal(),
+            tvm.hash(_getInstanceCodeInternal()),
             msg.sender
         );
     }

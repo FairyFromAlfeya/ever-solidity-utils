@@ -9,11 +9,13 @@ interface IFactory {
     /// @param instance Address of the deployed instance
     /// @param deployParams Params which was used for deploy
     /// @param version Version of the deployed instance
+    /// @param codeHash Code hash of the deployed instance
     /// @param deployer Deployer of the instance
     event InstanceDeployed(
         address instance,
         TvmCell deployParams,
         uint32 version,
+        uint codeHash,
         address deployer
     );
 
@@ -21,7 +23,9 @@ interface IFactory {
     /// @dev Should be emitted only inside _setInstanceCodeInternal()
     event InstanceVersionChanged(
         uint32 current,
-        uint32 previous
+        uint32 previous,
+        uint currentCodeHash,
+        uint previousCodeHash
     );
 
     /// @notice Get the current instance's code

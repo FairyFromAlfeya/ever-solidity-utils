@@ -65,7 +65,7 @@ abstract contract FactoryWithPlatform is
         _platformCode = _newPlatformCode;
 
         // Emit event about change
-        emit PlatformCodeSet();
+        emit PlatformCodeSet(tvm.hash(_platformCode));
     }
 
     /// @dev Use it inside onCodeUpgrade to set platform code without PlatformCodeSet event

@@ -84,6 +84,7 @@ contract UpgraderExample is Factory, Upgrader, Ownable {
             instance,
             _deployParams,
             _getInstanceVersionInternal(),
+            tvm.hash(_getInstanceCodeInternal()),
             msg.sender
         );
     }
