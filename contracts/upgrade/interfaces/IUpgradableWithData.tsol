@@ -1,0 +1,20 @@
+pragma ever-solidity >= 0.61.2;
+
+/// @author Alexander Kunekov
+/// @title Upgradable with Data Interface
+/// @notice Interface for contract upgrade implementation
+interface IUpgradableWithData {
+    /// @notice Upgrades contract's code
+    /// @dev Only the owner can perform. See Ownable
+    /// @dev Should be implemented by developer
+    /// @param _code Contract's new code
+    /// @param _version Contract's new version
+    /// @param _extra Extra user-defined data to use in upgrade
+    /// @param _remainingGasTo Gas recipient
+    function upgrade(
+        TvmCell _code,
+        optional(uint32) _version,
+        TvmCell _extra,
+        optional(address) _remainingGasTo
+    ) external;
+}
