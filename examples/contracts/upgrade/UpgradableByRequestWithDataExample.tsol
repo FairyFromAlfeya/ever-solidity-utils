@@ -41,7 +41,7 @@ contract UpgradableByRequestWithDataExample is FactoryInstance, UpgradableByRequ
     {
         return {
             value: 0,
-            flag: UtilityFlag.REMAINING_GAS,
+            flag: MsgFlag.REMAINING_GAS,
             bounce: false
         } _extra;
     }

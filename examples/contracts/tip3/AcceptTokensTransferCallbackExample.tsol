@@ -50,7 +50,7 @@ contract AcceptTokensTransferCallbackExample is
         ITokenRoot(_root)
             .walletOf{
                 value: 0.5 ever,
-                flag: UtilityFlag.SENDER_PAYS_FEES,
+                flag: MsgFlag.SENDER_PAYS_FEES,
                 bounce: false,
                 callback: AcceptTokensTransferCallbackExample.onWalletOf
             }(address(this));

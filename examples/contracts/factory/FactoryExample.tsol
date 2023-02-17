@@ -46,7 +46,7 @@ contract FactoryExample is Factory, Ownable {
     {
         return {
             value: 0,
-            flag: UtilityFlag.REMAINING_GAS,
+            flag: MsgFlag.REMAINING_GAS,
             bounce: false
         } abi.encode(_id);
     }
@@ -74,7 +74,7 @@ contract FactoryExample is Factory, Ownable {
         address instance = new FactoryInstance{
             stateInit: data,
             value: 2 ever,
-            flag: UtilityFlag.SENDER_PAYS_FEES,
+            flag: MsgFlag.SENDER_PAYS_FEES,
             bounce: false
         }(_remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender);
 

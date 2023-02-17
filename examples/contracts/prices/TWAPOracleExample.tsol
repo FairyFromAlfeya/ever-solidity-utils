@@ -4,7 +4,7 @@ pragma AbiHeader time;
 pragma AbiHeader expire;
 pragma AbiHeader pubkey;
 
-import "../../../contracts/libraries/UtilityFlag.tsol";
+import "../../../contracts/libraries/MsgFlag.tsol";
 import "../../../contracts/libraries/UtilityGas.tsol";
 import "../../../contracts/libraries/FixedPoint128.tsol";
 
@@ -68,7 +68,7 @@ contract PriceAggregatorExample is
     {
         return {
             value: 0,
-            flag: UtilityFlag.REMAINING_GAS,
+            flag: MsgFlag.REMAINING_GAS,
             bounce: false
         } _observations.fetch(_timestamp);
     }
@@ -86,7 +86,7 @@ contract PriceAggregatorExample is
         IOnObservationCallback(_callbackTo)
             .onObservationCallback{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false
             }(
                 _observations.fetch(_timestamp),
@@ -113,7 +113,7 @@ contract PriceAggregatorExample is
 
         return {
             value: 0,
-            flag: UtilityFlag.REMAINING_GAS,
+            flag: MsgFlag.REMAINING_GAS,
             bounce: false
         } (rateOpt, reserves);
     }
@@ -134,7 +134,7 @@ contract PriceAggregatorExample is
         IOnRateCallback(_callbackTo)
             .onRateCallback{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false
             }(
                 _calculateRate(_fromTimestamp, _toTimestamp),
@@ -159,7 +159,7 @@ contract PriceAggregatorExample is
         return {
             value: 0,
             bounce: false,
-            flag: UtilityFlag.REMAINING_GAS
+            flag: MsgFlag.REMAINING_GAS
         } FixedPoint128.calculateExpectedAmountByRate(
             _amount,
             _calculateRate(_fromTimestamp, _toTimestamp).get().price0To1
@@ -188,7 +188,7 @@ contract PriceAggregatorExample is
     {
         return {
             value: 0,
-            flag: UtilityFlag.REMAINING_GAS,
+            flag: MsgFlag.REMAINING_GAS,
             bounce: false
         } _options;
     }

@@ -7,7 +7,7 @@ pragma AbiHeader pubkey;
 import "locklift/src/console.tsol";
 
 import "../../../contracts/libraries/UtilityGas.tsol";
-import "../../../contracts/libraries/UtilityFlag.tsol";
+import "../../../contracts/libraries/MsgFlag.tsol";
 
 import "../../../contracts/reservation/abstract/Reservable.tsol";
 import "../../../contracts/reservation/abstract/TargetBalance.tsol";
@@ -48,7 +48,7 @@ contract ReservableExample is Reservable, TargetBalance {
 
         remainingGasTo.transfer({
             value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
+            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
             bounce: false
         });
     }

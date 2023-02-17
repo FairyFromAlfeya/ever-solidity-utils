@@ -6,7 +6,7 @@ pragma AbiHeader pubkey;
 
 import "locklift/src/console.tsol";
 
-import "../../../contracts/libraries/UtilityFlag.tsol";
+import "../../../contracts/libraries/MsgFlag.tsol";
 import "../../../contracts/libraries/UtilityGas.tsol";
 
 import "../../../contracts/reservation/abstract/Reservable.tsol";
@@ -97,7 +97,7 @@ contract TWAPOracleCallbacksExample is
         _oracle
             .rate{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false
             }(
                 _fromTimestamp,
@@ -120,7 +120,7 @@ contract TWAPOracleCallbacksExample is
         _oracle
             .observation{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false
             }(
                 _timestamp,

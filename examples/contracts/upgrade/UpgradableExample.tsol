@@ -9,7 +9,7 @@ import "locklift/src/console.tsol";
 import "../../../contracts/access/abstract/Ownable.tsol";
 
 import "../../../contracts/libraries/UtilityErrors.tsol";
-import "../../../contracts/libraries/UtilityFlag.tsol";
+import "../../../contracts/libraries/MsgFlag.tsol";
 import "../../../contracts/libraries/UtilityGas.tsol";
 
 import "../../../contracts/upgrade/abstract/Upgradable.tsol";
@@ -95,7 +95,7 @@ contract UpgradableExample is Upgradable, Ownable {
 
         remainingGasTo.transfer({
             value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
+            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
             bounce: false
         });
     }

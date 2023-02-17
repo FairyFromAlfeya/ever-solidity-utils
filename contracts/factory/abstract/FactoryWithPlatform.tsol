@@ -1,7 +1,7 @@
 pragma ever-solidity >= 0.61.2;
 
 import "../../libraries/UtilityErrors.tsol";
-import "../../libraries/UtilityFlag.tsol";
+import "../../libraries/MsgFlag.tsol";
 
 import "../interfaces/IFactoryWithPlatform.tsol";
 
@@ -33,7 +33,7 @@ abstract contract FactoryWithPlatform is
     {
         return {
             value: 0,
-            flag: UtilityFlag.REMAINING_GAS,
+            flag: MsgFlag.REMAINING_GAS,
             bounce: false
         } _platformCode;
     }

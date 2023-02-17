@@ -1,7 +1,7 @@
 pragma ever-solidity >= 0.61.2;
 
 import "../../libraries/UtilityErrors.tsol";
-import "../../libraries/UtilityFlag.tsol";
+import "../../libraries/MsgFlag.tsol";
 
 import "../../reservation/abstract/Reservable.tsol";
 import "../../reservation/abstract/TargetBalance.tsol";
@@ -53,7 +53,7 @@ abstract contract Upgrader is
             IUpgradableByRequest(msg.sender)
                 .upgrade{
                     value: 0,
-                    flag: UtilityFlag.ALL_NOT_RESERVED,
+                    flag: MsgFlag.ALL_NOT_RESERVED,
                     bounce: false
                 }(
                     version,
@@ -63,7 +63,7 @@ abstract contract Upgrader is
         } else {
             _remainingGasTo.transfer({
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
+                flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
                 bounce: false
             });
         }

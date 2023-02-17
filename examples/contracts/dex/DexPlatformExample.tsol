@@ -7,7 +7,7 @@ pragma AbiHeader pubkey;
 import "../../../contracts/dex/libraries/DexPlatformTypes.tsol";
 import "../../../contracts/dex/DexPlatformMinimized.tsol";
 
-import "../../../contracts/libraries/UtilityFlag.tsol";
+import "../../../contracts/libraries/MsgFlag.tsol";
 import "../../../contracts/libraries/UtilityGas.tsol";
 
 import "../../../contracts/reservation/abstract/Reservable.tsol";
@@ -54,7 +54,7 @@ contract DexPlatformExample is
 
         return {
             value: 0,
-            flag: UtilityFlag.REMAINING_GAS,
+            flag: MsgFlag.REMAINING_GAS,
             bounce: false
         } address(
             tvm.hash(

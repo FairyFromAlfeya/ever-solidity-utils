@@ -1,6 +1,6 @@
 pragma ever-solidity >= 0.61.2;
 
-import "../../libraries/UtilityFlag.tsol";
+import "../../libraries/MsgFlag.tsol";
 
 import "../interfaces/IVersion.tsol";
 
@@ -21,7 +21,7 @@ abstract contract Version is IVersion {
     {
         return {
             value: 0,
-            flag: UtilityFlag.REMAINING_GAS,
+            flag: MsgFlag.REMAINING_GAS,
             bounce: false
         } _currentVersion;
     }

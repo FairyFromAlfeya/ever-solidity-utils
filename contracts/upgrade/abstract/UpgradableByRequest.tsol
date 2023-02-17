@@ -1,7 +1,7 @@
 pragma ever-solidity >= 0.61.2;
 
 import "../../libraries/UtilityErrors.tsol";
-import "../../libraries/UtilityFlag.tsol";
+import "../../libraries/MsgFlag.tsol";
 
 import "../../reservation/abstract/Reservable.tsol";
 import "../../reservation/abstract/TargetBalance.tsol";
@@ -53,7 +53,7 @@ abstract contract UpgradableByRequest is
     {
         return {
             value: 0,
-            flag: UtilityFlag.REMAINING_GAS,
+            flag: MsgFlag.REMAINING_GAS,
             bounce: false
         } _upgrader;
     }
@@ -72,7 +72,7 @@ abstract contract UpgradableByRequest is
         IUpgrader(_upgrader)
             .provideUpgrade{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false
             }(
                 _getCurrentVersionInternal(),

@@ -49,7 +49,7 @@ contract UpgraderWithDataExample is Factory, Upgrader, Ownable {
     {
         return {
             value: 0,
-            flag: UtilityFlag.REMAINING_GAS,
+            flag: MsgFlag.REMAINING_GAS,
             bounce: false
         } abi.encode(_id);
     }
@@ -77,7 +77,7 @@ contract UpgraderWithDataExample is Factory, Upgrader, Ownable {
         address instance = new FactoryInstance{
             stateInit: data,
             value: 2 ever,
-            flag: UtilityFlag.SENDER_PAYS_FEES,
+            flag: MsgFlag.SENDER_PAYS_FEES,
             bounce: false
         }(_remainingGasTo.hasValue() ? _remainingGasTo.get() : msg.sender);
 
@@ -114,7 +114,7 @@ contract UpgraderWithDataExample is Factory, Upgrader, Ownable {
             IUpgradableByRequestWithData(msg.sender)
                 .upgrade{
                     value: 0,
-                    flag: UtilityFlag.ALL_NOT_RESERVED,
+                    flag: MsgFlag.ALL_NOT_RESERVED,
                     bounce: false
                 }(
                     version,
@@ -125,7 +125,7 @@ contract UpgraderWithDataExample is Factory, Upgrader, Ownable {
         } else {
             _remainingGasTo.transfer({
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
+                flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
                 bounce: false
             });
         }
