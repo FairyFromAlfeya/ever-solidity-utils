@@ -6,7 +6,7 @@ pragma AbiHeader pubkey;
 
 import "locklift/src/console.tsol";
 
-import "../../../contracts/libraries/UtilityFlag.tsol";
+import "../../../contracts/libraries/MsgFlag.tsol";
 import "../../../contracts/libraries/UtilityGas.tsol";
 
 import "../../../contracts/reservation/abstract/Reservable.tsol";
@@ -82,7 +82,7 @@ contract PriceAggregatorExample is
             IOnSuccessPriceCallback(_callbackRecipient)
                 .onSuccessPriceCallback{
                     value: 0,
-                    flag: UtilityFlag.ALL_NOT_RESERVED,
+                    flag: MsgFlag.ALL_NOT_RESERVED,
                     bounce: false
                 }(
                     prices,
@@ -95,7 +95,7 @@ contract PriceAggregatorExample is
             IOnCanceledPriceCallback(_callbackRecipient)
                 .onCanceledPriceCallback{
                     value: 0,
-                    flag: UtilityFlag.ALL_NOT_RESERVED,
+                    flag: MsgFlag.ALL_NOT_RESERVED,
                     bounce: false
                 }(
                     prices,

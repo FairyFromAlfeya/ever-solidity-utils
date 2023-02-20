@@ -3,17 +3,19 @@ pragma ever-solidity >= 0.61.2;
 import "./IUpgradableByRequestBase.tsol";
 
 /// @author Alexander Kunekov
-/// @title Upgradable by Request Interface
+/// @title Upgradable by Request with Data Interface
 /// @notice Interface for contract upgrade by request implementation
-interface IUpgradableByRequest is IUpgradableByRequestBase {
+interface IUpgradableByRequestWithData is IUpgradableByRequestBase {
     /// @notice Upgrades contract's code
     /// @dev Only the upgrader can perform. See Upgrader
     /// @param _version New version of the contract
     /// @param _code Contract's new code
+    /// @param _extra Extra user-defined data to use in upgrade
     /// @param _remainingGasTo Gas recipient
     function upgrade(
         uint32 _version,
         TvmCell _code,
+        TvmCell _extra,
         address _remainingGasTo
     ) external;
 }

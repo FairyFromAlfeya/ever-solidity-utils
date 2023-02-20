@@ -7,7 +7,7 @@ pragma AbiHeader pubkey;
 import "locklift/src/console.tsol";
 
 import "../../../contracts/libraries/UtilityGas.tsol";
-import "../../../contracts/libraries/UtilityFlag.tsol";
+import "../../../contracts/libraries/MsgFlag.tsol";
 
 import "../../../contracts/tip3/interfaces/ITokenWallet.tsol";
 import "../../../contracts/tip3/interfaces/ITokenRoot.tsol";
@@ -40,7 +40,7 @@ contract TokenWalletExample is Reservable, TargetBalance {
         _wallet
             .root{
                 value: 0.5 ever,
-                flag: UtilityFlag.SENDER_PAYS_FEES,
+                flag: MsgFlag.SENDER_PAYS_FEES,
                 bounce: false,
                 callback: TokenWalletExample.onOwnRoot
             }();
@@ -54,7 +54,7 @@ contract TokenWalletExample is Reservable, TargetBalance {
         ITokenRoot(_root)
             .walletOf{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false,
                 callback: TokenWalletExample.onOwnWalletOf
             }(address(this));
@@ -75,7 +75,7 @@ contract TokenWalletExample is Reservable, TargetBalance {
         _wallet
             .root{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false,
                 callback: TokenWalletExample.onRoot
             }();
@@ -89,7 +89,7 @@ contract TokenWalletExample is Reservable, TargetBalance {
         _wallet
             .balance{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false,
                 callback: TokenWalletExample.onBalance
             }();
@@ -103,7 +103,7 @@ contract TokenWalletExample is Reservable, TargetBalance {
         _wallet
             .owner{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false,
                 callback: TokenWalletExample.onOwner
             }();
@@ -124,7 +124,7 @@ contract TokenWalletExample is Reservable, TargetBalance {
         _ownWallet
             .transfer{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false
             }(
                 _amount,
@@ -150,7 +150,7 @@ contract TokenWalletExample is Reservable, TargetBalance {
         _ownWallet
             .transferToWallet{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false
             }(
                 _amount,

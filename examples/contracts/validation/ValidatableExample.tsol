@@ -11,7 +11,7 @@ import "../../../contracts/reservation/abstract/TargetBalance.tsol";
 
 import "../../../contracts/validation/abstract/Validatable.tsol";
 
-import "../../../contracts/libraries/UtilityFlag.tsol";
+import "../../../contracts/libraries/MsgFlag.tsol";
 import "../../../contracts/libraries/UtilityErrors.tsol";
 import "../../../contracts/libraries/UtilityGas.tsol";
 
@@ -45,7 +45,7 @@ contract ValidatableExample is
     {
         return {
             value: 0,
-            flag: UtilityFlag.REMAINING_GAS,
+            flag: MsgFlag.REMAINING_GAS,
             bounce: false
         } abi.encode(_id);
     }

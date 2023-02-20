@@ -12,10 +12,12 @@ import "../../../contracts/libraries/UtilityErrors.tsol";
 import "../../../contracts/libraries/MsgFlag.tsol";
 import "../../../contracts/libraries/UtilityGas.tsol";
 
-import "../../../contracts/upgrade/abstract/Upgradable.tsol";
+import "../../../contracts/upgrade/abstract/UpgradableWithData.tsol";
 
-contract UpgradableExample is Upgradable, Ownable {
+contract UpgradableWithDataExample is UpgradableWithData, Ownable {
     uint32 private static _nonce;
+
+    uint32 private _extra;
 
     function _getTargetBalanceInternal()
         internal
@@ -40,9 +42,23 @@ contract UpgradableExample is Upgradable, Ownable {
         _setCurrentVersionInternal(1, 0);
     }
 
+    function getExtra()
+        external
+        view
+        responsible
+        returns (uint32)
+    {
+        return {
+            value: 0,
+            flag: MsgFlag.REMAINING_GAS,
+            bounce: false
+        } _extra;
+    }
+
     function upgrade(
         TvmCell _code,
         optional(uint32) _version,
+        TvmCell _data,
         optional(address) _remainingGasTo
     )
         external
@@ -58,6 +74,7 @@ contract UpgradableExample is Upgradable, Ownable {
             _getCurrentVersionInternal(),
             _version,
             _getOwnerInternal(),
+            _data,
             remainingGasTo
         );
 
@@ -75,16 +92,19 @@ contract UpgradableExample is Upgradable, Ownable {
             uint32 previousVersion,
             optional(uint32) currentVersion,
             address owner,
+            TvmCell data,
             address remainingGasTo
         ) = abi.decode(_data, (
             uint32,
             uint32,
             optional(uint32),
             address,
+            TvmCell,
             address
         ));
 
         _nonce = nonce;
+        _extra = abi.decode(data, uint32);
         _setOwnerSilent(owner);
         _setCurrentVersionInternal(
             currentVersion.hasValue() ? currentVersion.get() : previousVersion + 1,

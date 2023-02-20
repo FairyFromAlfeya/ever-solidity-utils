@@ -7,7 +7,7 @@ pragma AbiHeader pubkey;
 import "locklift/src/console.tsol";
 
 import "../../../contracts/libraries/UtilityGas.tsol";
-import "../../../contracts/libraries/UtilityFlag.tsol";
+import "../../../contracts/libraries/MsgFlag.tsol";
 
 import "../../../contracts/tip3/interfaces/ITokenRoot.tsol";
 
@@ -44,7 +44,7 @@ contract TokenRootExample is Reservable, TargetBalance {
         _root
             .name{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false,
                 callback: TokenRootExample.onName
             }();
@@ -58,7 +58,7 @@ contract TokenRootExample is Reservable, TargetBalance {
         _root
             .symbol{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false,
                 callback: TokenRootExample.onSymbol
             }();
@@ -72,7 +72,7 @@ contract TokenRootExample is Reservable, TargetBalance {
         _root
             .decimals{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false,
                 callback: TokenRootExample.onDecimals
             }();
@@ -86,7 +86,7 @@ contract TokenRootExample is Reservable, TargetBalance {
         _root
             .totalSupply{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false,
                 callback: TokenRootExample.onTotalSupply
             }();
@@ -100,7 +100,7 @@ contract TokenRootExample is Reservable, TargetBalance {
         _root
             .rootOwner{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false,
                 callback: TokenRootExample.onRootOwner
             }();
@@ -114,7 +114,7 @@ contract TokenRootExample is Reservable, TargetBalance {
         _root
             .walletOf{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false,
                 callback: TokenRootExample.onWalletOf
             }(_owner);
@@ -131,7 +131,7 @@ contract TokenRootExample is Reservable, TargetBalance {
         _root
             .deployWallet{
                 value: 0,
-                flag: UtilityFlag.ALL_NOT_RESERVED,
+                flag: MsgFlag.ALL_NOT_RESERVED,
                 bounce: false,
                 callback: TokenRootExample.onDeployWallet
             }(_owner, _deployWalletValue);

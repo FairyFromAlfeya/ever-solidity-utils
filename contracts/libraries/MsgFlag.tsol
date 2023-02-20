@@ -1,9 +1,9 @@
 pragma ever-solidity >= 0.61.2;
 
 /// @author Broxus Team
-/// @title Utility Flag
+/// @title Message Flag
 /// @notice Possible flags when sending message from contract
-library UtilityFlag {
+library MsgFlag {
     /// @dev Contract will be charged for message creation
     uint8 constant SENDER_PAYS_FEES = 1;
 

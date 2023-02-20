@@ -9,11 +9,13 @@ import "locklift/src/console.tsol";
 import "../../../contracts/libraries/UtilityErrors.tsol";
 import "../../../contracts/libraries/UtilityGas.tsol";
 
-import "../../../contracts/upgrade/abstract/UpgradableByRequest.tsol";
+import "../../../contracts/upgrade/abstract/UpgradableByRequestWithData.tsol";
 
 import "../factory/FactoryInstance.tsol";
 
-contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
+contract UpgradableByRequestWithDataExample is FactoryInstance, UpgradableByRequestWithData {
+    uint32 private _extra;
+
     function _getTargetBalanceInternal()
         internal
         view
@@ -31,9 +33,23 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
         _setCurrentVersionInternal(1, 0);
     }
 
+    function getExtra()
+        external
+        view
+        responsible
+        returns (uint32)
+    {
+        return {
+            value: 0,
+            flag: MsgFlag.REMAINING_GAS,
+            bounce: false
+        } _extra;
+    }
+
     function upgrade(
         uint32 _version,
         TvmCell _code,
+        TvmCell _data,
         address _remainingGasTo
     )
         external
@@ -47,7 +63,8 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
             _version,
             _getCurrentVersionInternal(),
             _factory,
-            _getUpgraderInternal()
+            _getUpgraderInternal(),
+            _data
         );
 
         tvm.setcode(_code);
@@ -64,15 +81,18 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
             uint32 currentVersion,
             uint32 previousVersion,
             address factory,
-            address upgrader
+            address upgrader,
+            TvmCell data
         ) = abi.decode(_data, (
             uint32,
             uint32,
             uint32,
             address,
-            address
+            address,
+            TvmCell
         ));
 
+        _extra = abi.decode(data, uint32);
         _id = id;
         _factory = factory;
 

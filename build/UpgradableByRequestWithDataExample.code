@@ -72,18 +72,18 @@ UFITS 8
 SENDRAWMSG
 .loc ../contracts/reservation/abstract/Reservable.tsol, 0
 DROP2
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 30
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 32
 GETGLOB 12
 CALLREF {
 	CALL $_setUpgraderInternal_38cf9445_internal_macro$
 }
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 31
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 33
 PUSHINT 1
 PUSHINT 0
 CALLREF {
 	CALL $_setCurrentVersionInternal_60e55deb_internal_macro$
 }
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 0
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 0
 CALLREF {
 	CALL $c7_to_c4$
 }
@@ -94,9 +94,93 @@ THROW 0
 CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 
 .macro _getTargetBalanceInternal_141d6ea7_internal_macro
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 23
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 25
 PUSHINT 1000000000
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 0
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 0
+
+.macro getExtra
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 36
+LDU 32
+GETGLOB 4
+ROT
+SETINDEXQ 5
+SETGLOB 4
+ENDS
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 0
+CALLREF {
+	CALL $getExtra_5c925b9d_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 3537117274
+	STUR 130
+	STU 32
+	ENDC
+	PUSHINT 0
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	OVER
+	THIRD
+	GETGLOB 9
+	ROLL 3
+	SECOND
+	NEWC
+	STSLICECONST x2_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 106
+	STZEROES
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	STU 32
+	ENDC
+	GETGLOB 4
+	INDEX 4
+}
+IFELSE
+SENDRAWMSG
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.macro getExtra_5c925b9d_internal_macro
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 46
+GETGLOB 4
+PUSHINT 0
+SETINDEXQ 2
+PUSHINT 64
+SETINDEXQ 4
+FALSE
+SETINDEXQ 1
+SETGLOB 4
+GETGLOB 14
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 0
 
 .macro upgrade
 DROP
@@ -107,10 +191,11 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 34
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 49
 OVER
 PUSHCONT {
 	LDU 32
+	LDREF
 	LDREF
 	LDREF
 	ENDS
@@ -119,21 +204,22 @@ PUSHCONT {
 PUSHCONT {
 	LDU 32
 	LDREF
+	LDREF
 }
 IFELSE
 LDMSGADDR
 ENDS
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 0
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 0
 CALLREF {
-	CALL $upgrade_bbd8b21d_internal_macro$
+	CALL $upgrade_c48fe33b_internal_macro$
 }
 CALLREF {
 	CALL $c7_to_c4$
 }
 THROW 0
 
-.macro upgrade_bbd8b21d_internal_macro
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 34
+.macro upgrade_c48fe33b_internal_macro
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 49
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
@@ -186,15 +272,15 @@ SDEQ
 AND
 THROWIFNOT 1007
 .loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 42
-PUSH S4
+PUSH S5
 .loc ../contracts/validation/abstract/Validatable.tsol, 32
 PUSHINT 1004
 CALLREF {
 	CALL $Validation_no_obj_notEmpty_f0710f53_macro$
 }
 .loc ../contracts/validation/abstract/Validatable.tsol, 36
-BLKSWAP 3, 3
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 45
+BLKSWAP 4, 3
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 61
 DROP
 CALLREF {
 	CALL $_getUpgraderInternal_da4e2b18_internal_macro$
@@ -203,22 +289,23 @@ GETGLOB 12
 CALLREF {
 	CALL $_getCurrentVersionInternal_9e782595_internal_macro$
 }
-ROLL 4
+ROLL 5
 GETGLOB 11
 NEWC
 STU 32
 STU 32
 STU 32
 STSLICE
-SWAP
+ROTREV
 NEWC
 STSLICE
+STREF
 STBREFR
 ENDC
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 53
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 70
 OVER
 SETCODE
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 54
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 71
 SWAP
 CTOS
 DUP
@@ -233,7 +320,7 @@ PLDREF
 CTOS
 BLESS
 POP C3
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 56
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 73
 CALLREF {
 	CALL $_onUpgrade_a17d3901_internal_macro$
 }
@@ -250,14 +337,14 @@ UFITS 8
 SENDRAWMSG
 .loc ../contracts/reservation/abstract/Reservable.tsol, 0
 DROP2
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 0
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 0
 
 .globl	_onUpgrade_a17d3901_internal
 .type	_onUpgrade_a17d3901_internal, @function
 CALL $_onUpgrade_a17d3901_internal_macro$
 
 .macro _onUpgrade_a17d3901_internal_macro
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 60
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 77
 PUSHINT 0
 SETGLOB 10
 PUSHINT 0
@@ -270,7 +357,9 @@ PUSHREFSLICE {
 	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
 }
 SETGLOB 13
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 62
+PUSHINT 0
+SETGLOB 14
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 79
 CTOS
 LDU 32
 LDU 32
@@ -280,23 +369,29 @@ LDREF
 ENDS
 CTOS
 LDMSGADDR
+LDREF
 ENDS
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 76
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 95
+CTOS
+LDU 32
+ENDS
+SETGLOB 14
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 96
 ROLL 4
 SETGLOB 11
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 77
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 97
 SWAP
 SETGLOB 12
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 79
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 99
 ROTREV
 CALLREF {
 	CALL $_setCurrentVersionInternal_60e55deb_internal_macro$
 }
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 80
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 100
 CALLREF {
 	CALL $_setUpgraderSilent_808d69d5_internal_macro$
 }
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 82
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 102
 TUPLE 0
 NEWC
 PUSHSLICE x4e65772076657273696f6e3a20
@@ -317,19 +412,19 @@ CALLREF {
 CALLREF {
 	CALL $console_no_obj_log_41304fac_macro$
 }
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 0
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 0
 
 .globl	_getDeployParamsInternal_95e71007_internal
 .type	_getDeployParamsInternal_95e71007_internal, @function
 CALL $_getDeployParamsInternal_95e71007_internal_macro$
 
 .macro _getDeployParamsInternal_95e71007_internal_macro
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 91
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 111
 GETGLOB 11
 NEWC
 STU 32
 ENDC
-.loc ../examples/contracts/upgrade/UpgradableByRequestExample.tsol, 0
+.loc ../examples/contracts/upgrade/UpgradableByRequestWithDataExample.tsol, 0
 
 .macro getUpgrader
 DROP
@@ -606,6 +701,8 @@ PUSHREFSLICE {
 	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
 }
 SETGLOB 13
+PUSHINT 0
+SETGLOB 14
 .loc ../examples/contracts/factory/FactoryInstance.tsol, 36
 CTOS
 LDU 32
@@ -955,7 +1052,9 @@ LDREF
 ENDS
 CTOS
 LDMSGADDR
+LDU 32
 ENDS
+SETGLOB 14
 SETGLOB 13
 SETGLOB 12
 SETGLOB 11
@@ -996,6 +1095,8 @@ PUSHCONT {
 	PUSHREFSLICE {
 		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
 	}
+	PUSHINT 0
+	SETGLOB 14
 	SETGLOB 13
 	SETGLOB 12
 	SETGLOB 11
@@ -1013,6 +1114,8 @@ IFREFELSE {
 }
 
 .macro c7_to_c4
+GETGLOB 14
+GETGLOB 13
 GETGLOB 12
 GETGLOB 11
 GETGLOB 10
@@ -1025,9 +1128,10 @@ STONE
 STU 32
 STU 32
 STSLICE
-GETGLOB 13
+ROTREV
 NEWC
 STSLICE
+STU 32
 STBREFR
 ENDC
 POPROOT
@@ -1284,16 +1388,16 @@ PUSHINT 772101102
 LEQ
 IFJMPREF {
 	DUP
+	PUSHINT 184482155
+	EQUAL
+	IFJMPREF {
+		CALL $upgrade$
+	}
+	DUP
 	PUSHINT 372553142
 	EQUAL
 	IFJMPREF {
 		CALL $check$
-	}
-	DUP
-	PUSHINT 416385552
-	EQUAL
-	IFJMPREF {
-		CALL $upgrade$
 	}
 	DUP
 	PUSHINT 766070063
@@ -1317,6 +1421,12 @@ IFJMPREF {
 	EQUAL
 	IFJMPREF {
 		CALL $constructor$
+	}
+	DUP
+	PUSHINT 1389633626
+	EQUAL
+	IFJMPREF {
+		CALL $getExtra$
 	}
 	DUP
 	PUSHINT 1965223820

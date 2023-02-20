@@ -1,6 +1,6 @@
 pragma ever-solidity >= 0.61.2;
 
-import "../../libraries/UtilityFlag.tsol";
+import "../../libraries/MsgFlag.tsol";
 
 /// @author Alexander Kunekov
 /// @title Reservable
@@ -46,7 +46,7 @@ abstract contract Reservable {
         // Refund remaining gas
         remainingGasTo.transfer({
             value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
+            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
             bounce: false
         });
     }
@@ -76,7 +76,7 @@ abstract contract Reservable {
         // Refund remaining gas
         remainingGasTo.transfer({
             value: 0,
-            flag: UtilityFlag.ALL_NOT_RESERVED + UtilityFlag.IGNORE_ERRORS,
+            flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
             bounce: false
         });
     }

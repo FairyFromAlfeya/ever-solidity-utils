@@ -11,15 +11,18 @@ import "../../../contracts/factory/abstract/Factory.tsol";
 import "../../../contracts/libraries/UtilityErrors.tsol";
 import "../../../contracts/libraries/UtilityGas.tsol";
 
-import "./FactoryInstance.tsol";
+import "../../../contracts/upgrade/abstract/Upgrader.tsol";
+import "../../../contracts/upgrade/interfaces/IUpgradableByRequestWithData.tsol";
 
-contract FactoryExample is Factory, Ownable {
+import "../factory/FactoryInstance.tsol";
+
+contract UpgraderWithDataExample is Factory, Upgrader, Ownable {
     uint32 private static _nonce;
 
     function _getTargetBalanceInternal()
         internal
         view
-        override (Factory, Ownable)
+        override (Factory, Upgrader, Ownable)
         returns (uint128)
     {
         return UtilityGas.INITIAL_BALANCE;
@@ -87,10 +90,51 @@ contract FactoryExample is Factory, Ownable {
         );
     }
 
-    function _getInstanceAddressInternal(TvmCell _params)
-        internal
+    function provideUpgrade(
+        uint32 _instanceVersion,
+        TvmCell _deployParams,
+        address _remainingGasTo
+    )
+        external
         view
         override
+        reserve(_getTargetBalanceInternal())
+        validTvmCell(_deployParams, UtilityErrors.INVALID_DEPLOY_PARAMS)
+        validAddress(_remainingGasTo, UtilityErrors.INVALID_GAS_RECIPIENT)
+    {
+        require(
+            _getInstanceAddressInternal(_deployParams) == msg.sender,
+            UtilityErrors.CALLER_IS_NOT_INSTANCE
+        );
+
+        (uint32 version, TvmCell code) = _getParamsForUpgradeInternal();
+
+        // Upgrade to last version if contract's version is different
+        if (_instanceVersion != version) {
+            IUpgradableByRequestWithData(msg.sender)
+                .upgrade{
+                    value: 0,
+                    flag: MsgFlag.ALL_NOT_RESERVED,
+                    bounce: false
+                }(
+                    version,
+                    code,
+                    abi.encode(uint32(123)),
+                    _remainingGasTo
+                );
+        } else {
+            _remainingGasTo.transfer({
+                value: 0,
+                flag: MsgFlag.ALL_NOT_RESERVED + MsgFlag.IGNORE_ERRORS,
+                bounce: false
+            });
+        }
+    }
+
+    function _getInstanceAddressInternal(TvmCell _deployParams)
+        internal
+        view
+        override (Factory, Upgrader)
         returns (address)
     {
         return address(
@@ -100,11 +144,23 @@ contract FactoryExample is Factory, Ownable {
                     contr: FactoryInstance,
                     pubkey: 0,
                     varInit: {
-                        _id: abi.decode(_params, uint32),
+                        _id: abi.decode(_deployParams, uint32),
                         _factory: address(this)
                     }
                 })
             )
+        );
+    }
+
+    function _getParamsForUpgradeInternal()
+        internal
+        view
+        override
+        returns (uint32, TvmCell)
+    {
+        return (
+            _getInstanceVersionInternal(),
+            _getInstanceCodeInternal()
         );
     }
 }

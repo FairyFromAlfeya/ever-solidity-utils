@@ -1,14 +1,14 @@
 pragma ever-solidity >= 0.61.2;
 
-import "../interfaces/IUpgradableByRequest.tsol";
+import "../interfaces/IUpgradableByRequestWithData.tsol";
 
 import "./UpgradableByRequestBase.tsol";
 
 /// @author Alexander Kunekov
-/// @title Upgradable by Request
+/// @title Upgradable by Request with Data
 /// @notice Implements base functions for upgradable by request contract
 /// @dev A contract is abstract - to be sure that it will be inherited by another contract
-abstract contract UpgradableByRequest is
-    IUpgradableByRequest,
+abstract contract UpgradableByRequestWithData is
+    IUpgradableByRequestWithData,
     UpgradableByRequestBase
 {}
