@@ -1,24 +1,11 @@
 pragma ever-solidity >= 0.61.2;
 
+import "./IUpgradableByRequestBase.tsol";
+
 /// @author Alexander Kunekov
 /// @title Upgradable by Request with Data Interface
 /// @notice Interface for contract upgrade by request implementation
-interface IUpgradableByRequestWithData {
-    /// @dev Emits when the contract's upgrader was changed
-    /// @dev Should be emitted only inside _setUpgraderInternal()
-    event UpgraderChanged(
-        address current,
-        address previous
-    );
-
-    /// @notice Get the current contract's upgrader
-    /// @return address Upgrader's address
-    function getUpgrader() external view responsible returns (address);
-
-    /// @dev Request contract upgrade from upgrader
-    /// @param _remainingGasTo Gas recipient
-    function requestUpgrade(optional(address) _remainingGasTo) external view;
-
+interface IUpgradableByRequestWithData is IUpgradableByRequestBase {
     /// @notice Upgrades contract's code
     /// @dev Only the upgrader can perform. See Upgrader
     /// @param _version New version of the contract

@@ -19,7 +19,7 @@ contract UpgradableByRequestWithDataExample is FactoryInstance, UpgradableByRequ
     function _getTargetBalanceInternal()
         internal
         view
-        override (FactoryInstance, UpgradableByRequestWithData)
+        override (FactoryInstance, UpgradableByRequestBase)
         returns (uint128)
     {
         return UtilityGas.INITIAL_BALANCE;

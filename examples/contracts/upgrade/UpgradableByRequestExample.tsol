@@ -17,7 +17,7 @@ contract UpgradableByRequestExample is FactoryInstance, UpgradableByRequest {
     function _getTargetBalanceInternal()
         internal
         view
-        override (FactoryInstance, UpgradableByRequest)
+        override (FactoryInstance, UpgradableByRequestBase)
         returns (uint128)
     {
         return UtilityGas.INITIAL_BALANCE;

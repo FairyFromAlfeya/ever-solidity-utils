@@ -174,7 +174,7 @@ PUSHCONT {
 	.loc ../contracts/reservation/abstract/Reservable.tsol, 0
 }
 IF
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 39
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 37
 GETGLOB 13
 PARSEMSGADDR
 INDEX 3
@@ -185,7 +185,7 @@ GETGLOB 13
 SDEQ
 AND
 THROWIFNOT 1007
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 44
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 42
 PUSH S4
 .loc ../contracts/validation/abstract/Validatable.tsol, 32
 PUSHINT 1004
@@ -340,14 +340,14 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 47
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 45
 LDU 32
 GETGLOB 4
 ROT
 SETINDEXQ 5
 SETGLOB 4
 ENDS
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 0
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 0
 CALLREF {
 	CALL $getUpgrader_e4d7437b_internal_macro$
 }
@@ -410,7 +410,7 @@ IFREF {
 THROW 0
 
 .macro getUpgrader_e4d7437b_internal_macro
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 58
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 56
 GETGLOB 4
 PUSHINT 0
 SETINDEXQ 2
@@ -420,7 +420,7 @@ FALSE
 SETINDEXQ 1
 SETGLOB 4
 GETGLOB 13
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 0
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 0
 
 .macro requestUpgrade
 DROP
@@ -431,7 +431,7 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 61
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 59
 OVER
 PUSHCONT {
 	LDREF
@@ -456,7 +456,7 @@ PUSHCONT {
 }
 IFELSE
 ENDS
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 0
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 0
 CALLREF {
 	CALL $requestUpgrade_0a455203_internal_macro$
 }
@@ -466,7 +466,7 @@ IFREF {
 THROW 0
 
 .macro requestUpgrade_0a455203_internal_macro
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 61
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 59
 CALLREF {
 	CALL $_getTargetBalanceInternal_141d6ea7_internal_macro$
 }
@@ -494,7 +494,7 @@ PUSHCONT {
 IFNOT
 .loc ../contracts/validation/abstract/Validatable.tsol, 53
 DROP2
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 70
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 68
 DUP
 ISNULL
 PUSHCONT {
@@ -506,7 +506,7 @@ PUSHCONT {
 	THROWIF 63
 }
 IFELSE
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 72
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 70
 CALLREF {
 	CALL $_getDeployParamsInternal_95e71007_internal_macro$
 }
@@ -532,7 +532,7 @@ STBREFR
 ENDC
 PUSHPOW2 7
 SENDRAWMSG
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 0
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 0
 DROP
 
 .globl	_setUpgraderInternal_38cf9445_internal
@@ -540,12 +540,12 @@ DROP
 CALL $_setUpgraderInternal_38cf9445_internal_macro$
 
 .macro _setUpgraderInternal_38cf9445_internal_macro
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 88
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 86
 GETGLOB 13
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 89
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 87
 OVER
 SETGLOB 13
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 91
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 89
 SWAP
 PUSHSLICE xc0000000000000000000000001
 NEWC
@@ -562,25 +562,25 @@ STBREFR
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 0
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 0
 
 .globl	_setUpgraderSilent_808d69d5_internal
 .type	_setUpgraderSilent_808d69d5_internal, @function
 CALL $_setUpgraderSilent_808d69d5_internal_macro$
 
 .macro _setUpgraderSilent_808d69d5_internal_macro
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 100
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 98
 SETGLOB 13
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 0
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 0
 
 .globl	_getUpgraderInternal_da4e2b18_internal
 .type	_getUpgraderInternal_da4e2b18_internal, @function
 CALL $_getUpgraderInternal_da4e2b18_internal_macro$
 
 .macro _getUpgraderInternal_da4e2b18_internal_macro
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 107
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 105
 GETGLOB 13
-.loc ../contracts/upgrade/abstract/UpgradableByRequest.tsol, 0
+.loc ../contracts/upgrade/abstract/UpgradableByRequestBase.tsol, 0
 
 .globl	FactoryInstance__getTargetBalanceInternal_141d6ea7
 .type	FactoryInstance__getTargetBalanceInternal_141d6ea7, @function
